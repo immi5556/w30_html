@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Nov 03 14:48:00 IST 2016
+#Thu Nov 03 15:17:51 IST 2016
 20.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 143.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
 340.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-xhdpi-v4\\abc_btn_rating_star_on_mtrl_alpha.png

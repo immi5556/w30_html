@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
     //Location
     public MyLocationManager mLocationManager;
     private static final int REQUEST_FINE_LOCATION = 1;
+    private static  final int CALL_REQUEST1 = 5;
     private Activity mCurrentActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +107,37 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
        /* latitude = gps.getLatitude();
         longitude = gps.getLongitude();
         myBrowser.loadUrl("javascript:app.changeCenter(" + latitude + "," + longitude + ")");*/
+    }
+
+    private void checkReadPhoneStatePermissions(String number) {
+        try {
+
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+                Intent in=new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+number));
+                try{
+                    startActivity(in);
+                } catch (android.content.ActivityNotFoundException ex){
+                    Toast.makeText(getApplicationContext(),"yourActivity is not founded",Toast.LENGTH_SHORT).show();
+                }
+            }
+            //do call
+            else {
+
+                if (ContextCompat.checkSelfPermission(MainActivity.this,android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.CALL_PHONE}, CALL_REQUEST1);
+                } else {
+                    Intent in=new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+number));
+                    try{
+                        startActivity(in);
+                    } catch (android.content.ActivityNotFoundException ex){
+                        Toast.makeText(getApplicationContext(),"yourActivity is not founded",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -265,12 +297,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         @JavascriptInterface
         public void phoneCall(String number) {
             Log.d("phone call", number);
-            Intent in=new Intent(Intent.ACTION_CALL,Uri.parse(number));
-            try{
-                startActivity(in);
-            } catch (android.content.ActivityNotFoundException ex){
-                Toast.makeText(getApplicationContext(),"yourActivity is not founded",Toast.LENGTH_SHORT).show();
-            }
+            checkReadPhoneStatePermissions(number);
         }
 
         @JavascriptInterface
