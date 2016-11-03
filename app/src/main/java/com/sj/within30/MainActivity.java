@@ -1,13 +1,20 @@
 package com.sj.within30;
 
+import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.net.Uri;
 import android.net.http.SslError;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,30 +26,27 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+import com.google.android.gms.location.LocationRequest;
+import com.sj.within30.location.LocationManagerInterface;
+import com.sj.within30.location.MyLocationManager;
 
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LocationManagerInterface {
     MainActivity self;
     WebView myBrowser;
-    GPSTracker gps;
     static LayoutInflater inflater;
     double latitude = 0, longitude = 0;
+    Boolean updateLatLong = true;
+    //Location
+    public MyLocationManager mLocationManager;
+    private static final int REQUEST_FINE_LOCATION = 1;
+    private Activity mCurrentActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        gps = new GPSTracker(MainActivity.this, this);
         self = this;
-        if(gps.canGetLocation()){
-
-            latitude = gps.getLatitude();
-            longitude = gps.getLongitude();
-            Log.d("latlong ", latitude + "--" + longitude);
-            Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
-        }else{
-            gps.showSettingsAlert();
-        }
         myBrowser = (WebView)findViewById(R.id.mybrowser);
         myBrowser.getSettings().setJavaScriptEnabled(true);
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
@@ -99,9 +103,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void refreshLocation() {
-        latitude = gps.getLatitude();
+       /* latitude = gps.getLatitude();
         longitude = gps.getLongitude();
-        myBrowser.loadUrl("javascript:app.changeCenter(" + latitude + "," + longitude + ")");
+        myBrowser.loadUrl("javascript:app.changeCenter(" + latitude + "," + longitude + ")");*/
+    }
+
+    @Override
+    public void locationFetched(Location mLocation, Location oldLocation, String time, String locationProvider) {
+        if(updateLatLong) {
+            Log.d("latitude--",""+mLocation.getLatitude());
+            Log.d("longitude--",""+mLocation.getLongitude());
+            latitude = mLocation.getLatitude();
+            longitude = mLocation.getLongitude();
+            updateLatLong = false;
+        }
     }
 
     private class MyJavaScriptChromeClient extends WebChromeClient {
@@ -150,9 +165,212 @@ public class MainActivity extends AppCompatActivity {
                     SharedStorage.saveLastName(data.getString("lastname"));
                     SharedStorage.saveEmail(data.getString("email"));
                     SharedStorage.saveMobile(data.getString("mobilenumber"));
+                    SharedStorage.saveUserId(data.getString("_id"));
                     //SharedStorage.saveN(data.get('notifications'));
                 }
             } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public void postLocationType(String action, String jsonData) {
+            try {
+                JSONObject data = Utils.transformJson(jsonData);
+                if (action.equalsIgnoreCase("persistuser")){
+                    SharedStorage.saveLocationType(data.getString("currentLocation"));
+                }
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getProfileData() {
+            JSONObject userDetails = new JSONObject();
+            try {
+                    userDetails.put("firstName", SharedStorage.getFirstName());
+                    userDetails.put("lastName", SharedStorage.getLastName());
+                    userDetails.put("email", SharedStorage.getEmail());
+                    userDetails.put("mobileNumber", SharedStorage.getMobile());
+                    userDetails.put("userId", SharedStorage.getUserId());
+            } catch (Exception ex) {}
+            return userDetails.toString();
+        }
+
+        @JavascriptInterface
+        public String getLatLong() {
+            JSONObject LatLongValues = new JSONObject();
+            try {
+                LatLongValues.put("latitude", latitude);
+                LatLongValues.put("longitude", longitude);
+                LatLongValues.put("CurrentLocation", SharedStorage.getLocationType());
+            } catch (Exception ex) {}
+            return LatLongValues.toString();
+        }
+
+        @JavascriptInterface
+        public void saveLocationType(String value) {
+            try {
+                SharedStorage.saveLocationType(value);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getLocationType() {
+            try {
+                return SharedStorage.getLocationType();
+            } catch (Exception ex) {}
+            return null;
+        }
+
+        @JavascriptInterface
+        public void saveRecentLocation(String value) {
+            try {
+                Log.d("recent ", value);
+                SharedStorage.storeRecentLocation(value);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getRecentLocation() {
+            try {
+                return SharedStorage.getStoredRecentLocation();
+            } catch (Exception ex) {}
+            return  null;
+        }
+
+        @JavascriptInterface
+        public void updateLatLong(String lat, String longi) {
+            try {
+                latitude = Double.parseDouble(lat);
+                longitude = Double.parseDouble(longi);
+                Log.d("latitude-##-",""+latitude);
+                Log.d("longitude-##-",""+longitude);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public void showToast(String msg) {
+            try {
+                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public void updateCurrentLocation() {
+            try {
+                initLocationFetching(MainActivity.this);
+                updateLatLong = true;
+                Log.d("lat, long", latitude+","+longitude);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public void phoneCall(String number) {
+            Log.d("phone call", number);
+            Intent in=new Intent(Intent.ACTION_CALL,Uri.parse(number));
+            try{
+                startActivity(in);
+            } catch (android.content.ActivityNotFoundException ex){
+                Toast.makeText(getApplicationContext(),"yourActivity is not founded",Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @JavascriptInterface
+        public void openLink(String link) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+            try{
+                startActivity(browserIntent);
+            }
+
+            catch (android.content.ActivityNotFoundException ex){
+                Toast.makeText(getApplicationContext(),"yourActivity is not founded",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        if (mLocationManager != null)
+            mLocationManager.abortLocationFetching();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume(); //is in foreground
+
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mLocationManager != null)
+            mLocationManager.pauseLocationFetching();
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (mLocationManager != null) {
+
+            mLocationManager.startLocationFetching();
+        }
+        else{
+            initLocationFetching(MainActivity.this);
+        }
+
+    }
+
+    public void initLocationFetching(Activity mActivity) {
+
+        mCurrentActivity = mActivity;
+        // ask permission for M
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            showLocationPermission();
+        } else {
+            mLocationManager = new MyLocationManager(getApplicationContext(), mActivity, this, MyLocationManager.ALL_PROVIDERS, LocationRequest.PRIORITY_HIGH_ACCURACY, 10 * 1000, 1 * 1000, MyLocationManager.LOCATION_PROVIDER_RESTRICTION_NONE); // init location manager
+
+        }
+    }
+    private void showLocationPermission() {
+        int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION);
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(mCurrentActivity, Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, REQUEST_FINE_LOCATION);
+            } else {
+                requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, REQUEST_FINE_LOCATION);
+            }
+        } else {
+            mLocationManager = new MyLocationManager(getApplicationContext(), mCurrentActivity, this, MyLocationManager.ALL_PROVIDERS, LocationRequest.PRIORITY_HIGH_ACCURACY, 10 * 1000, 1 * 1000, MyLocationManager.LOCATION_PROVIDER_RESTRICTION_NONE); // init location manager
+        }
+    }
+
+
+
+    private void requestPermission(String permissionName, int permissionRequestCode) {
+        ActivityCompat.requestPermissions(mCurrentActivity, new String[]{permissionName}, permissionRequestCode);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(
+            int requestCode,
+            String permissions[],
+            int[] grantResults) {
+
+
+        switch (requestCode) {
+            case REQUEST_FINE_LOCATION:
+                int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION);
+                if (permissionCheck== PackageManager.PERMISSION_GRANTED)
+                {
+
+                    mLocationManager = new MyLocationManager(getApplicationContext(), this, this, MyLocationManager.ALL_PROVIDERS, LocationRequest.PRIORITY_HIGH_ACCURACY, 10 * 1000, 1 * 1000, MyLocationManager.LOCATION_PROVIDER_RESTRICTION_NONE);
+                    // init location manager
+                    mLocationManager.startLocationFetching();
+                    //permission granted here
+                }
         }
     }
 }

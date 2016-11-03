@@ -3,6 +3,7 @@ package com.sj.within30;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 /**
  * Created by Immanuel Raj on 10/24/2016.
@@ -62,4 +63,20 @@ public class SharedStorage {
     public static String getMobile() {
         return getValue("MobileNo");
     }
+
+    public static void saveUserId(String value) {
+        saveValues("UserId", value);
+    }
+
+    public static String getUserId() { return getValue("UserId");  }
+
+    public static void saveLocationType(String value) {
+        saveValues("CurrentLocation", value);
+    }
+
+    public static String getLocationType() { return getValue("CurrentLocation");  }
+
+    public static void storeRecentLocation(String value) { saveValues("SearchedLocation", value); }
+
+    public static String getStoredRecentLocation() { return getValue("SearchedLocation");  }
 }
