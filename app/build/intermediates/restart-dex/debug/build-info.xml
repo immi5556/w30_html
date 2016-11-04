@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="x86_64,x86"
-    api-level="22"
-    density="hdpi"
+    abi="x86"
+    api-level="24"
+    density="xxhdpi"
     format="8"
     plugin-version="2.2.2"
-    timestamp="1049816425587816"
+    timestamp="1051232990705199"
     token="2616879224624965845"
     verifier="COLD_SWAP_REQUESTED" >
 
@@ -27,14 +27,14 @@
         type="RESOURCES" />
 
     <build
-        timestamp="1047081542551802"
+        timestamp="1050340925052075"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="E:\vamis\Android\w30_html\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
     <build
-        timestamp="1049816425587816"
+        timestamp="1051232990705199"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="E:\vamis\Android\w30_html\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"

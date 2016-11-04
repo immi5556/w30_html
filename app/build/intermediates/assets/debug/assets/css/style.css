@@ -129,7 +129,7 @@ html,body {
 	border-right: none;
 }
 .container {
-	max-width: 480px;
+	max-width: 500px;
 	margin: auto;
 	box-sizing: border-box;
 	padding: 0 0px;
