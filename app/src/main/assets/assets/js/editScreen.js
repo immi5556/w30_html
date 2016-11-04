@@ -5,35 +5,50 @@ var latitude, longitude;
 var firstname, lastname, email, mobilenumber, userid;
 
 if (window.andapp){
-    var json = window.andapp.getProfileData();
-    JSON.parse(json, (key, value) => {
-        if(key == "firstName"){
-            firstname = value;
-            $(".firstname").focus();
-            $(".firstname").val(value);
-        }
-        if(key == "lastName"){
-            lastname = value;
-            $(".lastname").focus();
-            $(".lastname").val(value);
-        }
-        if(key == "email"){
-            email = value;
-            $(".email").focus();
-            $(".email").val(value);
-        }
-        if(key == "mobileNumber"){
-            mobilenumber = value;
-            $(".mobilenumber").focus();
-            var temp = '('+mobilenumber.substring(0,3)+') '+mobilenumber.substring(3,6)+'-'+mobilenumber.substring(6,10);
-            $(".mobilenumber").val(temp);
-            $(document).click();
-        }
-        if(key == "userId"){
-            userid = value;
-        }
+    firstname = window.andapp.getFirstname();
+    lastname = window.andapp.getLastname();
+    email = window.andapp.getEmail();
+    mobilenumber = window.andapp.getMobile();
+    userid = window.andapp.getUserId();
+    $(".firstname").focus();
+    $(".firstname").val(firstname);
+    $(".lastname").focus();
+    $(".lastname").val(lastname);
+    $(".email").focus();
+    $(".email").val(email);
+    $(".mobilenumber").focus();
+    var temp = '('+mobilenumber.substring(0,3)+') '+mobilenumber.substring(3,6)+'-'+mobilenumber.substring(6,10);
+    $(".mobilenumber").val(temp);
+    $(document).click();
+    /*var json = window.andapp.getProfileData();
+             JSON.parse(json, (key, value) => {
+                 if(key == "firstName"){
+                     firstname = value;
+                     $(".firstname").focus();
+                     $(".firstname").val(value);
+                 }
+                 if(key == "lastName"){
+                     lastname = value;
+                     $(".lastname").focus();
+                     $(".lastname").val(value);
+                 }
+                 if(key == "email"){
+                     email = value;
+                     $(".email").focus();
+                     $(".email").val(value);
+                 }
+                 if(key == "mobileNumber"){
+                     mobilenumber = value;
+                     $(".mobilenumber").focus();
+                     var temp = '('+mobilenumber.substring(0,3)+') '+mobilenumber.substring(3,6)+'-'+mobilenumber.substring(6,10);
+                     $(".mobilenumber").val(temp);
+                     $(document).click();
+                 }
+                 if(key == "userId"){
+                     userid = value;
+                 }
 
-    });
+             });*/
 }
 
 function mobileNumberValidation(evt){

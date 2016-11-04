@@ -40,8 +40,10 @@ $(".back").on("click", function(){
 var locationType, latitude, longitude;
 if (window.andapp){
      locationType = window.andapp.getLocationType();
+     latitude = window.andapp.getLatitude();
+     longitude = window.andapp.getLongitude();
  }
-var json = window.andapp.getLatLong();
+/*var json = window.andapp.getLatLong();
 JSON.parse(json, (key, value) => {
     if(key == "latitude"){
         latitude = value;
@@ -49,7 +51,7 @@ JSON.parse(json, (key, value) => {
     if(key == "longitude"){
         longitude = value;
     }
-});
+});*/
 if(latitude && longitude){
     getCities();
 }

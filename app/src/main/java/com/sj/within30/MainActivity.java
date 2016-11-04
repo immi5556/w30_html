@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
             } catch (Exception ex) {}
         }
 
-        @JavascriptInterface
+        /*@JavascriptInterface
         public String getProfileData() {
             JSONObject userDetails = new JSONObject();
             try {
@@ -230,12 +230,13 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         public String getLatLong() {
             JSONObject LatLongValues = new JSONObject();
             try {
+                Log.d("get lat long", latitude+"");
                 LatLongValues.put("latitude", latitude);
                 LatLongValues.put("longitude", longitude);
                 LatLongValues.put("CurrentLocation", SharedStorage.getLocationType());
             } catch (Exception ex) {}
             return LatLongValues.toString();
-        }
+        }*/
 
         @JavascriptInterface
         public void saveLocationType(String value) {
@@ -248,6 +249,62 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         public String getLocationType() {
             try {
                 return SharedStorage.getLocationType();
+            } catch (Exception ex) {}
+            return null;
+        }
+
+        @JavascriptInterface
+        public Double getLatitude() {
+            try {
+                return latitude;
+            } catch (Exception ex) {}
+            return null;
+        }
+
+        @JavascriptInterface
+        public Double getLongitude() {
+            try {
+                return longitude;
+            } catch (Exception ex) {}
+            return null;
+        }
+
+        @JavascriptInterface
+        public String getFirstname() {
+            try {
+                return SharedStorage.getFirstName();
+            } catch (Exception ex) {}
+            return null;
+        }
+
+        @JavascriptInterface
+        public String getEmail() {
+            try {
+                return SharedStorage.getEmail();
+            } catch (Exception ex) {}
+            return null;
+        }
+
+        @JavascriptInterface
+        public String getMobile() {
+            try {
+                return SharedStorage.getMobile();
+            } catch (Exception ex) {}
+            return null;
+        }
+
+        @JavascriptInterface
+        public String getLastname() {
+            try {
+                return SharedStorage.getLastName();
+            } catch (Exception ex) {}
+            return null;
+        }
+
+        @JavascriptInterface
+        public String getUserId() {
+            try {
+                return SharedStorage.getUserId();
             } catch (Exception ex) {}
             return null;
         }

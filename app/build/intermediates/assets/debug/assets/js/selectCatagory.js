@@ -30,10 +30,10 @@ function getLocation(lat, lng) {
           }
         });
       } else {
-        //console.log("No results found");
+        console.log("No results found");
       }
     } else {
-      //console.log("Geocoder failed due to: " + status);
+      console.log("Geocoder failed due to: " + status);
     }
   });
 }
@@ -307,25 +307,30 @@ function gbAutoComplete(id,obj){
 }
 
 if (window.andapp){
-    var json = window.andapp.getLatLong();
-    JSON.parse(json, (key, value) => {
+    var locationType;
+    latitude = window.andapp.getLatitude();
+    longitude = window.andapp.getLongitude();
+    locationType = window.andapp.getLocationType();
+    /*JSON.parse(json, (key, value) => {
         if(key == "latitude"){
             latitude = value;
         }
         if(key == "longitude"){
             longitude = value;
         }
-    });
-    var locationType;
-    if (window.andapp){
+        if(key == "CurrentLocation"){
+            locationType = value;
+        }
+    });*/
+
+    /*if (window.andapp){
         locationType = window.andapp.getLocationType();
-    }
+    }*/
     if(!locationType || locationType == "false"){
         var recentSearch;
         if (window.andapp){
             recentSearch = window.andapp.getRecentLocation();
             if(recentSearch){
-                var geocoder =  new google.maps.Geocoder();
                 geocoder.geocode( { 'address': recentSearch}, function(results, status) {
                       if (status == google.maps.GeocoderStatus.OK) {
                          latitude = results[0].geometry.location.lat();

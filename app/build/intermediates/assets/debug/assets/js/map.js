@@ -35,7 +35,7 @@ var abbrs = {
 var email, mobilenumber, userid;
 
 if (window.andapp){
-    var json = window.andapp.getProfileData();
+    /*var json = window.andapp.getProfileData();
     JSON.parse(json, (key, value) => {
         if(key == "email"){
             email = value;
@@ -46,7 +46,10 @@ if (window.andapp){
         if(key == "userId"){
             userid = value;
         }
-    });
+    });*/
+    email = window.andapp.getEmail();
+    mobilenumber = window.andapp.getMobile();
+    userid = window.andapp.getUserId();
 }
     function getCustomerAPICall(lat, lng, miles, min){        
         miles = Number(miles);
@@ -280,22 +283,47 @@ if (window.andapp){
     minutesValue = 30;
     $('.range-slider.slideMin').foundation('slider', 'set_value', minutesValue);
     $("body").on('DOMSubtreeModified', "span#sliderOutput2", function () {
-        if($(this).html().length > 0 && !isNaN($(this).html())){
-            minutesValue = parseInt($(this).html());
+        if($(this).text().length > 0 && !isNaN($(this).text())){
+            if($(this).text().length > 2 && $(this).text().length % 2 == 0 && milesValue < 10){
+                minutesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
+            }else if($(this).text().length > 2 && $(this).text().length % 2 == 0 && milesValue >= 10){
+                minutesValue = parseInt($(this).text().substring($(this).text().length - 2 , $(this).text().length));
+            }else if($(this).text().length > 2 && $(this).text().length % 2 == 1 && milesValue < 10){
+                minutesValue = parseInt($(this).text().substring($(this).text().length - 2 , $(this).text().length));
+            }else if($(this).text().length > 2 && $(this).text().length % 2 == 1 && milesValue >= 10){
+                minutesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
+            }else if($(this).text().length == 2 && parseInt($(this).text()) > 60){
+                minutesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
+            }else{
+                minutesValue = parseInt($(this).text());
+            }
             minutesSlide(minutesValue);
         }else{
-            $(this).empty();
-            $(this).html(minutesValue+"");
+            $(this).text('');
+            $(this).text(minutesValue);
             minutesSlide(minutesValue);
         }
     });
     $("body").on('DOMSubtreeModified', "span#sliderOutput3", function () {
-        if($(this).html().length > 0 && !isNaN($(this).html())){
-            milesValue = parseInt($(this).html());
+        if($(this).text().length > 0 && !isNaN($(this).text())){
+            if($(this).text().length > 2 && $(this).text().length % 2 == 0 && milesValue < 10){
+                milesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
+            }else if($(this).text().length > 2 && $(this).text().length % 2 == 0 && milesValue >= 10){
+                  milesValue = parseInt($(this).text().substring($(this).text().length - 2 , $(this).text().length));
+            }else if($(this).text().length > 2 && $(this).text().length % 2 == 1 && milesValue < 10){
+                milesValue = parseInt($(this).text().substring($(this).text().length - 2 , $(this).text().length));
+            }else if($(this).text().length > 2 && $(this).text().length % 2 == 1 && milesValue >= 10){
+                 milesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
+            }else if($(this).text().length == 2 && parseInt($(this).text()) > 60){
+                milesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
+            }else{
+                milesValue = parseInt($(this).text());
+            }
+
             milesSlide(milesValue);
         }else{
-            $(this).empty();
-            $(this).html(milesValue+"");
+            $(this).text('');
+            $(this).text(milesValue);
             milesSlide(milesValue);
         }
     });
@@ -556,7 +584,7 @@ if (window.andapp){
     }
     $(document).foundation().foundation('joyride', 'start');
    if (window.andapp){
-       var json = window.andapp.getLatLong();
+       /*var json = window.andapp.getLatLong();
        JSON.parse(json, (key, value) => {
            if(key == "latitude"){
                latitude = value;
@@ -564,7 +592,9 @@ if (window.andapp){
            if(key == "longitude"){
                longitude = value;
            }
-       });
+       });*/
+       latitude = window.andapp.getLatitude();
+       longitude = window.andapp.getLongitude();
        if(!latitude && !longitude){
            errorFunction();
        }else{

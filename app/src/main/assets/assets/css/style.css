@@ -604,9 +604,6 @@ nav a {
 	font: 400 17px/40px 'Droid Serif', serif;
 	background: #39425f;
 }
-.btn_sch:disabled {
-    background: #6c7cb1;
-}
 .serviceCont {
 	padding: 0 15px;
 }
@@ -658,7 +655,7 @@ nav a {
 	color: #fff;
 	font-weight: 400;
 	font-size: 17px;
-	background:#39425f; 
+	background:#39425f;
 }
 .popContent p {
 	line-height: 24px;
@@ -708,7 +705,7 @@ nav a {
   background: #CD0A0A !important;
 }
 .slideRageBar {
-  background:none !important; 
+  background:none !important;
 }
 .slideRageBar.myactive .ui-slider-range {
   z-index: 0 !important;
@@ -829,7 +826,7 @@ nav a {
 }
 .formSectionNotifi .clear {
 	clear: both;
-	padding: 40px 0;
+	padding: 10px 0;
 }
 .formSectionNotifi label {
 	color: #39425f;
@@ -1018,6 +1015,7 @@ nav a {
     display:none;
 }
 
+
 /*New SLider CSS*/
 
 .slideMin .range-slider-active-segment {
@@ -1152,4 +1150,38 @@ border: 1px solid #ccc;
 border-radius: 50px;
 background: #f2f2f2;
 display: none;
+}
+
+@media (min-width: 320px) and (max-width: 479px){
+
+.container {
+	width: 320px;
+}
+.catagory {
+	padding-top: 30px;
+}
+.catagoryCircle {
+	margin-top: 17px;
+}
+.cirle {
+	width: 65px;
+}
+.cirle .cirleIcon, .cirle:hover .cirleIcon {
+    background-size: 22px;
+}
+.cirleIcon {
+	width: 40px;
+	height: 40px;
+}
+.cirle strong {
+	font-size: 10px;
+}
+.categoryItem3 {
+    left: 41%;
+    top: 15px;
+}
+.logo1 {
+    padding-top: 25px;
+}
+
 }
