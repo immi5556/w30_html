@@ -1155,7 +1155,7 @@ display: none;
 @media (min-width: 320px) and (max-width: 479px){
 
 .container {
-	width: 320px;
+	width: 100%;
 }
 .catagory {
 	padding-top: 30px;
