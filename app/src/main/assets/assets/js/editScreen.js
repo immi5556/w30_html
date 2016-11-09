@@ -19,36 +19,7 @@ if (window.andapp){
     $(".mobilenumber").focus();
     var temp = '('+mobilenumber.substring(0,3)+') '+mobilenumber.substring(3,6)+'-'+mobilenumber.substring(6,10);
     $(".mobilenumber").val(temp);
-    $(document).click();
-    /*var json = window.andapp.getProfileData();
-             JSON.parse(json, (key, value) => {
-                 if(key == "firstName"){
-                     firstname = value;
-                     $(".firstname").focus();
-                     $(".firstname").val(value);
-                 }
-                 if(key == "lastName"){
-                     lastname = value;
-                     $(".lastname").focus();
-                     $(".lastname").val(value);
-                 }
-                 if(key == "email"){
-                     email = value;
-                     $(".email").focus();
-                     $(".email").val(value);
-                 }
-                 if(key == "mobileNumber"){
-                     mobilenumber = value;
-                     $(".mobilenumber").focus();
-                     var temp = '('+mobilenumber.substring(0,3)+') '+mobilenumber.substring(3,6)+'-'+mobilenumber.substring(6,10);
-                     $(".mobilenumber").val(temp);
-                     $(document).click();
-                 }
-                 if(key == "userId"){
-                     userid = value;
-                 }
-
-             });*/
+    $('.mobilenumber').blur()
 }
 
 function mobileNumberValidation(evt){
@@ -183,3 +154,11 @@ $(".repeat").on("click", function(){
 $(".back").on("click", function(){
 	window.location.href = "servicePage.html";
 });
+
+function goBack(){
+    window.history.back();
+}
+
+var refreshOnForeground = function(){
+    location.reload();
+}

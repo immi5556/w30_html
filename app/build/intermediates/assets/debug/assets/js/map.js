@@ -1,7 +1,7 @@
 var servurl = "https://services.schejule.com:9095/";     //"https://services.within30.com/"
 var sockurl = "https://socket.schejule.com:9090/";       //"https://socket.within30.com/"
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
-var serviceId = "57b54a9beead207818864335";               //57527f72c848741100ac0c9f
+var serviceId = "";               //57527f72c848741100ac0c9f
 var urlLink = ".schejule.com:9092/";
 var localImagePath = "./assets/img/";
 var milesValue = 60;
@@ -16,10 +16,12 @@ var bookedSlotAt = [];
 var bookedSlotDate = [];
 var bookedSlotSubdomain = [];
 var subDomains = [];
+var services = [];
 var sliderTime = null;
 var currentMarker = "";
 var oldMarker = -1;
 var bookedBusiness = null;
+var locationRedirect = false;
 var socketio = io.connect(sockurl);
 var abbrs = {
         EST : 'America/New_York',
@@ -33,24 +35,38 @@ var abbrs = {
         IST : "Asia/Kolkata"
 };
 var email, mobilenumber, userid;
+var getServices = function (){
+    var request1 = $.ajax({
+        url: servurl + "endpoint/api/getmyservices",
+        type: "POST",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader ("Authorization", "Basic " + btoa(w30Credentials));
+        },
+        data: JSON.stringify({}),
+        contentType: "application/json; charset=UTF-8"
+    });
 
-if (window.andapp){
-    /*var json = window.andapp.getProfileData();
-    JSON.parse(json, (key, value) => {
-        if(key == "email"){
-            email = value;
+    request1.success(function(result) {
+      services.push(result.Data);
+
+        var matchFound = -1;
+        services[0].forEach(function(item, index){
+          if(item._id == serviceId){
+            matchFound = index;
+          }
+        });
+        if(matchFound != -1){
+           $("#catagorySelect").text('');
+           $("#catagorySelect").text(services[0][matchFound].name);
+        }else{
+          alert("No Category found.");
         }
-        if(key == "mobileNumber"){
-            mobilenumber = value;
-        }
-        if(key == "userId"){
-            userid = value;
-        }
-    });*/
-    email = window.andapp.getEmail();
-    mobilenumber = window.andapp.getMobile();
-    userid = window.andapp.getUserId();
+    });
+    request1.fail(function(jqXHR, textStatus) {
+        console.log(textStatus);
+    });
 }
+
     function getCustomerAPICall(lat, lng, miles, min){        
         miles = Number(miles);
         min = Number(min);
@@ -70,12 +86,20 @@ if (window.andapp){
                 minutesValue = 30;
                 loadMap(result.Data);
             }else{
-                latitude = Number(result.latitude);
-                longitude = Number(result.longitude);
                 $(".popContent h2").text("Get Customers Response");
                 $(".popContent strong").text("No Customers in your Range. Redirecting to nearest location.");
                 $(".pop_up").show();
-                getCustomerAPICall(latitude, longitude, 60, 60);
+                if(!locationRedirect){
+                    latitude = Number(result.latitude);
+                    longitude = Number(result.longitude);
+                    errorFunction(null);
+                    locationRedirect = true;
+                }else{
+                    $(".popContent h2").text("Get Customers Response");
+                    $(".popContent strong").text("There seem to be no businesses in this category currently.");
+                    $(".pop_up").show();
+                    loadMap([]);
+                }
             }
         });
         request1.fail(function(jqXHR, textStatus) {
@@ -87,15 +111,13 @@ if (window.andapp){
     var successFunction = function(pos){
         milesValue = 60;
         minutesValue = 60;
+        getServices();
         getCustomerAPICall(latitude, longitude, milesValue, minutesValue);
     }
     var errorFunction = function(err){
-        //Dallas location.
-        latitude = parseFloat("32.7767");
-        longitude = parseFloat("-96.7970");
-        //getLocation(latitude, longitude);
         milesValue = 60;
         minutesValue = 60;
+        getServices();
         getCustomerAPICall(latitude, longitude, milesValue, minutesValue);
     }
 
@@ -207,15 +229,13 @@ if (window.andapp){
                     $(".rating span").text(ratingCount);
                     $(".milesVal").text(docs[i].destinationDistance.toFixed(2)+" Miles");
                     $(".companyAddr").text(companyAddr);
-                    //$(".website").attr("href","https://"+docs[i].subdomain+".schejule.com");
+                    //$(".website").attr("href","https://"+docs[i].subdomain+urlLink);
                     $(".phoneCall").on("click", function(){
-                        console.log(docs[i].mobile);
                         if(window.andapp){
                             window.andapp.phoneCall(docs[i].mobile);
                         }
                     });
                     $(".website").on("click", function(){
-                        console.log(docs[i].subdomain);
                         if(window.andapp){
                             window.andapp.openLink("https://"+docs[i].subdomain+urlLink);
                         }
@@ -247,6 +267,9 @@ if (window.andapp){
                         $(".btn_sch").off().on("click", function(){
                             bookSlot(subdomain, i, customers[i].nextSlotAt, customers[i].timeZone);
                         });
+                    }
+                    if(moment().tz(abbrs[customers[i].timeZone]).format("YYYY-MM-DD HH:mm") > (customers[i].nextSlotDate+" "+customers[i].nextSlotAt)){
+                        getCustomerInfo(latitude, longitude, 60, 60, i, 0);
                     }
                     $('.shadow').show();
                 }
@@ -354,7 +377,7 @@ if (window.andapp){
           strokeOpacity: 0.8,
           strokeWeight: 1,
           fillColor: '#FFFFFF',
-          fillOpacity: 0.35,
+          fillOpacity: 0,
           map: map,
           center: {lat: latitude, lng: longitude},
           radius: 48280.3
@@ -372,7 +395,6 @@ if (window.andapp){
         return;
         //circle.bindTo('center', markers[0], 'position');
     }
-
     function updateMilesRadius(){
         if(milesValue < 30 ){
             map.setZoom(10);
@@ -526,8 +548,24 @@ if (window.andapp){
     $(".popContent").on("click", function(e){
         e.stopPropagation();
     });
-    $(".pop_up").on("click", function(){
+    $(".pop_up, .closePop").on("click", function(){
         $(".pop_up").hide();
+    });
+
+    $(".menuList4, .menuList2, .menuList3, .menuList5, .menuList6, .menuList7").on("click", function(){
+        var matchFound = -1;
+        var className = $(this).attr('class').split(" ")[1];
+        services[0].forEach(function(item, index){
+            if(item.name.replace(" ", "").toLowerCase() == className){
+                matchFound = index;
+            }
+        });
+        if(matchFound != -1){
+           window.andapp.saveServiceId(services[0][matchFound]._id);
+           location.reload();
+        }else{
+          alert("No Category found.");
+        }
     });
 
     function getCustomerInfo(lat, lng, miles, min, index, timeline, callback){
@@ -584,25 +622,23 @@ if (window.andapp){
     }
     $(document).foundation().foundation('joyride', 'start');
    if (window.andapp){
-       /*var json = window.andapp.getLatLong();
-       JSON.parse(json, (key, value) => {
-           if(key == "latitude"){
-               latitude = value;
-           }
-           if(key == "longitude"){
-               longitude = value;
-           }
-       });*/
-       latitude = window.andapp.getLatitude();
-       longitude = window.andapp.getLongitude();
+        latitude = Number(window.andapp.getLatitude());
+        longitude = Number(window.andapp.getLongitude());
+        email = window.andapp.getEmail();
+        mobilenumber = window.andapp.getMobile();
+        userid = window.andapp.getUserId();
+        serviceId = window.andapp.getServiceId();
+
        if(!latitude && !longitude){
            errorFunction();
        }else{
            successFunction();
        }
-
    }
 
+    var refreshOnForeground = function(){
+        location.reload();
+    }
     socketio.on('connect', function () {
         socketio.emit('room', "home");
         

@@ -79,4 +79,16 @@ public class SharedStorage {
     public static void storeRecentLocation(String value) { saveValues("SearchedLocation", value); }
 
     public static String getStoredRecentLocation() { return getValue("SearchedLocation");  }
+
+    public static void saveCustomeLat(String value) { saveValues("Latitude", value); }
+
+    public static String getCustomeLat() { return getValue("Latitude");  }
+
+    public static void saveCustomeLong(String value) { saveValues("Longitude", value); }
+
+    public static String getCustomeLong() { return getValue("Longitude");  }
+
+    public static void saveServiceId(String value) { saveValues("ServiceId", value); }
+
+    public static String getServiceId() { return getValue("ServiceId");  }
 }

@@ -238,18 +238,22 @@ html,body {
     top: 19.5%;
 }
 .categoryItem3 {
-    left: 36%;
+    left: 29%;
     top: 0;
 }
 .categoryItem4 {
     left: auto;
     right: 45px;
-    top: 19.5%;
+    top: 17%;
 }
 .categoryItem5 {
     left: auto;
     right: 0;
     top: 48.5%;
+}
+.categoryItem6 {
+    left: 49%;
+    top: 0;
 }
 .categoryItem1 .cirleIcon {
 	background: url(../img/catagoryIcon1.png) no-repeat center center;
@@ -281,8 +285,20 @@ html,body {
 .categoryItem5:hover .cirleIcon {
 	background: url(../img/catagoryIcon5-hover.png) no-repeat center center;
 }
+.categoryItem5 .cirleIcon {
+	background: url(../img/catagoryIcon5.png) no-repeat center center;
+}
+.categoryItem5:hover .cirleIcon {
+	background: url(../img/catagoryIcon5-hover.png) no-repeat center center;
+}
+.categoryItem6 .cirleIcon {
+	background: url(../img/catagoryIcon6.png) no-repeat center center;
+}
+.categoryItem6:hover .cirleIcon {
+	background: url(../img/catagoryIcon6-hover.png) no-repeat center center;
+}
 .cirle .cirleIcon,.cirle:hover .cirleIcon {
-	background-size: 30px;
+	background-size: 20px;
 	border: 1px dashed #39425f;
 }
 .cirle:hover strong {
@@ -293,6 +309,7 @@ html,body {
 	height: 35px;
 	border-radius: 5px;
 	margin: 0 40px 0px 40px;
+	border: 1px solid #ebebeb;
 	background: #f6f6f6;
 }
 .searchbox1 input {
@@ -324,8 +341,8 @@ html,body {
 }
 header {
 	position: relative;
-	height: 40px;
-	line-height: 40px;
+	height: 45px;
+	line-height: 45px;
 	background: #39425f;
 	z-index: 999;
 }
@@ -335,7 +352,7 @@ header h2 {
 	float: left;
 	color: #fff;
 	font-family: 'Droid Serif', serif;
-	font-weight: 400;
+	font-weight: 700;
 }
 .menu {
 	float: left;
@@ -370,7 +387,7 @@ header h2 {
 nav {
 	width: 60px;
 	position: fixed;
-	top: 40px;
+	top: 45px;
 	bottom: 0;
 	z-index: 99;
 	background: #39425f;
@@ -467,7 +484,7 @@ nav a {
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
-  user-select: none;          /* Likely future */      
+  user-select: none;          /* Likely future */
 }
 .radiusCircles {
 	position: absolute;
@@ -643,27 +660,42 @@ nav a {
 	top: 50%;
 	overflow: hidden;
 	width: 220px;
-	height: 100px;
+	height: 130px;
 	text-align: center;
-	margin: -50px 0 0 -110px;
+	margin: -65px 0 0 -110px;
 	border-radius: 6px;
 	background: #fff;
 	cursor: default;
 }
 .popContent h2 {
-	line-height: 35px;
-	color: #fff;
-	font-weight: 400;
+	line-height: 40px;
+	color: #39425f;
+	font-weight: 700;
 	font-size: 17px;
-	background:#39425f;
 }
 .popContent p {
 	line-height: 24px;
 	font-size: 14px;
-	padding-top: 10px;
+	padding-top: 0;
+	margin-bottom: 8px;
 }
 .popContent p strong {
 	display: block;
+}
+.popContent .closePop {
+	line-height: 35px;
+	border: none;
+	color: #fff;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	padding: 0;
+	margin:0;
+	text-transform: uppercase;
+	width: 100%;
+	display: block;
+	background:#39425f;
 }
 .shadow {
 	position: fixed;
@@ -771,12 +803,12 @@ nav a {
 	float: left;
 	color: #fff;
 	width: 60px;
-	height: 40px;
+	height: 45px;
 	text-align: center;
 	box-sizing: border-box;
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
-	padding:9px 0 0 0;
+	padding:11px 0 0 0;
 }
 .back {
     background: url(../img/backArrow1.png) no-repeat 10px center;
@@ -788,10 +820,10 @@ nav a {
 	height: 25px;
 	text-align: center;
 	box-sizing: border-box;
-	padding: 5px 0 0 0;
+	padding: 7px 0 0 0;
 	border: 1px solid #fff;
 	border-radius: 50px;
-	margin: 7px 9px 0 0;
+	margin: 9px 9px 0 0;
 	color: #fff;
 	cursor: pointer;
 }
@@ -818,7 +850,7 @@ nav a {
 .formSectionNotifi {
 	clear: both;
 	text-align: center;
-	margin-top: 0;
+	margin-top: 20 !important;
 	border-top: 2px solid #f7f7f7;
 }
 #notify {
@@ -993,22 +1025,24 @@ nav a {
 #serach:focus {
     box-shadow:0 0 5px #1fb88e;
 }
-#dropListDiv {
+.dropListDiv {
+	display: none;
     max-height:109px;
     overflow-y:auto;
+    border:1px solid #ebebeb;
     background:#fffdfd;
 }
-#dropListDiv ul {
+.dropListDiv ul {
     list-style:none;
 }
-#dropListDiv ul li {
+.dropListDiv ul li {
     font:14px/35px arial,sans-serif;
     padding:0 5px;
     color:#999;
     cursor:pointer;
     border-bottom:1px solid #f1f1f1;
 }
-#dropListDiv ul li.current {
+.dropListDiv ul li:hover {
     background:#f9fffe;
 }
 .mynav {
@@ -1167,7 +1201,7 @@ display: none;
 	width: 65px;
 }
 .cirle .cirleIcon, .cirle:hover .cirleIcon {
-    background-size: 22px;
+    background-size: 18px;
 }
 .cirleIcon {
 	width: 40px;
@@ -1177,11 +1211,98 @@ display: none;
 	font-size: 10px;
 }
 .categoryItem3 {
-    left: 41%;
-    top: 15px;
+    left: 26%;
+    top: 0;
+}
+.categoryItem1 {
+    left: 0;
+    top: 48.5%;
+}
+.categoryItem2 {
+    left: 6%;
+    top: 21.5%;
+}
+.categoryItem4 {
+    left: auto;
+    right: 20px;
+    top: 17%;
+}
+.categoryItem6 {
+    left: 52%;
+    top: 0;
 }
 .logo1 {
     padding-top: 25px;
 }
-
+.catagoryCircle {
+	max-width: 300px;
+	margin: 50px auto 0;
 }
+}
+
+#autoComplete2 {
+	position: relative;
+	height: 35px;
+	border-radius: 5px;
+	margin: 0 40px 0px 40px;
+	background: #f6f6f6;
+}
+#autoComplete2 #serachServices {
+	width: 100%;
+	height: 35px;
+	padding: 0 30px 0 10px;
+	box-sizing: border-box;
+	border: none;
+	color: #a2a2a2;
+	font-size: 14px;
+	outline: none;
+	background: none;
+}
+#autoComplete2 .fa-search {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 30px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	cursor: pointer;
+	color: #a2a2a2;
+}
+#autoComplete2 .fa-pencil {
+	display: none !important;
+}
+/*.autoComplete {
+	width: 320px;
+	margin: auto;
+	float: left;
+	border: 1px solid #ccc;
+	height: 35px;
+	background: #f2f2f2;
+}*/
+/*.autoSearch,.autoSearch2 {
+	height: 35px;
+	outline: none;
+	border:none;
+	padding: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	background: none;
+}*/
+/*.dropListDiv {
+	display: none;
+    max-height: 109px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    background: #fffdfd;
+}
+.dropListDiv ul li {
+    font: 14px/35px arial,sans-serif;
+    padding: 0 5px;
+    color: #999;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f1f1;
+}
+.dropListDiv ul li:hover {
+    background: #f9fffe;
+}*/

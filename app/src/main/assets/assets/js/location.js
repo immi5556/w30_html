@@ -71,6 +71,9 @@ var setRecentBlock = function(){
                  longitude = selectedCity[0].longitude;
                  if (window.andapp){
                      window.andapp.saveLocationType("false");
+                     window.andapp.saveCustomeLat(latitude);
+                     window.andapp.saveCustomeLong(longitude);
+                     window.andapp.saveRecentLocation($(".recentSearch p").text());
                      window.andapp.updateLatLong(latitude, longitude);
                  }
              }
@@ -79,4 +82,12 @@ var setRecentBlock = function(){
      }else{
         $(".recentSearch p").text("No recent search");
      }
+ }
+
+ function goBack(){
+     window.history.back();
+ }
+
+ var refreshOnForeground = function(){
+     location.reload();
  }

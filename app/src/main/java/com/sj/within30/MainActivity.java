@@ -213,34 +213,10 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
             } catch (Exception ex) {}
         }
 
-        /*@JavascriptInterface
-        public String getProfileData() {
-            JSONObject userDetails = new JSONObject();
-            try {
-                    userDetails.put("firstName", SharedStorage.getFirstName());
-                    userDetails.put("lastName", SharedStorage.getLastName());
-                    userDetails.put("email", SharedStorage.getEmail());
-                    userDetails.put("mobileNumber", SharedStorage.getMobile());
-                    userDetails.put("userId", SharedStorage.getUserId());
-            } catch (Exception ex) {}
-            return userDetails.toString();
-        }
-
-        @JavascriptInterface
-        public String getLatLong() {
-            JSONObject LatLongValues = new JSONObject();
-            try {
-                Log.d("get lat long", latitude+"");
-                LatLongValues.put("latitude", latitude);
-                LatLongValues.put("longitude", longitude);
-                LatLongValues.put("CurrentLocation", SharedStorage.getLocationType());
-            } catch (Exception ex) {}
-            return LatLongValues.toString();
-        }*/
-
         @JavascriptInterface
         public void saveLocationType(String value) {
             try {
+                Log.d("loc type", value);
                 SharedStorage.saveLocationType(value);
             } catch (Exception ex) {}
         }
@@ -254,17 +230,65 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         }
 
         @JavascriptInterface
-        public Double getLatitude() {
+        public void saveCustomeLat(String value) {
             try {
-                return latitude;
+                Log.d("loc type", value);
+                SharedStorage.saveCustomeLat(value);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getCustomeLat() {
+            try {
+                return SharedStorage.getCustomeLat();
             } catch (Exception ex) {}
             return null;
         }
 
         @JavascriptInterface
-        public Double getLongitude() {
+        public void saveCustomeLong(String value) {
             try {
-                return longitude;
+                Log.d("loc type", value);
+                SharedStorage.saveCustomeLong(value);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getCustomeLong() {
+            try {
+                return SharedStorage.getCustomeLong();
+            } catch (Exception ex) {}
+            return null;
+        }
+
+        @JavascriptInterface
+        public void saveServiceId(String value) {
+            try {
+                SharedStorage.saveServiceId(value);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getServiceId() {
+            try {
+                return SharedStorage.getServiceId();
+            } catch (Exception ex) {}
+            return null;
+        }
+
+        @JavascriptInterface
+        public String getLatitude() {
+            try {
+                Log.d("lat method", latitude+"");
+                return latitude+"";
+            } catch (Exception ex) {}
+            return null;
+        }
+
+        @JavascriptInterface
+        public String getLongitude() {
+            try {
+                return longitude+"";
             } catch (Exception ex) {}
             return null;
         }
@@ -368,6 +392,11 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
                 Toast.makeText(getApplicationContext(),"yourActivity is not founded",Toast.LENGTH_SHORT).show();
             }
         }
+
+        @JavascriptInterface
+        public void closeApp() {
+            System.exit(0);
+        }
     }
 
     @Override
@@ -381,7 +410,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
     @Override
     public void onResume() {
         super.onResume(); //is in foreground
-
+        myBrowser.loadUrl("javascript:refreshOnForeground()");
     }
     @Override
     protected void onPause() {
@@ -402,6 +431,11 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
             initLocationFetching(MainActivity.this);
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        myBrowser.loadUrl("javascript:goBack()");
     }
 
     public void initLocationFetching(Activity mActivity) {

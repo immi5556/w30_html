@@ -13,9 +13,10 @@
 <body>
 	<div class="container catagory">
 		<div class="currentLocation">
-			<div id="autoComplete" class="autoCompeteDesign"></div>
-			<!-- <input type="text" name="" class="location" >
-			<i class="fa fa-pencil" aria-hidden="true"></i> -->
+			<div class="autoComplete" id="autoSelect">
+				<input type="text" name="" class="autoSearch" id="serach" placeholder="Location">
+				<i class="fa fa-pencil" aria-hidden="true"></i>
+			</div>
 		</div>
 		<div class="logo logo1">
 			<a href="#"><img src="assets/img/logo.png" alt="logo"></a>
@@ -27,28 +28,32 @@
 			<div class="circleList">
 				<div class="categoryItem1 cirle">
 					<span class="cirleIcon"></span>
-					<strong>Salon</strong>
+					<strong>Hair Salons</strong>
 				</div>
 				<div class="categoryItem2 cirle">
 					<span class="cirleIcon"></span>
-					<strong>Spa</strong>
+					<strong>Spas</strong>
 				</div>
 				<div class="categoryItem3 cirle">
 					<span class="cirleIcon"></span>
-					<strong>Dentists </strong>
+					<strong style="color:#39425f; font-weight: 600;">Dentists</strong>
 				</div>
 				<div class="categoryItem4 cirle">
 					<span class="cirleIcon"></span>
-					<strong>Diagonstics</strong>
+					<strong>Physicians</strong>
 				</div>
 				<div class="categoryItem5 cirle">
 					<span class="cirleIcon"></span>
-					<strong>Car Maintenance </strong>
+					<strong>Car Services </strong>
+				</div>
+				<div class="categoryItem6 cirle">
+					<span class="cirleIcon"></span>
+					<strong>Attorneys</strong>
 				</div>
 			</div>
 		</div>
-		<div class="searchbox1">
-			<input type="text" name="" placeholder="Search Business">
+		<div class="autoComplete searchbox1" id="autoSelect2">
+			<input type="text" name="" class="autoSearch2" placeholder="Select Category">
 			<i class="fa fa-search fa-2x" aria-hidden="true"></i>
 		</div>
 	</div>
@@ -57,6 +62,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjBEUatDTwvyslQtJYGxNATrh30BJHpH0
 "></script>
+<script type="text/javascript" src="assets/js/gbAutoComplete.js"></script>
 <script type="text/javascript" src="assets/js/custom.js"></script>
 <script type="text/javascript" src="assets/js/selectCatagory.js"></script>
 </body>

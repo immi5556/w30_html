@@ -1,37 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="x86_64,x86"
-    api-level="22"
-    density="hdpi"
+    abi="armeabi-v7a,armeabi"
+    api-level="23"
+    density="xxhdpi"
     format="8"
     plugin-version="2.2.2"
-    timestamp="3719896055677"
+    timestamp="190408665478184"
     token="2616879224624965845"
-    verifier="FULL_BUILD_REQUESTED" >
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="4100" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="5005" />
+        duration="0" />
     <task
         name="verifier"
-        duration="2101" />
+        duration="0" />
 
     <artifact
-        location="E:\vamis\Android\w30_html\app\build\outputs\apk\app-debug.apk"
-        type="MAIN" />
+        location="E:\vamis\Android\w30_html\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
+        type="RESOURCES" />
 
     <build
-        timestamp="3719896055677"
+        timestamp="181977016483160"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="E:\vamis\Android\w30_html\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
+    </build>
+    <build
+        timestamp="187545739469924"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_2\classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="190408665478184"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="E:\vamis\Android\w30_html\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
+            type="RESOURCES" />
     </build>
 
 </instant-run>

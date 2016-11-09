@@ -88,9 +88,9 @@ $(document).on('click','.fa-times',function(e){
 	 $('.mynav').fadeOut();
 });
 
+$('.mynav').fadeOut();
 
-
-var Wh = $(window).height() - 40;
+var Wh = $(window).height() - 45;
 $('#map').height(Wh);
 
 /*$("#rateYo").rateYo({

@@ -29,9 +29,11 @@ $(".menuList1").on("click", function(){
 $(".settings").on("click", function(){
 	window.location.href = "location.html";
 });
-$(".menuList2, .menuList3, .menuList5, .menuList6, .menuList7").on("click", function(){
+/*$(".menuList2, .menuList3, .menuList5, .menuList6, .menuList7").on("click", function(){
 	alert("Not yet launched. Launching Soon.");
-});
-$(".menuList4").on("click", function(){
-	location.reload();
-});
+});*/
+
+
+function goBack(){
+    window.history.back();
+}

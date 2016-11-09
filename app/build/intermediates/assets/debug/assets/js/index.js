@@ -126,3 +126,7 @@ var saveData = function(type){
 $(".sub-btn").on("click", function(){
 	saveData("saveenduser");
 });
+
+function goBack(){
+    window.andapp.closeApp();
+}
