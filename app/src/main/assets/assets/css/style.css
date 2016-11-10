@@ -523,8 +523,7 @@ nav a {
 	float: left;
 	width: 50%;
 }
-.rating span {
-	color: #989898;
+.rating span, .milesVal {
 	font: 14px/14px 'Lato', sans-serif;
 }
 .miles {
@@ -631,7 +630,7 @@ nav a {
 	position: absolute;
 	right: 15px;
 	top: -12px;
-	width: 24px;
+	width: 30px;
 	cursor: pointer;
 }
 .directionArrowBottom {
@@ -1168,7 +1167,7 @@ border-bottom: 5px solid transparent;
 position: absolute;
 left: -9px;
 top: -14px;
-content: 'Mil';
+content: 'Mi';
 width: 35px;
 height: 35px;
 background: #CD0A0A;
@@ -1276,37 +1275,3 @@ display: none;
 #autoComplete2 .fa-pencil {
 	display: none !important;
 }
-/*.autoComplete {
-	width: 320px;
-	margin: auto;
-	float: left;
-	border: 1px solid #ccc;
-	height: 35px;
-	background: #f2f2f2;
-}*/
-/*.autoSearch,.autoSearch2 {
-	height: 35px;
-	outline: none;
-	border:none;
-	padding: 10px;
-	width: 100%;
-	box-sizing: border-box;
-	background: none;
-}*/
-/*.dropListDiv {
-	display: none;
-    max-height: 109px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    background: #fffdfd;
-}
-.dropListDiv ul li {
-    font: 14px/35px arial,sans-serif;
-    padding: 0 5px;
-    color: #999;
-    cursor: pointer;
-    border-bottom: 1px solid #f1f1f1;
-}
-.dropListDiv ul li:hover {
-    background: #f9fffe;
-}*/

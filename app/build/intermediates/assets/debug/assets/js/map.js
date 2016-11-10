@@ -260,7 +260,7 @@ var getServices = function (){
                         rating: rating,
                         starWidth: "10px"
                     });
-                    $(".rating span").text(ratingCount);
+                    $(".rating span").text("("+ratingCount+")");
                     $(".milesVal").text(customers[i].destinationDistance.toFixed(2)+" Miles");
                     $(".companyAddr").text(companyAddr);
                     //$(".website").attr("href","https://"+docs[i].subdomain+urlLink);
@@ -729,6 +729,7 @@ var getServices = function (){
    }
 
     var refreshOnForeground = function(){
+        console.log("!!!!!!!!!!!");
         location.reload();
     }
     socketio.on('connect', function () {
