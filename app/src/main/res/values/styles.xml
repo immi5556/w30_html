@@ -13,5 +13,12 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
     </style>
+    <style name="Theme.MyAppTheme" parent="@android:style/Theme.Holo">
+        <item name="android:actionBarStyle">@style/Theme.MyAppTheme.ActionBar</item>
+    </style>
+
+    <style name="Theme.MyAppTheme.ActionBar" parent="@android:style/Widget.Holo.ActionBar">
+        <item name="android:background">#39425f</item>
+    </style>
 
 </resources>

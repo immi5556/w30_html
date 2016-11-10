@@ -309,20 +309,6 @@ var getServices = function (){
                 }
             })(marker, subdomain, i));
     }
-    /*if(destinations.length > 0){
-        console.log(destinations.length);
-        var start = new google.maps.LatLng(latitude, longitude);
-        request1 = {
-            origin: start,
-            destination: destinations,
-            travelMode: 'DRIVING'
-        };
-        directionsService.route(request1, function(result, status) {
-            if (status == 'OK') {
-              directionsDisplay.setDirections(result);
-            }
-        });
-    }*/
     map.addListener('click', function() {
         $(".serviceSection").animate({height:'0'},500);
         $('.shadow').hide();
@@ -729,7 +715,6 @@ var getServices = function (){
    }
 
     var refreshOnForeground = function(){
-        console.log("!!!!!!!!!!!");
         location.reload();
     }
     socketio.on('connect', function () {

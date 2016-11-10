@@ -72,8 +72,7 @@ var setRecentBlock = function(){
                  if (window.andapp){
                      window.andapp.saveLocationType("false");
                      window.andapp.saveCustomeLat(latitude);
-                     window.andapp.saveCustomeLong(longitude);
-                     window.andapp.saveRecentLocation($(".recentSearch p").text());
+                         window.andapp.saveCustomeLong(longitude);
                      window.andapp.updateLatLong(latitude, longitude);
                  }
              }

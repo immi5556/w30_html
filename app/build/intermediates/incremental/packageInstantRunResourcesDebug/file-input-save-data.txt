@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Nov 10 22:11:15 IST 2016
+#Thu Nov 10 23:32:54 IST 2016
 210.set=ASSET
 282.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\img\\premiumMarker1.png
 14.set=ANDROID_RESOURCE

@@ -393,6 +393,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
             }
         }
 
+
         @JavascriptInterface
         public void closeApp() {
             System.exit(0);

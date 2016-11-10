@@ -91,8 +91,6 @@ var validate = function(){
         $(".lastname").css("border-color", "red");
         window.andapp.showToast("Enter 1 to 14 characters length.");
         return false;
-    }else{
-        $(".lastname").css("border-color", "green");
     }
 
     if(!checkEmailBox()){
@@ -101,11 +99,8 @@ var validate = function(){
     }
 
     if($(".mobilenumber").val().length != 14 || $(".mobilenumber").val().slice(0, 1) != "(" || $(".mobilenumber").val().slice(4, 6) != ") " || $(".mobilenumber").val().slice(9, 10) != "-"){
-        $(".mobilenumber").css("border-color", "red");
         window.andapp.showToast("Enter 10-digit mobile number.");
         return false;
-    }else{
-        $(".mobilenumber").css("border-color", "green")
     }
     return true;
 }

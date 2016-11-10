@@ -80,11 +80,15 @@ var checkEmailBox = function(){
 
 var validate = function(){
     if($(".firstname").val().length == 0 || $(".firstname").val().length > 14){
+        $(".firstname").css("border-color", "red");
         window.andapp.showToast("Enter 1 to 14 characters length.");
         return false;
+    }else{
+        $(".firstname").css("border-color", "green");
     }
 
     if($(".lastname").val().length == 0 || $(".lastname").val().length > 14){
+        $(".lastname").css("border-color", "red");
         window.andapp.showToast("Enter 1 to 14 characters length.");
         return false;
     }
