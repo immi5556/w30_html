@@ -86,7 +86,7 @@ var getServices = function (){
                 minutesValue = 30;
                 loadMap(result.Data);
             }else{
-                $(".popContent h2").text("Get Customers Response");
+                /*$(".popContent h2").text("Get Customers Response");
                 $(".popContent strong").text("No Customers in your Range. Redirecting to nearest location.");
                 $(".pop_up").show();
                 if(!locationRedirect){
@@ -99,7 +99,11 @@ var getServices = function (){
                     $(".popContent strong").text("There seem to be no businesses in this category currently.");
                     $(".pop_up").show();
                     loadMap([]);
-                }
+                }*/
+                $(".popContent h2").text("Get Customers Response");
+                $(".popContent strong").text("There seem to be no businesses in your range currently.");
+                $(".pop_up").show();
+                loadMap([]);
             }
         });
         request1.fail(function(jqXHR, textStatus) {
@@ -150,6 +154,35 @@ var getServices = function (){
                     icon = "premiumCheckedInMarker2";
                 else
                     icon = "checkedInMarker2";
+
+                var service = new google.maps.DirectionsService();
+                var directionsDisplay = new google.maps.DirectionsRenderer();
+                directionsDisplay.setOptions( { suppressMarkers: true } );
+                var end = new google.maps.LatLng(docs[i].geo.coordinates[1], docs[i].geo.coordinates[0]);
+                var start = new google.maps.LatLng(latitude, longitude);
+                var bounds = new google.maps.LatLngBounds();
+                service.route({
+                    origin: start,
+                    destination: end,
+                    travelMode: google.maps.DirectionsTravelMode.DRIVING
+                }, function(result, status) {
+                        if (status == google.maps.DirectionsStatus.OK) {
+                          // new path for the next result
+                          var path = new google.maps.MVCArray();
+                          //Set the Path Stroke Color
+                          // new polyline for the next result
+                          var poly = new google.maps.Polyline({
+                            map: map,
+                            strokeColor: '#4986E7'
+                          });
+                          poly.setPath(path);
+                          for (var k = 0, len = result.routes[0].overview_path.length; k < len; k++) {
+                            path.push(result.routes[0].overview_path[k]);
+                            bounds.extend(result.routes[0].overview_path[k]);
+                            map.fitBounds(bounds);
+                          }
+                        } else alert("Directions Service failed:" + status);
+                });
             }else if(itemFound != -1){
                 if(docs[i].premium)
                     icon = "premiumCheckedInMarker2";
@@ -179,7 +212,7 @@ var getServices = function (){
             }
             var subdomain = docs[i].subdomain;
             markers.push(marker);    
-            subDomains.push(subdomain);          
+            subDomains.push(subdomain);
             google.maps.event.addListener(marker, 'click', (function(marker, subdomain, i) {
                 return function() {
                     if($(".menu").hasClass("fa-times")){
@@ -275,6 +308,20 @@ var getServices = function (){
                 }
             })(marker, subdomain, i));
     }
+    /*if(destinations.length > 0){
+        console.log(destinations.length);
+        var start = new google.maps.LatLng(latitude, longitude);
+        request1 = {
+            origin: start,
+            destination: destinations,
+            travelMode: 'DRIVING'
+        };
+        directionsService.route(request1, function(result, status) {
+            if (status == 'OK') {
+              directionsDisplay.setDirections(result);
+            }
+        });
+    }*/
     map.addListener('click', function() {
         $(".serviceSection").animate({height:'0'},500);
         $('.shadow').hide();
@@ -515,6 +562,35 @@ var getServices = function (){
                     markers[i].setIcon(localImagePath+"premiumCheckedInMarker2.png");
                 else
                     markers[i].setIcon(localImagePath+"checkedInMarker2.png");
+
+                var service = new google.maps.DirectionsService();
+                var directionsDisplay = new google.maps.DirectionsRenderer();
+                directionsDisplay.setOptions( { suppressMarkers: true } );
+                var end = new google.maps.LatLng(customers[i].geo.coordinates[1], customers[i].geo.coordinates[0]);
+                var start = new google.maps.LatLng(latitude, longitude);
+                var bounds = new google.maps.LatLngBounds();
+                service.route({
+                        origin: start,
+                        destination: end,
+                        travelMode: google.maps.DirectionsTravelMode.DRIVING
+                      }, function(result, status) {
+                            if (status == google.maps.DirectionsStatus.OK) {
+                              // new path for the next result
+                              var path = new google.maps.MVCArray();
+                              //Set the Path Stroke Color
+                              // new polyline for the next result
+                              var poly = new google.maps.Polyline({
+                                map: map,
+                                strokeColor: '#4986E7'
+                              });
+                              poly.setPath(path);
+                              for (var k = 0, len = result.routes[0].overview_path.length; k < len; k++) {
+                                path.push(result.routes[0].overview_path[k]);
+                                bounds.extend(result.routes[0].overview_path[k]);
+                                map.fitBounds(bounds);
+                              }
+                            } else alert("Directions Service failed:" + status);
+                      });
                 
                 socketio.emit("newAppointment", result.Data);
                 var timeout = calculateDifference(timeZone, result);

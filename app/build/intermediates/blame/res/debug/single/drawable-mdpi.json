@@ -80,12 +80,12 @@
         "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-mdpi\\common_google_signin_btn_icon_dark_normal.9.png"
     },
     {
-        "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\common_google_signin_btn_icon_dark_pressed.9.png",
-        "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-mdpi\\common_google_signin_btn_icon_dark_pressed.9.png"
-    },
-    {
         "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_media_route_on_0_mono_dark.png",
         "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\drawable-mdpi\\ic_media_route_on_0_mono_dark.png"
+    },
+    {
+        "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\common_google_signin_btn_icon_dark_pressed.9.png",
+        "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-mdpi\\common_google_signin_btn_icon_dark_pressed.9.png"
     },
     {
         "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\common_plus_signin_btn_icon_dark_normal.9.png",
@@ -244,16 +244,16 @@
         "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\drawable-mdpi\\ic_pause_dark.png"
     },
     {
+        "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\common_google_signin_btn_icon_dark_focused.9.png",
+        "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-mdpi\\common_google_signin_btn_icon_dark_focused.9.png"
+    },
+    {
         "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\cast_ic_notification_on.png",
         "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast\\8.4.0\\res\\drawable-mdpi\\cast_ic_notification_on.png"
     },
     {
         "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\common_plus_signin_btn_icon_light_disabled.9.png",
         "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-mdpi\\common_plus_signin_btn_icon_light_disabled.9.png"
-    },
-    {
-        "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\common_google_signin_btn_icon_dark_focused.9.png",
-        "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-mdpi\\common_google_signin_btn_icon_dark_focused.9.png"
     },
     {
         "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\common_plus_signin_btn_icon_dark_disabled.9.png",
