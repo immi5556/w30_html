@@ -58,6 +58,7 @@ var getServices = function (){
         if(matchFound != -1){
            $("#catagorySelect").text('');
            $("#catagorySelect").text(services[0][matchFound].name);
+           $("."+services[0][matchFound].name.toLowerCase().replace(" ", "")).addClass("active");
         }else{
           alert("No Category found.");
         }
@@ -173,7 +174,6 @@ var getServices = function (){
                           // new polyline for the next result
                           var poly = new google.maps.Polyline({
                             map: map,
-                            zoom:10,
                             strokeColor: '#4986E7'
                           });
                           poly.setPath(path);

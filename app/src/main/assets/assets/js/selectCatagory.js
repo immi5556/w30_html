@@ -95,6 +95,20 @@ $('.currentLocation .fa-pencil').click(function(){
     $(".autoSearch").val('');
     $(".autoSearch").focus();
 });
+var searcfield = false;
+$(document).on("click",function(){
+    if(searcfield)
+        $(".searchbox1").css("margin-bottom", "100px");
+    else
+        $(".searchbox1").css("margin-bottom", "0px");
+
+    searcfield = false;
+})
+$(".autoSearch2").focus(function(){
+    searcfield = true;
+    $(".searchbox1").css("margin-bottom", "100px");
+})
+
 $('.autoComplete .fa-search').click(function(){
     var matchFound = -1;
     services[0].forEach(function(item, index){
@@ -105,14 +119,11 @@ $('.autoComplete .fa-search').click(function(){
     });
     if(matchFound != -1){
         window.andapp.saveServiceId(serviceId);
+        window.location.href = "servicePage.html";
     }else{
       alert("No Category found.");
     }
 })
-/*$(".categoryItem1, .categoryItem2, .categoryItem4, .categoryItem5").on("click", function(e){
-    e.stopPropagation();
-	alert("Currently not available. Launching Soon");
-});*/
 $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem5, .categoryItem6").on("click", function(e){
     e.stopPropagation();
 

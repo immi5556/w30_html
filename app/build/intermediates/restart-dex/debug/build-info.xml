@@ -1,44 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="armeabi-v7a,armeabi"
-    api-level="23"
-    density="xxhdpi"
+    abi="x86"
+    api-level="24"
+    density="xhdpi"
     format="8"
     plugin-version="2.2.2"
-    timestamp="264028012223508"
+    timestamp="271829980711693"
     token="2616879224624965845"
-    verifier="COLD_SWAP_REQUESTED" >
+    verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="5834" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="4222" />
     <task
         name="verifier"
-        duration="0" />
+        duration="7505" />
 
     <artifact
-        location="E:\vamis\Android\w30_html\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
-        type="RESOURCES" />
+        location="E:\vamis\Android\w30_html\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
 
     <build
-        timestamp="260525504107345"
+        timestamp="271829980711693"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="E:\vamis\Android\w30_html\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
-    </build>
-    <build
-        timestamp="264028012223508"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="E:\vamis\Android\w30_html\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
-            type="RESOURCES" />
     </build>
 
 </instant-run>

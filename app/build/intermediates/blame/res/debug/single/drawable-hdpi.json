@@ -116,12 +116,12 @@
         "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-hdpi\\common_google_signin_btn_text_light_normal.9.png"
     },
     {
-        "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\cast_ic_notification_on.png",
-        "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast\\8.4.0\\res\\drawable-hdpi\\cast_ic_notification_on.png"
-    },
-    {
         "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_plusone_medium_off_client.png",
         "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-plus\\8.4.0\\res\\drawable-hdpi\\ic_plusone_medium_off_client.png"
+    },
+    {
+        "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\cast_ic_notification_on.png",
+        "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast\\8.4.0\\res\\drawable-hdpi\\cast_ic_notification_on.png"
     },
     {
         "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\common_google_signin_btn_text_light_disabled.9.png",

@@ -42,14 +42,15 @@ $.fn.gbAutocomplete = function(opt){
         getULlist = $(globalUL).find('li');
         
             for(var x=0; x < getULlist.length; x++ ){
-               getULlist[x].onclick = function(){
+               getULlist[x].onclick = function(e){
+                    e.stopPropagation();
                    myChangeTextClick(this)
                }
            }
        }
 
        function myChangeTextClick(_this){
-            
+            console.log($(_this).text());
          var indText = $(_this).text();
          $(set.mySearch).val(indText);
          //dropListDiv.html('');

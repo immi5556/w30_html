@@ -58,6 +58,7 @@ var getServices = function (){
         if(matchFound != -1){
            $("#catagorySelect").text('');
            $("#catagorySelect").text(services[0][matchFound].name);
+           $("."+services[0][matchFound].name.toLowerCase().replace(" ", "")).addClass("active");
         }else{
           alert("No Category found.");
         }
