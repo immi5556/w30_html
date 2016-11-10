@@ -78,6 +78,8 @@ $(document).on('click','.fa-bars',function(e){
 	 /*$('nav').addClass('fadeInLeft');
 	 $('nav').removeClass('fadeOutLeft');*/
 	 $('.mynav').slideDown();
+	 $(".pop_up").hide();
+     $('.shadow').click();
 });
 $(document).on('click','.fa-times',function(e){
      //e.stopPropagation();

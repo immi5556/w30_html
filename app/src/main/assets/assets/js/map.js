@@ -196,24 +196,24 @@ var getServices = function (){
                     var markerIcon = marker.icon;
                     marker.setIcon(markerIcon.substring(0, markerIcon.length-5)+"1.png");
                     var companyAddr = "";
-                    if(docs[i].geo.address){
-                        if(docs[i].geo.address.premise){
-                            companyAddr += docs[i].geo.address.premise+", ";
+                    if(customers[i].geo.address){
+                        if(customers[i].geo.address.premise){
+                            companyAddr += customers[i].geo.address.premise+", ";
                         }
-                        if(docs[i].geo.address.sublocality){
-                            companyAddr += docs[i].geo.address.sublocality+", ";
+                        if(customers[i].geo.address.sublocality){
+                            companyAddr += customers[i].geo.address.sublocality+", ";
                         }
-                        if(docs[i].geo.address.city){
-                            companyAddr += docs[i].geo.address.city+", ";
+                        if(customers[i].geo.address.city){
+                            companyAddr += customers[i].geo.address.city+", ";
                         }
                     }
 
                     var rating = 0, ratingCount = 0;
-                    if(docs[i].rating)
-                        rating = docs[i].rating.toFixed(2);
+                    if(customers[i].rating)
+                        rating = customers[i].rating.toFixed(2);
                     
-                    if(docs[i].ratingCount)
-                        ratingCount = docs[i].ratingCount;
+                    if(customers[i].ratingCount)
+                        ratingCount = customers[i].ratingCount;
                     
                     if(companyAddr){
                         companyAddr = companyAddr.substring(0, companyAddr.length-2);
@@ -221,26 +221,26 @@ var getServices = function (){
                         companyAddr = "Sorry Address Not Provided."
                     }
                     var itemFound = jQuery.inArray( customers[i].subdomain, bookedSlotSubdomain );
-                    $(".serviceHead h2").text(docs[i].fullName);
+                    $(".serviceHead h2").text(customers[i].fullName);
                     $("#rateYo").rateYo({
                         rating: rating,
                         starWidth: "10px"
                     });
                     $(".rating span").text(ratingCount);
-                    $(".milesVal").text(docs[i].destinationDistance.toFixed(2)+" Miles");
+                    $(".milesVal").text(customers[i].destinationDistance.toFixed(2)+" Miles");
                     $(".companyAddr").text(companyAddr);
                     //$(".website").attr("href","https://"+docs[i].subdomain+urlLink);
                     $(".phoneCall").on("click", function(){
                         if(window.andapp){
-                            window.andapp.phoneCall(docs[i].mobile);
+                            window.andapp.phoneCall(customers[i].mobile);
                         }
                     });
                     $(".website").on("click", function(){
                         if(window.andapp){
-                            window.andapp.openLink("https://"+docs[i].subdomain+urlLink);
+                            window.andapp.openLink("https://"+customers[i].subdomain+urlLink);
                         }
                     });
-                    $(".businessHours").text("Business Hours: "+docs[i].startHour+" - "+docs[i].endHour);
+                    $(".businessHours").text("Business Hours: "+customers[i].startHour+" - "+customers[i].endHour);
                     $(".directionArrowBottom").hide();
                     $(".directionArrowTop").show();
                     $(".serviceSection").animate({
@@ -265,10 +265,10 @@ var getServices = function (){
                             $(".slotTime").text("Next Slot At: "+customers[i].nextSlotAt);
                         $(".btn_sch").prop('disabled', "");
                         $(".btn_sch").off().on("click", function(){
-                            bookSlot(subdomain, i, customers[i].nextSlotAt, customers[i].timeZone);
+                            bookSlot(subdomain, i, customers[i].nextSlotAt, customers[i].timeZone, customers[i].nextSlotDate);
                         });
                     }
-                    if(moment().tz(abbrs[customers[i].timeZone]).format("YYYY-MM-DD HH:mm") > (customers[i].nextSlotDate+" "+customers[i].nextSlotAt)){
+                    if(!customers[i].slotBookedAt.length && moment().tz(abbrs[customers[i].timeZone]).format("YYYY-MM-DD HH:mm") > (customers[i].nextSlotDate+" "+customers[i].nextSlotAt)){
                         getCustomerInfo(latitude, longitude, 60, 60, i, 0);
                     }
                     $('.shadow').show();
@@ -431,7 +431,12 @@ var getServices = function (){
             sliderTime = moment().tz(abbrs[item.timeZone]).add(minutesValue, "minutes").format("HH:mm");
             var icon = "";
             itemFound = jQuery.inArray( item.subdomain, bookedSlotSubdomain );
-            if(itemFound != -1){
+            if(item.slotBookedAt.length){
+                if(item.premium)
+                    icon = "premiumCheckedInMarker2";
+                else
+                    icon = "checkedInMarker2";
+            }else if(itemFound != -1){
                 if(item.premium)
                     icon = "premiumCheckedInMarker2";
                 else
@@ -468,15 +473,20 @@ var getServices = function (){
             return (new Date(end).getTime() - new Date(start).getTime());
      }
 
-    function bookSlot(subdomain, i, slotAt, timeZone){
-        var localTime  = moment.tz(abbrs[timeZone]).format("HH:mm");
-        if(slotAt < localTime)
-            localTime  = moment.tz(abbrs[timeZone]).format("YYYY-MM-DD HH:mm");
-        else{
-            localTime  = moment.tz(abbrs[timeZone]).format("YYYY-MM-DD HH:mm");
-            localTime = localTime.substring(0, localTime.length-5)+""+slotAt;
+    function bookSlot(subdomain, i, slotAt, timeZone, slotDate){
+        var localTime;
+        var today  = moment.tz(abbrs[timeZone]).format("YYYY-MM-DD");
+        if(slotDate != today){
+            localTime = slotDate+" "+slotAt;
+        }else{
+            localTime  = moment.tz(abbrs[timeZone]).format("HH:mm")
+            if(slotAt < localTime)
+                localTime  = moment.tz(abbrs[timeZone]).format("YYYY-MM-DD HH:mm");
+            else{
+                localTime  = moment.tz(abbrs[timeZone]).format("YYYY-MM-DD HH:mm");
+                localTime = localTime.substring(0, localTime.length-5)+""+slotAt;
+            }
         }
-
         var request1 = $.ajax({
             url: servurl + "endpoint/api/bookslot",
             type: "POST",
@@ -587,7 +597,12 @@ var getServices = function (){
                 callback(result);
             }else{
                 var itemFound = jQuery.inArray( subDomains[index], bookedSlotSubdomain );
-                if(itemFound != -1){
+                if(customers[index].slotBookedAt.length){
+                    if(customers[index].premium)
+                        icon = "premiumCheckedInMarker2";
+                    else
+                        icon = "checkedInMarker2";
+                }else if(itemFound != -1){
                     if(customers[index].premium)
                         icon = "premiumCheckedInMarker2";
                     else

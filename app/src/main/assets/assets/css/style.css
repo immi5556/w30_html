@@ -621,6 +621,9 @@ nav a {
 	font: 400 17px/40px 'Droid Serif', serif;
 	background: #39425f;
 }
+.btn_sch:disabled {
+    background: #b0b0b1;
+}
 .serviceCont {
 	padding: 0 15px;
 }
@@ -660,7 +663,7 @@ nav a {
 	top: 50%;
 	overflow: hidden;
 	width: 220px;
-	height: 130px;
+	max-height: 130px;
 	text-align: center;
 	margin: -65px 0 0 -110px;
 	border-radius: 6px;
