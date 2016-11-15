@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 // TODO Auto-generated method stub
-                Log.d("W30", "URL is. ... " + url);
                 if (url.startsWith("tel:")) {
                     Intent intent = new Intent(Intent.ACTION_DIAL,
                             Uri.parse(url));
@@ -143,8 +142,6 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
     @Override
     public void locationFetched(Location mLocation, Location oldLocation, String time, String locationProvider) {
         if(updateLatLong) {
-            Log.d("latitude--",""+mLocation.getLatitude());
-            Log.d("longitude--",""+mLocation.getLongitude());
             latitude = mLocation.getLatitude();
             longitude = mLocation.getLongitude();
             updateLatLong = false;
@@ -169,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
 
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
-            Log.d("W30", view.getUrl() + " -- " + newProgress);
+            //Log.d("W30", view.getUrl() + " -- " + newProgress);
         }
 
         @Override
@@ -216,7 +213,6 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         @JavascriptInterface
         public void saveLocationType(String value) {
             try {
-                Log.d("loc type", value);
                 SharedStorage.saveLocationType(value);
             } catch (Exception ex) {}
         }
@@ -232,7 +228,6 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         @JavascriptInterface
         public void saveCustomeLat(String value) {
             try {
-                Log.d("loc type", value);
                 SharedStorage.saveCustomeLat(value);
             } catch (Exception ex) {}
         }
@@ -248,7 +243,6 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         @JavascriptInterface
         public void saveCustomeLong(String value) {
             try {
-                Log.d("loc type", value);
                 SharedStorage.saveCustomeLong(value);
             } catch (Exception ex) {}
         }
@@ -279,7 +273,6 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         @JavascriptInterface
         public String getLatitude() {
             try {
-                Log.d("lat method", latitude+"");
                 return latitude+"";
             } catch (Exception ex) {}
             return null;
@@ -336,7 +329,6 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         @JavascriptInterface
         public void saveRecentLocation(String value) {
             try {
-                Log.d("recent ", value);
                 SharedStorage.storeRecentLocation(value);
             } catch (Exception ex) {}
         }
@@ -354,8 +346,6 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
             try {
                 latitude = Double.parseDouble(lat);
                 longitude = Double.parseDouble(longi);
-                Log.d("latitude-##-",""+latitude);
-                Log.d("longitude-##-",""+longitude);
             } catch (Exception ex) {}
         }
 
@@ -371,13 +361,11 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
             try {
                 initLocationFetching(MainActivity.this);
                 updateLatLong = true;
-                Log.d("lat, long", latitude+","+longitude);
             } catch (Exception ex) {}
         }
 
         @JavascriptInterface
         public void phoneCall(String number) {
-            Log.d("phone call", number);
             checkReadPhoneStatePermissions(number);
         }
 
@@ -393,11 +381,10 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
             }
         }
 
-
         @JavascriptInterface
         public void closeApp() {
-            System.exit(0);
-        }
+                System.exit(0);
+            }
     }
 
     @Override

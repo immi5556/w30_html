@@ -23,6 +23,7 @@ var oldMarker = -1;
 var bookedBusiness = null;
 var locationRedirect = false;
 var socketio = io.connect(sockurl);
+var calling = "false";
 var abbrs = {
         EST : 'America/New_York',
         EDT : 'America/New_York',
@@ -101,15 +102,15 @@ var getServices = function (){
                     $(".pop_up").show();
                     loadMap([]);
                 }*/
-                $(".popContent h2").text("Get Customers Response");
-                $(".popContent strong").text("There seem to be no businesses in your range currently.");
+                $(".popContent h2").text("Retrieving Businesses");
+                $(".popContent strong").text("There seem to be no businesses in your range currently");
                 $(".pop_up").show();
                 loadMap([]);
             }
         });
         request1.fail(function(jqXHR, textStatus) {
-            $(".popContent h2").text("Get Customers Response");
-            $(".popContent strong").text("Error Occured.");
+            $(".popContent h2").text("Retrieving Businesses");
+            $(".popContent strong").text("Your request didn't go through. Please try again");
             $(".pop_up").show();
         });
     }
@@ -125,8 +126,6 @@ var getServices = function (){
         getServices();
         getCustomerAPICall(latitude, longitude, milesValue, minutesValue);
     }
-
-
 
     var loadMap = function(docs){
         subDomains = [];
@@ -207,15 +206,19 @@ var getServices = function (){
                 title: docs[i].fullName,
                 icon: localImagePath+""+icon+".png"
             });
-            
+            var itemFound = jQuery.inArray( docs[i].subdomain, bookedSlotSubdomain );
             if(docs[i].destinationDistance > milesValue){
-                marker.setVisible(false);
+                if(docs[i].slotBookedAt.length || itemFound != -1)
+                    marker.setVisible(true);
+                else
+                    marker.setVisible(false);
             }
             var subdomain = docs[i].subdomain;
             markers.push(marker);    
             subDomains.push(subdomain);
             google.maps.event.addListener(marker, 'click', (function(marker, subdomain, i) {
                 return function() {
+                    calling = "false";
                     if($(".menu").hasClass("fa-times")){
                         $(".menu").removeClass('fa-times');
                         $(".menu").addClass('fa-bars');
@@ -266,11 +269,13 @@ var getServices = function (){
                     //$(".website").attr("href","https://"+docs[i].subdomain+urlLink);
                     $(".phoneCall").on("click", function(){
                         if(window.andapp){
+                            calling = "true";
                             window.andapp.phoneCall(customers[i].mobile);
                         }
                     });
                     $(".website").on("click", function(){
                         if(window.andapp){
+                            calling = "true";
                             window.andapp.openLink("https://"+customers[i].subdomain+urlLink);
                         }
                     });
@@ -322,6 +327,7 @@ var getServices = function (){
         }
     });
     $(".shadow").on('click', function() {
+        calling = "false";
         $(".serviceSection").animate({height:'0'},500);
         $('.shadow').hide();
         if(oldMarker >= 0){
@@ -439,9 +445,15 @@ var getServices = function (){
         if(milesValue < 10 ){
             map.setZoom(12);
         }
+
         customers.forEach(function(item, i){
-            if(item.destinationDistance > milesValue){
-                markers[i].setVisible(false);
+
+            var itemFound = jQuery.inArray( item.subdomain, bookedSlotSubdomain );
+            if( item.destinationDistance > milesValue){
+               if(item.slotBookedAt.length || itemFound != -1)
+                   marker.setVisible(true);
+               else
+                   marker.setVisible(false);
             }else{
                 markers[i].setVisible(true);
             }
@@ -534,7 +546,7 @@ var getServices = function (){
         request1.success(function(result) {
             if(result.Status == "Ok"){
                 $(".popContent h2").text("Appointment Status");
-                $(".popContent strong").text("Confirmed");
+                //$(".popContent strong").text("Confirmed");
                 if(result.Data.selecteddate == moment.tz(abbrs[timeZone]).format("YYYY-MM-DD"))
                     $(".popContent span").text("See you At "+result.startTime);
                 else
@@ -606,15 +618,15 @@ var getServices = function (){
                 }, timeout, index, i);
             }else{
                 $(".popContent h2").text("Appointment Status");
-                $(".popContent strong").text("Not Booked");
+                //$(".popContent strong").text("Not Booked");
                 $(".popContent span").text(result.Message);
                 $(".pop_up").show();
             }
         });
         request1.fail(function(jqXHR, textStatus) {
             $(".popContent h2").text("Appointment Status");
-            $(".popContent strong").text("Failed");
-            $(".popContent span").text("Error Occured. Try again.");
+            //$(".popContent strong").text("Failed");
+            $(".popContent span").text("Your request didn't go through. Please try again");
             $(".pop_up").show();
         });
     }
@@ -699,24 +711,30 @@ var getServices = function (){
         });
     }
     $(document).foundation().foundation('joyride', 'start');
-   if (window.andapp){
+    if (window.andapp){
         latitude = Number(window.andapp.getLatitude());
         longitude = Number(window.andapp.getLongitude());
         email = window.andapp.getEmail();
         mobilenumber = window.andapp.getMobile();
         userid = window.andapp.getUserId();
         serviceId = window.andapp.getServiceId();
-
-       if(!latitude && !longitude){
+        if(!latitude && !longitude){
            errorFunction();
-       }else{
+        }else{
            successFunction();
-       }
-   }
+        }
+    }
+
+    function goBack(){
+        window.history.back();
+    }
 
     var refreshOnForeground = function(){
-        location.reload();
+        if(calling == "false"){
+            location.reload();
+        }
     }
+
     socketio.on('connect', function () {
         socketio.emit('room', "home");
         

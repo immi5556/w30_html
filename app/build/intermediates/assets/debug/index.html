@@ -15,29 +15,41 @@
 		<a href="#"><img src="assets/img/logo.png" alt="logo"></a>
 	</div>
 	<div class="formSection1">
-		<div class="form-row">
-			<input type="text" name="" class="firstname" required>
-			<label>First Name</label>
-			<span class="closeIcon"></span>
-			<img class="fieldIcon1" src="assets/img/userIcon1.png" alt="userIcon">
+		<div class="form-row-parent">
+			<div class="form-row">
+				<input type="text" name="" class="firstname" required>
+				<label>First Name</label>
+				<span class="closeIcon"></span>
+				<img class="fieldIcon1" src="assets/img/userIcon1.png" alt="userIcon">
+			</div>
+			<strong id="firstNameError" class="error">Please enter a First Name</strong>
 		</div>
-		<div class="form-row">
-			<input type="text" name="" class="lastname" required>
-			<label>Last Name</label>
-			<span class="closeIcon"></span>
-			<img class="fieldIcon1" src="assets/img/userIcon1.png" alt="userIcon">
+		<div class="form-row-parent">
+			<div class="form-row">
+				<input type="text" name="" class="lastname" required>
+				<label>Last Name</label>
+				<span class="closeIcon"></span>
+				<img class="fieldIcon1" src="assets/img/userIcon1.png" alt="userIcon">
+			</div>
+			<strong id="lastNameError" class="error">Please enter a Last Name</strong>
 		</div>
-		<div class="form-row">
-			<input type="email" name="" class="email" required>
-			<label>E-mail</label>
-			<span class="closeIcon"></span>
-			<img class="fieldIcon1" src="assets/img/mailIcon1.png" alt="userIcon">
+		<div class="form-row-parent">
+			<div class="form-row">
+				<input type="email" name="" class="email" required>
+				<label>E-mail</label>
+				<span class="closeIcon"></span>
+				<img class="fieldIcon1" src="assets/img/mailIcon1.png" alt="userIcon">
+			</div>
+			<strong id="emailError" class="error">Please enter a valid Email address</strong>
 		</div>
-		<div class="form-row">
-			<input type="tel" name="" class="mobilenumber" id="mobile_in"  onkeypress="return mobileNumberValidation(event)" required>
-			<label>Mobile No.</label>
-			<span class="closeIcon"></span>
-			<img class="fieldIcon1" src="assets/img/phoneIcon1.png" alt="userIcon">
+		<div class="form-row-parent">
+			<div class="form-row">
+				<input type="tel" name="" class="mobilenumber" id="mobile_in"  onkeypress="return mobileNumberValidation(event)" required>
+				<label>Mobile No.</label>
+				<span class="closeIcon"></span>
+				<img class="fieldIcon1" src="assets/img/phoneIcon1.png" alt="userIcon">
+			</div>
+			<strong id="mobileError" class="error">Please enter a 10-digit mobile number</strong>
 		</div>
 		<button class="sub-btn animated flipInX"></button>
 	</div>

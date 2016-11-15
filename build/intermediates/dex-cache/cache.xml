@@ -205,7 +205,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="5e2e54a1c49f68ca6e0dae3f89580a0d7e0eba45">
+        sha1="1c2ec8568055061b5b6364333a4696ec47d09485">
         <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_42824a55f1f298851626a5ff177735f429826858\classes.dex" />
     </item>
     <item
@@ -295,7 +295,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="f4faa78f68e502c261c21e78e4bf5c773e4bf223">
+        sha1="6152015b9e12ec29ad29d149c19a83502027659a">
         <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_7db12e88eddd7878d5f2284776b86434ebb64529\classes.dex" />
     </item>
 

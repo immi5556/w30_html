@@ -80,27 +80,35 @@ var checkEmailBox = function(){
 
 var validate = function(){
     if($(".firstname").val().length == 0 || $(".firstname").val().length > 14){
-        $(".firstname").css("border-color", "red");
-        window.andapp.showToast("Enter 1 to 14 characters length.");
+        $("#firstNameError").show();
+        //window.andapp.showToast("Enter 1 to 14 characters length.");
         return false;
     }else{
-        $(".firstname").css("border-color", "green");
+        $("#firstNameError").hide();
     }
 
     if($(".lastname").val().length == 0 || $(".lastname").val().length > 14){
-        $(".lastname").css("border-color", "red");
-        window.andapp.showToast("Enter 1 to 14 characters length.");
+        $("#lastNameError").show();
+        //window.andapp.showToast("Enter 1 to 14 characters length.");
         return false;
+    }else{
+        $("#lastNameError").hide();
     }
 
     if(!checkEmailBox()){
-        window.andapp.showToast("Enter valid emailId.");
+        $("#emailError").show();
+        //window.andapp.showToast("Enter valid emailId.");
         return false;
+    }else{
+        $("#emailError").hide();
     }
 
     if($(".mobilenumber").val().length != 14 || $(".mobilenumber").val().slice(0, 1) != "(" || $(".mobilenumber").val().slice(4, 6) != ") " || $(".mobilenumber").val().slice(9, 10) != "-"){
-        window.andapp.showToast("Enter 10-digit mobile number.");
+        //window.andapp.showToast("Enter 10-digit mobile number.");
+        $("#mobileError").show();
         return false;
+    }else{
+        $("#mobileError").hide();
     }
     return true;
 }
@@ -148,7 +156,8 @@ $(".repeat").on("click", function(){
 	$(".closeIcon").click();
 });
 $(".back").on("click", function(){
-	window.location.href = "servicePage.html";
+	/*window.location.href = "servicePage.html";*/
+	window.history.back();
 });
 
 function goBack(){
@@ -156,5 +165,5 @@ function goBack(){
 }
 
 var refreshOnForeground = function(){
-    location.reload();
+    //location.reload();
 }

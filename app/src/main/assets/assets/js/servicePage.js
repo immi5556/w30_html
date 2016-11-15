@@ -32,8 +32,3 @@ $(".settings").on("click", function(){
 /*$(".menuList2, .menuList3, .menuList5, .menuList6, .menuList7").on("click", function(){
 	alert("Not yet launched. Launching Soon.");
 });*/
-
-
-function goBack(){
-    window.history.back();
-}

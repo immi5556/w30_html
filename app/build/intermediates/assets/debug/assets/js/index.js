@@ -60,23 +60,31 @@ var checkEmailBox = function(){
 
 var validate = function(){
     if($(".firstname").val().length == 0 || $(".firstname").val().length > 14){
-        window.andapp.showToast("Enter 1 to 14 characters length.");
+        $("#firstNameError").show();
         return false;
+    }else{
+         $("#firstNameError").hide();
     }
 
     if($(".lastname").val().length == 0 || $(".lastname").val().length > 14){
-        window.andapp.showToast("Enter 1 to 14 characters length.");
+        $("#lastNameError").show();
         return false;
+    }else{
+         $("#lastNameError").hide();
     }
 
     if(!checkEmailBox()){
-        window.andapp.showToast("Enter valid emailId.");
+        $("#emailError").show();
         return false;
+    }else{
+         $("#emailError").hide();
     }
 
     if($(".mobilenumber").val().length != 14 || $(".mobilenumber").val().slice(0, 1) != "(" || $(".mobilenumber").val().slice(4, 6) != ") " || $(".mobilenumber").val().slice(9, 10) != "-"){
-        window.andapp.showToast("Enter 10-digit mobile number.");
+        $("#mobileError").show();
         return false;
+    }else{
+         $("#mobileError").hide();
     }
     return true;
 }
@@ -121,4 +129,8 @@ $(".sub-btn").on("click", function(){
 
 function goBack(){
     window.andapp.closeApp();
+}
+
+var refreshOnForeground = function(){
+    //location.reload();
 }

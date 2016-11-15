@@ -23,29 +23,41 @@
 			<img src="assets/img/profile-pic.png" alt="profile">
 		</div>
 		<div class="formSection1">
-			<div class="form-row">
-				<input type="text" name="" class="firstname">
-				<label>First Name</label>
-				<span class="closeIcon"></span>
-				<img class="fieldIcon1" src="assets/img/userIcon1.png" alt="userIcon">
+			<div class="form-row-parent">
+				<div class="form-row">
+					<input type="text" name="" class="firstname">
+					<label>First Name</label>
+					<span class="closeIcon"></span>
+					<img class="fieldIcon1" src="assets/img/userIcon1.png" alt="userIcon">
+				</div>
+				<strong id="firstNameError" class="error">Please enter a First Name</strong>
 			</div>
-			<div class="form-row">
-				<input type="text" name="" class="lastname">
-				<label>Last Name</label>
-				<span class="closeIcon"></span>
-				<img class="fieldIcon1" src="assets/img/userIcon1.png" alt="userIcon">
+			<div class="form-row-parent">
+				<div class="form-row">
+					<input type="text" name="" class="lastname">
+					<label>Last Name</label>
+					<span class="closeIcon"></span>
+					<img class="fieldIcon1" src="assets/img/userIcon1.png" alt="userIcon">
+				</div>
+				<strong id="lastNameError" class="error">Please enter a Last Name</strong>
 			</div>
-			<div class="form-row">
-				<input type="email" name="" class="email" required disabled="disabled">
-				<!--<label>example@gmail.com</label>-->
-				<!--<span class="closeIcon"></span>-->
-				<img class="fieldIcon1" src="assets/img/mailIcon1.png" alt="userIcon">
+			<div class="form-row-parent">
+				<div class="form-row">
+					<input type="email" name="" class="email" required disabled="disabled">
+					<!--<label>example@gmail.com</label>-->
+					<!--<span class="closeIcon"></span>-->
+					<img class="fieldIcon1" src="assets/img/mailIcon1.png" alt="userIcon">
+				</div>
+				<strong id="emailError" class="error">Please enter a valid Email address</strong>
 			</div>
-			<div class="form-row">
-				<input type="tel" name="" id="mobile_in" class="mobilenumber" onkeypress="return mobileNumberValidation(event)" required>
-				<label>Mobile No.</label>
-				<span class="closeIcon"></span>
-				<img class="fieldIcon1" src="assets/img/phoneIcon1.png" alt="userIcon">
+			<div class="form-row-parent">
+				<div class="form-row">
+					<input type="tel" name="" id="mobile_in" class="mobilenumber" onkeypress="return mobileNumberValidation(event)" required>
+					<label>Mobile No.</label>
+					<span class="closeIcon"></span>
+					<img class="fieldIcon1" src="assets/img/phoneIcon1.png" alt="userIcon">
+				</div>
+				<strong id="mobileError" class="error">Please enter a 10-digit mobile number</strong>
 			</div>
 			<div class="formSectionNotifi">
 				<div class="clear" style="display:none;">
