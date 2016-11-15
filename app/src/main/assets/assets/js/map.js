@@ -1,8 +1,8 @@
-var servurl = "https://services.schejule.com:9095/";     //"https://services.within30.com/"
-var sockurl = "https://socket.schejule.com:9090/";       //"https://socket.within30.com/"
+var servurl = "https://services.within30.com/";     //"https://services.schejule.com:9095/"
+var sockurl = "https://socket.within30.com/";       //"https://socket.schejule.com:9090/"
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
-var serviceId = "";               //57527f72c848741100ac0c9f
-var urlLink = ".schejule.com:9092/";
+var serviceId = "";
+var urlLink = ".within30.com/";
 var localImagePath = "./assets/img/";
 var milesValue = 60;
 var minutesValue = 60;

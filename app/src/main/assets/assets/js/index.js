@@ -1,5 +1,5 @@
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
-var servurl = "https://services.schejule.com:9095/";
+var servurl = "https://services.within30.com/";
 var mobilenumber;
 
 function mobileNumberValidation(evt){
@@ -93,7 +93,6 @@ var saveData = function(type){
 
 	if(validate()){
 	    mobilenumber = $(".mobilenumber").val().substring(1,4)+$(".mobilenumber").val().substring(6,9)+$(".mobilenumber").val().substring(10,14);
-	    console.log(mobilenumber);
 	    var udata = JSON.stringify({"firstname":$(".firstname").val(),"lastname":$(".lastname").val(),"email":$(".email").val(),"mobilenumber":mobilenumber});
 		var request1 = $.ajax({
 	        url: servurl + "endpoint/api/"+type,

@@ -1,5 +1,5 @@
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
-var servurl = "https://services.schejule.com:9095/";     //"https://services.within30.com/"
+var servurl = "https://services.within30.com/";     //"https://services.within30.com/"
 var geocoder = new google.maps.Geocoder();
 var latitude, longitude;
 var firstname, lastname, email, mobilenumber, userid;
