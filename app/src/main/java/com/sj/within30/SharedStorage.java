@@ -91,4 +91,8 @@ public class SharedStorage {
     public static void saveServiceId(String value) { saveValues("ServiceId", value); }
 
     public static String getServiceId() { return getValue("ServiceId");  }
+
+    public static void storePhonePermission(String value) { saveValues("PhonePermission", value); }
+
+    public static String getPhonePermission() { return getValue("PhonePermission");  }
 }

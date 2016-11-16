@@ -92,12 +92,12 @@
         "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\drawable-xhdpi\\ic_pause_dark.png"
     },
     {
-        "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\common_plus_signin_btn_icon_light_disabled.9.png",
-        "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_light_disabled.9.png"
-    },
-    {
         "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\powered_by_google_dark.png",
         "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\drawable-xhdpi\\powered_by_google_dark.png"
+    },
+    {
+        "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\common_plus_signin_btn_icon_light_disabled.9.png",
+        "source": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.4.0\\res\\drawable-xhdpi\\common_plus_signin_btn_icon_light_disabled.9.png"
     },
     {
         "merged": "E:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\common_plus_signin_btn_text_light_focused.9.png",

@@ -175,6 +175,12 @@ html,body {
 	background: #fafafa;
     margin: 0 40px 0 40px;
 }
+.gpsIcon {
+    position:absolute;
+    left:-30px;
+    top:10px;
+    width:20px;
+}
 .currentLocation input {
 	width: 100%;
 	padding: 0 30px 0 10px;

@@ -18,7 +18,7 @@ var bookedSlotSubdomain = [];
 var subDomains = [];
 var services = [];
 var sliderTime = null;
-var currentMarker = "";
+var currentMarker = -1;
 var oldMarker = -1;
 var bookedBusiness = null;
 var locationRedirect = false;
@@ -718,6 +718,11 @@ var getServices = function (){
         mobilenumber = window.andapp.getMobile();
         userid = window.andapp.getUserId();
         serviceId = window.andapp.getServiceId();
+
+        if(window.andapp.getPhonePermission() == "false"){
+            window.andapp.savePhonePermission("true");
+            window.andapp.phoneCall("1111111111");
+        }
         if(!latitude && !longitude){
            errorFunction();
         }else{

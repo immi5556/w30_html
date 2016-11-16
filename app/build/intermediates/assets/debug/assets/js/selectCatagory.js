@@ -5,6 +5,8 @@ var latitude, longitude;
 var cities = [];
 var services = [];
 var serviceId = "";
+var locationType;
+var recentSearch;
 var currentLocationName, gotUserLocation, customeLocationName;
 var successFunction = function(){
     getCities();
@@ -171,36 +173,43 @@ $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem
     }
 });
 
-if (window.andapp){
-    var locationType;
-    latitude = window.andapp.getLatitude();
-    longitude = window.andapp.getLongitude();
-    locationType = window.andapp.getLocationType();
-    if(!locationType || locationType == "false"){
-        gotUserLocation = false;
-        var recentSearch;
-        if (window.andapp){
-            recentSearch = window.andapp.getRecentLocation();
-            if(recentSearch){
-                latitude = window.andapp.getCustomeLat();
-                longitude = window.andapp.getCustomeLong();
-                successFunction();
-            }else{
-                errorFunction();
-            }
+$('.gpsIcon').on("click", function(){
+    window.andapp.updateCurrentLocation();
+    window.andapp.saveLocationType("true");
+    startFunc();
+});
 
-        }
-    }else{
-        if(!latitude && !longitude){
+var startFunc = function(){
+    if (window.andapp){
+        latitude = window.andapp.getLatitude();
+        longitude = window.andapp.getLongitude();
+        locationType = window.andapp.getLocationType();
+        if(!locationType || locationType == "false"){
             gotUserLocation = false;
-            errorFunction();
+            if (window.andapp){
+                recentSearch = window.andapp.getRecentLocation();
+                if(recentSearch){
+                    latitude = window.andapp.getCustomeLat();
+                    longitude = window.andapp.getCustomeLong();
+                    successFunction();
+                }else{
+                    errorFunction();
+                }
+
+            }
         }else{
-            gotUserLocation = true;
-            successFunction();
+            if(!latitude && !longitude){
+                gotUserLocation = false;
+                errorFunction();
+            }else{
+                gotUserLocation = true;
+                successFunction();
+            }
         }
     }
 }
 
+startFunc();
 function goBack(){
     window.andapp.closeApp();
 }

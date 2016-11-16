@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         myBrowser.loadUrl("javascript:app.changeCenter(" + latitude + "," + longitude + ")");*/
     }
 
+
     private void checkReadPhoneStatePermissions(String number) {
         try {
 
@@ -124,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
 
                 if (ContextCompat.checkSelfPermission(MainActivity.this,android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.CALL_PHONE}, CALL_REQUEST1);
+
                 } else {
                     Intent in=new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+number));
                     try{
@@ -337,6 +339,21 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         public String getRecentLocation() {
             try {
                 return SharedStorage.getStoredRecentLocation();
+            } catch (Exception ex) {}
+            return  null;
+        }
+
+        @JavascriptInterface
+        public void savePhonePermission(String value) {
+            try {
+                SharedStorage.storePhonePermission(value);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getPhonePermission() {
+            try {
+                return SharedStorage.getPhonePermission();
             } catch (Exception ex) {}
             return  null;
         }
