@@ -173,8 +173,8 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
-            myBrowser.loadUrl("javascript:app.setMap(" + latitude + "," + longitude + ");");
-            myBrowser.loadUrl("javascript:app.getChurches();");
+            //myBrowser.loadUrl("javascript:app.setMap(" + latitude + "," + longitude + ");");
+            //myBrowser.loadUrl("javascript:app.getChurches();");
         }
     }
 

@@ -745,7 +745,6 @@ var getServices = function (){
     }
 
     var refreshOnForeground = function(){
-        console.log(calling);
         if(calling == "false"){
             location.reload();
         }

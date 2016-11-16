@@ -137,5 +137,3 @@ function goBack(){
 var refreshOnForeground = function(){
     //location.reload();
 }
-
-window.andapp.savePhonePermission("false");
