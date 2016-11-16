@@ -79,38 +79,38 @@ var checkEmailBox = function(){
 }
 
 var validate = function(){
-    if($(".firstname").val().length == 0 || $(".firstname").val().length > 14){
+    var errorCount = 0;
+    if($(".firstname").val().length == 0){
         $("#firstNameError").show();
-        //window.andapp.showToast("Enter 1 to 14 characters length.");
-        return false;
+        errorCount++;
     }else{
         $("#firstNameError").hide();
     }
 
-    if($(".lastname").val().length == 0 || $(".lastname").val().length > 14){
+    if($(".lastname").val().length == 0){
         $("#lastNameError").show();
-        //window.andapp.showToast("Enter 1 to 14 characters length.");
-        return false;
+        errorCount++;
     }else{
         $("#lastNameError").hide();
     }
 
     if(!checkEmailBox()){
         $("#emailError").show();
-        //window.andapp.showToast("Enter valid emailId.");
-        return false;
+        errorCount++;
     }else{
         $("#emailError").hide();
     }
 
     if($(".mobilenumber").val().length != 14 || $(".mobilenumber").val().slice(0, 1) != "(" || $(".mobilenumber").val().slice(4, 6) != ") " || $(".mobilenumber").val().slice(9, 10) != "-"){
-        //window.andapp.showToast("Enter 10-digit mobile number.");
         $("#mobileError").show();
-        return false;
+        errorCount++;
     }else{
         $("#mobileError").hide();
     }
-    return true;
+    if(errorCount == 0)
+        return true;
+    else
+        return false;
 }
 
 var updateData = function(type){

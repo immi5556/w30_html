@@ -214,7 +214,7 @@ var getServices = function (){
                     marker.setVisible(false);
             }
             var subdomain = docs[i].subdomain;
-            markers.push(marker);    
+            markers.push(marker);
             subDomains.push(subdomain);
             google.maps.event.addListener(marker, 'click', (function(marker, subdomain, i) {
                 return function() {

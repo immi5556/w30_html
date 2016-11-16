@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Nov 15 20:02:56 IST 2016
+#Wed Nov 16 11:45:41 IST 2016
 20.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 143.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 340.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\ic_pause_light.png
@@ -17,7 +17,7 @@
 118.set=ANDROID_RESOURCE
 0.set=ANDROID_RESOURCE
 191.set=ASSET
-269.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\abc_btn_default_mtrl_shape.xml
+269.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\notification_template_big_media_narrow.xml
 270.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 100.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 416.set=ANDROID_RESOURCE
@@ -39,7 +39,7 @@
 20.set=ANDROID_RESOURCE
 260.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 293.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
-140.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\mr_media_route_chooser_dialog.xml
+140.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_ic_star_black_36dp.png
 123.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 149.set=ASSET
 156.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
@@ -47,7 +47,7 @@
 327.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 66.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
 189.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
-83.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-ldrtl-hdpi-v17\\abc_spinner_mtrl_am_alpha.9.png
+83.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\abc_screen_toolbar.xml
 386.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_42824a55f1f298851626a5ff177735f429826858\\classes.dex
 74.set=ANDROID_RESOURCE
 325.set=ANDROID_RESOURCE
@@ -130,7 +130,7 @@
 395.set=ANDROID_RESOURCE
 39.set=ANDROID_RESOURCE
 394.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
-241.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\common_google_signin_btn_icon_dark.xml
+241.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\common_google_signin_btn_icon_light_pressed.9.png
 241.set=ANDROID_RESOURCE
 257.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\com.google.android.gms-play-services-appinvite-8.4.0_9a6725c5c558cc98547955276b90957c360836e8
 104.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\color\\abc_primary_text_disable_only_material_dark.xml
@@ -144,7 +144,7 @@
 384.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 3.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_7db12e88eddd7878d5f2284776b86434ebb64529
 231.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\location.html
-402.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\places_ic_search.png
+402.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-ldrtl-hdpi-v17\\abc_ic_ab_back_mtrl_am_alpha.png
 264.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\img\\premiumGreenMarker1.png
 418.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 297.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\img\\redMarker1.png
@@ -224,7 +224,7 @@
 168.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 237.set=ANDROID_RESOURCE
 194.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\ic_cast_disabled_light.png
-365.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\select_dialog_singlechoice_material.xml
+365.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout-v17\\place_autocomplete_item_prediction.xml
 115.set=DEX
 78.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
 398.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\ic_plusone_small_off_client.png
@@ -244,7 +244,7 @@
 329.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 355.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout-v17\\notification_template_lines.xml
 68.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
-85.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\ic_plusone_standard_off_client.png
+85.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-ldrtl-hdpi-v17\\abc_spinner_mtrl_am_alpha.9.png
 388.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\common_google_signin_btn_icon_dark_pressed.9.png
 94.set=ANDROID_RESOURCE
 345.set=ASSET
@@ -280,7 +280,7 @@
 188.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\abc_action_mode_bar.xml
 65.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png
 100.set=ANDROID_RESOURCE
-98.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout-v17\\select_dialog_singlechoice_material.xml
+98.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\mr_ic_pause_dark.xml
 223.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 353.set=ANDROID_RESOURCE
 282.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\color\\abc_primary_text_material_dark.xml
@@ -334,7 +334,7 @@
 259.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 106.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\editScreen.html
 184.set=ASSET
-139.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_ic_star_black_36dp.png
+139.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\mr_media_route_chooser_dialog.xml
 140.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 49.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-v21\\abc_ratingbar_indicator_material.xml
 409.set=ANDROID_RESOURCE
@@ -346,7 +346,7 @@
 83.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 386.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_42824a55f1f298851626a5ff177735f429826858
 5.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
-233.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png
+233.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\abc_dialog_material_background_light.xml
 404.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\img\\clockIcon.png
 266.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-v21\\abc_action_bar_item_background_material.xml
 299.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\color\\abc_search_url_text.xml
@@ -431,7 +431,7 @@
 334.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\ic_cast_light.png
 47.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
 257.set=DEX
-196.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\common_plus_signin_btn_icon_light_disabled.9.png
+196.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout-v17\\notification_template_big_media_narrow.xml
 367.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\common_google_signin_btn_text_dark_focused.9.png
 135.set=ASSET
 231.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
@@ -459,11 +459,11 @@
 254.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
 271.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\com.google.android.gms-play-services-games-8.4.0_d8c6d7389b668cd7823c47728fca60530d06f525\\classes.dex
 166.set=ANDROID_RESOURCE
-101.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_list_pressed_holo_light.9.png
+101.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\abc_dialog_title_material.xml
 287.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 134.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_list_selector_disabled_holo_light.9.png
 305.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout-v21\\place_autocomplete_progress.xml
-44.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\abc_cab_background_top_material.xml
+44.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\abc_activity_chooser_view_list_item.xml
 167.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\cast_ic_notification_on.png
 91.set=ANDROID_RESOURCE
 342.set=ASSET
@@ -506,7 +506,7 @@
 274.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\anim\\abc_fade_in.xml
 5.set=ASSET
 196.set=ANDROID_RESOURCE
-38.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\notification_template_part_time.xml
+38.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\mr_ic_media_route_connecting_mono_dark.xml
 48.set=ANDROID_RESOURCE
 171.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
 342.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
@@ -520,18 +520,18 @@
 381.set=ANDROID_RESOURCE
 25.set=ANDROID_RESOURCE
 118.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-v21\\abc_btn_colored_material.xml
-28.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\mr_ic_settings_light.xml
+28.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_textfield_default_mtrl_alpha.9.png
 332.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 194.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 365.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
-212.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\common_plus_signin_btn_icon_dark.xml
+212.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\abc_list_selector_holo_light.xml
 79.set=ANDROID_RESOURCE
 398.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 228.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 245.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_8\\classes.dex
 281.set=ASSET
 108.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\css\\jquery.rateyo.min.css
-18.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_ic_menu_selectall_mtrl_alpha.png
+18.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout-v17\\select_dialog_multichoice_material.xml
 142.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 52.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 56.set=ANDROID_RESOURCE
@@ -546,7 +546,7 @@
 406.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\js\\moment-timezone-with-data.js
 108.set=ASSET
 181.set=ANDROID_RESOURCE
-268.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\notification_template_big_media_narrow.xml
+268.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\abc_btn_default_mtrl_shape.xml
 406.set=ASSET
 33.set=ASSET
 132.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
@@ -594,7 +594,7 @@
 346.set=ANDROID_RESOURCE
 152.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_9\\classes.dex
 269.set=ANDROID_RESOURCE
-323.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png
+323.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\common_plus_signin_btn_icon_dark_disabled.9.png
 36.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
 147.set=ANDROID_RESOURCE
 62.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\anim\\abc_slide_in_top.xml
@@ -656,7 +656,7 @@
 385.set=ANDROID_RESOURCE
 29.set=DEX
 393.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
-240.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\common_google_signin_btn_icon_light_pressed.9.png
+240.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\abc_search_dropdown_item_icons_2line.xml
 231.set=ASSET
 256.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
 103.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\com.google.android.gms-play-services-location-8.4.0_efbf85195130a8679f0703179073d707407d6d76\\classes.dex
@@ -673,7 +673,7 @@
 163.set=ANDROID_RESOURCE
 230.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\abc_list_menu_item_layout.xml
 2.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
-401.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-ldrtl-hdpi-v17\\abc_ic_ab_back_mtrl_am_alpha.png
+401.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\places_ic_search.png
 263.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_list_focused_holo.9.png
 417.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 279.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
@@ -686,7 +686,7 @@
 140.set=ANDROID_RESOURCE
 70.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
 185.set=ANDROID_RESOURCE
-390.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\mr_ic_cast_light.xml
+390.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_ic_menu_share_mtrl_alpha.png
 227.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 393.set=ANDROID_RESOURCE
 253.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\img\\cata-menuList5.png
@@ -759,7 +759,7 @@
 61.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_2\\classes.dex
 227.set=ANDROID_RESOURCE
 193.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\img\\cata-menuList8.png
-364.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout-v17\\place_autocomplete_item_prediction.xml
+364.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\select_dialog_singlechoice_material.xml
 105.set=ANDROID_RESOURCE
 77.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
 397.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\common_google_signin_btn_icon_light_focused.9.png
@@ -777,7 +777,7 @@
 328.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 354.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\internal_impl-23.4.0_6ed9d1ead877814603073c44f0fe49a6125f4c1b\\classes.dex
 67.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
-84.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\abc_screen_toolbar.xml
+84.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\ic_plusone_standard_off_client.png
 387.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\abc_spinner_textfield_background_material.xml
 84.set=ANDROID_RESOURCE
 335.set=ASSET
@@ -943,7 +943,7 @@
 376.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\com.google.android.gms-play-services-identity-8.4.0_0bbc0db8f25abb7ae5ca3c5c2dade652e3e7330b\\classes.dex
 206.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\cast_ic_notification_0.png
 89.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
-239.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\abc_search_dropdown_item_icons_2line.xml
+239.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\common_google_signin_btn_icon_dark.xml
 148.set=ANDROID_RESOURCE
 240.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 103.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\com.google.android.gms-play-services-location-8.4.0_efbf85195130a8679f0703179073d707407d6d76
@@ -981,7 +981,7 @@
 69.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 86.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\js\\location.js
 400.set=ASSET
-389.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_ic_menu_share_mtrl_alpha.png
+389.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\mr_ic_cast_light.xml
 355.set=ANDROID_RESOURCE
 8.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout-v17\\notification_template_part_chronometer.xml
 390.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
@@ -1017,7 +1017,7 @@
 66.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\img\\catagoryIcon5.png
 110.set=ASSET
 190.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
-99.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\mr_ic_pause_dark.xml
+99.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout-v17\\select_dialog_singlechoice_material.xml
 224.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 363.set=ASSET
 250.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\img\\teethIcon.png
@@ -1039,7 +1039,7 @@
 273.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\com.google.android.gms-play-services-drive-8.4.0_73a8eddbcf3d77df7ef37d143fb13269ff7ed0b3\\classes.dex
 186.set=ANDROID_RESOURCE
 394.set=ASSET
-37.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\mr_ic_media_route_connecting_mono_dark.xml
+37.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\notification_template_part_time.xml
 38.set=ANDROID_RESOURCE
 170.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\com.android.support-support-v4-23.4.0_ee9b8b1460457cc73143a963a539ceb7cbb4a437
 341.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\com.google.android.gms-play-services-wallet-8.4.0_1b4859b24718db5f42f40587908acedf7e81d634
@@ -1053,12 +1053,12 @@
 15.set=ANDROID_RESOURCE
 117.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_ic_go_search_api_mtrl_alpha.png
 294.set=ASSET
-27.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_textfield_default_mtrl_alpha.9.png
+27.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\mr_ic_settings_light.xml
 331.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 61.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_2
 193.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
 364.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
-211.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\abc_list_selector_holo_light.xml
+211.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\common_plus_signin_btn_icon_dark.xml
 69.set=ANDROID_RESOURCE
 397.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 244.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\abc_action_menu_layout.xml
@@ -1076,7 +1076,7 @@
 201.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\abc_btn_radio_material.xml
 84.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 387.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
-234.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\abc_dialog_material_background_light.xml
+234.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png
 6.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 405.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\mipmap-xxhdpi-v4\\ic_launcher.png
 171.set=ASSET
@@ -1124,7 +1124,7 @@ count=420
 336.set=ANDROID_RESOURCE
 151.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\js\\servicePage.js
 259.set=ANDROID_RESOURCE
-322.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\common_plus_signin_btn_icon_dark_disabled.9.png
+322.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png
 35.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
 137.set=ASSET
 184.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\img\\premiumGreenMarker2.png
@@ -1156,7 +1156,7 @@ count=420
 335.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\img\\premiumLegendMarker.png
 48.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 267.set=DEX
-197.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout-v17\\notification_template_big_media_narrow.xml
+197.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\common_plus_signin_btn_icon_light_disabled.9.png
 368.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_ic_star_half_black_16dp.png
 145.set=ANDROID_RESOURCE
 232.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\com.google.android.gms-play-services-panorama-8.4.0_bc8470f050b0585a69caf5f18c6a662a3e8c82f3
@@ -1182,11 +1182,11 @@ count=420
 221.set=DEX
 255.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 272.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\ic_cast_off_light.png
-102.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\abc_dialog_title_material.xml
+102.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_list_pressed_holo_light.9.png
 288.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 135.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\img\\logo.png
 306.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\com.google.android.gms-play-services-maps-8.4.0_6db739b2dad477cf2d0825a13b6d13daf943d0c3\\classes.dex
-45.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\abc_activity_chooser_view_list_item.xml
+45.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable\\abc_cab_background_top_material.xml
 168.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_btn_check_to_on_mtrl_000.png
 352.set=ANDROID_RESOURCE
 78.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\img\\checkedInMarker1.png
@@ -1260,4 +1260,4 @@ count=420
 291.set=ASSET
 109.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug\\assets\\js\\index.js
 110.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
-19.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout-v17\\select_dialog_multichoice_material.xml
+19.file=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\abc_ic_menu_selectall_mtrl_alpha.png
