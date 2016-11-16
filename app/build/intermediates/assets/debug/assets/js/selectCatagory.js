@@ -131,45 +131,47 @@ $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem
 
     var matchFound = -1;
     var textVal = $(this).find("strong").text();
-    services[0].forEach(function(item, index){
-        if(item.name == textVal){
-          matchFound = index;
-          serviceId = item._id;
-        }
-    });
-    if(matchFound != -1){
-        window.andapp.saveServiceId(serviceId);
-        if(!$("#serach").val() && $("#serach").val().length == 0){
-            window.andapp.updateCurrentLocation();
-            window.andapp.saveLocationType("true");
-        }else if(currentLocationName && currentLocationName.toUpperCase() == $("#serach").val().toUpperCase()){
-            if (window.andapp){
-                window.andapp.saveLocationType("true");
+    if(services[0].length){
+        services[0].forEach(function(item, index){
+            if(item.name == textVal){
+              matchFound = index;
+              serviceId = item._id;
             }
-        }else{
-            var selectedCity = cities[0].filter(function(item){
-                return item.city.toLowerCase() == $("#serach").val().toLowerCase();
-            });
-            if(selectedCity.length){
-                latitude = selectedCity[0].latitude;
-                longitude = selectedCity[0].longitude;
-                if (window.andapp){
-                    window.andapp.saveLocationType("false");
-                    window.andapp.saveRecentLocation($("#serach").val());
-                    window.andapp.saveCustomeLat(latitude);
-                    window.andapp.saveCustomeLong(longitude);
-                    window.andapp.updateLatLong(latitude, longitude);
-                }
-            }else{
-                alert("Location not in records.");
+        });
+        if(matchFound != -1){
+            window.andapp.saveServiceId(serviceId);
+            if(!$("#serach").val() && $("#serach").val().length == 0){
                 window.andapp.updateCurrentLocation();
                 window.andapp.saveLocationType("true");
-            }
+            }else if(currentLocationName && currentLocationName.toUpperCase() == $("#serach").val().toUpperCase()){
+                if (window.andapp){
+                    window.andapp.saveLocationType("true");
+                }
+            }else{
+                var selectedCity = cities[0].filter(function(item){
+                    return item.city.toLowerCase() == $("#serach").val().toLowerCase();
+                });
+                if(selectedCity.length){
+                    latitude = selectedCity[0].latitude;
+                    longitude = selectedCity[0].longitude;
+                    if (window.andapp){
+                        window.andapp.saveLocationType("false");
+                        window.andapp.saveRecentLocation($("#serach").val());
+                        window.andapp.saveCustomeLat(latitude);
+                        window.andapp.saveCustomeLong(longitude);
+                        window.andapp.updateLatLong(latitude, longitude);
+                    }
+                }else{
+                    alert("Location not in records.");
+                    window.andapp.updateCurrentLocation();
+                    window.andapp.saveLocationType("true");
+                }
 
+            }
+            window.location.href = "servicePage.html";
+        }else{
+          alert("No Category found.");
         }
-        window.location.href = "servicePage.html";
-    }else{
-      alert("No Category found.");
     }
 });
 

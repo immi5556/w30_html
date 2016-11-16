@@ -125,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
 
                 if (ContextCompat.checkSelfPermission(MainActivity.this,android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.CALL_PHONE}, CALL_REQUEST1);
-                    Log.d("-----------","phone permission");
                 } else {
                     Intent in=new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+number));
                     try{

@@ -24,6 +24,24 @@ var bookedBusiness = null;
 var locationRedirect = false;
 var socketio = io.connect(sockurl);
 var calling = "false";
+
+$(".serviceSection").swipe( {
+  swipeUp:function(event, direction, distance, duration) {
+    $('.serviceSection').animate({
+        height:'330px'
+    },200);
+  },
+  swipeDown:function(event, direction, distance, duration) {
+    $('.serviceSection').animate({
+        height:'115px'
+    },200);
+  },
+  click:function(event, target) {
+  },
+  threshold:100,
+  allowPageScroll:"vertical"
+});
+
 var abbrs = {
         EST : 'America/New_York',
         EDT : 'America/New_York',
@@ -268,16 +286,12 @@ var getServices = function (){
                     $(".companyAddr").text(companyAddr);
                     //$(".website").attr("href","https://"+docs[i].subdomain+urlLink);
                     $(".phoneCall").on("click", function(){
-                        if(window.andapp){
-                            calling = "true";
-                            window.andapp.phoneCall(customers[i].mobile);
-                        }
+                        calling = "true";
+                        window.andapp.phoneCall(customers[i].mobile);
                     });
                     $(".website").on("click", function(){
-                        if(window.andapp){
-                            calling = "true";
-                            window.andapp.openLink("https://"+customers[i].subdomain+urlLink);
-                        }
+                        calling = "true";
+                        window.andapp.openLink("https://"+customers[i].subdomain+urlLink);
                     });
                     $(".businessHours").text("Business Hours: "+customers[i].startHour+" - "+customers[i].endHour);
                     $(".directionArrowBottom").hide();
@@ -719,10 +733,6 @@ var getServices = function (){
         userid = window.andapp.getUserId();
         serviceId = window.andapp.getServiceId();
 
-        if(window.andapp.getPhonePermission() == "false"){
-            window.andapp.savePhonePermission("true");
-            window.andapp.phoneCall("1111111111");
-        }
         if(!latitude && !longitude){
            errorFunction();
         }else{
@@ -735,6 +745,7 @@ var getServices = function (){
     }
 
     var refreshOnForeground = function(){
+        console.log(calling);
         if(calling == "false"){
             location.reload();
         }
