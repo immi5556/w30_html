@@ -719,10 +719,6 @@ var getServices = function (){
         userid = window.andapp.getUserId();
         serviceId = window.andapp.getServiceId();
 
-        if(window.andapp.getPhonePermission() == "false"){
-            window.andapp.savePhonePermission("true");
-            window.andapp.phoneCall("1111111111");
-        }
         if(!latitude && !longitude){
            errorFunction();
         }else{
