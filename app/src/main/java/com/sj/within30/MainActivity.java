@@ -71,12 +71,6 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 // TODO Auto-generated method stub
-                if (url.startsWith("tel:")) {
-                    Intent intent = new Intent(Intent.ACTION_DIAL,
-                            Uri.parse(url));
-                    startActivity(intent);
-                    return true;
-                }
                 return super.shouldOverrideUrlLoading(view, url);
             }
 
@@ -372,7 +366,8 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
 
         @JavascriptInterface
         public void openLink(String link) {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+            Intent browserIntent = new Intent(MainActivity.this, SchedulePageActivity.class);
+            browserIntent.putExtra("link", link);
             try{
                 startActivity(browserIntent);
             }
@@ -424,7 +419,8 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
 
     @Override
     public void onBackPressed() {
-        myBrowser.loadUrl("javascript:goBack()");
+        myBrowser.goBack();
+        //myBrowser.loadUrl("javascript:goBack()");
     }
 
     public void initLocationFetching(Activity mActivity) {

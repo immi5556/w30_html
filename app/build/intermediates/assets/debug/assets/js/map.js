@@ -105,7 +105,7 @@ var getServices = function (){
                 milesValue = 30;
                 minutesValue = 30;
                 loadMap(result.Data);
-            }else{
+            }else if(result.Message == "No customers available"){
                 /*$(".popContent h2").text("Get Customers Response");
                 $(".popContent strong").text("No Customers in your Range. Redirecting to nearest location.");
                 $(".pop_up").show();
@@ -124,6 +124,16 @@ var getServices = function (){
                 $(".popContent strong").text("There seem to be no businesses in your range currently");
                 $(".pop_up").show();
                 loadMap([]);
+            }else if(result.Message = "Access denied"){
+                $(".popContent h2").text("Retrieving Businesses");
+                $(".popContent strong").text("There seem to be no access to this service");
+                $(".pop_up").show();
+                loadMap([]);
+            }else if(result.Message = "Distance matrix error"){
+                $(".popContent h2").text("Retrieving Businesses");
+                $(".popContent strong").text("There seem to be some problem. Please try again");
+                $(".pop_up").show();
+                loadMap([]);
             }
         });
         request1.fail(function(jqXHR, textStatus) {
@@ -139,10 +149,13 @@ var getServices = function (){
         getCustomerAPICall(latitude, longitude, milesValue, minutesValue);
     }
     var errorFunction = function(err){
-        milesValue = 60;
+        $(".popContent h2").text("Status");
+        $(".popContent strong").text("Not able to retrieve your location. Please check your location settings.");
+        $(".pop_up").show();
+        /*milesValue = 60;
         minutesValue = 60;
         getServices();
-        getCustomerAPICall(latitude, longitude, milesValue, minutesValue);
+        getCustomerAPICall(latitude, longitude, milesValue, minutesValue);*/
     }
 
     var loadMap = function(docs){
@@ -291,7 +304,7 @@ var getServices = function (){
                     });
                     $(".website").on("click", function(){
                         calling = "true";
-                        window.andapp.openLink("https://"+customers[i].subdomain+urlLink);
+                        window.andapp.openLink("https://"+docs[i].subdomain+urlLink);
                     });
                     $(".businessHours").text("Business Hours: "+customers[i].startHour+" - "+customers[i].endHour);
                     $(".directionArrowBottom").hide();
@@ -340,6 +353,7 @@ var getServices = function (){
             markers[currentMarker].setIcon(markerIcon.substring(0, markerIcon.length-5)+"2.png");
         }
     });
+
     $(".shadow").on('click', function() {
         calling = "false";
         $(".serviceSection").animate({height:'0'},500);

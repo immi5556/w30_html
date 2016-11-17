@@ -157,11 +157,11 @@ $(".repeat").on("click", function(){
 });
 $(".back").on("click", function(){
 	/*window.location.href = "servicePage.html";*/
-	window.history.back();
+	history.back();
 });
 
 function goBack(){
-    window.history.back();
+    history.back();
 }
 
 var refreshOnForeground = function(){
