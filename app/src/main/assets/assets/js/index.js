@@ -97,7 +97,7 @@ var saveData = function(type){
 
 	if(validate()){
 	    mobilenumber = $(".mobilenumber").val().substring(1,4)+$(".mobilenumber").val().substring(6,9)+$(".mobilenumber").val().substring(10,14);
-	    var udata = JSON.stringify({"firstname":$(".firstname").val(),"lastname":$(".lastname").val(),"email":$(".email").val(),"mobilenumber":mobilenumber});
+	    var udata = JSON.stringify({"firstname":$(".firstname").val(),"lastname":$(".lastname").val(),"email":$(".email").val(),"mobilenumber":mobilenumber, "deviceToken": window.andapp.getTokenId()});
 		var request1 = $.ajax({
 	        url: servurl + "endpoint/api/"+type,
 	        type: "POST",
@@ -111,7 +111,7 @@ var saveData = function(type){
 	    request1.success(function(result) {
 	    	if(result.Status == "Ok"){
 	    		if (window.andapp){
-					window.andapp.postJson('persistuser', JSON.stringify({"firstname":$(".firstname").val(),"lastname":$(".lastname").val(),"email":$(".email").val(),"mobilenumber":mobilenumber, "_id": result._id}));
+					window.andapp.postJson('persistuser', JSON.stringify({"firstname":$(".firstname").val(),"lastname":$(".lastname").val(),"email":$(".email").val(),"mobilenumber":mobilenumber, "_id": result._id, "deviceToken": window.andapp.getTokenId()}));
 				    window.andapp.saveLocationType("true");
 				}
 				window.location.href = "selectCatagory.html";

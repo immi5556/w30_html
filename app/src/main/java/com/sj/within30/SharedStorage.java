@@ -91,4 +91,8 @@ public class SharedStorage {
     public static void saveServiceId(String value) { saveValues("ServiceId", value); }
 
     public static String getServiceId() { return getValue("ServiceId");  }
+
+    public static void saveDeviceToken(String value) { saveValues("DeviceToken", value); }
+
+    public static String getDeviceToken() { return getValue("DeviceToken");  }
 }

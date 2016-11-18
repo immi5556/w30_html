@@ -184,6 +184,7 @@ var startFunc = function(){
         latitude = window.andapp.getLatitude();
         longitude = window.andapp.getLongitude();
         locationType = window.andapp.getLocationType();
+        console.log(window.andapp.getTokenId());
         if(!locationType || locationType == "false"){
             gotUserLocation = false;
             if (window.andapp){

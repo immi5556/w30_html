@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
     WebView myBrowser;
     static LayoutInflater inflater;
     double latitude = 0, longitude = 0;
+    String tokenId = "";
     Boolean updateLatLong = true;
     //Location
     public MyLocationManager mLocationManager;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         }
         myBrowser.addJavascriptInterface(new AndroidBridge(self), "andapp");
         myBrowser.setWebChromeClient(new MyJavaScriptChromeClient());
-
+        
         myBrowser.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
 
         SharedStorage.appContext = this;
         if (SharedStorage.getFirstName() == null || SharedStorage.getFirstName() == ""){
+            gemRegistration();
             myBrowser.loadUrl("file:///android_asset/index.html");
         } else {
             myBrowser.loadUrl("file:///android_asset/selectCatagory.html");
@@ -93,6 +95,25 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         try {
             webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
         } catch(NullPointerException e) {
+        }
+    }
+
+    private void gemRegistration() {
+        try{
+            GCMClientManager pushClientManager = new GCMClientManager(this, "841587965302");
+            pushClientManager.registerIfNeeded(new GCMClientManager.RegistrationCompletedHandler() {
+                @Override
+                public void onSuccess(String registrationId, boolean isNewRegistration) {
+                    tokenId = registrationId;
+                    SharedStorage.saveDeviceToken(tokenId);
+                }
+                @Override
+                public void onFailure(String ex) {
+                    super.onFailure(ex);
+                }
+            });
+        }catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -190,6 +211,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
                     SharedStorage.saveEmail(data.getString("email"));
                     SharedStorage.saveMobile(data.getString("mobilenumber"));
                     SharedStorage.saveUserId(data.getString("_id"));
+                    SharedStorage.saveDeviceToken(data.getString("deviceToken"));
                     //SharedStorage.saveN(data.get('notifications'));
                 }
             } catch (Exception ex) {}
@@ -218,6 +240,11 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
                 return SharedStorage.getLocationType();
             } catch (Exception ex) {}
             return null;
+        }
+
+        @JavascriptInterface
+        public String getTokenId() {
+            return SharedStorage.getDeviceToken();
         }
 
         @JavascriptInterface
