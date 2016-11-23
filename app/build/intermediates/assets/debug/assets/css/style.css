@@ -489,9 +489,23 @@ nav .settings {
 	border-top: 2px solid #4f5771;
 	background: url(../img/settingsIcon.png) no-repeat center center;
 }
+nav .help {
+	position: absolute;
+	width: 60px;
+	bottom: 50px;
+	border-top: 2px solid #4f5771;
+	background: url(../img/info-icon.png) no-repeat center center;
+}
+.imgContainer img {
+    position:absolute;
+    height:100%;
+    display:block;
+    padding:0;
+}
 nav a {
 	background-size: 25px !important;
 }
+
 #map {
 	width: 100%;
 }
@@ -694,7 +708,7 @@ nav a {
 	top: 50%;
 	overflow: hidden;
 	width: 220px;
-	max-height: 130px;
+	max-height: 180px;
 	text-align: center;
 	margin: -65px 0 0 -110px;
 	border-radius: 6px;
@@ -1258,6 +1272,44 @@ display: none;
 }
 .markermaping ul li img,.markermaping ul li span {
   float: left;
+}
+
+.loadingbar {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -23px 0 0 -23px;
+	z-index: 9;
+	display:none;
+}
+.bodyload .loadingShadow ,.bodyload .loadingbar{
+    display:block;
+}
+.loadingShadow {
+    display:none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,0.8);
+}
+
+.loadingCircle {
+    width: 10px;
+    height: 10px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 7px dashed #607D8B;
+    border-radius: 100%;
+}
+.loadingbar .loadingCircle {
+	animation: loadingD 1.5s .3s cubic-bezier(.17,.37,.43,.67) infinite;
+}
+@keyframes loadingD {
+    0 {transform: rotate(0deg);}
+    50% {transform: rotate(180deg);}
+    100% {transform: rotate(360deg);}
 }
 
 @media (min-width: 320px) and (max-width: 479px){

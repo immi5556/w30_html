@@ -8,6 +8,7 @@ var serviceId = "";
 var locationType;
 var recentSearch;
 var currentLocationName, gotUserLocation, customeLocationName;
+
 var successFunction = function(){
     getCities();
 }
@@ -27,6 +28,7 @@ function getLocation(lat, lng) {
         $.each(arrAddress, function(i, address_component) {
           if (address_component.types[0] == "political") {
             $("#serach").val(address_component.address_components[0].long_name);
+            $('body').removeClass('bodyload');
             if(gotUserLocation)
                 currentLocationName = address_component.address_components[0].long_name;
             else
@@ -34,10 +36,12 @@ function getLocation(lat, lng) {
           }
         });
       } else {
+        $('body').removeClass('bodyload');
         console.log("No results found");
       }
     } else {
-      console.log("Geocoder failed due to: " + status);
+        $('body').removeClass('bodyload');
+        console.log("Geocoder failed due to: " + status);
     }
   });
 }
@@ -66,6 +70,7 @@ var getCities = function (){
 		    getLocation(latitude, longitude);
     });
     request1.fail(function(jqXHR, textStatus) {
+        $('body').removeClass('bodyload');
         console.log(textStatus);
     });
 }
@@ -89,6 +94,7 @@ var getServices = function (){
       })
     });
     request1.fail(function(jqXHR, textStatus) {
+        $('body').removeClass('bodyload');
         console.log(textStatus);
     });
 }
@@ -181,6 +187,7 @@ $('.gpsIcon').on("click", function(){
 
 var startFunc = function(){
     if (window.andapp){
+        $('body').addClass('bodyload');
         latitude = window.andapp.getLatitude();
         longitude = window.andapp.getLongitude();
         locationType = window.andapp.getLocationType();

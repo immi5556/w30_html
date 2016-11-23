@@ -27,11 +27,15 @@ var calling = "false";
 
 $(".serviceSection").swipe( {
   swipeUp:function(event, direction, distance, duration) {
+    $('.directionArrowTop').hide();
+    $('.directionArrowBottom').show();
     $('.serviceSection').animate({
         height:'330px'
     },200);
   },
   swipeDown:function(event, direction, distance, duration) {
+    $('.directionArrowBottom').hide();
+  	$('.directionArrowTop').show();
     $('.serviceSection').animate({
         height:'115px'
     },200);
@@ -124,12 +128,12 @@ var getServices = function (){
                 $(".popContent strong").text("There seem to be no businesses in your range currently");
                 $(".pop_up").show();
                 loadMap([]);
-            }else if(result.Message = "Access denied"){
+            }else if(result.Message == "NoAccess"){
                 $(".popContent h2").text("Retrieving Businesses");
                 $(".popContent strong").text("There seem to be no access to this service");
                 $(".pop_up").show();
                 loadMap([]);
-            }else if(result.Message = "Distance matrix error"){
+            }else if(result.Message == "Distance matrix error"){
                 $(".popContent h2").text("Retrieving Businesses");
                 $(".popContent strong").text("There seem to be some problem. Please try again");
                 $(".pop_up").show();
@@ -304,6 +308,7 @@ var getServices = function (){
                     });
                     $(".website").on("click", function(){
                         calling = "true";
+                        window.andapp.savewebsiteState(calling);
                         window.andapp.openLink("https://"+docs[i].subdomain+urlLink);
                     });
                     $(".businessHours").text("Business Hours: "+customers[i].startHour+" - "+customers[i].endHour);
@@ -356,6 +361,7 @@ var getServices = function (){
 
     $(".shadow").on('click', function() {
         calling = "false";
+        window.andapp.savewebsiteState(calling);
         $(".serviceSection").animate({height:'0'},500);
         $('.shadow').hide();
         if(oldMarker >= 0){
@@ -665,6 +671,16 @@ var getServices = function (){
         $(".pop_up").hide();
     });
 
+    $(".imgContainer").on("click", function(){
+        $(".imgContainer").hide();
+        $(".container").show();
+    });
+
+    $(".help").on("click", function(){
+        $(".imgContainer").show();
+        $(".container").hide();
+    });
+
     $(".menuList4, .menuList2, .menuList3, .menuList5, .menuList6, .menuList7").on("click", function(){
         var matchFound = -1;
         var className = $(this).attr('class').split(" ")[1];
@@ -740,6 +756,11 @@ var getServices = function (){
     }
     $(document).foundation().foundation('joyride', 'start');
     if (window.andapp){
+        if(window.andapp.getOverlayState() == "false"){
+            window.andapp.saveOverlayState("true");
+            $(".imgContainer").show();
+            $(".container").hide();
+        }
         latitude = Number(window.andapp.getLatitude());
         longitude = Number(window.andapp.getLongitude());
         email = window.andapp.getEmail();

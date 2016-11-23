@@ -95,4 +95,8 @@ public class SharedStorage {
     public static void saveDeviceToken(String value) { saveValues("DeviceToken", value); }
 
     public static String getDeviceToken() { return getValue("DeviceToken");  }
+
+    public static void saveOverlayState(String value) { saveValues("Overlay", value); }
+
+    public static String getOverlayState() { return getValue("Overlay");  }
 }

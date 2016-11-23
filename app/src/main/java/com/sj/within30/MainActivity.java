@@ -4,6 +4,8 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,12 +21,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroupOverlay;
+import android.view.ViewOverlay;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.google.android.gms.location.LocationRequest;
 import com.sj.within30.location.LocationManagerInterface;
@@ -32,13 +39,14 @@ import com.sj.within30.location.MyLocationManager;
 
 import org.json.JSONObject;
 
+import static com.sj.within30.location.GetAccurateLocationApplication.mContext;
+
 public class MainActivity extends AppCompatActivity implements LocationManagerInterface {
     MainActivity self;
     WebView myBrowser;
-    static LayoutInflater inflater;
     double latitude = 0, longitude = 0;
     String tokenId = "";
-    Boolean updateLatLong = true;
+    Boolean updateLatLong = true, websiteOpened = false, servicePage = false;
     //Location
     public MyLocationManager mLocationManager;
     private static final int REQUEST_FINE_LOCATION = 1;
@@ -48,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //showOverLay();
         self = this;
         myBrowser = (WebView)findViewById(R.id.mybrowser);
         myBrowser.getSettings().setJavaScriptEnabled(true);
@@ -66,13 +75,25 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
 
             @Override
             public void onPageFinished(WebView view, String url) {
+                if(url.equalsIgnoreCase("file:///android_asset/servicePage.html") || url.equalsIgnoreCase("file:///android_asset/servicePage.html#")) {
+                    servicePage = true;
+                }else {
+                    servicePage = false;
+                }
                 super.onPageFinished(view, url);
             }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 // TODO Auto-generated method stub
-                return super.shouldOverrideUrlLoading(view, url);
+                if(servicePage){
+                    if(websiteOpened)
+                        return true;
+                    else
+                        return false;
+                }else{
+                    return super.shouldOverrideUrlLoading(view, url);
+                }
             }
 
             @Override
@@ -84,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         SharedStorage.appContext = this;
         if (SharedStorage.getFirstName() == null || SharedStorage.getFirstName() == ""){
             gemRegistration();
+            SharedStorage.saveOverlayState("false");
             myBrowser.loadUrl("file:///android_asset/index.html");
         } else {
             myBrowser.loadUrl("file:///android_asset/selectCatagory.html");
@@ -188,10 +210,21 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
-            //myBrowser.loadUrl("javascript:app.setMap(" + latitude + "," + longitude + ");");
-            //myBrowser.loadUrl("javascript:app.getChurches();");
         }
     }
+
+    /*private void showOverLay(){
+
+        final FrameLayout overlayFramelayout = new FrameLayout(getApplicationContext());
+        setContentView(overlayFramelayout);
+        View view = getLayoutInflater().inflate(R.layout.activity_main, overlayFramelayout,false);
+
+        overlayFramelayout.addView(view);
+
+        View overlay_view = getLayoutInflater().inflate(R.layout.image_view, overlayFramelayout,false);
+
+        overlayFramelayout.addView(overlay_view);
+    }*/
 
     public class AndroidBridge {
 
@@ -225,6 +258,11 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
                     SharedStorage.saveLocationType(data.getString("currentLocation"));
                 }
             } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public void savewebsiteState(String value) {
+            websiteOpened = Boolean.parseBoolean(value);
         }
 
         @JavascriptInterface
@@ -356,6 +394,21 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         }
 
         @JavascriptInterface
+        public String getOverlayState() {
+            try {
+                return SharedStorage.getOverlayState();
+            } catch (Exception ex) {}
+            return null;
+        }
+
+        @JavascriptInterface
+        public void saveOverlayState(String value) {
+            try {
+                SharedStorage.saveOverlayState(value);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
         public String getRecentLocation() {
             try {
                 return SharedStorage.getStoredRecentLocation();
@@ -446,8 +499,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
 
     @Override
     public void onBackPressed() {
-        myBrowser.goBack();
-        //myBrowser.loadUrl("javascript:goBack()");
+        myBrowser.loadUrl("javascript:goBack()");
     }
 
     public void initLocationFetching(Activity mActivity) {
