@@ -653,22 +653,22 @@ nav a {
 	border: none;
 	background: none;
 }
-.btn_sch {
+.btn_sch, .btn_dir, .btn_dirStp {
 	display: block;
 	padding: 0 15px;
 	margin: 20px auto 0;
 	height: 40px;
 	color: #fff;
 	border: none;
-	width: 120px;
+	max-width: 170px;
 	border-radius: 8px;
 	cursor: pointer;
 	font: 400 17px/40px 'Droid Serif', serif;
 	background: #39425f;
 }
-.btn_sch:disabled {
+/*.btn_sch:disabled {
     background: #b0b0b1;
-}
+}*/
 .serviceCont {
 	padding: 0 15px;
 }
@@ -708,7 +708,7 @@ nav a {
 	top: 50%;
 	overflow: hidden;
 	width: 220px;
-	max-height: 180px;
+	max-height: 250px;
 	text-align: center;
 	margin: -65px 0 0 -110px;
 	border-radius: 6px;
@@ -755,7 +755,18 @@ nav a {
 	z-index: 99;
 	background: rgba(0,0,0,0.5);
 }
-
+.locateMe {
+    bottom: 100px;
+    position: absolute;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    z-index: 9;
+    background:rgba(255,255,255,0.9);
+    border-radius: 4px;
+    border: 1px solid rgba(204, 204, 204, 0.5);
+    box-shadow: 0 0 6px #BBB3B3;
+}
 
 .slideRageBar {
   position: absolute;

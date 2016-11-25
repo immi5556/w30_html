@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
     WebView myBrowser;
     double latitude = 0, longitude = 0;
     String tokenId = "";
-    Boolean updateLatLong = true, websiteOpened = false, servicePage = false;
+    Boolean websiteOpened = false, servicePage = false;
+    int locationFetchInterval = 30;
     //Location
     public MyLocationManager mLocationManager;
     private static final int REQUEST_FINE_LOCATION = 1;
@@ -87,10 +88,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 // TODO Auto-generated method stub
                 if(servicePage){
-                    if(websiteOpened)
-                        return true;
-                    else
-                        return false;
+                    return websiteOpened;
                 }else{
                     return super.shouldOverrideUrlLoading(view, url);
                 }
@@ -140,11 +138,11 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
     }
 
     public void refreshLocation() {
-       /* latitude = gps.getLatitude();
-        longitude = gps.getLongitude();
+        /*latitude = mLocationManager.getLatitude();
+        longitude = mLocationManager.getLongitude();
         myBrowser.loadUrl("javascript:app.changeCenter(" + latitude + "," + longitude + ")");*/
+        myBrowser.loadUrl("javascript:locationChange("+null+","+null+")");
     }
-
 
     private void checkReadPhoneStatePermissions(String number) {
         try {
@@ -179,12 +177,13 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
 
     @Override
     public void locationFetched(Location mLocation, Location oldLocation, String time, String locationProvider) {
-        if(updateLatLong) {
+        if(SharedStorage.getLocationType().equalsIgnoreCase("true")) {
             latitude = mLocation.getLatitude();
             longitude = mLocation.getLongitude();
-            updateLatLong = false;
+            myBrowser.loadUrl("javascript:locationChange("+latitude+","+longitude+")");
         }
     }
+
 
     private class MyJavaScriptChromeClient extends WebChromeClient {
         @Override
@@ -271,6 +270,18 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
                 SharedStorage.saveLocationType(value);
             } catch (Exception ex) {}
         }
+
+        @JavascriptInterface
+        public void updateTimeInterval(String value) {
+            try {
+                int value1 = Integer.parseInt(value);
+                mLocationManager.abortLocationFetching();
+                locationFetchInterval = value1;
+                initLocationFetching(MainActivity.this);
+            } catch (Exception ex) {}
+        }
+
+
 
         @JavascriptInterface
         public String getLocationType() {
@@ -435,7 +446,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         public void updateCurrentLocation() {
             try {
                 initLocationFetching(MainActivity.this);
-                updateLatLong = true;
+                //updateLatLong = true;
             } catch (Exception ex) {}
         }
 
@@ -509,8 +520,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             showLocationPermission();
         } else {
-            mLocationManager = new MyLocationManager(getApplicationContext(), mActivity, this, MyLocationManager.ALL_PROVIDERS, LocationRequest.PRIORITY_HIGH_ACCURACY, 10 * 1000, 1 * 1000, MyLocationManager.LOCATION_PROVIDER_RESTRICTION_NONE); // init location manager
-
+            mLocationManager = new MyLocationManager(getApplicationContext(), mActivity, this, MyLocationManager.ALL_PROVIDERS, LocationRequest.PRIORITY_HIGH_ACCURACY, locationFetchInterval * 1000, locationFetchInterval * 1000, MyLocationManager.LOCATION_PROVIDER_RESTRICTION_NONE); // init location manager
         }
     }
     private void showLocationPermission() {
@@ -525,7 +535,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
                 requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, REQUEST_FINE_LOCATION);
             }
         } else {
-            mLocationManager = new MyLocationManager(getApplicationContext(), mCurrentActivity, this, MyLocationManager.ALL_PROVIDERS, LocationRequest.PRIORITY_HIGH_ACCURACY, 10 * 1000, 1 * 1000, MyLocationManager.LOCATION_PROVIDER_RESTRICTION_NONE); // init location manager
+            mLocationManager = new MyLocationManager(getApplicationContext(), mCurrentActivity, this, MyLocationManager.ALL_PROVIDERS, LocationRequest.PRIORITY_HIGH_ACCURACY, locationFetchInterval * 1000, locationFetchInterval * 1000, MyLocationManager.LOCATION_PROVIDER_RESTRICTION_NONE); // init location manager
         }
     }
 
@@ -548,7 +558,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
                 if (permissionCheck== PackageManager.PERMISSION_GRANTED)
                 {
 
-                    mLocationManager = new MyLocationManager(getApplicationContext(), this, this, MyLocationManager.ALL_PROVIDERS, LocationRequest.PRIORITY_HIGH_ACCURACY, 10 * 1000, 1 * 1000, MyLocationManager.LOCATION_PROVIDER_RESTRICTION_NONE);
+                    mLocationManager = new MyLocationManager(getApplicationContext(), this, this, MyLocationManager.ALL_PROVIDERS, LocationRequest.PRIORITY_HIGH_ACCURACY, locationFetchInterval * 1000, locationFetchInterval * 1000, MyLocationManager.LOCATION_PROVIDER_RESTRICTION_NONE);
                     // init location manager
                     mLocationManager.startLocationFetching();
                     //permission granted here

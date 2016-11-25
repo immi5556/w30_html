@@ -137,3 +137,5 @@ function goBack(){
 var refreshOnForeground = function(){
     //location.reload();
 }
+
+var locationChange = function(){}

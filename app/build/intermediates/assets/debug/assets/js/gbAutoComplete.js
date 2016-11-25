@@ -103,5 +103,5 @@ $(document).click(function(e){
 })(jQuery)
 
 var refreshOnForeground = function(){
-    location.reload();
+    //location.reload();
 }

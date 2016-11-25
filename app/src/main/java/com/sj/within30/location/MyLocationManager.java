@@ -23,10 +23,13 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.sj.within30.MainActivity;
 
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
+
+import static android.R.attr.value;
 
 /**
  * Created by SR Lakhsmi on 9/28/2016.
@@ -197,9 +200,8 @@ public class MyLocationManager implements GoogleApiClient.ConnectionCallbacks,Go
         }
         try {
             if (mProviderType == MyLocationManager.GPS_PROVIDER) {
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2 * 1000, 0, locationListener);
             } else {
-
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
             }
         } catch (Exception e) {
@@ -402,7 +404,6 @@ public class MyLocationManager implements GoogleApiClient.ConnectionCallbacks,Go
             Log.e(TAG, e.getMessage());
         }
     }
-
 
     public Location getLastKnownLocation() {
         locationProvider = LocationManager.NETWORK_PROVIDER;

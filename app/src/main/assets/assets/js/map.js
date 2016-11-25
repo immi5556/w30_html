@@ -9,6 +9,7 @@ var minutesValue = 60;
 var markers = [];
 var customers = [];
 var map = null;
+var userMarker = null;
 var latitude = 0, longitude = 0;
 var circle = null;
 var mapProp = null;
@@ -24,6 +25,11 @@ var bookedBusiness = null;
 var locationRedirect = false;
 var socketio = io.connect(sockurl);
 var calling = "false";
+var directionIndex = -1;
+var directionService = new google.maps.DirectionsService();
+var directionsDisplay = new google.maps.DirectionsRenderer();
+directionsDisplay.setOptions( { suppressMarkers: true, preserveViewport: true } );
+var directionStop = 1;
 
 $(".serviceSection").swipe( {
   swipeUp:function(event, direction, distance, duration) {
@@ -171,14 +177,14 @@ var getServices = function (){
             mapTypeId:google.maps.MapTypeId.ROADMAP,
             disableDefaultUI: true
           };
-        map=new google.maps.Map(document.getElementById("map"), mapProp);
-        var userMarker = new google.maps.Marker({
+        map = new google.maps.Map(document.getElementById("map"), mapProp);
+        directionsDisplay.setMap(map);
+        userMarker = new google.maps.Marker({
                                 position: {lat: latitude, lng: longitude},
                                 map: map,
                                 title: "Your Location",
                                 icon: localImagePath+"userLocationMarker.png"
                             });
-        
         for(var i = 0; i < docs.length; i++){
             var myLatLng = {lat: docs[i].geo.coordinates[1], lng: docs[i].geo.coordinates[0]}
             var icon;
@@ -189,35 +195,6 @@ var getServices = function (){
                     icon = "premiumCheckedInMarker2";
                 else
                     icon = "checkedInMarker2";
-
-                var service = new google.maps.DirectionsService();
-                var directionsDisplay = new google.maps.DirectionsRenderer();
-                directionsDisplay.setOptions( { suppressMarkers: true } );
-                var end = new google.maps.LatLng(docs[i].geo.coordinates[1], docs[i].geo.coordinates[0]);
-                var start = new google.maps.LatLng(latitude, longitude);
-                var bounds = new google.maps.LatLngBounds();
-                service.route({
-                    origin: start,
-                    destination: end,
-                    travelMode: google.maps.DirectionsTravelMode.DRIVING
-                }, function(result, status) {
-                        if (status == google.maps.DirectionsStatus.OK) {
-                          // new path for the next result
-                          var path = new google.maps.MVCArray();
-                          //Set the Path Stroke Color
-                          // new polyline for the next result
-                          var poly = new google.maps.Polyline({
-                            map: map,
-                            strokeColor: '#4986E7'
-                          });
-                          poly.setPath(path);
-                          for (var k = 0, len = result.routes[0].overview_path.length; k < len; k++) {
-                            path.push(result.routes[0].overview_path[k]);
-                            bounds.extend(result.routes[0].overview_path[k]);
-                            map.fitBounds(bounds);
-                          }
-                        } else alert("Directions Service failed:" + status);
-                });
             }else if(itemFound != -1){
                 if(docs[i].premium)
                     icon = "premiumCheckedInMarker2";
@@ -322,21 +299,56 @@ var getServices = function (){
                             $(".slotTime").text("Slot Booked For: "+moment(customers[i].slotBookedDate).format("MM/DD")+" "+customers[i].slotBookedAt);
                         else
                             $(".slotTime").text("Slot Booked For: "+customers[i].slotBookedAt);
-                        $(".btn_sch").prop('disabled', "disabled");
+                        $(".btn_sch").hide();
+                        $(".btn_dir").hide();
+                        $(".btn_dirStp").hide();
+                        if(directionIndex == i){
+                            $(".btn_dirStp").show();
+                        }else
+                            $(".btn_dir").show();
+                        $(".btn_dir").off().on("click", function(){
+                            directionIndex = i;
+                            window.andapp.updateTimeInterval("1");
+                            //oldDirectionIndex = 0;
+                            $(".shadow").click();
+                            startDirection();
+                        });
                     }else if(itemFound >= 0){
                         if(moment().tz(abbrs[customers[i].timeZone]).format("YYYY-MM-DD") != bookedSlotDate[itemFound])
                             $(".slotTime").text("Slot Booked For: "+moment(bookedSlotDate[itemFound]).format("MM/DD")+" "+bookedSlotAt[itemFound]);
                         else
                             $(".slotTime").text("Slot Booked For: "+bookedSlotAt[itemFound]);
-                        $(".btn_sch").prop('disabled', "disabled");
+                        $(".btn_sch").hide();
+                        $(".btn_dir").hide();
+                        $(".btn_dirStp").hide();
+                        if(directionIndex == i){
+                            $(".btn_dirStp").show();
+                        }else
+                            $(".btn_dir").show();
+                        $(".btn_dir").off().on("click", function(){
+                            directionIndex = i;
+                            window.andapp.updateTimeInterval("1");
+                            //oldDirectionIndex = 0;
+                            $(".shadow").click();
+                            startDirection();
+                        });
                     }else{
                         if(moment().tz(abbrs[customers[i].timeZone]).format("YYYY-MM-DD") != customers[i].nextSlotDate)
                             $(".slotTime").text("Next Slot At: "+moment(customers[i].nextSlotDate).format("MM/DD")+" "+customers[i].nextSlotAt);
                         else
                             $(".slotTime").text("Next Slot At: "+customers[i].nextSlotAt);
-                        $(".btn_sch").prop('disabled', "");
+                        $(".btn_sch").show();
+                        $(".btn_dir").hide();
+                        $(".btn_dirStp").hide();
                         $(".btn_sch").off().on("click", function(){
                             bookSlot(subdomain, i, customers[i].nextSlotAt, customers[i].timeZone, customers[i].nextSlotDate);
+                        });
+                        $(".btn_dir").off().on("click", function(){
+                            directionIndex = i;
+                            window.andapp.updateTimeInterval("1");
+                            oldDirectionIndex = 0;
+                            $(".shadow").click();
+                            startDirection();
                         });
                     }
                     if(!customers[i].slotBookedAt.length && moment().tz(abbrs[customers[i].timeZone]).format("YYYY-MM-DD HH:mm") > (customers[i].nextSlotDate+" "+customers[i].nextSlotAt)){
@@ -357,6 +369,14 @@ var getServices = function (){
             var markerIcon = markers[currentMarker].icon;
             markers[currentMarker].setIcon(markerIcon.substring(0, markerIcon.length-5)+"2.png");
         }
+    });
+
+    $(".btn_dirStp").on('click', function(){
+        directionIndex = -1;
+        window.andapp.updateTimeInterval("30");
+        directionsDisplay.setMap(null);
+        directionStop = 0;
+        $(".shadow").click();
     });
 
     $(".shadow").on('click', function() {
@@ -586,8 +606,10 @@ var getServices = function (){
                 else
                     $(".popContent span").text("See you At "+moment(result.Data.selecteddate).format("MM/DD")+" "+result.startTime);
                 $(".pop_up").show();
-                $(".serviceSection").animate({height:'0'},500);
-                $('.shadow').hide();
+                $(".btn_sch").hide();
+                $(".btn_dir").show();
+                /*$(".serviceSection").animate({height:'0'},500);
+                $('.shadow').hide();*/
                 bookedSlotAt.push(result.startTime);
                 bookedSlotDate.push(result.Data.selecteddate);
                 bookedSlotSubdomain.push(result.Data.subdomain);
@@ -595,35 +617,6 @@ var getServices = function (){
                     markers[i].setIcon(localImagePath+"premiumCheckedInMarker2.png");
                 else
                     markers[i].setIcon(localImagePath+"checkedInMarker2.png");
-
-                var service = new google.maps.DirectionsService();
-                var directionsDisplay = new google.maps.DirectionsRenderer();
-                directionsDisplay.setOptions( { suppressMarkers: true } );
-                var end = new google.maps.LatLng(customers[i].geo.coordinates[1], customers[i].geo.coordinates[0]);
-                var start = new google.maps.LatLng(latitude, longitude);
-                var bounds = new google.maps.LatLngBounds();
-                service.route({
-                        origin: start,
-                        destination: end,
-                        travelMode: google.maps.DirectionsTravelMode.DRIVING
-                      }, function(result, status) {
-                            if (status == google.maps.DirectionsStatus.OK) {
-                              // new path for the next result
-                              var path = new google.maps.MVCArray();
-                              //Set the Path Stroke Color
-                              // new polyline for the next result
-                              var poly = new google.maps.Polyline({
-                                map: map,
-                                strokeColor: '#4986E7'
-                              });
-                              poly.setPath(path);
-                              for (var k = 0, len = result.routes[0].overview_path.length; k < len; k++) {
-                                path.push(result.routes[0].overview_path[k]);
-                                bounds.extend(result.routes[0].overview_path[k]);
-                                map.fitBounds(bounds);
-                              }
-                            } else alert("Directions Service failed:" + status);
-                      });
                 
                 socketio.emit("newAppointment", result.Data);
                 var timeout = calculateDifference(timeZone, result);
@@ -681,6 +674,10 @@ var getServices = function (){
         $(".container").hide();
     });
 
+    $(".locateMe").on("click", function(){
+        map.setCenter({lat:latitude, lng:longitude});
+    });
+
     $(".menuList4, .menuList2, .menuList3, .menuList5, .menuList6, .menuList7").on("click", function(){
         var matchFound = -1;
         var className = $(this).attr('class').split(" ")[1];
@@ -696,6 +693,29 @@ var getServices = function (){
           alert("No Category found.");
         }
     });
+
+    function startDirection(){
+        if(directionStop == 0){
+            directionsDisplay.setMap(map);
+            directionStop = 1;
+        }
+        var end = new google.maps.LatLng(customers[directionIndex].geo.coordinates[1], customers[directionIndex].geo.coordinates[0]);
+        var start = new google.maps.LatLng(latitude, longitude);
+        var bounds = new google.maps.LatLngBounds();
+        directionService.route({
+            origin: start,
+            destination: end,
+            travelMode: google.maps.DirectionsTravelMode.DRIVING
+        }, function(result, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(result);
+                } else{
+                    $(".popContent h2").text("Direction Services");
+                    $(".popContent strong").text("There seem to be some problem with internet connection.");
+                    $(".pop_up").show();
+                }
+        });
+    }
 
     function getCustomerInfo(lat, lng, miles, min, index, timeline, callback){
         miles = Number(miles);
@@ -777,6 +797,18 @@ var getServices = function (){
 
     function goBack(){
         window.history.back();
+    }
+
+    function locationChange(newLat, newLong){
+        if(newLat != null && newLong != null && (latitude != newLat || longitude != newLong)){
+            latitude = newLat;
+            longitude = newLong;
+            if(userMarker){
+                userMarker.setPosition({lat: latitude, lng: longitude});
+                if(directionIndex > -1)
+                    startDirection();
+            }
+        }
     }
 
     var refreshOnForeground = function(){

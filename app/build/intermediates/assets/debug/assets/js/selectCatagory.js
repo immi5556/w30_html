@@ -66,6 +66,7 @@ var getCities = function (){
           });
         if(recentSearch && locationType == "false"){
             $("#serach").val(recentSearch);
+            $('body').removeClass('bodyload');
         }else
 		    getLocation(latitude, longitude);
     });
@@ -224,3 +225,5 @@ function goBack(){
 var refreshOnForeground = function(){
     location.reload();
 }
+
+var locationChange = function(){}

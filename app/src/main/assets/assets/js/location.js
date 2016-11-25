@@ -81,3 +81,4 @@ var setRecentBlock = function(){
  var refreshOnForeground = function(){
      location.reload();
  }
+ var locationChange = function(){}

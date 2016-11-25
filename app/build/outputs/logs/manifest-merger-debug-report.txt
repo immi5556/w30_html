@@ -37,10 +37,6 @@ uses-permission#com.google.android.providers.gsf.permission.READ_GSERVICES
 ADDED from E:\vamis\Android\w30_html\app\src\main\AndroidManifest.xml:7:5-98
 	android:name
 		ADDED from E:\vamis\Android\w30_html\app\src\main\AndroidManifest.xml:7:22-95
-uses-permission#android.permission.ACCESS_LOCATION
-ADDED from E:\vamis\Android\w30_html\app\src\main\AndroidManifest.xml:8:5-74
-	android:name
-		ADDED from E:\vamis\Android\w30_html\app\src\main\AndroidManifest.xml:8:22-71
 uses-permission#android.permission.ACCESS_GPS
 ADDED from E:\vamis\Android\w30_html\app\src\main\AndroidManifest.xml:9:5-69
 	android:name
