@@ -41,6 +41,7 @@ function getLocation(lat, lng) {
       }
     } else {
         $('body').removeClass('bodyload');
+        alert("Not able to get your location. Please restart the app.");
         console.log("Geocoder failed due to: " + status);
     }
   });

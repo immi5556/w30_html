@@ -794,7 +794,6 @@ var getServices = function (){
         mobilenumber = window.andapp.getMobile();
         userid = window.andapp.getUserId();
         serviceId = window.andapp.getServiceId();
-
         if(!latitude && !longitude){
            errorFunction();
         }else{

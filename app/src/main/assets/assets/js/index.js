@@ -2,6 +2,7 @@ var w30Credentials = "win-HQGQ:zxosxtR76Z80";
 var servurl = "https://services.within30.com/";
 var mobilenumber;
 
+/*
 function mobileNumberValidation(evt){
 	var charCode = (evt.which) ? evt.which : evt.keyCode;
       if (charCode != 46 && charCode > 31
@@ -33,6 +34,7 @@ function mobileNumberValidation(evt){
   		return false;
     }
 }
+*/
 
 var checkEmailBox = function(){
     if (!$(".email").val())	{
@@ -81,7 +83,7 @@ var validate = function(){
          $("#emailError").hide();
     }
 
-    if($(".mobilenumber").val().length != 14 || $(".mobilenumber").val().slice(0, 1) != "(" || $(".mobilenumber").val().slice(4, 6) != ") " || $(".mobilenumber").val().slice(9, 10) != "-"){
+    if($(".mobilenumber").val().length == 0){
         $("#mobileError").show();
         errorCount++
     }else{
@@ -96,7 +98,7 @@ var validate = function(){
 var saveData = function(type){
 
 	if(validate()){
-	    mobilenumber = $(".mobilenumber").val().substring(1,4)+$(".mobilenumber").val().substring(6,9)+$(".mobilenumber").val().substring(10,14);
+	    mobilenumber = $(".mobilenumber").val();
 	    var udata = JSON.stringify({"firstname":$(".firstname").val(),"lastname":$(".lastname").val(),"email":$(".email").val(),"mobilenumber":mobilenumber, "deviceToken": window.andapp.getTokenId()});
 		var request1 = $.ajax({
 	        url: servurl + "endpoint/api/"+type,
@@ -113,16 +115,17 @@ var saveData = function(type){
 	    		if (window.andapp){
 					window.andapp.postJson('persistuser', JSON.stringify({"firstname":$(".firstname").val(),"lastname":$(".lastname").val(),"email":$(".email").val(),"mobilenumber":mobilenumber, "_id": result._id, "deviceToken": window.andapp.getTokenId()}));
 				    window.andapp.saveLocationType("true");
+				    window.andapp.updateCurrentLocation();
 				}
 				window.location.href = "selectCatagory.html";
 	    	}
 	    });
 	    request1.fail(function(jqXHR, textStatus) {
-	        console.log(JSON.stringify(jqXHR));
+	        //console.log(JSON.stringify(jqXHR));
 	    /*    alert('Error in user service call......');*/
 	    });
 	}else{
-		console.log("fill all fields");
+		//console.log("fill all fields");
 	}
 }
 

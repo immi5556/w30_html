@@ -17,12 +17,12 @@ if (window.andapp){
     $(".email").focus();
     $(".email").val(email);
     $(".mobilenumber").focus();
-    var temp = '('+mobilenumber.substring(0,3)+') '+mobilenumber.substring(3,6)+'-'+mobilenumber.substring(6,10);
-    $(".mobilenumber").val(temp);
+    //var temp = '('+mobilenumber.substring(0,3)+') '+mobilenumber.substring(3,6)+'-'+mobilenumber.substring(6,10);
+    $(".mobilenumber").val(mobilenumber);
     $('.mobilenumber').blur()
 }
 
-function mobileNumberValidation(evt){
+/*function mobileNumberValidation(evt){
 	var charCode = (evt.which) ? evt.which : evt.keyCode;
       if (charCode != 46 && charCode > 31
         && (charCode < 48 || charCode > 57))
@@ -52,7 +52,7 @@ function mobileNumberValidation(evt){
     }else{
   		return false;
     }
-}
+}*/
 
 var checkEmailBox = function(){
     if (!$(".email").val())	{
@@ -101,7 +101,7 @@ var validate = function(){
         $("#emailError").hide();
     }
 
-    if($(".mobilenumber").val().length != 14 || $(".mobilenumber").val().slice(0, 1) != "(" || $(".mobilenumber").val().slice(4, 6) != ") " || $(".mobilenumber").val().slice(9, 10) != "-"){
+    if($(".mobilenumber").val().length == 0){
         $("#mobileError").show();
         errorCount++;
     }else{
@@ -119,7 +119,7 @@ var updateData = function(type){
 	    firstname = $(".firstname").val(),
 	    lastname = $(".lastname").val(),
 	    email = $(".email").val(),
-        mobilenumber = $(".mobilenumber").val().substring(1,4)+$(".mobilenumber").val().substring(6,9)+$(".mobilenumber").val().substring(10,14);
+        mobilenumber = $(".mobilenumber").val();
         var udata = JSON.stringify({"firstname":firstname,"lastname":lastname,"email":email,"mobilenumber":mobilenumber, "_id": userid});
 		var request1 = $.ajax({
 	        url: servurl + "endpoint/api/"+type,

@@ -21,6 +21,8 @@ var errorFunction = function(){
 
 function getLocation(lat, lng) {
   var latlng = new google.maps.LatLng(lat, lng);
+  console.log(lat);
+  console.log(lng);
   geocoder.geocode({latLng: latlng}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       if (results[1]) {
@@ -191,6 +193,8 @@ var startFunc = function(){
         $('body').addClass('bodyload');
         latitude = window.andapp.getLatitude();
         longitude = window.andapp.getLongitude();
+        console.log(latitude);
+        console.log(longitude);
         locationType = window.andapp.getLocationType();
         if(!locationType || locationType == "false"){
             gotUserLocation = false;
