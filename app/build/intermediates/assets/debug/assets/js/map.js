@@ -30,6 +30,7 @@ var directionService = new google.maps.DirectionsService();
 var directionsDisplay = new google.maps.DirectionsRenderer();
 directionsDisplay.setOptions( { suppressMarkers: true, preserveViewport: true } );
 var directionStop = 1;
+var websiteBackButton = false;
 
 $(".serviceSection").swipe( {
   swipeUp:function(event, direction, distance, duration) {
@@ -288,10 +289,12 @@ var getServices = function (){
                     //$(".website").attr("href","https://"+docs[i].subdomain+urlLink);
                     $(".phoneCall").on("click", function(){
                         calling = "true";
+                        websiteBackButton = true;
                         window.andapp.phoneCall(customers[i].mobile);
                     });
                     $(".website").on("click", function(){
                         calling = "true";
+                        websiteBackButton = true;
                         window.andapp.savewebsiteState(calling);
                         window.andapp.openLink("https://"+docs[i].subdomain+urlLink);
                     });
@@ -803,6 +806,8 @@ var getServices = function (){
 
     function goBack(){
         window.history.back();
+        if(websiteBackButton)
+            window.history.back();
     }
 
     function locationChange(newLat, newLong){

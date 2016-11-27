@@ -121,11 +121,11 @@ var saveData = function(type){
 	    	}
 	    });
 	    request1.fail(function(jqXHR, textStatus) {
-	        console.log(JSON.stringify(jqXHR));
+	        //console.log(JSON.stringify(jqXHR));
 	    /*    alert('Error in user service call......');*/
 	    });
 	}else{
-		console.log("fill all fields");
+		//console.log("fill all fields");
 	}
 }
 

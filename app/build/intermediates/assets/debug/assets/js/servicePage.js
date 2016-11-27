@@ -20,6 +20,7 @@ $('.serviceSection').on('swipeup',function(){
 } );
 
 $(".user").on("click", function(){
+    console.log("-----------------");
 	window.location.href = "editScreen.html";
 });
 

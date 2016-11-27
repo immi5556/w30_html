@@ -485,6 +485,11 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
     @Override
     public void onResume() {
         super.onResume(); //is in foreground
+        /*if (android.os.Build.VERSION.SDK_INT < 19) {
+            myBrowser.loadUrl("javascript:refreshOnForeground()");
+        } else {
+            myBrowser.evaluateJavascript("javascript:refreshOnForeground()",null);
+        }*/
         myBrowser.loadUrl("javascript:refreshOnForeground()");
     }
     @Override
