@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
                 }else {
                     servicePage = false;
                 }
+                Log.d("url ", url);
                 super.onPageFinished(view, url);
             }
 
@@ -141,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         /*latitude = mLocationManager.getLatitude();
         longitude = mLocationManager.getLongitude();
         myBrowser.loadUrl("javascript:app.changeCenter(" + latitude + "," + longitude + ")");*/
-        myBrowser.loadUrl("javascript:locationChange("+null+","+null+")");
+        //myBrowser.loadUrl("javascript:locationChange("+null+","+null+")");
     }
 
     private void checkReadPhoneStatePermissions(String number) {

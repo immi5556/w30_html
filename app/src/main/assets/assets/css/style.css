@@ -486,7 +486,6 @@ nav .settings {
 	position: absolute;
 	width: 60px;
 	bottom: 0;
-	border-top: 2px solid #4f5771;
 	background: url(../img/settingsIcon.png) no-repeat center center;
 }
 nav .help {
@@ -1071,7 +1070,7 @@ nav a {
     border:1px solid #ccc;
     background:#fff;
 }
-#serach {
+.autoSearch {
     width: 100%;
     padding: 0 30px 0 10px;
     height: 40px;
@@ -1085,7 +1084,7 @@ nav a {
     text-align: center;
     background: none;
 }
-#serach:focus {
+.autoSearch:focus {
     box-shadow:0 0 5px #1fb88e;
 }
 .dropListDiv {

@@ -2,6 +2,7 @@ var w30Credentials = "win-HQGQ:zxosxtR76Z80";
 var servurl = "https://services.within30.com/";     //"https://services.within30.com/"
 var geocoder = new google.maps.Geocoder();
 var latitude, longitude;
+var searchedLat, SearchedLong;
 var cities = [];
 var services = [];
 var serviceId = "";
@@ -10,13 +11,14 @@ var recentSearch;
 var currentLocationName, gotUserLocation, customeLocationName;
 
 var successFunction = function(){
-    getCities();
+    if(recentSearch && locationType == "false"){
+        $("#pac-input").val(recentSearch);
+        $('body').removeClass('bodyload');
+    }else
+        getLocation(latitude, longitude);
 }
 var errorFunction = function(){
-	//Dallas location.
-	latitude = Number(32.7767);
-	longitude = Number(-96.7970);
-	getCities();
+	alert("Not able to retrieve your location. Check location settings.");
 }
 
 function getLocation(lat, lng) {
@@ -27,7 +29,7 @@ function getLocation(lat, lng) {
         var arrAddress = results;
         $.each(arrAddress, function(i, address_component) {
           if (address_component.types[0] == "political") {
-            $("#serach").val(address_component.address_components[0].long_name);
+            $("#pac-input").val(address_component.address_components[0].long_name);
             $('body').removeClass('bodyload');
             if(gotUserLocation)
                 currentLocationName = address_component.address_components[0].long_name;
@@ -47,7 +49,7 @@ function getLocation(lat, lng) {
   });
 }
 
-var getCities = function (){
+/*var getCities = function (){
 	var request1 = $.ajax({
         url: servurl + "endpoint/api/getindiacities",
         type: "POST",
@@ -75,7 +77,7 @@ var getCities = function (){
         $('body').removeClass('bodyload');
         console.log(textStatus);
     });
-}
+}*/
 var getServices = function (){
   var request1 = $.ajax({
         url: servurl + "endpoint/api/getmyservices",
@@ -147,33 +149,23 @@ $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem
     });
     if(matchFound != -1){
         window.andapp.saveServiceId(serviceId);
-        if(!$("#serach").val() && $("#serach").val().length == 0){
+        if(!$("#pac-input").val() && $("#pac-input").val().length == 0){
             window.andapp.updateCurrentLocation();
             window.andapp.saveLocationType("true");
-        }else if(currentLocationName && currentLocationName.toUpperCase() == $("#serach").val().toUpperCase()){
+        }else if(currentLocationName && currentLocationName.toUpperCase() == $("#pac-input").val().toUpperCase()){
             if (window.andapp){
                 window.andapp.saveLocationType("true");
             }
-        }else{
-            var selectedCity = cities[0].filter(function(item){
-                return item.city.toLowerCase() == $("#serach").val().toLowerCase();
-            });
-            if(selectedCity.length){
-                latitude = selectedCity[0].latitude;
-                longitude = selectedCity[0].longitude;
-                if (window.andapp){
-                    window.andapp.saveLocationType("false");
-                    window.andapp.saveRecentLocation($("#serach").val());
-                    window.andapp.saveCustomeLat(latitude);
-                    window.andapp.saveCustomeLong(longitude);
-                    window.andapp.updateLatLong(latitude, longitude);
-                }
-            }else{
-                alert("Location not in records.");
-                window.andapp.updateCurrentLocation();
-                window.andapp.saveLocationType("true");
+        }else if(currentLocationName && currentLocationName.toUpperCase() != $("#pac-input").val().toUpperCase()){
+            latitude = searchedLat;
+            longitude = SearchedLong;
+            if (window.andapp){
+                window.andapp.saveLocationType("false");
+                window.andapp.saveRecentLocation($("#pac-input").val());
+                window.andapp.saveCustomeLat(latitude);
+                window.andapp.saveCustomeLong(longitude);
+                window.andapp.updateLatLong(latitude, longitude);
             }
-
         }
         window.location.href = "servicePage.html";
     }else{
@@ -217,6 +209,24 @@ var startFunc = function(){
         }
     }
 }
+
+var input = (document.getElementById('pac-input'));
+var autocomplete = new google.maps.places.Autocomplete(input);
+
+autocomplete.addListener('place_changed', function() {
+  var place = autocomplete.getPlace();
+
+  if (!place.geometry) {
+    // User entered the name of a Place that was not suggested and
+    // pressed the Enter key, or the Place Details request failed.
+    window.alert("No details available for input: '" + place.name + "'");
+    return;
+  }else{
+    searchedLat = place.geometry.location.lat();
+    SearchedLong = place.geometry.location.lng();
+    console.log(searchedLat);
+  }
+});
 
 startFunc();
 function goBack(){
