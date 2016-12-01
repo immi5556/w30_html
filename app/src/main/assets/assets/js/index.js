@@ -1,7 +1,8 @@
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
 var servurl = "https://services.within30.com/";
 var mobilenumber;
-
+window.andapp.saveLocationType("true");
+window.andapp.updateCurrentLocation();
 /*
 function mobileNumberValidation(evt){
 	var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -96,10 +97,11 @@ var validate = function(){
 }
 
 var saveData = function(type){
-
 	if(validate()){
 	    mobilenumber = $(".mobilenumber").val();
-	    var udata = JSON.stringify({"firstname":$(".firstname").val(),"lastname":$(".lastname").val(),"email":$(".email").val(),"mobilenumber":mobilenumber, "deviceToken": window.andapp.getTokenId()});
+	    var latitude = Number(window.andapp.getLatitude());
+        var longitude = Number(window.andapp.getLongitude());
+	    var udata = JSON.stringify({"firstname":$(".firstname").val(),"lastname":$(".lastname").val(),"email":$(".email").val(),"mobilenumber":mobilenumber, "deviceToken": window.andapp.getTokenId(), "regLat": latitude, "regLng": longitude, "deviceType": "Android"});
 		var request1 = $.ajax({
 	        url: servurl + "endpoint/api/"+type,
 	        type: "POST",
@@ -114,8 +116,6 @@ var saveData = function(type){
 	    	if(result.Status == "Ok"){
 	    		if (window.andapp){
 					window.andapp.postJson('persistuser', JSON.stringify({"firstname":$(".firstname").val(),"lastname":$(".lastname").val(),"email":$(".email").val(),"mobilenumber":mobilenumber, "_id": result._id, "deviceToken": window.andapp.getTokenId()}));
-				    window.andapp.saveLocationType("true");
-				    window.andapp.updateCurrentLocation();
 				}
 				window.location.href = "selectCatagory.html";
 	    	}
