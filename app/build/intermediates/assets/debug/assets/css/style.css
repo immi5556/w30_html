@@ -447,40 +447,40 @@ nav a {
 	background: #cb2027 url(../img/cata-menuList1-hover.png) no-repeat center center;
 }
 .menuList2 {
-	background: url(../img/cata-menuList2.png) no-repeat center center;
+	background: url(../img/cata-menuList2-hover.png) no-repeat center center;
 }
-.menuList2:hover,.menuList2.active {
+.menuList2.active {
 	background: #cb2027 url(../img/cata-menuList2-hover.png) no-repeat center center;
 }
 .menuList3 {
-	background: url(../img/cata-menuList3.png) no-repeat center center;
+	background: url(../img/cata-menuList3-hover.png) no-repeat center center;
 }
-.menuList3:hover,.menuList3.active {
+.menuList3.active {
 	background: #cb2027 url(../img/cata-menuList3-hover.png) no-repeat center center;
 }
 .menuList4 {
-	background: url(../img/cata-menuList4.png) no-repeat center center;
+	background: url(../img/cata-menuList4-hover.png) no-repeat center center;
 }
-.menuList4:hover,.menuList4.active {
+.menuList4.active {
 	background: #cb2027 url(../img/cata-menuList4-hover.png) no-repeat center center;
 }
 .menuList5 {
-	background: url(../img/cata-menuList5.png) no-repeat center center;
+	background: url(../img/cata-menuList5-hover.png) no-repeat center center;
 }
-.menuList5:hover,.menuList5.active {
+.menuList5.active {
 	background: #cb2027 url(../img/cata-menuList5-hover.png) no-repeat center center;
 }
 .menuList6 {
 	background: url(../img/cata-menuList6.png) no-repeat center center;
 }
-.menuList6:hover,.menuList6.active {
-	background: #cb2027 url(../img/cata-menuList6-hover.png) no-repeat center center;
+.menuList6.active {
+	background: #cb2027 url(../img/cata-menuList6.png) no-repeat center center;
 }
 .menuList7 {
 	background: url(../img/cata-menuList7.png) no-repeat center center;
 }
-.menuList7:hover,.menuList7.active {
-	background: #cb2027 url(../img/cata-menuList7-hover.png) no-repeat center center;
+.menuList7.active {
+	background: #cb2027 url(../img/cata-menuList7.png) no-repeat center center;
 }
 nav .settings {
 	position: absolute;
@@ -1337,7 +1337,10 @@ display: none;
 	width: 65px;
 }
 .cirle .cirleIcon, .cirle:hover .cirleIcon {
-    background-size: 18px;
+    background-size: 20px;
+}
+.categoryItem6 .cirleIcon {
+    background-size: 26px;
 }
 .cirleIcon {
 	width: 40px;
