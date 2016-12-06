@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //showOverLay();
         self = this;
         myBrowser = (WebView)findViewById(R.id.mybrowser);
         myBrowser.getSettings().setJavaScriptEnabled(true);
@@ -182,6 +181,9 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
             latitude = mLocation.getLatitude();
             longitude = mLocation.getLongitude();
             myBrowser.loadUrl("javascript:locationChange("+latitude+","+longitude+")");
+        }else{
+            latitude = Double.parseDouble(SharedStorage.getCustomeLat());
+            longitude = Double.parseDouble(SharedStorage.getCustomeLong());
         }
     }
 
@@ -212,19 +214,6 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
             super.onReceivedTitle(view, title);
         }
     }
-
-    /*private void showOverLay(){
-
-        final FrameLayout overlayFramelayout = new FrameLayout(getApplicationContext());
-        setContentView(overlayFramelayout);
-        View view = getLayoutInflater().inflate(R.layout.activity_main, overlayFramelayout,false);
-
-        overlayFramelayout.addView(view);
-
-        View overlay_view = getLayoutInflater().inflate(R.layout.image_view, overlayFramelayout,false);
-
-        overlayFramelayout.addView(overlay_view);
-    }*/
 
     public class AndroidBridge {
 

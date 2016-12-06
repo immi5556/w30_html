@@ -368,6 +368,7 @@ var getServices = function (){
                 }
             })(marker, subdomain, i));
     }
+
     map.addListener('click', function() {
         $(".serviceSection").animate({height:'0'},500);
         $('.shadow').hide();
@@ -410,49 +411,50 @@ var getServices = function (){
     minutesValue = 30;
     $('.range-slider.slideMin').foundation('slider', 'set_value', minutesValue);
     $("body").on('DOMSubtreeModified', "span#sliderOutput2", function () {
-        if($(this).text().length > 0 && !isNaN($(this).text())){
-            if($(this).text().length > 2 && $(this).text().length % 2 == 0 && milesValue < 10){
-                minutesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
-            }else if($(this).text().length > 2 && $(this).text().length % 2 == 0 && milesValue >= 10){
-                minutesValue = parseInt($(this).text().substring($(this).text().length - 2 , $(this).text().length));
-            }else if($(this).text().length > 2 && $(this).text().length % 2 == 1 && milesValue < 10){
-                minutesValue = parseInt($(this).text().substring($(this).text().length - 2 , $(this).text().length));
-            }else if($(this).text().length > 2 && $(this).text().length % 2 == 1 && milesValue >= 10){
-                minutesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
-            }else if($(this).text().length == 2 && parseInt($(this).text()) > 60){
-                minutesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
-            }else{
-                minutesValue = parseInt($(this).text());
+        if($(this).text().length != 0){
+            if($(this).text().length > 0 && !isNaN($(this).text())){
+                if($(this).text().length > 2 && $(this).text().length % 2 == 0 && minutesValue < 10){
+                    minutesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
+                }else if($(this).text().length > 2 && $(this).text().length % 2 == 0 && minutesValue >= 10){
+                    minutesValue = parseInt($(this).text().substring($(this).text().length - 2 , $(this).text().length));
+                }else if($(this).text().length > 2 && $(this).text().length % 2 == 1 && minutesValue < 10){
+                    minutesValue = parseInt($(this).text().substring($(this).text().length - 2 , $(this).text().length));
+                }else if($(this).text().length > 2 && $(this).text().length % 2 == 1 && minutesValue >= 10){
+                    minutesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
+                }else if($(this).text().length == 2 && parseInt($(this).text()) > 60){
+                    minutesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
+                }else{
+                    minutesValue = parseInt($(this).text());
+                }
+
+                minutesSlide(minutesValue);
             }
-            minutesSlide(minutesValue);
-        }else{
-            $(this).text('');
-            $(this).text(minutesValue);
-            minutesSlide(minutesValue);
         }
+        if($(this).text() == "NaN")
+            $(this).text(minutesValue);
     });
     $("body").on('DOMSubtreeModified', "span#sliderOutput3", function () {
-        if($(this).text().length > 0 && !isNaN($(this).text())){
-            if($(this).text().length > 2 && $(this).text().length % 2 == 0 && milesValue < 10){
-                milesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
-            }else if($(this).text().length > 2 && $(this).text().length % 2 == 0 && milesValue >= 10){
-                  milesValue = parseInt($(this).text().substring($(this).text().length - 2 , $(this).text().length));
-            }else if($(this).text().length > 2 && $(this).text().length % 2 == 1 && milesValue < 10){
-                milesValue = parseInt($(this).text().substring($(this).text().length - 2 , $(this).text().length));
-            }else if($(this).text().length > 2 && $(this).text().length % 2 == 1 && milesValue >= 10){
-                 milesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
-            }else if($(this).text().length == 2 && parseInt($(this).text()) > 60){
-                milesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
-            }else{
-                milesValue = parseInt($(this).text());
-            }
+        if($(this).text().length != 0){
+            if($(this).text().length > 0 && !isNaN($(this).text())){
+                if($(this).text().length > 2 && $(this).text().length % 2 == 0 && milesValue < 10){
+                    milesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
+                }else if($(this).text().length > 2 && $(this).text().length % 2 == 0 && milesValue >= 10){
+                      milesValue = parseInt($(this).text().substring($(this).text().length - 2 , $(this).text().length));
+                }else if($(this).text().length > 2 && $(this).text().length % 2 == 1 && milesValue < 10){
+                    milesValue = parseInt($(this).text().substring($(this).text().length - 2 , $(this).text().length));
+                }else if($(this).text().length > 2 && $(this).text().length % 2 == 1 && milesValue >= 10){
+                     milesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
+                }else if($(this).text().length == 2 && parseInt($(this).text()) > 60){
+                    milesValue = parseInt($(this).text().substring($(this).text().length - 1 , $(this).text().length));
+                }else{
+                    milesValue = parseInt($(this).text());
+                }
 
-            milesSlide(milesValue);
-        }else{
-            $(this).text('');
-            $(this).text(milesValue);
-            milesSlide(milesValue);
+                milesSlide(milesValue);
+            }
         }
+        if($(this).text() == "NaN")
+            $(this).text(milesValue);
     });
     $('.gm-style-iw').parent('div').css('z-index','99999');
     if((minutesValue-4) > milesValue) {
@@ -515,9 +517,9 @@ var getServices = function (){
             var itemFound = jQuery.inArray( item.subdomain, bookedSlotSubdomain );
             if( item.destinationDistance > milesValue){
                if(item.slotBookedAt.length || itemFound != -1)
-                   marker.setVisible(true);
+                   markers[i].setVisible(true);
                else
-                   marker.setVisible(false);
+                   markers[i].setVisible(false);
             }else{
                 markers[i].setVisible(true);
             }
@@ -573,7 +575,6 @@ var getServices = function (){
             $('.slideMin').removeClass('myactive');
             $('.slideMil').addClass('myactive');
         }
-
         return;
     }
 
@@ -677,6 +678,7 @@ var getServices = function (){
     $(".imgContainer").on("click", function(){
         $(".imgContainer").hide();
         $(".container").show();
+        init();
     });
 
     $(".help").on("click", function(){
@@ -785,25 +787,31 @@ var getServices = function (){
         });
     }
     $(document).foundation().foundation('joyride', 'start');
-    if (window.andapp){
+    var init = function(){
         if(window.andapp.getOverlayState() == "false"){
-            window.andapp.saveOverlayState("true");
             $(".imgContainer").show();
             $(".container").hide();
-        }
-        latitude = Number(window.andapp.getLatitude());
-        longitude = Number(window.andapp.getLongitude());
-        email = window.andapp.getEmail();
-        mobilenumber = window.andapp.getMobile();
-        userid = window.andapp.getUserId();
-        serviceId = window.andapp.getServiceId();
-        if(!latitude && !longitude){
-           errorFunction();
+            window.andapp.saveOverlayState("true");
         }else{
-           successFunction();
+            if(window.andapp.getLocationType() == "true" ){
+                latitude = Number(window.andapp.getLatitude());
+                longitude = Number(window.andapp.getLongitude());
+            }else{
+                latitude = Number(window.andapp.getCustomeLat());
+                longitude = Number(window.andapp.getCustomeLong());
+            }
+            email = window.andapp.getEmail();
+            mobilenumber = window.andapp.getMobile();
+            userid = window.andapp.getUserId();
+            serviceId = window.andapp.getServiceId();
+            if(!latitude && !longitude){
+               errorFunction();
+            }else{
+               successFunction();
+            }
         }
     }
-
+    init();
     function goBack(){
         window.history.back();
         if(websiteBackButton)

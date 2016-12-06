@@ -683,6 +683,9 @@ nav a {
 }
 .directionArrowTop {
 	transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
 }
 .serviceHeight {
 	height: auto;
@@ -1321,10 +1324,30 @@ display: none;
     50% {transform: rotate(180deg);}
     100% {transform: rotate(360deg);}
 }
+@media (max-width:768px){
+    .container {
+        max-width: 100%;
+    }
+    .catagoryCircle {
+    	 max-width: 480px;
+    	 margin:40px auto 0;
+    }
+    .currentLocation {
+        margin-top:30px;
+    }
+    .categoryItem6 .cirleIcon {
+        background-size: 30px;
+    }
+    .categoryItem1 .cirleIcon, .categoryItem2 .cirleIcon, .categoryItem3 .cirleIcon, .categoryItem4 .cirleIcon {
+        background-size: 25px;
+    }
+}
 
 @media (min-width: 320px) and (max-width: 479px){
-
-.container {
+.currentLocation {
+        margin-top:0;
+    }
+.container,.catagoryCircle  {
 	width: 100%;
 }
 .catagory {

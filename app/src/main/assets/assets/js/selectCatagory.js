@@ -49,37 +49,9 @@ function getLocation(lat, lng) {
   });
 }
 
-/*var getCities = function (){
-	var request1 = $.ajax({
-        url: servurl + "endpoint/api/getindiacities",
-        type: "POST",
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader ("Authorization", "Basic " + btoa(w30Credentials));
-        },
-        data: JSON.stringify({"latitude":latitude,"longitude":longitude}),
-        contentType: "application/json; charset=UTF-8"
-    });
-
-    request1.success(function(result) {
-    	cities.push(result);
-    	$("#autoSelect").gbAutocomplete({
-            data: result,
-            mySearch:".autoSearch",
-            mySearchField: "city"
-          });
-        if(recentSearch && locationType == "false"){
-            $("#serach").val(recentSearch);
-            $('body').removeClass('bodyload');
-        }else
-		    getLocation(latitude, longitude);
-    });
-    request1.fail(function(jqXHR, textStatus) {
-        $('body').removeClass('bodyload');
-        console.log(textStatus);
-    });
-}*/
 var getServices = function (){
-  var request1 = $.ajax({
+    $('body').addClass('bodyload');
+    var request1 = $.ajax({
         url: servurl + "endpoint/api/getmyservices",
         type: "POST",
         beforeSend: function (xhr) {
@@ -96,6 +68,7 @@ var getServices = function (){
         mySearch:".autoSearch2",
         mySearchField: "name"
       })
+      startFunc();
     });
     request1.fail(function(jqXHR, textStatus) {
         $('body').removeClass('bodyload');
@@ -181,7 +154,6 @@ $('.gpsIcon').on("click", function(){
 
 var startFunc = function(){
     if (window.andapp){
-        $('body').addClass('bodyload');
         latitude = window.andapp.getLatitude();
         longitude = window.andapp.getLongitude();
         locationType = window.andapp.getLocationType();
@@ -228,7 +200,6 @@ autocomplete.addListener('place_changed', function() {
   }
 });
 
-startFunc();
 function goBack(){
     window.andapp.closeApp();
 }
