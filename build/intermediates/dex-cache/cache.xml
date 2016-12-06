@@ -12,165 +12,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="1c9f35e952b212c843f7bd2c7eec8e82ad95602e">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-analytics-8.4.0_b6a9bc893368f0e07f9ee4785c313bb0bcb97e23\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="0194a7409c40de94fb539d4ad9928ec5d47afeb7">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-safetynet-8.4.0_9605ec027ce1d91b844b08513aee19479b9d87de\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_6ed9d1ead877814603073c44f0fe49a6125f4c1b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="551e78f21acf69ebfb489c0e79647824c838013e">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-cast-8.4.0_841369fe1ef6e4d79799b92a29de1fb90fe1b03a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Test\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_b01727418e32549567773a633db04450cf4d09c4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="2d7fe76982677315c4dc4edfb459c8ca718a9d4c">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-8.4.0_82dec72913cc2adb2e9cb1b93d3755c926a17a52\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="9fe026fb4c7fce21bc5142f6e1bdf844f28061ac">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appinvite-8.4.0_9a6725c5c558cc98547955276b90957c360836e8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\23.0.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-mediarouter-v7-23.0.0_b3daa1f26cba221c8faf358e48413b0cd954c3fe\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_ee9b8b1460457cc73143a963a539ceb7cbb4a437\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="57168f163af4669a578c85e8352d2454d7ab828d">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_42824a55f1f298851626a5ff177735f429826858\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-8.4.0_21e9f659662cca3d83915e9661b05b26e0d98a30\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="3a364cc6b698d1b3b2d284f64618daaa7fe77ddf">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-games-8.4.0_d8c6d7389b668cd7823c47728fca60530d06f525\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="f2df436a8f02ce7e4d7d209671fc45f97c470f0e">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wallet-8.4.0_1b4859b24718db5f42f40587908acedf7e81d634\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-8.4.0_54082ab084caacc026363e62fd9d0a545d473ce2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.4.0_c317789ff01a721861786c7bced1b91047165993\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="08d34b2d135c1cc96ab506fd8bf6916d1e2f391a">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-panorama-8.4.0_bc8470f050b0585a69caf5f18c6a662a3e8c82f3\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="b82b8e847173c28efffcd291b2a0b1ae9ad17fa4">
-        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-identity-8.4.0_0bbc0db8f25abb7ae5ca3c5c2dade652e3e7330b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
         <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.4.0_3955902bf3cfa9d2b8fa6ee0501d1c8a95baf28b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="1c9f35e952b212c843f7bd2c7eec8e82ad95602e">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-analytics-8.4.0_b6a9bc893368f0e07f9ee4785c313bb0bcb97e23\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -210,6 +66,42 @@
     </item>
     <item
         is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="0194a7409c40de94fb539d4ad9928ec5d47afeb7">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-safetynet-8.4.0_9605ec027ce1d91b844b08513aee19479b9d87de\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_6ed9d1ead877814603073c44f0fe49a6125f4c1b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="551e78f21acf69ebfb489c0e79647824c838013e">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-cast-8.4.0_841369fe1ef6e4d79799b92a29de1fb90fe1b03a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Test\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_b01727418e32549567773a633db04450cf4d09c4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.4.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -234,6 +126,15 @@
         revision="23.0.3"
         sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
         <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_f23e82a044ebd7fba299a61398db1b36434ecfb5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="2d7fe76982677315c4dc4edfb459c8ca718a9d4c">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-8.4.0_82dec72913cc2adb2e9cb1b93d3755c926a17a52\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -282,12 +183,39 @@
     </item>
     <item
         is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="9fe026fb4c7fce21bc5142f6e1bdf844f28061ac">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appinvite-8.4.0_9a6725c5c558cc98547955276b90957c360836e8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\23.0.0\jars\libs\internal_impl-23.0.0.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="03d38bb042efe3e5ce27ba66b729a9523c36d8fe">
         <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.0.0_33ebbfe949585b058f5af3794d715a1b74498a14\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\23.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-mediarouter-v7-23.0.0_b3daa1f26cba221c8faf358e48413b0cd954c3fe\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_ee9b8b1460457cc73143a963a539ceb7cbb4a437\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -300,12 +228,84 @@
     </item>
     <item
         is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="2ce893cf0f47d817d013a564d0695ac990a0ade4">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_42824a55f1f298851626a5ff177735f429826858\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-8.4.0_21e9f659662cca3d83915e9661b05b26e0d98a30\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="3a364cc6b698d1b3b2d284f64618daaa7fe77ddf">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-games-8.4.0_d8c6d7389b668cd7823c47728fca60530d06f525\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="f2df436a8f02ce7e4d7d209671fc45f97c470f0e">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wallet-8.4.0_1b4859b24718db5f42f40587908acedf7e81d634\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.4.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="b5e7892fb0708e792e0e933c4c0a0ca0ac7831fb">
         <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-8.4.0_570868de29231efd36a57bb2b87b9c999a6c4ead\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-8.4.0_54082ab084caacc026363e62fd9d0a545d473ce2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.4.0_c317789ff01a721861786c7bced1b91047165993\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="08d34b2d135c1cc96ab506fd8bf6916d1e2f391a">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-panorama-8.4.0_bc8470f050b0585a69caf5f18c6a662a3e8c82f3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\vamis\Android\w30_html\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="b82b8e847173c28efffcd291b2a0b1ae9ad17fa4">
+        <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-identity-8.4.0_0bbc0db8f25abb7ae5ca3c5c2dade652e3e7330b\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -322,7 +322,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="93db9434cd87bd6f1518bf263a7825f24ac3d357">
+        sha1="4afb7ef61c55ef6a265dd6ebcd425be400d24d69">
         <dex dex="E:\vamis\Android\w30_html\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_7db12e88eddd7878d5f2284776b86434ebb64529\classes.dex" />
     </item>
 

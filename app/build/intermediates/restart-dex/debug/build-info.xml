@@ -5,29 +5,29 @@
     density="xxhdpi"
     format="8"
     plugin-version="2.2.2"
-    timestamp="101730601242591"
+    timestamp="113823024677764"
     token="2616879224624965845"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="4059" />
+        duration="6586" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="2118" />
+        duration="3087" />
     <task
         name="verifier"
-        duration="725" />
+        duration="636" />
 
     <artifact
         location="E:\vamis\Android\w30_html\app\build\outputs\apk\app-debug.apk"
         type="MAIN" />
 
     <build
-        timestamp="101730601242591"
+        timestamp="113823024677764"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="E:\vamis\Android\w30_html\app\build\outputs\apk\app-debug.apk"

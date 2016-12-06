@@ -182,8 +182,10 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
             longitude = mLocation.getLongitude();
             myBrowser.loadUrl("javascript:locationChange("+latitude+","+longitude+")");
         }else{
-            latitude = Double.parseDouble(SharedStorage.getCustomeLat());
-            longitude = Double.parseDouble(SharedStorage.getCustomeLong());
+            if(SharedStorage.getCustomeLat().length() > 0)
+                latitude = Double.parseDouble(SharedStorage.getCustomeLat());
+            if(SharedStorage.getCustomeLong().length() > 0)
+                longitude = Double.parseDouble(SharedStorage.getCustomeLong());
         }
     }
 
