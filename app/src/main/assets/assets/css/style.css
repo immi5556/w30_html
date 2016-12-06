@@ -156,6 +156,9 @@ html {
 	top: 50%;
 	margin: -8px 0 0 -8px;
 	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
 	border: 3px solid #fff;
 	border-top: none;
 	border-right: none;
@@ -858,6 +861,10 @@ nav a {
   left: 15px;
   color: #CD0A0A;
   transform:rotate(180deg);
+  -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+
 }
 
 .menu,.back {
@@ -1325,7 +1332,7 @@ display: none;
     100% {transform: rotate(360deg);}
 }
 @media (max-width:768px){
-    .container {
+    .container, .loginScreen {
         max-width: 100%;
     }
     .catagoryCircle {
