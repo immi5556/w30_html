@@ -861,6 +861,10 @@ nav a {
   left: 15px;
   color: #CD0A0A;
   transform:rotate(180deg);
+  -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+
 }
 
 .menu,.back {
