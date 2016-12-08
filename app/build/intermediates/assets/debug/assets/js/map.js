@@ -153,6 +153,39 @@ var getServices = function (){
             $(".pop_up").show();
         });
     }
+
+    var getlatlongfromip = function(){
+            var request = $.ajax({
+    			url: servurl + "endpoint/api/getLatLong",
+    			type: "POST",
+                beforeSend: function (xhr) {
+                	xhr.setRequestHeader ("Authorization", "Basic " + btoa(w30Credentials));
+                },
+                contentType: "application/json; charset=UTF-8"
+            });
+            request.success(function(result) {
+                console.log(result);
+            	if(result.status == "success"){
+            	    latitude = result.latitude;
+            	    longitude = result.longitude;
+            	    milesValue = 60;
+                    minutesValue = 60;
+                    getServices();
+                    getCustomerAPICall(latitude, longitude, milesValue, minutesValue);
+            	}else{
+            	    $(".popContent h2").text("Status");
+                    $(".popContent strong").text("Not able to retrieve your location. Please check your location settings.");
+                    $(".pop_up").show();
+            	}
+            });
+            request.fail(function(jqXHR, textStatus) {
+                $(".popContent h2").text("Status");
+                $(".popContent strong").text("Not able to retrieve your location. Please check your location settings.");
+                $(".pop_up").show();
+            	console.log(textStatus);
+            });
+    	}
+
     var successFunction = function(pos){
         milesValue = 60;
         minutesValue = 60;
@@ -160,9 +193,10 @@ var getServices = function (){
         getCustomerAPICall(latitude, longitude, milesValue, minutesValue);
     }
     var errorFunction = function(err){
-        $(".popContent h2").text("Status");
+        getlatlongfromip();
+        /*$(".popContent h2").text("Status");
         $(".popContent strong").text("Not able to retrieve your location. Please check your location settings.");
-        $(".pop_up").show();
+        $(".pop_up").show();*/
         /*milesValue = 60;
         minutesValue = 60;
         getServices();
@@ -804,6 +838,8 @@ var getServices = function (){
             mobilenumber = window.andapp.getMobile();
             userid = window.andapp.getUserId();
             serviceId = window.andapp.getServiceId();
+            latitude = 0;
+            longitude = 0;
             if(!latitude && !longitude){
                errorFunction();
             }else{

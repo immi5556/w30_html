@@ -3,6 +3,39 @@ var servurl = "https://services.within30.com/";
 var mobilenumber;
 window.andapp.saveLocationType("true");
 window.andapp.updateCurrentLocation();
+/*
+function mobileNumberValidation(evt){
+	var charCode = (evt.which) ? evt.which : evt.keyCode;
+      if (charCode != 46 && charCode > 31
+        && (charCode < 48 || charCode > 57))
+         return false;
+
+    if($(".mobilenumber").val().length < 14){
+    	var key = evt.charCode || evt.keyCode || 0;
+    	var $phone = $(".mobilenumber");
+
+    	if (key !== 8 && key !== 9) {
+    		if ($phone.val().length === 0) {
+				$phone.val('('+ $phone.val());
+			}
+			if ($phone.val().length === 4) {
+				$phone.val($phone.val() + ')');
+			}
+			if ($phone.val().length === 5) {
+				$phone.val($phone.val() + ' ');
+			}
+			if ($phone.val().length === 9) {
+				$phone.val($phone.val() + '-');
+			}
+		}
+      	return true;
+    } else if(evt.keyCode == 8 || evt.keyCode == 9){
+    	return true;
+    }else{
+  		return false;
+    }
+}
+*/
 
 var checkEmailBox = function(){
     if (!$(".email").val())	{
@@ -84,12 +117,11 @@ var saveData = function(type){
 	    		if (window.andapp){
 					window.andapp.postJson('persistuser', JSON.stringify({"firstname":$(".firstname").val(),"lastname":$(".lastname").val(),"email":$(".email").val(),"mobilenumber":mobilenumber, "_id": result._id, "deviceToken": window.andapp.getTokenId()}));
 				}
-				$('body').removeClass('bodyload');
 				window.location.href = "selectCatagory.html";
 	    	}
 	    });
 	    request1.fail(function(jqXHR, textStatus) {
-	        $('body').removeClass('bodyload');
+
 	        //console.log(JSON.stringify(jqXHR));
 	    /*    alert('Error in user service call......');*/
 	    });

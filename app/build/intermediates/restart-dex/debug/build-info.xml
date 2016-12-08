@@ -5,7 +5,7 @@
     density="xxhdpi"
     format="8"
     plugin-version="2.2.2"
-    timestamp="79822142350257"
+    timestamp="116365502235326"
     token="2616879224624965845"
     verifier="COLD_SWAP_REQUESTED" >
 
@@ -27,14 +27,14 @@
         type="RESOURCES" />
 
     <build
-        timestamp="78949680662395"
+        timestamp="116270508122711"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="E:\vamis\Android\w30_html\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
     <build
-        timestamp="79822142350257"
+        timestamp="116365502235326"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="E:\vamis\Android\w30_html\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
