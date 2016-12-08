@@ -189,7 +189,6 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         }
     }
 
-
     private class MyJavaScriptChromeClient extends WebChromeClient {
         @Override
         public boolean onJsAlert(WebView view, String url, String message,final JsResult result) {

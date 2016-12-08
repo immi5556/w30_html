@@ -2,7 +2,7 @@ var w30Credentials = "win-HQGQ:zxosxtR76Z80";
 var servurl = "https://services.within30.com/";     //"https://services.within30.com/"
 var geocoder = new google.maps.Geocoder();
 var latitude, longitude;
-var searchedLat, SearchedLong;
+var searchedLat, searchedLong;
 var cities = [];
 var services = [];
 var serviceId = "";
@@ -38,15 +38,45 @@ function getLocation(lat, lng) {
           }
         });
       } else {
-        $('body').removeClass('bodyload');
         console.log("No results found");
       }
     } else {
-        $('body').removeClass('bodyload');
         alert("Not able to get your location. Please restart the app.");
         console.log("Geocoder failed due to: " + status);
     }
   });
+}
+
+var startFunc = function(){
+    if (window.andapp){
+        latitude = window.andapp.getLatitude();
+        longitude = window.andapp.getLongitude();
+        locationType = window.andapp.getLocationType();
+        if(!locationType || locationType == "false"){
+            gotUserLocation = false;
+            if (window.andapp){
+                recentSearch = window.andapp.getRecentLocation();
+                if(recentSearch){
+                    latitude = window.andapp.getCustomeLat();
+                    longitude = window.andapp.getCustomeLong();
+                    searchedLat = latitude;
+                    searchedLong = longitude;
+                    successFunction();
+                }else{
+                    errorFunction();
+                }
+
+            }
+        }else{
+            if(!latitude && !longitude){
+                gotUserLocation = false;
+                errorFunction();
+            }else{
+                gotUserLocation = true;
+                successFunction();
+            }
+        }
+    }
 }
 
 var getServices = function (){
@@ -75,7 +105,7 @@ var getServices = function (){
         console.log(textStatus);
     });
 }
-getServices();
+
 $('.currentLocation .fa-pencil').click(function(){
     $(".autoSearch").val('');
     $(".autoSearch").focus();
@@ -131,7 +161,7 @@ $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem
             }
         }else if(currentLocationName && currentLocationName.toUpperCase() != $("#pac-input").val().toUpperCase()){
             latitude = searchedLat;
-            longitude = SearchedLong;
+            longitude = searchedLong;
             if (window.andapp){
                 window.andapp.saveLocationType("false");
                 window.andapp.saveRecentLocation($("#pac-input").val());
@@ -152,36 +182,6 @@ $('.gpsIcon').on("click", function(){
     startFunc();
 });
 
-var startFunc = function(){
-    if (window.andapp){
-        latitude = window.andapp.getLatitude();
-        longitude = window.andapp.getLongitude();
-        locationType = window.andapp.getLocationType();
-        if(!locationType || locationType == "false"){
-            gotUserLocation = false;
-            if (window.andapp){
-                recentSearch = window.andapp.getRecentLocation();
-                if(recentSearch){
-                    latitude = window.andapp.getCustomeLat();
-                    longitude = window.andapp.getCustomeLong();
-                    successFunction();
-                }else{
-                    errorFunction();
-                }
-
-            }
-        }else{
-            if(!latitude && !longitude){
-                gotUserLocation = false;
-                errorFunction();
-            }else{
-                gotUserLocation = true;
-                successFunction();
-            }
-        }
-    }
-}
-
 var input = (document.getElementById('pac-input'));
 var autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -195,8 +195,7 @@ autocomplete.addListener('place_changed', function() {
     return;
   }else{
     searchedLat = place.geometry.location.lat();
-    SearchedLong = place.geometry.location.lng();
-    console.log(searchedLat);
+    searchedLong = place.geometry.location.lng();
   }
 });
 
@@ -209,3 +208,5 @@ var refreshOnForeground = function(){
 }
 
 var locationChange = function(){}
+
+getServices();
