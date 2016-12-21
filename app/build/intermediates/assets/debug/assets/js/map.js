@@ -2,6 +2,7 @@ var servurl = "https://services.within30.com/";     //"https://services.schejule
 var sockurl = "https://socket.within30.com/";       //"https://socket.schejule.com:9090/"
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
 var serviceId = "";
+var serviceName = "";
 var urlLink = ".within30.com/";
 var localImagePath = "./assets/img/";
 var milesValue = 60;
@@ -64,7 +65,7 @@ var abbrs = {
         PDT : 'America/Los_Angeles',
         IST : "Asia/Kolkata"
 };
-var email, mobilenumber, userid;
+var email, mobilenumber, userid, firstname;
 var getServices = function (){
     var request1 = $.ajax({
         url: servurl + "endpoint/api/getmyservices",
@@ -83,6 +84,7 @@ var getServices = function (){
         services[0].forEach(function(item, index){
           if(item._id == serviceId){
             matchFound = index;
+            serviceName = item.name;
           }
         });
         if(matchFound != -1){
@@ -153,39 +155,6 @@ var getServices = function (){
             $(".pop_up").show();
         });
     }
-
-    var getlatlongfromip = function(){
-            var request = $.ajax({
-    			url: servurl + "endpoint/api/getLatLong",
-    			type: "POST",
-                beforeSend: function (xhr) {
-                	xhr.setRequestHeader ("Authorization", "Basic " + btoa(w30Credentials));
-                },
-                contentType: "application/json; charset=UTF-8"
-            });
-            request.success(function(result) {
-                console.log(result);
-            	if(result.status == "success"){
-            	    latitude = result.latitude;
-            	    longitude = result.longitude;
-            	    milesValue = 60;
-                    minutesValue = 60;
-                    getServices();
-                    getCustomerAPICall(latitude, longitude, milesValue, minutesValue);
-            	}else{
-            	    $(".popContent h2").text("Status");
-                    $(".popContent strong").text("Not able to retrieve your location. Please check your location settings.");
-                    $(".pop_up").show();
-            	}
-            });
-            request.fail(function(jqXHR, textStatus) {
-                $(".popContent h2").text("Status");
-                $(".popContent strong").text("Not able to retrieve your location. Please check your location settings.");
-                $(".pop_up").show();
-            	console.log(textStatus);
-            });
-    	}
-
     var successFunction = function(pos){
         milesValue = 60;
         minutesValue = 60;
@@ -193,10 +162,9 @@ var getServices = function (){
         getCustomerAPICall(latitude, longitude, milesValue, minutesValue);
     }
     var errorFunction = function(err){
-        getlatlongfromip();
-        /*$(".popContent h2").text("Status");
+        $(".popContent h2").text("Status");
         $(".popContent strong").text("Not able to retrieve your location. Please check your location settings.");
-        $(".pop_up").show();*/
+        $(".pop_up").show();
         /*milesValue = 60;
         minutesValue = 60;
         getServices();
@@ -330,7 +298,7 @@ var getServices = function (){
                         calling = "true";
                         websiteBackButton = true;
                         window.andapp.savewebsiteState(calling);
-                        window.andapp.openLink("https://"+docs[i].subdomain+urlLink);
+                        window.andapp.openLink("https://"+docs[i].subdomain+urlLink+"?source=AndroidSchedulePage&firstname="+firstname+"&email="+email+"&mobile="+mobilenumber+"&userid="+userid);
                     });
                     $(".businessHours").text("Business Hours: "+customers[i].startHour+" - "+customers[i].endHour);
                     $(".directionArrowBottom").hide();
@@ -638,7 +606,7 @@ var getServices = function (){
             beforeSend: function (xhr) {
                 xhr.setRequestHeader ("Authorization", "Basic " + btoa(w30Credentials));
             },
-            data: JSON.stringify({"subDomain":subdomain,"date":localTime,"email":email,"mobile":mobilenumber,"minutes":"30", "userId":userid, "sourceUsed": "mobileApp"}),
+            data: JSON.stringify({"subDomain":subdomain, "businessType": serviceName,"date":localTime,"email":email,"mobile":mobilenumber,"minutes":"30", "userId":userid, "source": "AndroidMapPage"}),
             contentType: "application/json; charset=UTF-8"
         });
 
@@ -837,9 +805,8 @@ var getServices = function (){
             email = window.andapp.getEmail();
             mobilenumber = window.andapp.getMobile();
             userid = window.andapp.getUserId();
+            firstname = window.andapp.getFirstname();
             serviceId = window.andapp.getServiceId();
-            latitude = 0;
-            longitude = 0;
             if(!latitude && !longitude){
                errorFunction();
             }else{

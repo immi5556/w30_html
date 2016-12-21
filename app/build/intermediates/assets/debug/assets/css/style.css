@@ -188,6 +188,12 @@ html {
     top:10px;
     width:20px;
 }
+.appointments {
+    position: absolute;
+    right: -30px;
+    top: 10px;
+    width: 20px;
+}
 .currentLocation input {
 	width: 100%;
 	padding: 0 30px 0 10px;
@@ -1330,6 +1336,140 @@ display: none;
     0 {transform: rotate(0deg);}
     50% {transform: rotate(180deg);}
     100% {transform: rotate(360deg);}
+}
+.appontHead {
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:80px;
+}
+.tabSection {
+    padding:96px 0 40px;
+}
+.tabMenu {
+    clear:both;
+    overflow: hidden;
+    background: #f6f6f6;
+}
+.tabMenu li {
+    float: left;
+    width: 50%;
+    list-style: none;
+}
+.tabMenu li a {
+    display: block;
+    line-height: 35px;
+    color: #6c6c6c;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+    position: relative;
+}
+.tabMenu li a::before {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 1px;
+    display: block;
+    content: '';
+    height: 30px;
+    background: #fff;
+}
+.tabMenu li:first-child a::before {
+    content: none;
+}
+.tabMenu li.active a::after {
+    position: absolute;
+    content: '';
+    height: 3px;
+    width: 50%;
+    left: 50%;
+    bottom: 0;
+    margin: 0 0 0 -25%;
+    background: #39425f;
+}
+.tabMenu li.active a {
+    color: #39425f;
+    font-weight: 700;
+}
+.tabContent {
+    display: none;
+    padding: 0 15px;
+
+}
+.tabContent.active {
+    display: block;
+}
+.appointBlock {
+    border: 2px solid #39425f;
+    border-left: 6px solid #39425f;
+    padding: 15px 5px 10px;
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+    margin-top: 20px;
+}
+.contBlock {
+    clear: both;
+}
+.contBlockSec {
+    float: left;
+    width: 50%;
+    text-align: center;
+    color: #424343;
+    font-size: 13px;
+    font-weight: 700;
+}
+.contBlockSec h3 {
+    display: block;
+    font-size: 14px;
+}
+.contBlockSec p span {
+    padding: 0 0 0 10px;
+}
+.contBlockBottom,.straRating {
+    clear: both;
+    padding: 20px 5px 0;
+    line-height: 15px;
+    color: #424343;
+    font-size: 12px;
+}
+.contBlockBottom span {
+    float: left;
+}
+.straRating {
+    text-align: center;
+    font-size: 13px;
+}
+.straRating strong {
+    display:block;
+    padding: 0 0 7px;
+}
+.straRating .ratingBlock {
+    text-align: center;
+    width: 90px;
+    position: relative;
+    margin: auto;
+}
+.submitRating {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    background:url(../img/appointmentSubmit.png) no-repeat center right;
+    width: 56px;
+    height: 30px;
+    top: -11px;
+    background-size: 16px;
+}
+.contBlockBottom a {
+    float: right;
+    text-decoration: none;
+    color: #424343;
+}
+.appointFinished {
+    border-color: #d6d6d6;
 }
 @media (max-width:768px){
     .container, .loginScreen {

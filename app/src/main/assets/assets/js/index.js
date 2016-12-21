@@ -3,39 +3,6 @@ var servurl = "https://services.within30.com/";
 var mobilenumber;
 window.andapp.saveLocationType("true");
 window.andapp.updateCurrentLocation();
-/*
-function mobileNumberValidation(evt){
-	var charCode = (evt.which) ? evt.which : evt.keyCode;
-      if (charCode != 46 && charCode > 31
-        && (charCode < 48 || charCode > 57))
-         return false;
-
-    if($(".mobilenumber").val().length < 14){
-    	var key = evt.charCode || evt.keyCode || 0;
-    	var $phone = $(".mobilenumber");
-
-    	if (key !== 8 && key !== 9) {
-    		if ($phone.val().length === 0) {
-				$phone.val('('+ $phone.val());
-			}
-			if ($phone.val().length === 4) {
-				$phone.val($phone.val() + ')');
-			}
-			if ($phone.val().length === 5) {
-				$phone.val($phone.val() + ' ');
-			}
-			if ($phone.val().length === 9) {
-				$phone.val($phone.val() + '-');
-			}
-		}
-      	return true;
-    } else if(evt.keyCode == 8 || evt.keyCode == 9){
-    	return true;
-    }else{
-  		return false;
-    }
-}
-*/
 
 var checkEmailBox = function(){
     if (!$(".email").val())	{

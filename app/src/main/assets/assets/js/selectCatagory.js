@@ -28,7 +28,7 @@ function getLocation(lat, lng) {
       if (results[1]) {
         var arrAddress = results;
         $.each(arrAddress, function(i, address_component) {
-          if (address_component.types[0] == "political") {
+          if (address_component.types[0] == "political" || address_component.types[0] == "locality") {
             $("#pac-input").val(address_component.address_components[0].long_name);
             $('body').removeClass('bodyload');
             if(gotUserLocation)
@@ -37,6 +37,8 @@ function getLocation(lat, lng) {
                 currentLocationName = null;
           }
         });
+        if($("#pac-input").val().length == 0)
+            alert("Not able to get your locality name");
       } else {
         console.log("No results found");
       }
@@ -209,4 +211,7 @@ var refreshOnForeground = function(){
 
 var locationChange = function(){}
 
+$(".appointments").on("click", function(){
+    window.location.href = "appointments.html";
+});
 getServices();

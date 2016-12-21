@@ -84,12 +84,11 @@ var saveData = function(type){
 	    		if (window.andapp){
 					window.andapp.postJson('persistuser', JSON.stringify({"firstname":$(".firstname").val(),"lastname":$(".lastname").val(),"email":$(".email").val(),"mobilenumber":mobilenumber, "_id": result._id, "deviceToken": window.andapp.getTokenId()}));
 				}
-				$('body').removeClass('bodyload');
 				window.location.href = "selectCatagory.html";
 	    	}
 	    });
 	    request1.fail(function(jqXHR, textStatus) {
-	        $('body').removeClass('bodyload');
+
 	        //console.log(JSON.stringify(jqXHR));
 	    /*    alert('Error in user service call......');*/
 	    });
