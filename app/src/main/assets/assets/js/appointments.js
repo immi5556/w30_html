@@ -217,9 +217,4 @@ if(window.andapp){
              getAppointments();
          }
      }
-}else{
-    latitude = 17.6849848;
-    longitude = 83.0131417;
-    userId = "584ffa1b8f34191a00b08f86";
-    getAppointments();
 }
