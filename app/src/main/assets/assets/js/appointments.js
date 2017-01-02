@@ -34,7 +34,7 @@ $(".back").on("click", function(){
     });
     request1.success(function(result) {
        if(result.Status == "Success"){
-            window.andapp.showToast("Rating Submitted Succesfully.");
+            window.andapp.showToast("Thanks for Rating.");
        }else{
             window.andapp.showToast("Failed to update. Try later.");
        }
