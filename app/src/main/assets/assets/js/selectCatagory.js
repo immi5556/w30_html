@@ -55,8 +55,11 @@ function getLocation(lat, lng) {
         });
         if($("#pac-input").val().length == 0)
             alert("Not able to get your locality name");
+            $('body').removeClass('bodyload');
       } else {
+        alert("Not able to get your location. Please restart the app.");
         console.log("No results found");
+        $('body').removeClass('bodyload');
       }
     } else {
         alert("Not able to get your location. Please restart the app.");
@@ -235,7 +238,7 @@ $(".appointments").on("click", function(){
 });
 getServices();
 
-
+/*menu circle part*/
 var items = document.querySelectorAll('.circle a');
 for(var i = 0, l = items.length; i < l; i++) {
   items[i].style.left = (50 - 35*Math.cos(-0.5 * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";

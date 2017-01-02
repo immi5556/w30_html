@@ -705,7 +705,7 @@ var getServices = function (){
         map.setCenter({lat:latitude, lng:longitude});
     });
 
-    $(".menuList4, .menuList2, .menuList3, .menuList5, .menuList6, .menuList7").on("click", function(){
+    $(".menuList4, .menuList2, .menuList3, .menuList5, .menuList6, .menuList7, .menuList8").on("click", function(){
         var matchFound = -1;
         var className = $(this).attr('class').split(" ")[1];
         services[0].forEach(function(item, index){
