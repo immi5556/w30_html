@@ -10,10 +10,25 @@ var locationType;
 var recentSearch;
 var currentLocationName, gotUserLocation, customeLocationName;
 
+var circleMenu = function(){
+    var classesExist = $(".menu-button").attr("class").split(" ");
+    var matchFound = -1;
+    classesExist.forEach(function(item, index){
+      if(item == "fa-bars"){
+        matchFound = index;
+      }
+    });
+    if(matchFound != -1){
+        $(".menu-button").click();
+        finishrotate(50);
+    }
+}
 var successFunction = function(){
     if(recentSearch && locationType == "false"){
         $("#pac-input").val(recentSearch);
         $('body').removeClass('bodyload');
+        currentLocationName = recentSearch;
+        circleMenu();
     }else
         getLocation(latitude, longitude);
 }
@@ -31,6 +46,7 @@ function getLocation(lat, lng) {
           if (address_component.types[0] == "political" || address_component.types[0] == "locality") {
             $("#pac-input").val(address_component.address_components[0].long_name);
             $('body').removeClass('bodyload');
+            circleMenu();
             if(gotUserLocation)
                 currentLocationName = address_component.address_components[0].long_name;
             else
@@ -141,7 +157,7 @@ $('.autoComplete .fa-search').click(function(){
       alert("No Category found.");
     }
 })
-$(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem5, .categoryItem6").on("click", function(e){
+$(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem5, .categoryItem6, .categoryItem8").on("click", function(e){
     e.stopPropagation();
 
     var matchFound = -1;
@@ -154,6 +170,8 @@ $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem
     });
     if(matchFound != -1){
         window.andapp.saveServiceId(serviceId);
+        console.log(currentLocationName);
+        console.log($("#pac-input").val());
         if(!$("#pac-input").val() && $("#pac-input").val().length == 0){
             window.andapp.updateCurrentLocation();
             window.andapp.saveLocationType("true");
@@ -164,6 +182,7 @@ $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem
         }else if(currentLocationName && currentLocationName.toUpperCase() != $("#pac-input").val().toUpperCase()){
             latitude = searchedLat;
             longitude = searchedLong;
+            console.log(latitude);
             if (window.andapp){
                 window.andapp.saveLocationType("false");
                 window.andapp.saveRecentLocation($("#pac-input").val());
@@ -215,3 +234,98 @@ $(".appointments").on("click", function(){
     window.location.href = "appointments.html";
 });
 getServices();
+
+
+var items = document.querySelectorAll('.circle a');
+for(var i = 0, l = items.length; i < l; i++) {
+  items[i].style.left = (50 - 35*Math.cos(-0.5 * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
+  items[i].style.top = (50 + 35*Math.sin(-0.5 * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
+}
+
+document.querySelector('.menu-button').onclick = function(e) {
+   e.preventDefault(); document.querySelector('.circle').classList.toggle('open');
+}
+
+var incr = -0.5;
+var rotate = function(){
+    setInterval(function(){
+        for(var i = 0, l = items.length; i < l; i++) {
+            items[i].style.left = (50 - 35*Math.cos(incr * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
+            items[i].style.top = (50 + 35*Math.sin(incr * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
+        }
+        if (incr < -1 || incr > 1){
+            incr = 1;
+        }
+        incr = incr - .1;
+    }, 100);
+}
+
+var finspeed, slowat, toutspeed = 10;
+var finishrotate = function(speed) {
+    slowat = 28;
+
+    var recfinish = function(){
+        if (incr < -1 || incr > 1){
+            incr = 1;
+        }
+        incr = incr - .01;
+        if (direction){
+            for(var i = 0, l = items.length; i < l; i++) {
+                items[i].style.left = (50 - 35*Math.cos(-incr * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
+                items[i].style.top = (50 + 35*Math.sin(-incr * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
+            }
+        } else
+        {
+            for(var i = 0, l = items.length; i < l; i++) {
+                items[i].style.left = (50 - 35*Math.cos(incr * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
+                items[i].style.top = (50 + 35*Math.sin(incr * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
+            }
+        }
+
+        slowat = slowat - 1;
+        if (slowat > 0){
+            setTimeout(recfinish, ++toutspeed);
+        }
+
+    };
+    setTimeout(recfinish, toutspeed)
+}
+
+var rotate1 = function(pdir){
+    if (incr < -1 || incr > 1){
+        incr = 1;
+    }
+    incr = incr - .01;
+    if (pdir){
+        for(var i = 0, l = items.length; i < l; i++) {
+            items[i].style.left = (50 - 35*Math.cos(-incr * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
+            items[i].style.top = (50 + 35*Math.sin(-incr * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
+        }
+    } else
+    {
+        for(var i = 0, l = items.length; i < l; i++) {
+            items[i].style.left = (50 - 35*Math.cos(incr * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
+            items[i].style.top = (50 + 35*Math.sin(incr * Math.PI - 2*(1/l)*i*Math.PI)).toFixed(4) + "%";
+        }
+    }
+}
+
+var direction = false;
+var element = document.getElementsByClassName('m1'), lastx = undefined; lasty= undefined;
+interact('.m1')
+    .draggable({
+        onmove: function(event) {
+            if (event.clientX0 > event.clientX){
+                direction = true;
+                rotate1(true);
+            } else {
+                direction = false;
+                rotate1(false);
+            }
+            lastx = event.clientX;
+            lasty = event.clientY;
+        },
+        onend: function(event) {
+            finishrotate(event.speed);
+        }
+    });

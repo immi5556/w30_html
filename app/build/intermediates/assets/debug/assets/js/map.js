@@ -26,12 +26,20 @@ var bookedBusiness = null;
 var locationRedirect = false;
 var socketio = io.connect(sockurl);
 var calling = "false";
+var website = "false";
+var websiteDomain = "";
 var directionIndex = -1;
 var directionService = new google.maps.DirectionsService();
 var directionsDisplay = new google.maps.DirectionsRenderer();
 directionsDisplay.setOptions( { suppressMarkers: true, preserveViewport: true } );
 var directionStop = 1;
 var websiteBackButton = false;
+
+function goBack(){
+    window.history.back();
+    if(websiteBackButton)
+        window.history.back();
+}
 
 $(".serviceSection").swipe( {
   swipeUp:function(event, direction, distance, duration) {
@@ -241,6 +249,8 @@ var getServices = function (){
             google.maps.event.addListener(marker, 'click', (function(marker, subdomain, i) {
                 return function() {
                     calling = "false";
+                    website = "false";
+                    websiteDomain = "";
                     if($(".menu").hasClass("fa-times")){
                         $(".menu").removeClass('fa-times');
                         $(".menu").addClass('fa-bars');
@@ -295,9 +305,10 @@ var getServices = function (){
                         window.andapp.phoneCall(customers[i].mobile);
                     });
                     $(".website").on("click", function(){
-                        calling = "true";
+                        website = "true";
+                        websiteDomain = docs[i].subdomain;
                         websiteBackButton = true;
-                        window.andapp.savewebsiteState(calling);
+                        window.andapp.savewebsiteState(website);
                         window.andapp.openLink("https://"+docs[i].subdomain+urlLink+"?source=AndroidSchedulePage&firstname="+firstname+"&email="+email+"&mobile="+mobilenumber+"&userid="+userid);
                     });
                     $(".businessHours").text("Business Hours: "+customers[i].startHour+" - "+customers[i].endHour);
@@ -394,6 +405,8 @@ var getServices = function (){
 
     $(".shadow").on('click', function() {
         calling = "false";
+        website = "false";
+        websiteDomain = "";
         window.andapp.savewebsiteState(calling);
         $(".serviceSection").animate({height:'0'},500);
         $('.shadow').hide();
@@ -815,11 +828,38 @@ var getServices = function (){
         }
     }
     init();
-    function goBack(){
-        window.history.back();
-        if(websiteBackButton)
-            window.history.back();
-    }
+
+    var getAppointments = function(callback){
+         if(userid){
+            var request1 = $.ajax({
+                url: servurl + "endpoint/api/getappointmentList",
+                type: "POST",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader ("Authorization", "Basic " + btoa(w30Credentials));
+                },
+                data: JSON.stringify({"userId":userid}),
+                contentType: "application/json; charset=UTF-8"
+            });
+            request1.success(function(result) {
+               if(result.Status == "Ok"){
+                    callback(result.Data);
+               }else{
+                    $(".popContent h2").text("Get Appointment Status");
+                    //$(".popContent strong").text("Failed");
+                    $(".popContent span").text("Something went wrong. Try again");
+                    $(".pop_up").show();
+               }
+            });
+            request1.fail(function(jqXHR, textStatus) {
+                $(".popContent h2").text("Get Appointment Status");
+                //$(".popContent strong").text("Failed");
+                $(".popContent span").text("Your request didn't go through. Please try again");
+                $(".pop_up").show();
+            });
+         }else{
+            alert("Something went wrong. Try again");
+         }
+     }
 
     function locationChange(newLat, newLong){
         if(newLat != null && newLong != null && (latitude != newLat || longitude != newLong)){
@@ -839,6 +879,25 @@ var getServices = function (){
     var refreshOnForeground = function(){
         if(calling == "false"){
             location.reload();
+        }
+        if(website == "true"){
+            var pendingSlots = [];
+            getAppointments(function(data){
+                var myTime = moment().format("YYYY-MM-DD HH:mm");
+
+                data.forEach(function(item, index){
+                    var appointmentTime = item.selecteddate+" "+item.starttime;
+                    if(appointmentTime > myTime){
+                        pendingSlots.push(item);
+                    }
+                });
+                pendingSlots.forEach(function(item, index){
+                    if(item.subdomain == websiteDomain){
+                        $(".shadow").click();
+                        location.reload();
+                    }
+                });
+            });
         }
     }
 
