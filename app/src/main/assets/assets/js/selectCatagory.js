@@ -173,8 +173,6 @@ $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem
     });
     if(matchFound != -1){
         window.andapp.saveServiceId(serviceId);
-        console.log(currentLocationName);
-        console.log($("#pac-input").val());
         if(!$("#pac-input").val() && $("#pac-input").val().length == 0){
             window.andapp.updateCurrentLocation();
             window.andapp.saveLocationType("true");
@@ -185,7 +183,6 @@ $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem
         }else if(currentLocationName && currentLocationName.toUpperCase() != $("#pac-input").val().toUpperCase()){
             latitude = searchedLat;
             longitude = searchedLong;
-            console.log(latitude);
             if (window.andapp){
                 window.andapp.saveLocationType("false");
                 window.andapp.saveRecentLocation($("#pac-input").val());
