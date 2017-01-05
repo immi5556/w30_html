@@ -33,7 +33,11 @@ var successFunction = function(){
         getLocation(latitude, longitude);
 }
 var errorFunction = function(){
-	alert("Not able to retrieve your location. Check location settings.");
+	//alert("Not able to retrieve your location. Check location settings.");
+	$(".popContent h2").text("Get Location");
+    $(".popContent span").text("");
+    $(".popContent strong").text("Not able to retrieve your location. Check location settings.");
+    $(".pop_up").show();
 }
 
 function getLocation(lat, lng) {
@@ -53,17 +57,25 @@ function getLocation(lat, lng) {
                 currentLocationName = null;
           }
         });
-        if($("#pac-input").val().length == 0)
-            alert("Not able to get your locality name");
-            $('body').removeClass('bodyload');
+        if($("#pac-input").val().length == 0){
+            $(".popContent h2").text("Get Location");
+            $(".popContent span").text("");
+            $(".popContent strong").text("Not able to get your locality name");
+            $(".pop_up").show();
+        }
+        $('body').removeClass('bodyload');
       } else {
-        alert("Not able to get your location. Please restart the app.");
-        console.log("No results found");
+        $(".popContent h2").text("Get Location");
+        $(".popContent span").text("");
+        $(".popContent strong").text("Not able to get your location. Please restart the app.");
+        $(".pop_up").show();
         $('body').removeClass('bodyload');
       }
     } else {
-        alert("Not able to get your location. Please restart the app.");
-        console.log("Geocoder failed due to: " + status);
+        $(".popContent h2").text("Get Location");
+        $(".popContent span").text("");
+        $(".popContent strong").text("Not able to get your location. Please restart the app.");
+        $(".pop_up").show();
     }
   });
 }
@@ -131,6 +143,12 @@ $('.currentLocation .fa-pencil').click(function(){
     $(".autoSearch").val('');
     $(".autoSearch").focus();
 });
+$(".popContent").on("click", function(e){
+    e.stopPropagation();
+});
+$(".pop_up, .closePop").on("click", function(){
+    $(".pop_up").hide();
+});
 var searcfield = false;
 $(document).on("click",function(){
     if(searcfield)
@@ -157,7 +175,11 @@ $('.autoComplete .fa-search').click(function(){
         window.andapp.saveServiceId(serviceId);
         window.location.href = "servicePage.html";
     }else{
-      alert("No Category found.");
+        //alert("No Category found.");
+        $(".popContent h2").text("Get Services");
+        $(".popContent span").text("");
+        $(".popContent strong").text("No Category found.");
+        $(".pop_up").show();
     }
 })
 $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem5, .categoryItem6, .categoryItem8").on("click", function(e){
@@ -196,7 +218,11 @@ $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem
         }
         window.location.href = "servicePage.html";
     }else{
-      alert("No Category found.");
+      //alert("No Category found.");
+      $(".popContent h2").text("Status");
+      $(".popContent span").text("");
+      $(".popContent strong").text("No Category found.");
+      $(".pop_up").show();
     }
 });
 
@@ -215,7 +241,11 @@ autocomplete.addListener('place_changed', function() {
   if (!place.geometry) {
     // User entered the name of a Place that was not suggested and
     // pressed the Enter key, or the Place Details request failed.
-    window.alert("No details available for input: '" + place.name + "'");
+    //window.alert("No details available for input: '" + place.name + "'");
+    $(".popContent h2").text("Change Location");
+    $(".popContent span").text("");
+    $(".popContent strong").text("No details available for input: '" + place.name + "'");
+    $(".pop_up").show();
     return;
   }else{
     searchedLat = place.geometry.location.lat();

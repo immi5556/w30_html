@@ -738,6 +738,7 @@ var getServices = function (){
                     directionsDisplay.setDirections(result);
                 } else{
                     $(".popContent h2").text("Direction Services");
+                    $(".popContent span").text("");
                     $(".popContent strong").text("There seem to be some problem with internet connection.");
                     $(".pop_up").show();
                 }
