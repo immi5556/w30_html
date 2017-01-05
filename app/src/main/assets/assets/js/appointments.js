@@ -13,7 +13,6 @@ $(".back").on("click", function(){
 });
 
  var goBack = function(){
-    console.log("!!!!!!!! "+window.history.length);
      window.history.back();
  }
 
