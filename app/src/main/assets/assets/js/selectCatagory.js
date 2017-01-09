@@ -195,24 +195,6 @@ $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem
     });
     if(matchFound != -1){
         window.andapp.saveServiceId(serviceId);
-        if(!$("#pac-input").val() && $("#pac-input").val().length == 0){
-            window.andapp.updateCurrentLocation();
-            window.andapp.saveLocationType("true");
-        }else if(currentLocationName && currentLocationName.toUpperCase() == $("#pac-input").val().toUpperCase()){
-            if (window.andapp){
-                window.andapp.saveLocationType("true");
-            }
-        }else if(currentLocationName && currentLocationName.toUpperCase() != $("#pac-input").val().toUpperCase()){
-            latitude = searchedLat;
-            longitude = searchedLong;
-            if (window.andapp){
-                window.andapp.saveLocationType("false");
-                window.andapp.saveRecentLocation($("#pac-input").val());
-                window.andapp.saveCustomeLat(latitude);
-                window.andapp.saveCustomeLong(longitude);
-                window.andapp.updateLatLong(latitude, longitude);
-            }
-        }
         window.location.href = "servicePage.html";
     }else{
       //alert("No Category found.");
@@ -226,6 +208,7 @@ $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem
 $('.gpsIcon').on("click", function(){
     window.andapp.updateCurrentLocation();
     window.andapp.saveLocationType("true");
+    locationType = "true";
     startFunc();
 });
 
@@ -247,6 +230,14 @@ autocomplete.addListener('place_changed', function() {
   }else{
     searchedLat = place.geometry.location.lat();
     searchedLong = place.geometry.location.lng();
+    latitude = searchedLat;
+    longitude = searchedLong;
+    window.andapp.saveLocationType("false");
+    window.andapp.saveRecentLocation($("#pac-input").val());
+    window.andapp.saveCustomeLat(latitude);
+    window.andapp.saveCustomeLong(longitude);
+    window.andapp.updateLatLong(latitude, longitude);
+    locationType = "false";
   }
 });
 

@@ -1,6 +1,5 @@
 var servurl = "https://services.within30.com/";     //"https://services.within30.com/"
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
-var key = "AIzaSyAjBEUatDTwvyslQtJYGxNATrh30BJHpH0";
 var latitude, longitude, locationType, userId, services = [];
 
 $('.tabModule').gbTab({
@@ -68,54 +67,18 @@ $(".back").on("click", function(){
  }
 
  var setView = function(data){
-    var pendingSlots = [];
-    var finishedSlots = [];
-    var myTime = moment().format("YYYY-MM-DD HH:mm");
-
-    data.forEach(function(item, index){
-        var appointmentTime = item.selecteddate+" "+item.starttime;
-        if(appointmentTime > myTime){
-            pendingSlots.push(item);
-        }else{
-            finishedSlots.push(item);
-        }
-    });
-
-    pendingSlots.forEach(function(item, index){
-        jQuery.ajax({
-            url: 'https://maps.googleapis.com/maps/api/distancematrix/json?origins='+latitude+','+longitude+'&destinations='+item.destinationLat+','+item.destinationLong+'&key=AIzaSyAjBEUatDTwvyslQtJYGxNATrh30BJHpH0',
-            method: 'GET',
-            success: function (result) {
-                if(result.status === "OK"){
-                   for( var i = 0; i < result.rows[0].elements.length; i++){
-                        if(result.rows[0].elements[i].status === "OK"){
-                            var requiredDistance = (result.rows[0].elements[i].distance.value * 0.000621371).toFixed(0);
-                            //var requiredTime =result.rows[0].elements[i].duration.value/60;
-                            item.destinationDistance = requiredDistance;
-                        }else{
-                            item.destinationDistance = "NA";
-                        }
-                   }
-                }else{
-                    item.destinationDistance = "NA";
-                }
-            },
-            fail: function(error){
-                console.log(error);
-            },
-            async: false
-        });
-    });
+    var pendingSlots = data.pendingSlots;
+    var finishedSlots = data.finishedSlots;
 
     pendingSlots.forEach(function(item, index){
         var temp = "";
         if(item.destinationDistance)
             temp = item.destinationDistance+" miles away";
 
-        if(item.destinationDistance > 55)
-            $(".pendingTab").append('<div class="appointBlock"><div class="contBlock"><div class="contBlockSec"><h3>'+item.companyName+'</h3><p>'+item.selecteddate+' <span>'+item.starttime+'</span></p></div><div class="contBlockSec"><p>'+item.address+'</p></div></div><div class="contBlockBottom"><span>'+temp+'</span></div></div>');
+        if(!item.destinationDistance || item.destinationDistance > 55)
+            $(".pendingTab").append('<div class="appointBlock"><div class="contBlock"><div class="contBlockSec"><h3>'+item.companyName+'</h3><p>'+item.selecteddate+' <span>'+item.starttime+'</span></p></div><div class="contBlockSec"><p>'+(item.address.length > 0 ? item.address : "Address Not Provided")+'</p></div></div><div class="contBlockBottom"><span>'+temp+'</span></div></div>');
         else
-            $(".pendingTab").append('<div class="appointBlock"><div class="contBlock"><div class="contBlockSec"><h3>'+item.companyName+'</h3><p>'+item.selecteddate+' <span>'+item.starttime+'</span></p></div><div class="contBlockSec"><p>'+item.address+'</p></div></div><div class="contBlockBottom"><span>'+temp+'</span><a class="'+item.appointmentId+' '+item.businessType.replace(" ", "")+'" href="#">View on map</a></div></div>');
+            $(".pendingTab").append('<div class="appointBlock"><div class="contBlock"><div class="contBlockSec"><h3>'+item.companyName+'</h3><p>'+item.selecteddate+' <span>'+item.starttime+'</span></p></div><div class="contBlockSec"><p>'+(item.address.length > 0 ? item.address : "Address Not Provided")+'</p></div></div><div class="contBlockBottom"><span>'+temp+'</span><a class="'+item.appointmentId+' '+item.businessType.replace(" ", "")+'" href="#">View on map</a></div></div>');
         $("."+item.appointmentId).on("click", function(){
             var serviceName = $(this).attr("class").split(" ")[1];
             var matchFound = -1;
@@ -175,13 +138,13 @@ $(".back").on("click", function(){
             beforeSend: function (xhr) {
                 xhr.setRequestHeader ("Authorization", "Basic " + btoa(w30Credentials));
             },
-            data: JSON.stringify({"userId":userId}),
+            data: JSON.stringify({"userId":userId, "latitude": latitude, "longitude": longitude, "currentTime": moment().format("YYYY-MM-DD HH:mm")}),
             contentType: "application/json; charset=UTF-8"
         });
         request1.success(function(result) {
            if(result.Status == "Ok"){
                 getServices();
-                setView(result.Data);
+                setView(result);
            }else{
                 $(".popContent h2").text("Get Appointment Status");
                 //$(".popContent strong").text("Failed");
