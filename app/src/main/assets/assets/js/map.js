@@ -696,6 +696,10 @@ var getServices = function (){
         init();
     });
 
+    $(".viewAppointments").on("click", function(){
+            window.location.href = "appointments.html";
+    });
+
     $(".help").on("click", function(){
         $(".imgContainer").show();
         $(".container").hide();

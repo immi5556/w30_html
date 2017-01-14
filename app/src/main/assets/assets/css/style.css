@@ -510,11 +510,17 @@ nav .settings {
 	bottom: 0;
 	background: url(../img/settingsIcon.png) no-repeat center center;
 }
+nav .viewAppointments {
+    position: absolute;
+    width: 60px;
+    bottom: 100px;
+    border-top: 2px solid #4f5771;
+    background: url(../img/viewAppointments1.png) no-repeat center center;
+}
 nav .help {
 	position: absolute;
 	width: 60px;
 	bottom: 50px;
-	border-top: 2px solid #4f5771;
 	background: url(../img/info-icon.png) no-repeat center center;
 }
 .imgContainer img {
