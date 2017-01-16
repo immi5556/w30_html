@@ -135,10 +135,9 @@ var getServices = function (){
     });
     request1.fail(function(jqXHR, textStatus) {
         $('body').removeClass('bodyload');
-        console.log(textStatus);
+        //console.log(textStatus);
     });
 }
-
 $('.currentLocation .fa-pencil').click(function(){
     $(".autoSearch").val('');
     $(".autoSearch").focus();
@@ -157,12 +156,11 @@ $(document).on("click",function(){
         $(".searchbox1").css("margin-bottom", "0px");
 
     searcfield = false;
-})
+});
 $(".autoSearch2").focus(function(){
     searcfield = true;
     $(".searchbox1").css("margin-bottom", "100px");
-})
-
+});
 $('.autoComplete .fa-search').click(function(){
     var matchFound = -1;
     services[0].forEach(function(item, index){
@@ -181,10 +179,10 @@ $('.autoComplete .fa-search').click(function(){
         $(".popContent strong").text("No Category found.");
         $(".pop_up").show();
     }
-})
+});
 $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem5, .categoryItem6, .categoryItem8").on("click", function(e){
     e.stopPropagation();
-
+    $('body').addClass('bodyload');
     var matchFound = -1;
     var textVal = $(this).find("strong").text();
     services[0].forEach(function(item, index){
@@ -197,7 +195,7 @@ $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem
         window.andapp.saveServiceId(serviceId);
         window.location.href = "servicePage.html";
     }else{
-      //alert("No Category found.");
+      $('body').removeClass('bodyload');
       $(".popContent h2").text("Status");
       $(".popContent span").text("");
       $(".popContent strong").text("No Category found.");
@@ -206,6 +204,7 @@ $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem
 });
 
 $('.gpsIcon').on("click", function(){
+    $('body').addClass('bodyload');
     window.andapp.updateCurrentLocation();
     window.andapp.saveLocationType("true");
     locationType = "true";
@@ -252,6 +251,7 @@ var refreshOnForeground = function(){
 var locationChange = function(){}
 
 $(".appointments").on("click", function(){
+    $('body').addClass('bodyload');
     window.location.href = "appointments.html";
 });
 getServices();

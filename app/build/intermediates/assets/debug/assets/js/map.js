@@ -104,7 +104,7 @@ var getServices = function (){
         }
     });
     request1.fail(function(jqXHR, textStatus) {
-        console.log(textStatus);
+        //console.log(textStatus);
     });
 }
 
@@ -300,11 +300,13 @@ var getServices = function (){
                     $(".companyAddr").text(companyAddr);
                     //$(".website").attr("href","https://"+docs[i].subdomain+urlLink);
                     $(".phoneCall").on("click", function(){
+                        $('body').addClass('bodyload');
                         calling = "true";
                         websiteBackButton = true;
                         window.andapp.phoneCall(customers[i].mobile);
                     });
                     $(".website").on("click", function(){
+                        $('body').addClass('bodyload');
                         website = "true";
                         websiteDomain = docs[i].subdomain;
                         websiteBackButton = true;
@@ -364,6 +366,7 @@ var getServices = function (){
                         $(".btn_dir").hide();
                         $(".btn_dirStp").hide();
                         $(".btn_sch").off().on("click", function(){
+                            $('body').addClass('bodyload');
                             bookSlot(subdomain, i, customers[i].nextSlotAt, customers[i].timeZone, customers[i].nextSlotDate);
                         });
                         $(".btn_dir").off().on("click", function(){
@@ -624,6 +627,7 @@ var getServices = function (){
         });
 
         request1.success(function(result) {
+            $('body').removeClass('bodyload');
             if(result.Status == "Ok"){
                 $(".popContent h2").text("Appointment Status");
                 //$(".popContent strong").text("Confirmed");
@@ -677,6 +681,7 @@ var getServices = function (){
             }
         });
         request1.fail(function(jqXHR, textStatus) {
+            $('body').removeClass('bodyload');
             $(".popContent h2").text("Appointment Status");
             //$(".popContent strong").text("Failed");
             $(".popContent span").text("Your request didn't go through. Please try again");
@@ -696,6 +701,11 @@ var getServices = function (){
         init();
     });
 
+    $(".viewAppointments").on("click", function(){
+        $('body').addClass('bodyload');
+        window.location.href = "appointments.html";
+    });
+
     $(".help").on("click", function(){
         $(".imgContainer").show();
         $(".container").hide();
@@ -705,7 +715,7 @@ var getServices = function (){
         map.setCenter({lat:latitude, lng:longitude});
     });
 
-    $(".menuList4, .menuList2, .menuList3, .menuList5, .menuList6, .menuList7").on("click", function(){
+    $(".menuList4, .menuList2, .menuList3, .menuList5, .menuList6, .menuList7, .menuList8").on("click", function(){
         var matchFound = -1;
         var className = $(this).attr('class').split(" ")[1];
         services[0].forEach(function(item, index){
@@ -738,6 +748,7 @@ var getServices = function (){
                     directionsDisplay.setDirections(result);
                 } else{
                     $(".popContent h2").text("Direction Services");
+                    $(".popContent span").text("");
                     $(".popContent strong").text("There seem to be some problem with internet connection.");
                     $(".pop_up").show();
                 }
@@ -837,12 +848,12 @@ var getServices = function (){
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader ("Authorization", "Basic " + btoa(w30Credentials));
                 },
-                data: JSON.stringify({"userId":userid}),
+                data: JSON.stringify({"userId":userid, "latitude": latitude, "longitude": longitude, "currentTime": moment().format("YYYY-MM-DD HH:mm")}),
                 contentType: "application/json; charset=UTF-8"
             });
             request1.success(function(result) {
                if(result.Status == "Ok"){
-                    callback(result.Data);
+                    callback(result);
                }else{
                     $(".popContent h2").text("Get Appointment Status");
                     //$(".popContent strong").text("Failed");
@@ -877,21 +888,14 @@ var getServices = function (){
     }
 
     var refreshOnForeground = function(){
+        $('body').removeClass('bodyload');
         if(calling == "false"){
             location.reload();
         }
         if(website == "true"){
             var pendingSlots = [];
             getAppointments(function(data){
-                var myTime = moment().format("YYYY-MM-DD HH:mm");
-
-                data.forEach(function(item, index){
-                    var appointmentTime = item.selecteddate+" "+item.starttime;
-                    if(appointmentTime > myTime){
-                        pendingSlots.push(item);
-                    }
-                });
-                pendingSlots.forEach(function(item, index){
+                data.pendingSlots.forEach(function(item, index){
                     if(item.subdomain == websiteDomain){
                         $(".shadow").click();
                         location.reload();

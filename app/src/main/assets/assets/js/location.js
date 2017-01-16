@@ -2,6 +2,7 @@ var servurl = "https://services.within30.com/";     //"https://services.within30
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
 
 $('.usegps').on("click", function(){
+    $('body').addClass('bodyload');
     window.andapp.updateCurrentLocation();
     window.andapp.saveLocationType("true");
     window.location.href = "servicePage.html";
@@ -9,6 +10,7 @@ $('.usegps').on("click", function(){
 });
 
 $(".back").on("click", function(){
+    $('body').addClass('bodyload');
     window.location.href = "servicePage.html";
 });
 
@@ -25,10 +27,13 @@ $(".fa-search").on("click", function(e){
 });
 
 var setRecentBlock = function(){
+    $('body').addClass('bodyload');
      var recentSearch = window.andapp.getRecentLocation();
      if(recentSearch){
          $(".recentSearch p").text(recentSearch);
+         $('body').removeClass('bodyload');
          $(".recentSearch").on("click", function(){
+            $('body').addClass('bodyload');
              if (window.andapp){
                 window.andapp.saveLocationType("false");
                 window.andapp.updateLatLong(window.andapp.getCustomeLat(), window.andapp.getCustomeLong());
@@ -36,6 +41,7 @@ var setRecentBlock = function(){
              window.location.href = "servicePage.html";
          });
      }else{
+        $('body').removeClass('bodyload');
         $(".recentSearch p").text("No recent search");
      }
  }
@@ -52,6 +58,7 @@ var setRecentBlock = function(){
      window.alert("No details available for input: '" + place.name + "'");
      return;
    }else{
+    $('body').addClass('bodyload');
      var searchedLat = place.geometry.location.lat();
      var searchedLong = place.geometry.location.lng();
      window.andapp.saveLocationType("false");
@@ -74,6 +81,7 @@ if (window.andapp){
  }
 
  function goBack(){
+    $('body').addClass('bodyload');
      window.history.back();
  }
 

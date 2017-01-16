@@ -8,10 +8,12 @@ $('.tabModule').gbTab({
 })
 
 $(".back").on("click", function(){
+    $('body').addClass('bodyload');
     window.history.back();
 });
 
  var goBack = function(){
+    $('body').addClass('bodyload');
      window.history.back();
  }
 
@@ -21,6 +23,7 @@ $(".back").on("click", function(){
  var locationChange = function(){}
 
  var submitRating = function(appointmentId, rating, subdomain){
+    $('body').addClass('bodyload');
     var request1 = $.ajax({
         url: servurl + "endpoint/api/submitrating",
         type: "POST",
@@ -31,6 +34,7 @@ $(".back").on("click", function(){
         contentType: "application/json; charset=UTF-8"
     });
     request1.success(function(result) {
+        $('body').removeClass('bodyload');
        if(result.Status == "Success"){
             window.andapp.showToast("Thanks for Rating.");
        }else{
@@ -38,6 +42,7 @@ $(".back").on("click", function(){
        }
     });
     request1.fail(function(jqXHR, textStatus) {
+        $('body').removeClass('bodyload');
         $(".popContent h2").text("Submit Rating");
         //$(".popContent strong").text("Failed");
         $(".popContent span").text("Your request didn't go through. Please try again");
@@ -46,7 +51,6 @@ $(".back").on("click", function(){
  }
 
  var getServices = function (){
-     $('body').addClass('bodyload');
      var request1 = $.ajax({
          url: servurl + "endpoint/api/getmyservices",
          type: "POST",
@@ -69,6 +73,12 @@ $(".back").on("click", function(){
  var setView = function(data){
     var pendingSlots = data.pendingSlots;
     var finishedSlots = data.finishedSlots;
+    if(pendingSlots.length == 0){
+        $("#noPending").css("display", "block");
+    }
+    if(finishedSlots.length == 0){
+        $("#noPending").css("display", "noFinish");
+    }
 
     pendingSlots.forEach(function(item, index){
         var temp = "";
@@ -128,6 +138,7 @@ $(".back").on("click", function(){
         }
 
     });
+    $('body').removeClass('bodyload');
  }
 
  var getAppointments = function(){
@@ -146,6 +157,7 @@ $(".back").on("click", function(){
                 getServices();
                 setView(result);
            }else{
+                $('body').removeClass('bodyload');
                 $(".popContent h2").text("Get Appointment Status");
                 //$(".popContent strong").text("Failed");
                 $(".popContent span").text("Something went wrong. Try again");
@@ -153,6 +165,7 @@ $(".back").on("click", function(){
            }
         });
         request1.fail(function(jqXHR, textStatus) {
+            $('body').removeClass('bodyload');
             $(".popContent h2").text("Get Appointment Status");
             //$(".popContent strong").text("Failed");
             $(".popContent span").text("Your request didn't go through. Please try again");
@@ -160,10 +173,12 @@ $(".back").on("click", function(){
         });
      }else{
         alert("Something went wrong. Try again");
+        $('body').removeClass('bodyload');
      }
  }
 
 if(window.andapp){
+    $('body').addClass('bodyload');
      latitude = window.andapp.getLatitude();
      longitude = window.andapp.getLongitude();
      userId = window.andapp.getUserId();

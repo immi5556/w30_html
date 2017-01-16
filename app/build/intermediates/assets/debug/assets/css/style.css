@@ -174,6 +174,9 @@ html {
 	padding: 0 0px;
 	position: relative;
 }
+.container.tabModule{
+    position: inherit;
+}
 .catagory {
 	padding-top: 30px;
 	box-sizing: border-box;
@@ -447,7 +450,7 @@ nav ul {
     bottom: 0;
     overflow-y: auto;
     top: 0;
-    margin-bottom: 50px;
+    margin-bottom: 150px;
 }
 nav li {
 	list-style: none;
@@ -510,11 +513,17 @@ nav .settings {
 	bottom: 0;
 	background: url(../img/settingsIcon.png) no-repeat center center;
 }
+nav .viewAppointments {
+    position: absolute;
+    width: 60px;
+    bottom: 100px;
+    border-top: 2px solid #4f5771;
+    background: url(../img/viewAppointments1.png) no-repeat center center;
+}
 nav .help {
 	position: absolute;
 	width: 60px;
 	bottom: 50px;
-	border-top: 2px solid #4f5771;
 	background: url(../img/info-icon.png) no-repeat center center;
 }
 .imgContainer img {
@@ -1318,7 +1327,7 @@ display: none;
 	left: 50%;
 	top: 50%;
 	margin: -23px 0 0 -23px;
-	z-index: 9;
+	z-index: 9999999;
 	display:none;
 }
 .bodyload .loadingShadow ,.bodyload .loadingbar{
@@ -1332,6 +1341,7 @@ display: none;
 	right: 0;
 	bottom: 0;
 	background: rgba(0,0,0,0.8);
+	z-index: 99999;
 }
 
 .loadingCircle {
@@ -1341,6 +1351,7 @@ display: none;
     padding: 10px;
     border: 7px dashed #607D8B;
     border-radius: 100%;
+    z-index: 999999;
 }
 .loadingbar .loadingCircle {
 	animation: loadingD 1.5s .3s cubic-bezier(.17,.37,.43,.67) infinite;
@@ -1410,12 +1421,12 @@ display: none;
 .tabContent {
     display: none;
     padding: 0 15px;
-
 }
 .tabContent.active {
     display: block;
 }
-.appointBlock {
+
+.appointBlock , .noPendingApp{
     border: 2px solid #39425f;
     border-left: 6px solid #39425f;
     padding: 15px 5px 10px;
@@ -1423,6 +1434,19 @@ display: none;
     background: #fff;
     overflow: hidden;
     margin-top: 20px;
+}
+.noPendingApp {
+    display: none;
+    position: absolute;
+    top: 50%;
+    width: 160px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    margin-top: -20px;
+    left: 50%;
+    margin-left: -80px;
+    padding: 0;
 }
 .contBlock {
     clear: both;

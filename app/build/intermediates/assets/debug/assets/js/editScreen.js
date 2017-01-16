@@ -133,6 +133,7 @@ var updateData = function(type){
 
 	    request1.success(function(result) {
 	    	if(result.Status == "Ok"){
+	    	    $('body').removeClass('bodyload');
                 if (window.andapp){
                     window.andapp.postJson('persistuser', udata);
                     window.andapp.showToast("Updated Successfully...");
@@ -144,11 +145,13 @@ var updateData = function(type){
 	        console.log(textStatus);
 	    });
 	}else{
+	    $('body').removeClass('bodyload');
 		console.log("fill all fields");
 	}
 }
 
 $(".updt").on("click", function(){
+    $('body').addClass('bodyload');
 	updateData("updateenduser");
 });
 
@@ -157,10 +160,12 @@ $(".repeat").on("click", function(){
 });
 $(".back").on("click", function(){
 	/*window.location.href = "servicePage.html";*/
+	$('body').addClass('bodyload');
 	history.back();
 });
 
 function goBack(){
+    $('body').addClass('bodyload');
     history.back();
 }
 

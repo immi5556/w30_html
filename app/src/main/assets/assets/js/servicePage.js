@@ -20,13 +20,15 @@ $('.serviceSection').on('swipeup',function(){
 } );
 
 $(".user").on("click", function(){
+    $('body').addClass('bodyload');
 	window.location.href = "editScreen.html";
 });
-
 $(".menuList1").on("click", function(){
+    $('body').addClass('bodyload');
 	window.location.href = "selectCatagory.html";
 });
 $(".settings").on("click", function(){
+    $('body').addClass('bodyload');
 	window.location.href = "location.html";
 });
 /*$(".menuList2, .menuList3, .menuList5, .menuList6, .menuList7").on("click", function(){
