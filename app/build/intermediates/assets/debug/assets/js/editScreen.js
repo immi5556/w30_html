@@ -142,6 +142,7 @@ var updateData = function(type){
 	    	}
 	    });
 	    request1.fail(function(jqXHR, textStatus) {
+	        $('body').removeClass('bodyload');
 	        console.log(textStatus);
 	    });
 	}else{

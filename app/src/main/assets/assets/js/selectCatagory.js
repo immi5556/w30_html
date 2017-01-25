@@ -9,6 +9,7 @@ var serviceId = "";
 var locationType;
 var recentSearch;
 var currentLocationName, gotUserLocation, customeLocationName;
+var country = "";
 
 var circleMenu = function(){
     var classesExist = $(".menu-button").attr("class").split(" ");
@@ -56,6 +57,10 @@ function getLocation(lat, lng) {
             else
                 currentLocationName = null;
           }
+          if (address_component.types[0] == "country") {
+              country = address_component.address_components[0].long_name;
+              window.andapp.saveCountryName(country);
+            }
         });
         if($("#pac-input").val().length == 0){
             $(".popContent h2").text("Get Location");

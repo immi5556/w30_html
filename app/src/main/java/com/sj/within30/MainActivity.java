@@ -411,6 +411,21 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         }
 
         @JavascriptInterface
+        public String getCountryName() {
+            try {
+                return SharedStorage.getCountryName();
+            } catch (Exception ex) {}
+            return null;
+        }
+
+        @JavascriptInterface
+        public void saveCountryName(String value) {
+            try {
+                SharedStorage.saveCountryName(value);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
         public String getRecentLocation() {
             try {
                 return SharedStorage.getStoredRecentLocation();

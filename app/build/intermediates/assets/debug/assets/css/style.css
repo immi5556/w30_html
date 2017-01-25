@@ -1273,6 +1273,9 @@ z-index: -1;
 line-height: 50px;
 text-align: center;
 }
+#sliderOutput3.active::after {
+    content: 'KM';
+}
 .range-slider-active-segment::before {
 position: absolute;
 left: -7px;

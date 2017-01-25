@@ -99,4 +99,8 @@ public class SharedStorage {
     public static void saveOverlayState(String value) { saveValues("Overlay", value); }
 
     public static String getOverlayState() { return getValue("Overlay");  }
+
+    public static void saveCountryName(String value) { saveValues("Country", value); }
+
+    public static String getCountryName() { return getValue("Country");  }
 }
