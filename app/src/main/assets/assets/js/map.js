@@ -431,9 +431,12 @@ var getServices = function (){
     changeCircle();
 
     milesValue = 30;
-    if(country == "India")
+    if(country == "India"){
         milesValue = 18.6;
-    $('.range-slider.slideMil').foundation('slider', 'set_value', (milesValue*1.60934).toFixed(0));
+        $('.range-slider.slideMil').foundation('slider', 'set_value', (milesValue*1.60934).toFixed(0));
+    }else{
+        $('.range-slider.slideMil').foundation('slider', 'set_value', milesValue);
+    }
     minutesValue = 30;
     $('.range-slider.slideMin').foundation('slider', 'set_value', minutesValue);
     $("body").on('DOMSubtreeModified', "span#sliderOutput2", function () {
@@ -660,7 +663,7 @@ var getServices = function (){
                     markers[i].setIcon(localImagePath+"premiumCheckedInMarker2.png");
                 else
                     markers[i].setIcon(localImagePath+"checkedInMarker2.png");
-                
+
                 socketio.emit("newAppointment", result.Data);
                 var timeout = calculateDifference(timeZone, result);
                 var index = bookedSlotAt.length-1;
@@ -808,7 +811,7 @@ var getServices = function (){
                     else
                         icon = "greenMarker2";
                 }
-                
+
                 markers[index].setIcon(localImagePath+""+icon+".png");
                 if(oldMarker == index && $(".serviceSection").height() > 0){
                     itemFound = jQuery.inArray( subDomains[index], bookedSlotSubdomain );
@@ -818,7 +821,7 @@ var getServices = function (){
                         $(".slotTime").text("Next Slot At: "+customers[index].nextSlotAt);
                     }
                     markers[index].setIcon(markers[index].icon.substring(0, markers[index].icon.length-5)+"1.png");
-                }   
+                }
             }
         });
         request1.fail(function(jqXHR, textStatus) {
