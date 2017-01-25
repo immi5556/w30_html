@@ -299,7 +299,7 @@ var getServices = function (){
                         starWidth: "10px"
                     });
                     $(".rating span").text("("+ratingCount+")");
-                    if(country == "India" || country == "India#")
+                    if(country == "India")
                         $(".milesVal").text((customers[i].destinationDistance*1.60934).toFixed(2)+" KMs");
                     else
                         $(".milesVal").text(customers[i].destinationDistance.toFixed(2)+" Miles");
@@ -431,7 +431,7 @@ var getServices = function (){
     changeCircle();
 
     milesValue = 30;
-    if(country == "India" || country == "India#")
+    if(country == "India")
         milesValue = 18.6;
     $('.range-slider.slideMil').foundation('slider', 'set_value', (milesValue*1.60934).toFixed(0));
     minutesValue = 30;
@@ -475,13 +475,13 @@ var getServices = function (){
                 }else{
                     milesValue = parseInt($(this).text());
                 }
-                if(country == "India" || country == "India#")
+                if(country == "India")
                     milesValue = (milesValue*0.621371).toFixed(0);
                 milesSlide(milesValue);
             }
         }
         if($(this).text() == "NaN"){
-            if(country == "India" || country == "India#"){
+            if(country == "India"){
                 $(this).text((milesValue*1.60934).toFixed(0));
             }else
                 $(this).text(milesValue);
@@ -840,7 +840,6 @@ var getServices = function (){
                 longitude = Number(window.andapp.getCustomeLong());
             }
             country = window.andapp.getCountryName();
-            console.log(country);
             if(country == "India"){
                 $("#sliderOutput3").addClass("active");
             }

@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Jan 25 14:01:50 IST 2017
+#Wed Jan 25 14:37:14 IST 2017
 20.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\res\\resources-debug.ap_
 143.base=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\assets\\debug
 439.set=ASSET

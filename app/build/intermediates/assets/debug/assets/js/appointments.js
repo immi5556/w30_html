@@ -1,6 +1,7 @@
 var servurl = "https://services.within30.com/";     //"https://services.within30.com/"
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
 var latitude, longitude, locationType, userId, services = [];
+var country = "";
 
 $('.tabModule').gbTab({
     tabUL:".tabMenu",
@@ -82,9 +83,12 @@ $(".back").on("click", function(){
 
     pendingSlots.forEach(function(item, index){
         var temp = "";
-        if(item.destinationDistance)
-            temp = item.destinationDistance+" miles away";
-
+        if(item.destinationDistance){
+            if(country == "India")
+                temp = (item.destinationDistance*1.60934).toFixed(2)+" kms away";
+            else
+                temp = item.destinationDistance+" miles away";
+        }
         if(!item.destinationDistance || item.destinationDistance > 55)
             $(".pendingTab").append('<div class="appointBlock"><div class="contBlock"><div class="contBlockSec"><h3>'+item.companyName+'</h3><p>'+item.selecteddate+' <span>'+item.starttime+'</span></p></div><div class="contBlockSec"><p>'+(item.address.length > 0 ? item.address : "Address Not Provided")+'</p></div></div><div class="contBlockBottom"><span>'+temp+'</span></div></div>');
         else
@@ -183,6 +187,7 @@ if(window.andapp){
      longitude = window.andapp.getLongitude();
      userId = window.andapp.getUserId();
      locationType = window.andapp.getLocationType();
+     country = window.andapp.getCountryName();
      if(!locationType || locationType == "false"){
          gotUserLocation = false;
          if (window.andapp){
