@@ -843,8 +843,13 @@ var getServices = function (){
                 longitude = Number(window.andapp.getCustomeLong());
             }
             country = window.andapp.getCountryName();
-            if(country == "India"){
+            if(country == "India" || country == "India#"){
                 $("#sliderOutput3").addClass("active");
+                $(".menuList6").show();
+                $(".menuList8").hide();
+            }else {
+                $(".menuList8").show();
+                $(".menuList6").hide();
             }
             email = window.andapp.getEmail();
             mobilenumber = window.andapp.getMobile();

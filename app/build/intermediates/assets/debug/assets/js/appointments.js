@@ -72,8 +72,8 @@ $(".back").on("click", function(){
  }
 
  var setView = function(data){
-    var pendingSlots = data.pendingSlots;
-    var finishedSlots = data.finishedSlots;
+    var pendingSlots = data.pendingSlots.reverse();
+    var finishedSlots = data.finishedSlots.reverse();
     if(pendingSlots.length == 0){
         $("#noPending").css("display", "block");
     }

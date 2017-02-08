@@ -62,6 +62,13 @@ function getLocation(lat, lng) {
               window.andapp.saveCountryName(country);
             }
         });
+        if(country == "India"){
+            $(".categoryItem4 .cirleIcon").css("src", "../../content/images/mobileImages/catagoryIcon4-hover.png");
+            $(".categoryItem4 strong").text("Photography");
+        } else {
+            $(".categoryItem4 .cirleIcon").css("src", "../../content/images/mobileImages/catagoryIcon01-hover.png");
+            $(".categoryItem4 strong").text("Attorneys");
+        }
         if($("#pac-input").val().length == 0){
             $(".popContent h2").text("Get Location");
             $(".popContent span").text("");
