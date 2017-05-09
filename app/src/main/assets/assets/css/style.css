@@ -330,6 +330,11 @@ html {
 .categoryItem4 .cirleIcon {
 	background: url(../img/catagoryIcon4-hover.png) no-repeat center center;
 }
+.categoryItem4 .cirleIcon.attrny{
+	background: url(../img/catagoryIcon01-hover.png) no-repeat center center;
+	background-size: 20px;
+    border: 1px dashed #39425f;
+}
 /*.categoryItem4:hover .cirleIcon {
 	background: url(../img/catagoryIcon4-hover.png) no-repeat center center;
 }*/
