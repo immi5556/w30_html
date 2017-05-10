@@ -41,7 +41,6 @@ var successFunction = function(){
         getLocation(latitude, longitude);
 }
 var errorFunction = function(){
-	//alert("Not able to retrieve your location. Check location settings.");
 	$(".popContent h2").text("Get Location");
     $(".popContent span").text("");
     $(".popContent strong").text("Not able to retrieve your location. Check location settings.");
@@ -54,27 +53,29 @@ function getLocation(lat, lng) {
     if (status == google.maps.GeocoderStatus.OK) {
       if (results[1]) {
         var arrAddress = results;
-        $.each(arrAddress, function(i, address_component) {
-          if (address_component.types[0] == "political" || address_component.types[0] == "locality") {
-            $("#pac-input").val(address_component.address_components[0].long_name);
-            $('body').removeClass('bodyload');
-            circleMenu();
-            if(gotUserLocation)
-                currentLocationName = address_component.address_components[0].long_name;
-            else
-                currentLocationName = null;
-          }
-          if (address_component.types[0] == "country") {
-              country = address_component.address_components[0].long_name;
-              window.andapp.saveCountryName(country);
-            }
-        });
-        alert("-------"+country);
+        if(arrAddress && arrAddress[0].address_components){
+            $.each(arrAddress[0].address_components, function(i, address_component){
+                if (address_component.types[0] == "political" || address_component.types[0] == "locality") {
+                    $("#pac-input").val(address_component.address_components[0].long_name);
+                    $('body').removeClass('bodyload');
+                    circleMenu();
+                    if(gotUserLocation)
+                        currentLocationName = address_component.address_components[0].long_name;
+                    else
+                        currentLocationName = null;
+                }
+                if (address_component.types[0] == "country") {
+                    country = address_component.address_components[0].long_name;
+                    window.andapp.saveCountryName(country);
+                    alert(country);
+                }
+            })
+        }
+        alert(country);
         if(country == "India"){
             $(".categoryItem4 .cirleIcon").removeClass("attrny");
             $(".categoryItem4 strong").text("Photography");
         } else {
-            alert("-------");
             $(".categoryItem4 .cirleIcon").addClass("attrny");
             $(".categoryItem4 strong").text("Attorneys");
         }
@@ -194,7 +195,6 @@ $('.autoComplete .fa-search').click(function(){
         window.andapp.saveServiceId(serviceId);
         window.location.href = "servicePage.html";
     }else{
-        //alert("No Category found.");
         $(".popContent h2").text("Get Services");
         $(".popContent span").text("");
         $(".popContent strong").text("No Category found.");
@@ -234,7 +234,6 @@ $('.gpsIcon').on("click", function(){
         $(".categoryItem4 .cirleIcon").removeClass("attrny");
         $(".categoryItem4 strong").text("Photography");
     } else {
-        alert("-------");
         $(".categoryItem4 .cirleIcon").addClass("attrny");
         $(".categoryItem4 strong").text("Attorneys");
     }
@@ -249,7 +248,6 @@ autocomplete.addListener('place_changed', function() {
   if (!place.geometry) {
     // User entered the name of a Place that was not suggested and
     // pressed the Enter key, or the Place Details request failed.
-    //window.alert("No details available for input: '" + place.name + "'");
     $(".popContent h2").text("Change Location");
     $(".popContent span").text("");
     $(".popContent strong").text("No details available for input: '" + place.name + "'");

@@ -53,21 +53,25 @@ function getLocation(lat, lng) {
     if (status == google.maps.GeocoderStatus.OK) {
       if (results[1]) {
         var arrAddress = results;
-        $.each(arrAddress, function(i, address_component) {
-          if (address_component.types[0] == "political" || address_component.types[0] == "locality") {
-            $("#pac-input").val(address_component.address_components[0].long_name);
-            $('body').removeClass('bodyload');
-            circleMenu();
-            if(gotUserLocation)
-                currentLocationName = address_component.address_components[0].long_name;
-            else
-                currentLocationName = null;
-          }
-          if (address_component.types[0] == "country") {
-              country = address_component.address_components[0].long_name;
-              window.andapp.saveCountryName(country);
-            }
-        });
+        if(arrAddress && arrAddress[0].address_components){
+            $.each(arrAddress[0].address_components, function(i, address_component){
+                if (address_component.types[0] == "political" || address_component.types[0] == "locality") {
+                    $("#pac-input").val(address_component.address_components[0].long_name);
+                    $('body').removeClass('bodyload');
+                    circleMenu();
+                    if(gotUserLocation)
+                        currentLocationName = address_component.address_components[0].long_name;
+                    else
+                        currentLocationName = null;
+                }
+                if (address_component.types[0] == "country") {
+                    country = address_component.address_components[0].long_name;
+                    window.andapp.saveCountryName(country);
+                    alert(country);
+                }
+            })
+        }
+        alert(country);
         if(country == "India"){
             $(".categoryItem4 .cirleIcon").removeClass("attrny");
             $(".categoryItem4 strong").text("Photography");
