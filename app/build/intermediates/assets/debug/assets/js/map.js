@@ -1,6 +1,7 @@
 var servurl = "https://services.within30.com/";     //"https://services.schejule.com:9095/"
 var sockurl = "https://socket.within30.com/";       //"https://socket.schejule.com:9090/"
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
+var geocoder = new google.maps.Geocoder();
 var serviceId = "";
 var serviceName = "";
 var urlLink = ".within30.com/";
@@ -829,21 +830,20 @@ var getServices = function (){
         });
     }
     $(document).foundation().foundation('joyride', 'start');
-    var init = function(){
-        if(window.andapp.getOverlayState() == "false"){
-            $(".imgContainer").show();
-            $(".container").hide();
-            window.andapp.saveOverlayState("true");
-        }else{
-            if(window.andapp.getLocationType() == "true" ){
-                latitude = Number(window.andapp.getLatitude());
-                longitude = Number(window.andapp.getLongitude());
-            }else{
-                latitude = Number(window.andapp.getCustomeLat());
-                longitude = Number(window.andapp.getCustomeLong());
+    function getLocation(lat, lng) {
+      var latlng = new google.maps.LatLng(lat, lng);
+      geocoder.geocode({latLng: latlng}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[1]) {
+            var arrAddress = results;
+            if(arrAddress && arrAddress[0].address_components){
+                $.each(arrAddress[0].address_components, function(i, address_component){
+                    if (address_component.types[0] == "country") {
+                        country = address_component.long_name;
+                    }
+                })
             }
-            country = window.andapp.getCountryName();
-            if(country == "India" || country == "India#"){
+            if(country == "India" || country == "India#" || country.toLowerCase().indexOf("india") > -1){
                 $("#sliderOutput3").addClass("active");
                 $(".menuList6").show();
                 $(".menuList8").hide();
@@ -851,6 +851,36 @@ var getServices = function (){
                 $(".menuList8").show();
                 $(".menuList6").hide();
             }
+          } else {
+            $(".popContent h2").text("Get Location");
+            $(".popContent span").text("");
+            $(".popContent strong").text("Not able to get your location. Please restart the app.");
+            $(".pop_up").show();
+          }
+        } else {
+            $(".popContent h2").text("Get Location");
+            $(".popContent span").text("");
+            $(".popContent strong").text("Not able to get your location. Please restart the app.");
+            $(".pop_up").show();
+        }
+      });
+    }
+
+    var init = function(){
+        if(window.andapp.getOverlayState() == "false"){
+            $(".imgContainer").show();
+            $(".container").hide();
+            window.andapp.saveOverlayState("true");
+        }else{
+            country = window.andapp.getCountryName();
+            if(window.andapp.getLocationType() == "true" ){
+                latitude = Number(window.andapp.getLatitude());
+                longitude = Number(window.andapp.getLongitude());
+            }else{
+                latitude = Number(window.andapp.getCustomeLat());
+                longitude = Number(window.andapp.getCustomeLong());
+            }
+            getLocation(latitude, longitude);
             email = window.andapp.getEmail();
             mobilenumber = window.andapp.getMobile();
             userid = window.andapp.getUserId();

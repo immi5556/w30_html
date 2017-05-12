@@ -740,7 +740,7 @@ nav a {
 	bottom: 0;
 	right: 0;
 	display: none;
-	z-index: 999;
+	z-index: 9999999;
 	background: rgba(0,0,0,0.5);
 	cursor: pointer;
 }
