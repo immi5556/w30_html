@@ -312,10 +312,12 @@ var getServices = function (){
                             $(".phoneCall").removeClass("disable");
 
                         $(".phoneCall").on("click", function(){
-                            $('body').addClass('bodyload');
-                            calling = "true";
-                            websiteBackButton = true;
-                            window.andapp.phoneCall(customers[i].mobile);
+                            if(!$(".phoneCall").hasClass("disable")){
+                                $('body').addClass('bodyload');
+                                calling = "true";
+                                websiteBackButton = true;
+                                window.andapp.phoneCall(customers[i].mobile);
+                            }
                         });
                     }else{
                         $(".phoneCall").addClass("disable");
