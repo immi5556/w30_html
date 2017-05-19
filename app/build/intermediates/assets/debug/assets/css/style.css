@@ -465,7 +465,7 @@ nav a {
 	height: 50px;
 }
 .menuList1 {
-	background: url(../img/cata-menuList1.png) no-repeat center center;
+	background: url(../img/cata-menuList1-hover.png) no-repeat center center;
 }
 .menuList1:hover,.menuList1.active {
 	background: #cb2027 url(../img/cata-menuList1-hover.png) no-repeat center center;
@@ -621,6 +621,9 @@ nav a {
 	padding: 5px 0 3px;
 	color: #cb2027;
 	font:400 18px/30px 'Droid Serif', serif;
+}
+.phoneCall.disable {
+    opacity: 0.5;
 }
 .serviceRow1 {
 	clear: both;
@@ -1496,20 +1499,28 @@ display: none;
     display:block;
     padding: 0 0 7px;
 }
+.ratingSec {
+    width: 156px;
+    margin: auto;
+    position: relative;
+    text-align: center;
+}
 .straRating .ratingBlock {
     text-align: center;
     width: 90px;
     position: relative;
-    margin: auto;
+    display: inline-block;
+    margin: 0;
 }
 .submitRating {
     display: none;
     cursor: pointer;
     position: absolute;
+    right:0;
+    top: 0;
     background:url(../img/appointmentSubmit.png) no-repeat center right;
     width: 56px;
-    height: 30px;
-    top: -11px;
+    height: 16px;
     background-size: 16px;
 }
 .contBlockBottom a {

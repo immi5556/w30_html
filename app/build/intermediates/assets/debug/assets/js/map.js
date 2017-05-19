@@ -306,12 +306,20 @@ var getServices = function (){
                         $(".milesVal").text(customers[i].destinationDistance.toFixed(2)+" Miles");
                     $(".companyAddr").text(companyAddr);
                     //$(".website").attr("href","https://"+docs[i].subdomain+urlLink);
-                    $(".phoneCall").on("click", function(){
-                        $('body').addClass('bodyload');
-                        calling = "true";
-                        websiteBackButton = true;
-                        window.andapp.phoneCall(customers[i].mobile);
-                    });
+
+                    if(customers[i].mobile){
+                        if($(".phoneCall").hasClass("disable"))
+                            $(".phoneCall").removeClass("disable");
+
+                        $(".phoneCall").on("click", function(){
+                            $('body').addClass('bodyload');
+                            calling = "true";
+                            websiteBackButton = true;
+                            window.andapp.phoneCall(customers[i].mobile);
+                        });
+                    }else{
+                        $(".phoneCall").addClass("disable");
+                    }
                     $(".website").on("click", function(){
                         $('body').addClass('bodyload');
                         website = "true";
