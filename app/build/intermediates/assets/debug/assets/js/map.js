@@ -36,7 +36,7 @@ directionsDisplay.setOptions( { suppressMarkers: true, preserveViewport: true } 
 var directionStop = 1;
 var websiteBackButton = false;
 var country = "";
-
+var callAbility = window.andapp.canMakeCalls()
 function goBack(){
     window.history.back();
     if(websiteBackButton)
@@ -110,7 +110,7 @@ var getServices = function (){
     });
 }
 
-    function getCustomerAPICall(lat, lng, miles, min){        
+    function getCustomerAPICall(lat, lng, miles, min){
         miles = Number(miles);
         min = Number(min);
         var request1 = $.ajax({
@@ -265,7 +265,7 @@ var getServices = function (){
                         var markerIcon = markers[oldMarker].icon;
                         markers[oldMarker].setIcon(markerIcon.substring(0, markerIcon.length-5)+"2.png");
                     }
-                    oldMarker = i;                 
+                    oldMarker = i;
                     var markerIcon = marker.icon;
                     marker.setIcon(markerIcon.substring(0, markerIcon.length-5)+"1.png");
                     var companyAddr = "";
@@ -284,10 +284,10 @@ var getServices = function (){
                     var rating = 0, ratingCount = 0;
                     if(customers[i].rating)
                         rating = customers[i].rating.toFixed(2);
-                    
+
                     if(customers[i].ratingCount)
                         ratingCount = customers[i].ratingCount;
-                    
+
                     if(companyAddr){
                         companyAddr = companyAddr.substring(0, companyAddr.length-2);
                     }else{
@@ -308,17 +308,27 @@ var getServices = function (){
                     //$(".website").attr("href","https://"+docs[i].subdomain+urlLink);
 
                     if(customers[i].mobile){
-                        if($(".phoneCall").hasClass("disable"))
-                            $(".phoneCall").removeClass("disable");
+                        $(".companyCntc").text(customers[i].mobile);
+                        if(callAbility){
+                            $(".cntcLi").hide();
+                            if($(".phoneCall").hasClass("disable"))
+                                $(".phoneCall").removeClass("disable");
 
-                        $(".phoneCall").on("click", function(){
-                            $('body').addClass('bodyload');
-                            calling = "true";
-                            websiteBackButton = true;
-                            window.andapp.phoneCall(customers[i].mobile);
-                        });
+                            $(".phoneCall").on("click", function(){
+                                if(!$(".phoneCall").hasClass("disable")){
+                                    $('body').addClass('bodyload');
+                                    calling = "true";
+                                    websiteBackButton = true;
+                                    window.andapp.phoneCall(customers[i].mobile);
+                                }
+                            });
+                        }else{
+                            $(".phoneCall").addClass("disable");
+                            $(".cntcLi").show();
+                        }
                     }else{
                         $(".phoneCall").addClass("disable");
+                        $(".cntcLi").hide();
                     }
                     $(".website").on("click", function(){
                         $('body').addClass('bodyload');
@@ -656,10 +666,17 @@ var getServices = function (){
             if(result.Status == "Ok"){
                 $(".popContent h2").text("Appointment Status");
                 //$(".popContent strong").text("Confirmed");
-                if(result.Data.selecteddate == moment.tz(abbrs[timeZone]).format("YYYY-MM-DD"))
-                    $(".popContent span").text("See you At "+result.startTime);
-                else
-                    $(".popContent span").text("See you At "+moment(result.Data.selecteddate).format("MM/DD")+" "+result.startTime);
+                if(result.Data.selecteddate == moment.tz(abbrs[timeZone]).format("YYYY-MM-DD")){
+                    if(customers[i].autoAcknowledge)
+                        $(".popContent span").text("See you At "+result.startTime);
+                    else
+                        $(".popContent span").text("Your Appointment at: "+result.startTime+" is pending. The business will confirm your appointment shortly.");
+                }else{
+                    if(customers[i].autoAcknowledge)
+                        $(".popContent span").text("See you At "+moment(result.Data.selecteddate).format("MM/DD")+" "+result.startTime);
+                    else
+                        $(".popContent span").text("Your Appointment at: "+moment(result.Data.selecteddate).format("MM/DD")+" "+result.startTime+" is pending. The business will confirm your appointment shortly.");
+                }
                 $(".pop_up").show();
                 $(".btn_sch").hide();
                 $(".btn_dir").show();

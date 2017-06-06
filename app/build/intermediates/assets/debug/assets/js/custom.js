@@ -72,9 +72,16 @@ var Wh = $(window).height() - 45;
 $('#map').height(Wh);
 
 $('.directionArrowTop').on('click',function(){
+	var reqHeight = $('.serviceCont').outerHeight()+$('.serviceSection').outerHeight();
+    	if( reqHeight > 330){
+		reqHeight = reqHeight+20+"px"
+    	}else{
+		reqHeight = '330px';
+    	}
 	$('.serviceSection').animate({
-		height:'330px'
+		height:reqHeight
 	},500);
+	
 	$('.directionArrowTop').hide();
 	$('.directionArrowBottom').show();
 	$('.shadow').show();

@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,6 +20,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         }
         myBrowser.addJavascriptInterface(new AndroidBridge(self), "andapp");
         myBrowser.setWebChromeClient(new MyJavaScriptChromeClient());
-        
+
         myBrowser.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -238,6 +240,18 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
                     //SharedStorage.saveN(data.get('notifications'));
                 }
             } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public boolean canMakeCalls(){
+            TelephonyManager tm= (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+            if(tm.getPhoneType()==TelephonyManager.PHONE_TYPE_NONE){
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         @JavascriptInterface
