@@ -5,33 +5,40 @@
     density="xxhdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="1226374774637872"
+    timestamp="867510984609700"
     token="2616879224624965845"
-    verifier="FULL_BUILD_REQUESTED" >
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="7649" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="1948" />
+        duration="0" />
     <task
         name="verifier"
-        duration="489" />
+        duration="0" />
 
     <artifact
-        location="E:\vamis\Android\w30_html\app\build\outputs\apk\app-debug.apk"
-        type="MAIN" />
+        location="E:\vamis\Android\w30_html\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
+        type="RESOURCES" />
 
     <build
-        timestamp="1226374774637872"
+        timestamp="865500154336924"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="E:\vamis\Android\w30_html\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
+    </build>
+    <build
+        timestamp="867510984609700"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="E:\vamis\Android\w30_html\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
+            type="RESOURCES" />
     </build>
 
 </instant-run>

@@ -629,6 +629,9 @@ nav a {
 .phoneCall.disable {
     opacity: 0.5;
 }
+.website.disable {
+    opacity: 0.5;
+}
 .serviceRow1 {
     clear: both;
     padding: 12px 0 0 0;
@@ -699,14 +702,14 @@ nav a {
     border: none;
     background: none;
 }
-.btn_sch, .btn_dir, .btn_dirStp {
+.btn_sch, .btn_dir, .btn_dirStp, .btn_cnt {
     display: block;
     padding: 0 15px;
     margin: 20px auto 0;
     height: 40px;
     color: #fff;
     border: none;
-    max-width: 170px;
+    width: 170px;
     border-radius: 8px;
     cursor: pointer;
     font: 400 17px/40px 'Droid Serif', serif;

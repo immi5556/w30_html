@@ -1,5 +1,5 @@
-var servurl = "https://services.within30.com/";     //"https://services.schejule.com:9095/"
-var sockurl = "https://socket.within30.com/";       //"https://socket.schejule.com:9090/"
+var servurl = "https://services.schejule.com:9095/";     //"https://services.within30.com/"
+var sockurl = "https://socket.schejule.com:9090/";       //"https://socket.within30.com/"
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
 var geocoder = new google.maps.Geocoder();
 var serviceId = "";
@@ -183,6 +183,30 @@ var getServices = function (){
         getCustomerAPICall(latitude, longitude, milesValue, minutesValue);*/
     }
 
+    function notifyUser(guid, mobile, email){
+        var data = {
+            guid: guid,
+            email: email,
+            mobile: mobile
+        };
+        var request1 = $.ajax({
+            url: servurl + "endpoint/notifyUser",
+            type: "POST",
+
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "Basic " + btoa(w30Credentials));
+            },
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=UTF-8"
+        });
+
+        request1.success(function(result) {
+
+        });
+        request1.fail(function(jqXHR, textStatus) {
+
+        });
+    }
     var loadMap = function(docs){
         subDomains = [];
         customers = docs;
@@ -211,8 +235,12 @@ var getServices = function (){
             var myLatLng = {lat: docs[i].geo.coordinates[1], lng: docs[i].geo.coordinates[0]}
             var icon;
             sliderTime = moment().tz(abbrs[docs[i].timeZone]).add(minutesValue, "minutes").format("HH:mm");
-            itemFound = jQuery.inArray( docs[i].subdomain, bookedSlotSubdomain );
-            if(docs[i].slotBookedAt.length){
+            if(docs[i].subdomain.length > 0){
+                itemFound = jQuery.inArray( docs[i].subdomain, bookedSlotSubdomain );
+            }else{
+                itemFound = -1;
+            }
+            if(docs[i].slotBookedAt && docs[i].slotBookedAt.length){
                 if(docs[i].premium)
                     icon = "premiumCheckedInMarker2";
                 else
@@ -233,16 +261,21 @@ var getServices = function (){
                 else
                     icon = "greenMarker2";
             }
-
+            if(icon.length == 0)
+                icon = "redMarker2";
             var marker = new google.maps.Marker({
                 position: myLatLng,
                 map: map,
                 title: docs[i].fullName,
                 icon: localImagePath+""+icon+".png"
             });
-            var itemFound = jQuery.inArray( docs[i].subdomain, bookedSlotSubdomain );
+            if(docs[i].subdomain.length > 0){
+                itemFound = jQuery.inArray( docs[i].subdomain, bookedSlotSubdomain );
+            }else{
+                itemFound = -1;
+            }
             if(docs[i].destinationDistance > milesValue){
-                if(docs[i].slotBookedAt.length || itemFound != -1)
+                if(docs[i].slotBookedAt && docs[i].slotBookedAt.length || itemFound != -1)
                     marker.setVisible(true);
                 else
                     marker.setVisible(false);
@@ -293,7 +326,11 @@ var getServices = function (){
                     }else{
                         companyAddr = "Sorry Address Not Provided."
                     }
-                    var itemFound = jQuery.inArray( customers[i].subdomain, bookedSlotSubdomain );
+                    if(customers[i].subdomain.length > 0){
+                        itemFound = jQuery.inArray( customers[i].subdomain, bookedSlotSubdomain );
+                    }else{
+                        itemFound = -1;
+                    }
                     $(".serviceHead h2").text(customers[i].fullName);
                     $("#rateYo").rateYo({
                         rating: rating,
@@ -330,14 +367,7 @@ var getServices = function (){
                         $(".phoneCall").addClass("disable");
                         $(".cntcLi").hide();
                     }
-                    $(".website").on("click", function(){
-                        $('body').addClass('bodyload');
-                        website = "true";
-                        websiteDomain = docs[i].subdomain;
-                        websiteBackButton = true;
-                        window.andapp.savewebsiteState(website);
-                        window.andapp.openLink("https://"+docs[i].subdomain+urlLink+"?source=AndroidSchedulePage&firstname="+firstname+"&email="+email+"&mobile="+mobilenumber+"&userid="+userid);
-                    });
+
                     $(".businessHours").text("Business Hours: "+customers[i].startHour+" - "+customers[i].endHour);
                     $(".directionArrowBottom").hide();
                     $(".directionArrowTop").show();
@@ -383,10 +413,11 @@ var getServices = function (){
                             startDirection();
                         });
                     }else{
-                        if(moment().tz(abbrs[customers[i].timeZone]).format("YYYY-MM-DD") != customers[i].nextSlotDate)
+                        if(moment().tz(abbrs[customers[i].timeZone]).format("YYYY-MM-DD") != customers[i].nextSlotDate){
                             $(".slotTime").text("Next Slot At: "+moment(customers[i].nextSlotDate).format("MM/DD")+" "+customers[i].nextSlotAt);
-                        else
+                        }else{
                             $(".slotTime").text("Next Slot At: "+customers[i].nextSlotAt);
+                        }
                         $(".btn_sch").show();
                         $(".btn_dir").hide();
                         $(".btn_dirStp").hide();
@@ -402,10 +433,38 @@ var getServices = function (){
                             startDirection();
                         });
                     }
-                    if(!customers[i].slotBookedAt.length && moment().tz(abbrs[customers[i].timeZone]).format("YYYY-MM-DD HH:mm") > (customers[i].nextSlotDate+" "+customers[i].nextSlotAt)){
+                    if(customers[i].slotBookedAt && !customers[i].slotBookedAt.length && moment().tz(abbrs[customers[i].timeZone]).format("YYYY-MM-DD HH:mm") > (customers[i].nextSlotDate+" "+customers[i].nextSlotAt)){
                         getCustomerInfo(latitude, longitude, 60, 60, i, 0);
                     }
                     $('.shadow').show();
+                    if(customers[i].subdomain.length == 0){
+                        $(".btn_sch").hide();
+                        $(".btn_dir").hide();
+                        $(".btn_dirStp").hide();
+                        $(".btn_cnt").show();
+                        $(".slotTime").text("Next Slot At: Cannot Disclose.");
+                        $(".phoneCall").addClass("disable");
+                        $(".cntcLi").hide();
+                        $(".website").addClass("disable");
+                        $(".businessHours").text("Business Hours: Cannot Disclose.");
+                        $(".btn_cnt").on("click", function(){
+                            notifyUser(customers[i].landing._uniqueid, customers[i].mobile, customers[i].companyEmail);
+                            $(".popContent h2").text("Contact Status");
+                            $(".popContent span").text("sent an email to admin user.");
+                            $(".pop_up").show();
+                        });
+                    }else{
+                        $(".btn_cnt").hide();
+                        $(".website").removeClass("disable");
+                        $(".website").on("click", function(){
+                            $('body').addClass('bodyload');
+                            website = "true";
+                            websiteDomain = customers[i].subdomain;
+                            websiteBackButton = true;
+                            window.andapp.savewebsiteState(website);
+                            window.andapp.openLink("https://"+customers[i].subdomain+urlLink+"?source=AndroidSchedulePage&firstname="+firstname+"&email="+email+"&mobile="+mobilenumber+"&userid="+userid);
+                        });
+                    }
                 }
             })(marker, subdomain, i));
     }
@@ -569,7 +628,7 @@ var getServices = function (){
 
             var itemFound = jQuery.inArray( item.subdomain, bookedSlotSubdomain );
             if( item.destinationDistance > milesValue){
-               if(item.slotBookedAt.length || itemFound != -1)
+               if(item.slotBookedAt && item.slotBookedAt.length || itemFound != -1)
                    markers[i].setVisible(true);
                else
                    markers[i].setVisible(false);
@@ -596,7 +655,7 @@ var getServices = function (){
             sliderTime = moment().tz(abbrs[item.timeZone]).add(minutesValue, "minutes").format("HH:mm");
             var icon = "";
             itemFound = jQuery.inArray( item.subdomain, bookedSlotSubdomain );
-            if(item.slotBookedAt.length){
+            if(item.slotBookedAt && item.slotBookedAt.length){
                 if(item.premium)
                     icon = "premiumCheckedInMarker2";
                 else
@@ -617,6 +676,8 @@ var getServices = function (){
                 else
                     icon = "greenMarker2";
             }
+            if(icon.length == 0)
+                icon = "redMarker2";
             markers[i].setIcon(localImagePath+""+icon+".png");
             oldMarker = -1;
         });
@@ -816,7 +877,7 @@ var getServices = function (){
                 callback(result);
             }else{
                 var itemFound = jQuery.inArray( subDomains[index], bookedSlotSubdomain );
-                if(customers[index].slotBookedAt.length){
+                if(customers[index].slotBookedAt && customers[index].slotBookedAt.length){
                     if(customers[index].premium)
                         icon = "premiumCheckedInMarker2";
                     else

@@ -1,4 +1,4 @@
-var servurl = "https://services.within30.com/";     //"https://services.within30.com/"
+var servurl = "https://services.within30.com/";     //"https://services.schejule.com:9095/"
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
 
 $('.usegps').on("click", function(){
