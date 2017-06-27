@@ -113,6 +113,7 @@ var getServices = function (){
     function getCustomerAPICall(lat, lng, miles, min){
         miles = Number(miles);
         min = Number(min);
+        $('body').addClass('bodyload');
         var request1 = $.ajax({
             url: servurl + "endpoint/api/getmycustomers",
             type: "POST",
@@ -160,8 +161,10 @@ var getServices = function (){
                 $(".pop_up").show();
                 loadMap([]);
             }
+            $('body').removeClass('bodyload');
         });
         request1.fail(function(jqXHR, textStatus) {
+            $('body').removeClass('bodyload');
             $(".popContent h2").text("Retrieving Businesses");
             $(".popContent strong").text("Your request didn't go through. Please try again");
             $(".pop_up").show();
@@ -212,7 +215,7 @@ var getServices = function (){
         customers = docs;
         mapProp = {
             center:new google.maps.LatLng(latitude,longitude),
-            zoom:10,
+            zoom:14,
             mapTypeId:google.maps.MapTypeId.ROADMAP,
             disableDefaultUI: true
           };
