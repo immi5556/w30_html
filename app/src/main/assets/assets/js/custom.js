@@ -73,11 +73,7 @@ $('#map').height(Wh);
 
 $('.directionArrowTop').on('click',function(){
 	var reqHeight = $('.serviceCont').outerHeight()+$('.serviceSection').outerHeight();
-    	if( reqHeight > 330){
-		reqHeight = reqHeight+20+"px"
-    	}else{
-		reqHeight = '330px';
-    	}
+    reqHeight = reqHeight+20+"px";
 	$('.serviceSection').animate({
 		height:reqHeight
 	},500);

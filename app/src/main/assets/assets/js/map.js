@@ -371,8 +371,10 @@ var getServices = function (){
                         $(".phoneCall").addClass("disable");
                         $(".cntcLi").hide();
                     }
-
-                    $(".businessHours").text("Business Hours: "+customers[i].startHour+" - "+customers[i].endHour);
+                    if(customers[i].startHour && customers[i].endHour)
+                        $(".businessHours").text("Business Hours: "+customers[i].startHour+" - "+customers[i].endHour);
+                    else
+                        $(".businessHours").text("Business Hours: Not Working");
                     $(".directionArrowBottom").hide();
                     $(".directionArrowTop").show();
                     $(".serviceSection").animate({
