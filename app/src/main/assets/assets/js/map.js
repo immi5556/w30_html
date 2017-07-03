@@ -420,7 +420,7 @@ var getServices = function (){
                         });
                     }else{
                         if(moment().tz(abbrs[customers[i].timeZone]).format("YYYY-MM-DD") != customers[i].nextSlotDate){
-                            $(".slotTime").text("Next Slot At: "+(customers[i].nextSlotDate.length != 0 ? moment(customers[i].nextSlotDate).format("MM/DD") : emptyString)+" "+customers[i].nextSlotAt);
+                            $(".slotTime").text("Next Slot At: "+((customers[i].nextSlotDate && customers[i].nextSlotDate.length != 0 ) ? moment(customers[i].nextSlotDate).format("MM/DD") : emptyString)+" "+customers[i].nextSlotAt);
                         }else{
                             $(".slotTime").text("Next Slot At: "+customers[i].nextSlotAt);
                         }
@@ -912,7 +912,7 @@ var getServices = function (){
                 if(oldMarker == index && $(".serviceSection").height() > 0){
                     itemFound = jQuery.inArray( subDomains[index], bookedSlotSubdomain );
                     if(itemFound < 0 && moment().tz(abbrs[customers[index].timeZone]).format("YYYY-MM-DD") != customers[index].nextSlotDate){
-                        $(".slotTime").text("Next Slot At: "+(customers[index].nextSlotDate.length != 0 ? moment(customers[index].nextSlotDate).format("MM/DD") : emptyString)+" "+customers[index].nextSlotAt);
+                        $(".slotTime").text("Next Slot At: "+((customers[index].nextSlotDate && customers[index].nextSlotDate.length != 0 ) ? moment(customers[index].nextSlotDate).format("MM/DD") : emptyString)+" "+customers[index].nextSlotAt);
                     }else if(itemFound < 0 && customers[index].nextSlotAt){
                         $(".slotTime").text("Next Slot At: "+customers[index].nextSlotAt);
                     }
