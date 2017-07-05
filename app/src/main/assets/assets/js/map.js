@@ -211,6 +211,33 @@ var getServices = function (){
 
         });
     }
+    var getRealDistance = function(custLat, custLong){
+	    var data = {
+	        latitude: latitude,
+	        longitude: longitude,
+	        custLat: custLat,
+	        custLong: custLong
+	    };
+	    var request1 = $.ajax({
+	 		url: servurl + "endpoint/getRoadDistance",
+			type: "POST",
+			
+            beforeSend: function (xhr) {
+            	xhr.setRequestHeader ("Authorization", "Basic " + btoa(w30Credentials));
+            },
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=UTF-8"
+        });
+
+        request1.success(function(result) {
+        	if(result.Status == "Success"){
+        	    $(".milesVal").text((country == "India" ? ((result.Data*1.60934).toFixed(2)+' KMs') : result.Data.toFixed(2)+' Miles'));
+        	}
+        });
+        request1.fail(function(jqXHR, textStatus) {
+        	console.log(jqXHR);
+        });
+	}
     var loadMap = function(docs){
         subDomains = [];
         customers = docs;
@@ -474,6 +501,7 @@ var getServices = function (){
                             window.andapp.openLink("https://"+customers[i].subdomain+urlLink+"?source=AndroidSchedulePage&firstname="+firstname+"&email="+email+"&mobile="+mobilenumber+"&userid="+userid);
                         });
                     }
+                    getRealDistance(customers[i].geo.coordinates[1], customers[i].geo.coordinates[0]);
                 }
             })(marker, subdomain, i));
     }
