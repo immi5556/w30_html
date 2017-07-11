@@ -245,7 +245,7 @@ var getServices = function (){
         customers = docs;
         mapProp = {
             center:new google.maps.LatLng(latitude,longitude),
-            zoom:14,
+            zoom:12,
             mapTypeId:google.maps.MapTypeId.ROADMAP,
             disableDefaultUI: true
           };
@@ -273,7 +273,9 @@ var getServices = function (){
             }else{
                 itemFound = -1;
             }
-            if(docs[i].slotBookedAt && docs[i].slotBookedAt.length){
+	     if(docs[i].subdomain == ""){
+		  icon = "newRegMarker2";   
+	     }else if(docs[i].slotBookedAt && docs[i].slotBookedAt.length){
                 if(docs[i].premium)
                     icon = "premiumCheckedInMarker2";
                 else
@@ -658,13 +660,13 @@ var getServices = function (){
     }
     function updateMilesRadius(){
         if(milesValue < 30 ){
-            map.setZoom(10);
+            map.setZoom(12);
         }
         if(milesValue < 20 ){
-            map.setZoom(11);
+            map.setZoom(13);
         }
         if(milesValue < 10 ){
-            map.setZoom(12);
+            map.setZoom(14);
         }
 
         customers.forEach(function(item, i){
@@ -698,7 +700,9 @@ var getServices = function (){
             sliderTime = moment().tz(abbrs[item.timeZone]).add(minutesValue, "minutes").format("HH:mm");
             var icon = "";
             itemFound = jQuery.inArray( item.subdomain, bookedSlotSubdomain );
-            if(item.slotBookedAt && item.slotBookedAt.length){
+            if(item.subdomain == ""){
+		  icon = "newRegMarker2";   
+	     }else if(item.slotBookedAt && item.slotBookedAt.length){
                 if(item.premium)
                     icon = "premiumCheckedInMarker2";
                 else
@@ -920,7 +924,9 @@ var getServices = function (){
                 callback(result);
             }else{
                 var itemFound = jQuery.inArray( subDomains[index], bookedSlotSubdomain );
-                if(customers[index].slotBookedAt && customers[index].slotBookedAt.length){
+                if(customers[i].subdomain == ""){
+		  	icon = "newRegMarker2";   
+	        }else if(customers[index].slotBookedAt && customers[index].slotBookedAt.length){
                     if(customers[index].premium)
                         icon = "premiumCheckedInMarker2";
                     else
