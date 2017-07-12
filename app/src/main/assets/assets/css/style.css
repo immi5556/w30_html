@@ -556,7 +556,7 @@ nav a {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -27px;
+    bottom: -28px;
     padding: 0 15px 15px;
     box-sizing: border-box;
     height: 0px;
@@ -1198,7 +1198,7 @@ nav a {
     height: 100%;
     width: 6px;
     border: 1px solid #ccc;
-    background: rgba(204, 204, 204, 0.28);
+    background: rgb(255, 255, 255);
     z-index: -1;
     border-radius: 50px;
 }

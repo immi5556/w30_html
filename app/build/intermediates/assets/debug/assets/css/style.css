@@ -1605,7 +1605,39 @@ nav a {
 .menu-button:hover {
     background-color: #eef;
 }
-
+.half-hider h3 {
+    text-align: center;
+    padding-top: 10px;
+    font-size: 15px;
+}
+.half-hider h3 a {
+    background: #39425f;
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    height: 35px;
+    line-height: 35px;
+    display: inline-block;
+    padding: 0 50px 0 10px;
+    position: relative;
+    border-radius: 3px;
+    box-shadow: 0 2px 3px #b0adad;
+    border-bottom: 2px solid rgba(127, 131, 144, 0.36);cursor: pointer;
+    cursor: pointer;
+}
+.half-hider h3 a .fa {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 35px;
+    line-height: 35px;
+    height: 35px;
+    font-size: 20px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background: #d02121;
+    border-bottom: 2px solid #d15151;
+}
 @media (max-width:768px){
     .container, .loginScreen {
         max-width: 100%;

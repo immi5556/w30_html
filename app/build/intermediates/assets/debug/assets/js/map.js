@@ -36,7 +36,8 @@ directionsDisplay.setOptions( { suppressMarkers: true, preserveViewport: true } 
 var directionStop = 1;
 var websiteBackButton = false;
 var country = "";
-var callAbility = window.andapp.canMakeCalls()
+var callAbility = window.andapp.canMakeCalls();
+var emptyString = "";
 function goBack(){
     window.history.back();
     if(websiteBackButton)
@@ -113,6 +114,7 @@ var getServices = function (){
     function getCustomerAPICall(lat, lng, miles, min){
         miles = Number(miles);
         min = Number(min);
+        $('body').addClass('bodyload');
         var request1 = $.ajax({
             url: servurl + "endpoint/api/getmycustomers",
             type: "POST",
@@ -160,8 +162,10 @@ var getServices = function (){
                 $(".pop_up").show();
                 loadMap([]);
             }
+            $('body').removeClass('bodyload');
         });
         request1.fail(function(jqXHR, textStatus) {
+            $('body').removeClass('bodyload');
             $(".popContent h2").text("Retrieving Businesses");
             $(".popContent strong").text("Your request didn't go through. Please try again");
             $(".pop_up").show();
@@ -207,12 +211,41 @@ var getServices = function (){
 
         });
     }
+    var getRealDistance = function(custLat, custLong, index){
+	    var data = {
+	        latitude: latitude,
+	        longitude: longitude,
+	        custLat: custLat,
+	        custLong: custLong
+	    };
+	    var request1 = $.ajax({
+	 		url: servurl + "endpoint/getRoadDistance",
+			type: "POST",
+			
+            beforeSend: function (xhr) {
+            	xhr.setRequestHeader ("Authorization", "Basic " + btoa(w30Credentials));
+            },
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=UTF-8"
+        });
+
+        request1.success(function(result) {
+        	if(result.Status == "Success"){
+        	    $(".milesVal").text((country == "India" ? ((result.Data*1.60934).toFixed(2)+' KMs') : result.Data.toFixed(2)+' Miles'));
+		    customers[index].destinationDistance = result.Data;
+        	    customers[index].roadDistance = true;
+        	}
+        });
+        request1.fail(function(jqXHR, textStatus) {
+        	console.log(jqXHR);
+        });
+	}
     var loadMap = function(docs){
         subDomains = [];
         customers = docs;
         mapProp = {
             center:new google.maps.LatLng(latitude,longitude),
-            zoom:10,
+            zoom:12,
             mapTypeId:google.maps.MapTypeId.ROADMAP,
             disableDefaultUI: true
           };
@@ -240,7 +273,9 @@ var getServices = function (){
             }else{
                 itemFound = -1;
             }
-            if(docs[i].slotBookedAt && docs[i].slotBookedAt.length){
+	     if(docs[i].subdomain == ""){
+		  icon = "newRegMarker2";   
+	     }else if(docs[i].slotBookedAt && docs[i].slotBookedAt.length){
                 if(docs[i].premium)
                     icon = "premiumCheckedInMarker2";
                 else
@@ -250,7 +285,7 @@ var getServices = function (){
                     icon = "premiumCheckedInMarker2";
                 else
                     icon = "checkedInMarker2";
-            }else if(moment().tz(abbrs[docs[i].timeZone]).format("YYYY-MM-DD") != docs[i].nextSlotDate || docs[i].nextSlotAt > sliderTime){
+            }else if(docs[i].nextSlotDate == "" || docs[i].nextSlotAt == "No Slots" || moment().tz(abbrs[docs[i].timeZone]).format("YYYY-MM-DD") != docs[i].nextSlotDate || docs[i].nextSlotAt > sliderTime){
                 if(docs[i].premium)
                     icon = "premiumRedMarker2";
                 else
@@ -367,8 +402,10 @@ var getServices = function (){
                         $(".phoneCall").addClass("disable");
                         $(".cntcLi").hide();
                     }
-
-                    $(".businessHours").text("Business Hours: "+customers[i].startHour+" - "+customers[i].endHour);
+                    if(customers[i].startHour && customers[i].endHour)
+                        $(".businessHours").text("Business Hours: "+customers[i].startHour+" - "+customers[i].endHour);
+                    else
+                        $(".businessHours").text("Business Hours: Not Working");
                     $(".directionArrowBottom").hide();
                     $(".directionArrowTop").show();
                     $(".serviceSection").animate({
@@ -414,11 +451,14 @@ var getServices = function (){
                         });
                     }else{
                         if(moment().tz(abbrs[customers[i].timeZone]).format("YYYY-MM-DD") != customers[i].nextSlotDate){
-                            $(".slotTime").text("Next Slot At: "+moment(customers[i].nextSlotDate).format("MM/DD")+" "+customers[i].nextSlotAt);
+                            $(".slotTime").text("Next Slot At: "+((customers[i].nextSlotDate && customers[i].nextSlotDate.length != 0 ) ? moment(customers[i].nextSlotDate).format("MM/DD") : emptyString)+" "+customers[i].nextSlotAt);
                         }else{
                             $(".slotTime").text("Next Slot At: "+customers[i].nextSlotAt);
                         }
-                        $(".btn_sch").show();
+                        if(customers[i].nextSlotDate != "" && customers[i].nextSlotAt != "No Slots")
+                            $(".btn_sch").show();
+                        else
+                            $(".btn_sch").hide();
                         $(".btn_dir").hide();
                         $(".btn_dirStp").hide();
                         $(".btn_sch").off().on("click", function(){
@@ -465,6 +505,11 @@ var getServices = function (){
                             window.andapp.openLink("https://"+customers[i].subdomain+urlLink+"?source=AndroidSchedulePage&firstname="+firstname+"&email="+email+"&mobile="+mobilenumber+"&userid="+userid);
                         });
                     }
+                    if(customers[i].roadDistance){
+			    $(".milesVal").text((country == "India" ? ((customers[i].destinationDistance*1.60934).toFixed(2)+' KMs') : customers[i].destinationDistance.toFixed(2)+' Miles'));
+		     }else{
+			    getRealDistance(customers[i].geo.coordinates[1], customers[i].geo.coordinates[0], i);
+		      }
                 }
             })(marker, subdomain, i));
     }
@@ -615,13 +660,13 @@ var getServices = function (){
     }
     function updateMilesRadius(){
         if(milesValue < 30 ){
-            map.setZoom(10);
+            map.setZoom(12);
         }
         if(milesValue < 20 ){
-            map.setZoom(11);
+            map.setZoom(13);
         }
         if(milesValue < 10 ){
-            map.setZoom(12);
+            map.setZoom(14);
         }
 
         customers.forEach(function(item, i){
@@ -655,7 +700,9 @@ var getServices = function (){
             sliderTime = moment().tz(abbrs[item.timeZone]).add(minutesValue, "minutes").format("HH:mm");
             var icon = "";
             itemFound = jQuery.inArray( item.subdomain, bookedSlotSubdomain );
-            if(item.slotBookedAt && item.slotBookedAt.length){
+            if(item.subdomain == ""){
+		  icon = "newRegMarker2";   
+	     }else if(item.slotBookedAt && item.slotBookedAt.length){
                 if(item.premium)
                     icon = "premiumCheckedInMarker2";
                 else
@@ -665,7 +712,7 @@ var getServices = function (){
                     icon = "premiumCheckedInMarker2";
                 else
                     icon = "checkedInMarker2";
-            }else if(moment().tz(abbrs[item.timeZone]).format("YYYY-MM-DD") != item.nextSlotDate || item.nextSlotAt > sliderTime){
+            }else if(item.nextSlotDate == "" || item.nextSlotAt == "No Slots" || moment().tz(abbrs[item.timeZone]).format("YYYY-MM-DD") != item.nextSlotDate || item.nextSlotAt > sliderTime){
                 if(item.premium)
                     icon = "premiumRedMarker2";
                 else
@@ -761,7 +808,7 @@ var getServices = function (){
                     bookedSlotSubdomain.splice(index, 1);
                     var icon = "";
                     sliderTime = moment().tz(abbrs[customers[i].timeZone]).add(minutesValue, "minutes").format("HH:mm");
-                    if(moment().tz(abbrs[customers[i].timeZone]).format("YYYY-MM-DD") != customers[i].nextSlotDate || customers[i].nextSlotAt > sliderTime){
+                    if(customers[i].nextSlotDate == "" || customers[i].nextSlotAt == "No Slots" || moment().tz(abbrs[customers[i].timeZone]).format("YYYY-MM-DD") != customers[i].nextSlotDate || customers[i].nextSlotAt > sliderTime){
                         if(customers[i].premium)
                             icon = "premiumRedMarker2";
                         else
@@ -877,7 +924,9 @@ var getServices = function (){
                 callback(result);
             }else{
                 var itemFound = jQuery.inArray( subDomains[index], bookedSlotSubdomain );
-                if(customers[index].slotBookedAt && customers[index].slotBookedAt.length){
+                if(customers[i].subdomain == ""){
+		  	icon = "newRegMarker2";   
+	        }else if(customers[index].slotBookedAt && customers[index].slotBookedAt.length){
                     if(customers[index].premium)
                         icon = "premiumCheckedInMarker2";
                     else
@@ -887,7 +936,7 @@ var getServices = function (){
                         icon = "premiumCheckedInMarker2";
                     else
                         icon = "checkedInMarker2";
-                }else if(moment().tz(abbrs[customers[index].timeZone]).format("YYYY-MM-DD") != customers[index].nextSlotDate || customers[index].nextSlotAt > sliderTime){
+                }else if(customers[index].nextSlotDate == "" || customers[index].nextSlotAt == "No Slots" || moment().tz(abbrs[customers[index].timeZone]).format("YYYY-MM-DD") != customers[index].nextSlotDate || customers[index].nextSlotAt > sliderTime){
                     if(customers[index].premium)
                         icon = "premiumRedMarker2";
                     else
@@ -903,7 +952,7 @@ var getServices = function (){
                 if(oldMarker == index && $(".serviceSection").height() > 0){
                     itemFound = jQuery.inArray( subDomains[index], bookedSlotSubdomain );
                     if(itemFound < 0 && moment().tz(abbrs[customers[index].timeZone]).format("YYYY-MM-DD") != customers[index].nextSlotDate){
-                        $(".slotTime").text("Next Slot At: "+moment(customers[index].nextSlotDate).format("MM/DD")+" "+customers[index].nextSlotAt);
+                        $(".slotTime").text("Next Slot At: "+((customers[index].nextSlotDate && customers[index].nextSlotDate.length != 0 ) ? moment(customers[index].nextSlotDate).format("MM/DD") : emptyString)+" "+customers[index].nextSlotAt);
                     }else if(itemFound < 0 && customers[index].nextSlotAt){
                         $(".slotTime").text("Next Slot At: "+customers[index].nextSlotAt);
                     }

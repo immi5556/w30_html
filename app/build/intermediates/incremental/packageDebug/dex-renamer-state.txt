@@ -1,7 +1,7 @@
-#Tue Jun 27 10:10:10 IST 2017
-base.0=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_7db12e88eddd7878d5f2284776b86434ebb64529
+#Wed Jul 12 15:07:18 IST 2017
+base.0=E\:\\vamis\\Android latest\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_aedc5d1a82592211a3a012340528c5d011e4c252
 renamed.1=classes.dex
 renamed.0=classes2.dex
-file.1=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_42824a55f1f298851626a5ff177735f429826858\\classes.dex
-base.1=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_42824a55f1f298851626a5ff177735f429826858
-file.0=E\:\\vamis\\Android\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_7db12e88eddd7878d5f2284776b86434ebb64529\\classes.dex
+file.1=E\:\\vamis\\Android latest\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_9c67a6a383406d22c4dc4e9d4dc241b78f5906ff\\classes.dex
+base.1=E\:\\vamis\\Android latest\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_9c67a6a383406d22c4dc4e9d4dc241b78f5906ff
+file.0=E\:\\vamis\\Android latest\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_aedc5d1a82592211a3a012340528c5d011e4c252\\classes.dex
