@@ -29,10 +29,11 @@ $(function(){
     var appointments = [];
     var daysOrder = ["", "", "", "", "", "", ""];
     var source = "mobileSchedulePage";
-    if(window.andapp)
+    /*if(window.andapp)
         var subdomain = window.andapp.getSubdomain();
     else
-        var subdomain = "newcompany";
+        var subdomain = "newcompany";*/
+    var subdomain = window.andapp.getSubdomain();
     var selectedDate, selectedCat;
     var optdata = {
         startTime: "07:00", // schedule start time(HH:ii)
