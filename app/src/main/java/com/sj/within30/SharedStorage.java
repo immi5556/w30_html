@@ -103,4 +103,8 @@ public class SharedStorage {
     public static void saveCountryName(String value) { saveValues("Country", value); }
 
     public static String getCountryName() { return getValue("Country");  }
+
+    public static void saveSubdomain(String value) { saveValues("Subdomain", value); }
+
+    public static String getSubdomain() { return getValue("Subdomain");  }
 }

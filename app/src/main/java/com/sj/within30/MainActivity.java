@@ -440,6 +440,21 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         }
 
         @JavascriptInterface
+        public void saveSubdomain(String subdomain) {
+            try {
+                SharedStorage.saveSubdomain(subdomain);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getSubdomain() {
+            try {
+                return SharedStorage.getSubdomain();
+            } catch (Exception ex) {}
+            return  null;
+        }
+
+        @JavascriptInterface
         public void showToast(String msg) {
             try {
                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Schedule</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/scheduleStyles/style.css">
+    <link rel="stylesheet" href="assets/css/scheduleStyles/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/scheduleStyles/jquery-clockpicker.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500&amp;subset=greek-ext,latin-ext,vietnamese" rel="stylesheet">
+</head>
+<body>
+    <div class="screen1">
+        <div class="secFixed">
+            <div class="container-wrap">
+               <header>
+                <a href="javascript:void(0)" class="back"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                <h2 class="cmpnyName"></h2>
+                <a href="javascript:void(0)" class="signOut" style="right: 8px;"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+               </header>
+
+                <h2 class="heading"></h2>
+                <div class="dow"></div>
+               <div class="weekSec"></div>
+               <div class="catagories"></div>
+            </div>
+        </div> 
+        <div class="container-wrap">
+           <div class="tabContent">
+                <div class="content"></div>
+           </div>
+        </div>   
+    </div>
+    
+        <div class="notification succe-notification fadeInRight" id="successmsg">
+    		<span class="cls-notification">X</span>
+    		<i class="fa fa-check" aria-hidden="true"></i>
+    		<p class="notificationVal">Success</p>
+    		<div class="sucsMsg"></div>
+    	</div>
+        <div class="slotDetails animated" style="display: none;">
+            <div class="container-wrap">
+        	<div class="notification err-notification fadeInRight" id="errormsg">
+        		<span class="cls-notification">X</span>
+        		<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        		<p class="notificationVal">Error</p>
+        		<div class="errMsg"></div>
+        	</div>
+            <div class="slotHeadSec">
+                <a class="clk-btn cls-schdScreen" href="javascript:void(0)">X</a>
+                <h2>General</h2><!--
+                <a class=" acpt-schdScreen" href="javascript:void(0)" id="sub-schd"><i class="fa fa-check" aria-hidden="true"></i></a>-->
+            </div>
+            <div class="slotRow clear">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label>From</label>
+                        <input type="text" class="field-item input-small" name="" id="SfromTime">
+                    </div>
+                    <div class="col-lg-6">
+                        <label>To</label>
+                        <input type="text" class="field-item input-small" name="" id="StoTime">
+                    </div>
+                </div>
+            </div>
+            <div class="slotRow clear">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label>Name</label>
+                        <input type="text" class="field-item" name="" id="Sname">
+                    </div>
+                </div>
+            </div>
+            <div class="slotRow clear">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label>Email</label>
+                        <input type="text" class="field-item" name="" id="Semail">
+                    </div>
+                </div>
+            </div>
+            <div class="slotRow clear">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label>Mobile</label>
+                        <input type="text" class="field-item" name="" id="Smobile">
+                    </div>
+                </div>
+            </div>
+            <div class="slotRow clear" style="display: none;">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label>Id</label>
+                        <input type="text" class="field-item" name="" id="Sid">
+                    </div>
+                </div>
+            </div>
+             <div class="slotRow clear">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label>Details</label>
+                        <textarea class="field-item field-textarea" id="Sdetails"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="slotRow slotRow-2 clear">
+            	<label><input type="checkbox" name="" id="Sconfn"><span>Confirm Appointment</span> </label>
+            </div>
+            <div class="detailsFooter">
+                <div class="slotRow slotRow-2 clear">
+                    <div class="col-lg-6">
+                	    <input type="submit" name="" class="btn btn-submit" value="Submit" id="sub-schd">
+                	</div>
+                	<div class="col-lg-6">
+                	    <input type="submit" name="" class="btn btn-cancel" value="Cancel" id="cncl-schd">
+            	    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<script src="assets/js/scheduleScript/jquery-1.9.1.min.js"></script>
+	<script src='https://socket.within30.com/socket.io/socket.io.js'></script>
+    <script src="assets/js/moment.js"></script>
+    <script src="assets/js/moment-timezone-with-data.js"></script>
+    <script src="assets/js/scheduleScript/jquery.touchSwipe.js"></script>
+    <script src="assets/js/scheduleScript/jquery-clockpicker.min.js"></script>
+	<script src="assets/js/scheduleScript/custom-file-input.js"></script>
+	<script src="assets/js/scheduleScript/custom.js"></script>
+</body>
+</html>

@@ -59,7 +59,7 @@ var jss = {
 		} 
 	});
 	function goBack(){
-        window.andapp.closeApp();
+        history.back();
     }
 	$(function(){
 	    var errorText;

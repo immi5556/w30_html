@@ -168,18 +168,25 @@ $(".popContent").on("click", function(e){
 $(".pop_up, .closePop").on("click", function(){
     $(".pop_up").hide();
 });
+$(".businessLogin").on("click", function(){
+    if(window.andapp.getSubdomain().length > 0){
+        window.location.href = 'schedulePage.html';
+    }else{
+        window.location.href = 'adminLogin.html';
+    }
+});
 var searcfield = false;
 $(document).on("click",function(){
-    if(searcfield)
+    /*if(searcfield)
         $(".searchbox1").css("margin-bottom", "100px");
     else
-        $(".searchbox1").css("margin-bottom", "0px");
+        $(".searchbox1").css("margin-bottom", "0px");*/
 
     searcfield = false;
 });
 $(".autoSearch2").focus(function(){
     searcfield = true;
-    $(".searchbox1").css("margin-bottom", "100px");
+    //$(".searchbox1").css("margin-bottom", "100px");
 });
 $('.autoComplete .fa-search').click(function(){
     var matchFound = -1;
