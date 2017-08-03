@@ -1,14 +1,37 @@
+$('body').addClass('bodyload');
+if(window.andapp){
+    var subdomain = window.andapp.getSubdomain();
+    var adminState = window.andapp.getAdminState();
+}else{
+    alert();
+}
+
 function goBack(){
-    window.location.href = "selectCatagory.html";
+    if($(".screen1").is(":visible")){
+        window.andapp.saveAdminState("false");
+        /*window.location.href = "selectCatagory.html";*/
+        window.history.go(-1);
+    }else{
+        $('.clk-btn').click();
+    }
 }
 
 $(".back").on("click", function(){
     goBack();
 });
-$(".signOut").on("click", function(){
-    window.andapp.saveSubdomain("");
-    goBack();
-});
+if(adminState && adminState == "true"){
+    $(".signOut").on("click", function(){
+        if(adminState && adminState == "true"){
+            window.andapp.saveSubdomain("");
+            window.andapp.saveAdminState("false");
+        }
+        goBack();
+    });
+}else{
+    subdomain = window.andapp.getEndUserSubdomain();
+    $(".signOut").hide();
+}
+
 $(function(){
     var servurl = "https://services.within30.com/";                //"https://services.schejule.com:9095/"
     var sockurl = "https://socket.within30.com/";                    //"https://util.schejule.com:9090/"
@@ -29,10 +52,6 @@ $(function(){
     var appointments = [];
     var daysOrder = ["", "", "", "", "", "", ""];
     var source = "mobileSchedulePage";
-    if(window.andapp)
-        var subdomain = window.andapp.getSubdomain();
-    else
-        var subdomain = "expertortho";
     var selectedDate, selectedCat;
     var optdata = {
         startTime: "07:00", // schedule start time(HH:ii)
@@ -233,7 +252,7 @@ $(function(){
                 $(dates[0]).addClass('active');
             }  
         }
-        var fisrtWorkingDay = -1;
+        var firstEntry = -1;
         dates.each(function(i, item){
             $(item).on('click',function(){
                 $(".content").html("");
@@ -261,10 +280,13 @@ $(function(){
             if(divElem == '.weekSec' && holidayArry[i]){
                 $(item).addClass("dateDisable");
                 $(item).removeClass("active");
-            }else if(divElem == '.weekSec' && fisrtWorkingDay == -1 && !holidayArry[i]){
+            }else if(divElem == '.weekSec' && firstEntry == -1 && !holidayArry[i]){
                 $(item).addClass("active");
-                fisrtWorkingDay = 1;
-                setData(today,thisDate, i);
+                firstEntry = i+1;
+                if(firstWorkingDay != 0)
+                    setData(today,thisDate, i+1);
+                else
+                    setData(today,thisDate, i);
             }
             if(divElem == '.catagories' && $(item).hasClass("active")){
                 selectedCat = $(item).text();
@@ -301,6 +323,7 @@ $(function(){
             var dataRow = $('.content').find('.events-container');
             timesheet();
             ajaxCall("getappts", {}, getApptsAck);
+            bookSltClassFn();
         }
     }
     
@@ -358,7 +381,7 @@ $(function(){
                             dat[x].events[y].hVal = hVal;
                             var timeLine = dat[x].events[y].startT.split(":")[0];
                             var dayStartTime = Number(optdata.newTimings[days[moment(selectedDate).day()]][0][0].split(":")[0]);
-                            var dayEndTime = Number(optdata.newTimings[days[moment(selectedDate).day()]][0][1].split(":")[1]);
+                            var dayEndTime = Number(optdata.newTimings[days[moment(selectedDate).day()]][0][1].split(":")[1]) > 0 ? (Number(optdata.newTimings[days[moment(selectedDate).day()]][0][1].split(":")[0])+1) : Number(optdata.newTimings[days[moment(selectedDate).day()]][0][1].split(":")[0]);
                             for(var v = dayStartTime, z = 0; v <= dayEndTime; v++, z++){
                                 if(v == Number(timeLine)){
                                     $(dataRow[z]).append(buildEvent(dat[x].events[y]));
@@ -383,25 +406,25 @@ $(function(){
            $(this).find('.eveClass').each(function(e){
                $(this).find('span').swipe( {
                   tap:function() {
-                    selectedApt = $(this);
-                    var dat = $(this).data("eventdata");
-                    $("#SfromTime").val(dat.startT);
-                    $("#StoTime").val(dat.endT);
-                    $("#Sname").val(dat.eventName);
-            	    $("#Semail").val(dat.email);
-            	    $("#Smobile").val(dat.mobile);
-            	    $("#Sdetails").val(dat.descrip);
-            	    $("#Sconfn").prop("checked", dat.status);
-            	    $("#Sid").val(dat.id);
-            	    $("#cncl-schd").closest("div").show();
+                    if(adminState == "true"){
+                        selectedApt = $(this);
+                        var dat = $(this).data("eventdata");
+                        $("#SfromTime").val(dat.startT);
+                        $("#StoTime").val(dat.endT);
+                        $("#Sname").val(dat.eventName);
+                        $("#Semail").val(dat.email);
+                        $("#Smobile").val(dat.mobile);
+                        $("#Sdetails").val(dat.descrip);
+                        $("#Sconfn").prop("checked", dat.status);
+                        $("#Sid").val(dat.id);
+                        $("#cncl-schd").closest("div").show();
+                    }
                 }
             });
            });
         });
 
     }
-    
-     bookSltClassFn();
     
     function bookSltClassFn(){
         var bookSlotEle = $('<span class="bookSlotPop">Book Slot</span>');
@@ -435,7 +458,7 @@ $(function(){
                 setTimeout(function(){		
                     $(".screen1").hide();	
                 },1000);  
-                if(e.target.className == "events-scroll"){
+                if(e.target.className == "events-scroll" || e.target.className == "schdSec"){
                     $("#cncl-schd").closest("div").hide(); 
                 }
                 if(!optdata.allowCustom){
@@ -623,6 +646,7 @@ $(function(){
     
     $("#cncl-schd").on("click", function(){
         //Delete Appointment
+        $('body').addClass('bodyload');
         var id = $("#Sid").val();
         var request1 = $.ajax({
 	 		url: servurl + "endpoint/api/deleteslot",
@@ -635,6 +659,7 @@ $(function(){
         });
 
         request1.success(function(result) {
+            $('body').removeClass('bodyload');
         	if(result.Status == "Success"){
         	    $('#successmsg').show();
         	    $(".sucsMsg").html("Successfully Cancelled the Appointment.");
@@ -665,12 +690,14 @@ $(function(){
         	}
         });
         request1.fail(function(jqXHR, textStatus) {
+            $('body').removeClass('bodyload');
         	$('#errormsg').show();
             $(".errMsg").html("Error Occured. Try Again.");
         });
     });
     
     function updateSlot(email, mobile, startTime, minutes, confirm, details, name, id, timeline){
+        $('body').addClass('bodyload');
 	 	var today  = moment.tz(abbrs[timezone]).format("YYYY-MM-DD");
 	    var request1 = $.ajax({
 	 		url: servurl + "endpoint/api/updateslot",
@@ -683,6 +710,7 @@ $(function(){
         });
 
         request1.success(function(result) {
+            $('body').removeClass('bodyload');
         	if(result.Status == "Success"){
         	    $('#successmsg').show();
         	    $(".sucsMsg").html("Successfully updated.");
@@ -726,14 +754,14 @@ $(function(){
         	}
         });
         request1.fail(function(jqXHR, textStatus) {
+            $('body').removeClass('bodyload');
         	$('#errormsg').show();
             $(".errMsg").html("Error Occured. Try Again.");
         });
     }
     
     function bookSlot(email, mobile, startTime, minutes, timeline, confirm, details, name){
-        console.log(name);
-        console.log(email);
+        $('body').addClass('bodyload');
 	 	var today  = moment.tz(abbrs[timezone]).format("YYYY-MM-DD");
 	    var request1 = $.ajax({
 	 		url: servurl + "endpoint/api/bookslot",
@@ -746,6 +774,7 @@ $(function(){
         });
 
         request1.success(function(result) {
+            $('body').removeClass('bodyload');
         	if(result.Status == "Ok"){
         	    $('#successmsg').show();
         	    $(".sucsMsg").html(result.Message);
@@ -774,6 +803,7 @@ $(function(){
         	}
         });
         request1.fail(function(jqXHR, textStatus) {
+            $('body').removeClass('bodyload');
         	$('#errormsg').show();
             $(".errMsg").html("Error Occured. Try Again.");
         });
@@ -814,6 +844,7 @@ $(function(){
     }
     
     var ajaxCall = function(action, data, callback){
+        $('body').addClass('bodyload');
         var bb = {
             action: action,
             selecteddate: selectedDate,
@@ -827,11 +858,13 @@ $(function(){
             data: JSON.stringify(bb),
             contentType: "application/json; charset=UTF-8",
             success: function(result) {
+                $('body').removeClass('bodyload');
                 if (callback){
                     callback(result);
                 }
             },
             fail: function(jqXHR, textStatus) {
+                $('body').removeClass('bodyload');
                 alert("Error occured");
             }
         });

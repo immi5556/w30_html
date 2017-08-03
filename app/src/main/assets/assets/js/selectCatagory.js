@@ -170,6 +170,7 @@ $(".pop_up, .closePop").on("click", function(){
 });
 $(".businessLogin").on("click", function(){
     if(window.andapp.getSubdomain().length > 0){
+        window.andapp.saveAdminState("true");
         window.location.href = 'schedulePage.html';
     }else{
         window.location.href = 'adminLogin.html';

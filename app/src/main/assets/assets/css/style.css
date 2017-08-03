@@ -561,6 +561,7 @@ nav a {
     padding: 0 15px 15px;
     box-sizing: border-box;
     height: 0px;
+    overflow: initial !important;
     z-index: 999;
     transition: all 0.5s linear;
     -webkit-transition: all 0.5s linear;

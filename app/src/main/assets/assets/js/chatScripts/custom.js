@@ -30,11 +30,11 @@ var jss = {
 				answered: false,
 				idx: 5
 			},
-			{
+			/*{
 				id: "logogimage",
 				answered: false,
 				idx: 6
-			},
+			},*/
 			{
 				id: "workinghrs",
 				answered: false,
@@ -169,13 +169,13 @@ var jss = {
 			}
 			else if (activedata.id == "subdomain"){
 				var ttv = $("#q1-" + activedata.id).val();
-				$("#c1-" + activedata.id).attr("href", "https://" + ttv + ".within30.com");
+				//$("#c1-" + activedata.id).attr("href", "https://" + ttv + ".within30.com");
 				$("#c1-" + activedata.id).text(ttv + ".within30.com");
 				$("#c2-" + activedata.id).text(ttv);
 				$(".a-" + activedata.id).show();
 				activedata.answered = true;
 			}
-			else if (activedata.id == "logogimage"){
+			else /*if (activedata.id == "logogimage"){
 				var ttv = $("#q1-" + activedata.id).val();
 
 				$(".a-" + activedata.id).show();
@@ -183,7 +183,7 @@ var jss = {
 				    $(".chatLogo").attr("src", hostingIP+'uploaded/logos/' + logoName);
 				}
 				activedata.answered = true;
-			}else if(activedata.id == "workinghrs"){
+			}else*/ if(activedata.id == "workinghrs"){
 			    var ttv = $("#q1-" + activedata.id).val();
                 $("#c1-" + activedata.id).text(startTime);
 				$("#c2-" + activedata.id).text(endTime);
@@ -334,7 +334,11 @@ var jss = {
 				    errorText = 'Subdomain cannot contain www. or .com';
 					validerror = true;
 					callback();
-			    }else{
+			    }else if(ttv != ttv.toLowerCase()){
+                    errorText = 'Subdomain cannot contain Capital Letters';
+                    validerror = true;
+                    callback();
+                }else{
 			        var query = {
                         subdomain: ttv,
                         checkDomain: true
@@ -573,32 +577,32 @@ var jss = {
                         "timings" : {
                             "Mon" : [ 
                                 [ 
-                                    "09:00", 
-                                    "18:00"
+                                    startTime,
+                                    endTime
                                 ]
                             ],
                             "Tue" : [ 
                                 [ 
-                                    "09:00", 
-                                    "18:00"
+                                    startTime,
+                                    endTime
                                 ]
                             ],
                             "Wed" : [ 
                                 [ 
-                                    "09:00", 
-                                    "18:00"
+                                    startTime,
+                                    endTime
                                 ]
                             ],
                             "Thu" : [ 
                                 [ 
-                                    "09:00", 
-                                    "18:00"
+                                    startTime,
+                                    endTime
                                 ]
                             ],
                             "Fri" : [ 
                                 [ 
-                                    "09:00", 
-                                    "18:00"
+                                    startTime,
+                                    endTime
                                 ]
                             ],
                             "Sat" : [],
@@ -669,32 +673,32 @@ var jss = {
                         "timings" : {
                             "Mon" : [ 
                                 [ 
-                                    "09:00", 
-                                    "18:00"
+                                    startTime,
+                                    endTime
                                 ]
                             ],
                             "Tue" : [ 
                                 [ 
-                                    "09:00", 
-                                    "18:00"
+                                    startTime,
+                                    endTime
                                 ]
                             ],
                             "Wed" : [ 
                                 [ 
-                                    "09:00", 
-                                    "18:00"
+                                    startTime,
+                                    endTime
                                 ]
                             ],
                             "Thu" : [ 
                                 [ 
-                                    "09:00", 
-                                    "18:00"
+                                    startTime,
+                                    endTime
                                 ]
                             ],
                             "Fri" : [ 
                                 [ 
-                                    "09:00", 
-                                    "18:00"
+                                    startTime,
+                                    endTime
                                 ]
                             ],
                             "Sat" : [],
@@ -720,7 +724,7 @@ var jss = {
                     $(".adminURL").html("<a href='https://" + (result.subdomain)  + ".within30.com/admin' target='_blank'>https://" + (result.subdomain)  + ".within30.com/admin</a>");
         	        $(".endUserURL").html("<a href='https://" + (result.subdomain)  + ".within30.com' target='_blank'>https://" + (result.subdomain)  + ".within30.com</a>");
         	        $('body').addClass("successPopUp");*/
-        	        showMessage("Successfully Registered. Your admin URL is: <a href='https://" + (result.subdomain)  + ".within30.com/admin' target='_blank'>https://" + (result.subdomain)  + ".within30.com/admin</a>. Use the following Pin to login: "+password+".", "success");
+        	        showMessage("Successfully Registered. Your admin URL is: <a href='#' target='_blank'>https://" + (result.subdomain)  + ".within30.com/admin</a>. Use the following Pin to login: "+password+".", "success");
                 });
                 request.fail(function(jqXHR, textStatus) {
                     showMessage("error while cupdate", "");
@@ -913,4 +917,14 @@ var jss = {
         $(".back").on("click", function(){
         	history.back();
         });
+        var marginTop = 0;
+        $("#q3-address,#q4-address,#q5-address").on("focus", function(){
+        var h = parseInt($(this).attr('data-height')) * 40;
+
+            scrollToBottom2(".cht-type", h);
+        });
+        function scrollToBottom2 (ele, height) {
+            var div = document.querySelector(ele);
+            div.scrollTop = height;
+        }
 	});

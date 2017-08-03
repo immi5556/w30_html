@@ -2,23 +2,24 @@ var servurl = "https://services.within30.com/";     //"https://services.within30
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
 var latitude, longitude, locationType, userId, services = [];
 var country = "";
+var tabsCount = 0;
 
 $('.tabModule').gbTab({
     tabUL:".tabMenu",
     tabCont:".tabContent"
 })
 
+$(".tabMenu li").on("click", function(){
+    tabsCount++;
+})
 $(".back").on("click", function(){
-    $('body').addClass('bodyload');
-    if($(".pendingTab").hasClass("active"))
-        window.history.go(-1);
-    else
-        window.history.go(-2);
+    goBack();
 });
 
  var goBack = function(){
     $('body').addClass('bodyload');
-    if($(".pendingTab").hasClass("active"))
+
+    if(tabsCount == 0)
         window.history.go(-1);
     else
         window.history.go(-2);
@@ -84,7 +85,7 @@ $(".back").on("click", function(){
         $("#noPending").css("display", "block");
     }
     if(finishedSlots.length == 0){
-        $("#noPending").css("display", "noFinish");
+        $("#noFinish").css("display", "block");
     }
 
     pendingSlots.forEach(function(item, index){
@@ -135,11 +136,12 @@ $(".back").on("click", function(){
 
             $("#"+item.appointmentId).on("click", function(e){
                 e.stopPropagation();
+                var $this = $(this);
                 var rating = Number($("#"+item.appointmentId).rateYo("option", "rating"));
                 if(!item.rating){
-                    $(this).closest(".appointFinished").find(".submitRating").css("display","inline-block");
-                    $(this).closest(".appointFinished").find(".submitRating").on("click", function(){
-                         var appointmentId = $(this).prev(".rateAppoitnment").attr('id');
+                    $("#"+item.appointmentId).closest(".appointFinished").find(".submitRating").css("display","inline-block");
+                    $("#"+item.appointmentId).closest(".appointFinished").find(".submitRating").on("click", function(e){
+                         var appointmentId = $this.closest(".appointFinished").find(".rateAppoitnment").attr('id');
                          submitRating(appointmentId, rating, item.subdomain);
                          $(".submitRating").hide();
                     });

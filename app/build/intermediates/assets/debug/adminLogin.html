@@ -50,8 +50,11 @@
             </div>
         </div>
     </div>
-    
 
+    <div class="loadingbar">
+        <div class="loadingCircle"></div>
+    </div>
+    <div class="loadingShadow"></div>
     <script type="text/javascript" src="assets/js/scheduleScript/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="assets/js/scheduleScript/less.min.js"></script>
     <script type="text/javascript">
@@ -110,6 +113,7 @@
             }
         });
         $(".btn-login").on("click", function(){
+                $('body').addClass('bodyload');
                 var request1 = $.ajax({
                     url: servurl + "endpoint/api/businessLogin",
                     type: "POST",
@@ -121,10 +125,12 @@
                 });
 
                 request1.success(function(result) {
+                    $('body').removeClass('bodyload');
                     if(result.Status == "Success"){
                         $('.errorData').show();
                         $(".errorData").html("Successfully LoggedIn. Redirecting...");
                         window.andapp.saveSubdomain(subdomain);
+                        window.andapp.saveAdminState("true");
                         window.location.href = "schedulePage.html";
                     }else{
                         $('.errorData').show();
@@ -132,6 +138,7 @@
                     }
                 });
                 request1.fail(function(jqXHR, textStatus) {
+                    $('body').removeClass('bodyload');
                     $('.errorData').show();
                     $(".errorData").html("Error Occured. Try Again.");
                 });

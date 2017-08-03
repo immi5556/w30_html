@@ -497,12 +497,17 @@ var getServices = function (){
                         $(".btn_cnt").hide();
                         $(".website").removeClass("disable");
                         $(".website").on("click", function(){
+                            window.andapp.saveAdminState("false");
+                            window.andapp.saveEndUserSubdomain(customers[i].subdomain);
+                            /*window.location.href = "schedulePage.html";*/
+
                             $('body').addClass('bodyload');
                             website = "true";
                             websiteDomain = customers[i].subdomain;
                             websiteBackButton = true;
                             window.andapp.savewebsiteState(website);
-                            window.andapp.openLink("https://"+customers[i].subdomain+urlLink+"?source=AndroidSchedulePage&firstname="+firstname+"&email="+email+"&mobile="+mobilenumber+"&userid="+userid);
+                            //window.andapp.openLink("https://"+customers[i].subdomain+urlLink+"?source=AndroidSchedulePage&firstname="+firstname+"&email="+email+"&mobile="+mobilenumber+"&userid="+userid);
+                            window.andapp.openLink("file:///android_asset/schedulePage.html");
                         });
                     }
                     if(customers[i].roadDistance){

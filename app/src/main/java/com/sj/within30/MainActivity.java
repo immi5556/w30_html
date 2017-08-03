@@ -455,6 +455,37 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         }
 
         @JavascriptInterface
+        public void saveEndUserSubdomain(String subdomain) {
+            try {
+                SharedStorage.saveEndUserSubdomain(subdomain);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getEndUserSubdomain() {
+            try {
+                return SharedStorage.getEndUserSubdomain();
+            } catch (Exception ex) {}
+            return  null;
+        }
+
+        @JavascriptInterface
+        public void saveAdminState(String state) {
+            try {
+                SharedStorage.saveAdminState(state);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getAdminState() {
+            try {
+                System.out.println(SharedStorage.getAdminState());
+                return SharedStorage.getAdminState();
+            } catch (Exception ex) {}
+            return  null;
+        }
+
+        @JavascriptInterface
         public void showToast(String msg) {
             try {
                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();

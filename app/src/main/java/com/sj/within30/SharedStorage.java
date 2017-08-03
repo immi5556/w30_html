@@ -107,4 +107,13 @@ public class SharedStorage {
     public static void saveSubdomain(String value) { saveValues("Subdomain", value); }
 
     public static String getSubdomain() { return getValue("Subdomain");  }
+
+    public static void saveEndUserSubdomain(String value) { saveValues("EndUserSubdomain", value); }
+
+    public static String getEndUserSubdomain() { return getValue("EndUserSubdomain");  }
+
+
+    public static void saveAdminState(String value) { saveValues("AdminLogin", value); }
+
+    public static String getAdminState() { return getValue("AdminLogin");  }
 }

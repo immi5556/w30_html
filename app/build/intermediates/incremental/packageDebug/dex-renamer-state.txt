@@ -1,4 +1,4 @@
-#Fri Jul 28 19:47:16 IST 2017
+#Thu Aug 03 13:58:44 IST 2017
 base.0=E\:\\vamis\\Android latest\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_aedc5d1a82592211a3a012340528c5d011e4c252
 renamed.1=classes.dex
 renamed.0=classes2.dex

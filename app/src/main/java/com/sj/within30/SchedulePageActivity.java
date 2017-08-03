@@ -2,16 +2,21 @@ package com.sj.within30;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
+import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import org.json.JSONObject;
 
 public class SchedulePageActivity extends AppCompatActivity {
     SchedulePageActivity self;
@@ -30,6 +35,8 @@ public class SchedulePageActivity extends AppCompatActivity {
         if (currentapiVersion >= android.os.Build.VERSION_CODES.JELLY_BEAN){
             fixNewAndroid(myBrowserView);
         }
+        myBrowserView.addJavascriptInterface(new AndroidBridge(self), "andapp");
+        myBrowserView.setWebChromeClient(new MyJavaScriptChromeClient());
 
         myBrowserView.setWebViewClient(new WebViewClient() {
             @Override
@@ -74,6 +81,62 @@ public class SchedulePageActivity extends AppCompatActivity {
                             }).setCancelable(false).create().show();
             return true;
         }
+    }
+
+    public class AndroidBridge {
+
+        private SchedulePageActivity activity;
+
+        public AndroidBridge(SchedulePageActivity activity) {
+            this.activity = activity;
+        }
+
+        @JavascriptInterface
+        public void saveSubdomain(String subdomain) {
+            try {
+                SharedStorage.saveSubdomain(subdomain);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getSubdomain() {
+            try {
+                return SharedStorage.getSubdomain();
+            } catch (Exception ex) {}
+            return  null;
+        }
+
+        @JavascriptInterface
+        public void saveEndUserSubdomain(String subdomain) {
+            try {
+                SharedStorage.saveEndUserSubdomain(subdomain);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getEndUserSubdomain() {
+            try {
+                return SharedStorage.getEndUserSubdomain();
+            } catch (Exception ex) {}
+            return  null;
+        }
+
+        @JavascriptInterface
+        public void saveAdminState(String state) {
+            try {
+                SharedStorage.saveAdminState(state);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getAdminState() {
+            try {
+                System.out.println(SharedStorage.getAdminState());
+                return SharedStorage.getAdminState();
+            } catch (Exception ex) {}
+            return  null;
+        }
+
     }
 
     @Override
