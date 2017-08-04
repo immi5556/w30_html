@@ -245,7 +245,7 @@ var getServices = function (){
         customers = docs;
         mapProp = {
             center:new google.maps.LatLng(latitude,longitude),
-            zoom:12,
+            zoom:14,
             mapTypeId:google.maps.MapTypeId.ROADMAP,
             disableDefaultUI: true
           };
@@ -665,13 +665,13 @@ var getServices = function (){
     }
     function updateMilesRadius(){
         if(milesValue < 30 ){
-            map.setZoom(12);
+            map.setZoom(14);
         }
         if(milesValue < 20 ){
-            map.setZoom(13);
+            map.setZoom(15);
         }
         if(milesValue < 10 ){
-            map.setZoom(14);
+            map.setZoom(16);
         }
 
         customers.forEach(function(item, i){

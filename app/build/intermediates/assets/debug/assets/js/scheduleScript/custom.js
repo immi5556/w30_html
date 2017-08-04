@@ -1,10 +1,5 @@
-$('body').addClass('bodyload');
-if(window.andapp){
-    var subdomain = window.andapp.getSubdomain();
-    var adminState = window.andapp.getAdminState();
-}else{
-    alert();
-}
+var subdomain = window.andapp.getSubdomain();
+var adminState = window.andapp.getAdminState();
 
 function goBack(){
     if($(".screen1").is(":visible")){
