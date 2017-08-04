@@ -1135,6 +1135,22 @@ $(function(){
                })
             });  
         });
+
+        socketio.on('RegisSettingsChange', function(message) {
+            alert("Admin Has changed some settings. Click on ok to Refresh.");
+            window.location.reload();
+        });
+
+        socketio.on('subdomainChange', function(message) {
+            if(adminState){
+                alert("Subdomain was changed by the admin. Please login again.");
+                $(".signOut").click();
+            }else{
+                alert("Subdomain was changed by the admin. Click on ok to Refresh.");
+                window.andapp.saveSubdomain(message.newSubdomain);
+                window.location.reload();
+            }
+        });
         
     });
     if(subdomain.length)

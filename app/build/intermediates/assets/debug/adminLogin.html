@@ -58,6 +58,10 @@
     <script type="text/javascript" src="assets/js/scheduleScript/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="assets/js/scheduleScript/less.min.js"></script>
     <script type="text/javascript">
+        var subdomainVal = window.andapp.getSubdomain();
+        if(subdomainVal && subdomainVal.length){
+            window.location.href = "selectCatagory.html";
+        }
         var servurl = "https://services.within30.com/";                //"https://services.schejule.com:9095/"
         var w30Credentials = "win-HQGQ:zxosxtR76Z80";
         var req = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
