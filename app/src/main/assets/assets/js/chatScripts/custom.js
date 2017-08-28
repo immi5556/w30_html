@@ -108,6 +108,7 @@ var jss = {
 		}
         
         var ansBlockHeight = function(){
+            $(".sendVal").css("position","absolute");
             var Wh = $(window).outerHeight();
             if($('.cht-type').is(":visible")){
                var chtBar = $('.cht-type').outerHeight();
@@ -126,6 +127,7 @@ var jss = {
                     'height':(Wh) +'px'
                 })
             }
+            $(".sendVal").css("position","fixed");
         }
 		var process = function(){
 			$('.chat-field').text('');

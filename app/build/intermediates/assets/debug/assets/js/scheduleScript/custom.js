@@ -1028,16 +1028,6 @@ $(function(){
             now = moment(now).add(1, 'day').format();       
         }       
         selectedDate = moment(now).format("YYYY-MM-DD");
-        /*if(optdata.allowed == "1"){
-            //$(".appsSec ul li a").css("display","block");
-            //$(".appsSec ul li a span").css("display","block");
-            $(".profileSec").css("display","block");
-            checkSession();
-        }*/
-        //optdata.perdayCapacity = result.perdayCapacity;
-        //selectedDate = moment().tz(abbrs[optdata.timeZone]).format("YYYY-MM-DD");
-        //ajaxCall("getcounts", {}, populateWdayText);
-        //$sc = jQuery("#schedule").timeSchedule(optdata);
         $(".cmpnyName").text(result.companyName);
         setDates();
     }
@@ -1151,7 +1141,6 @@ $(function(){
                 window.location.reload();
             }
         });
-        
     });
     if(subdomain.length)
         ajaxCall("getresources", {}, getresourcesAck);

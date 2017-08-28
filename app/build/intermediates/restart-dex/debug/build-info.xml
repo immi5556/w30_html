@@ -5,9 +5,9 @@
     density="xxhdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="56575743242183"
+    timestamp="1032446368516727"
     token="3561130739183211426"
-    verifier="FULL_BUILD_REQUESTED" >
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
@@ -22,16 +22,15 @@
         name="verifier"
         duration="0" />
 
-    <artifact
-        location="E:\vamis\Android latest\w30_html\app\build\outputs\apk\app-debug.apk"
-        type="MAIN" />
-
     <build
-        timestamp="870137804338053"
+        timestamp="1032163759532884"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="E:\vamis\Android latest\w30_html\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
+    <build
+        timestamp="1032446368516727"
+        verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>

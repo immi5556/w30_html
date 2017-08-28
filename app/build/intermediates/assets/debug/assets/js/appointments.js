@@ -7,11 +7,11 @@ var tabsCount = 0;
 $('.tabModule').gbTab({
     tabUL:".tabMenu",
     tabCont:".tabContent"
-})
+});
 
 $(".tabMenu li").on("click", function(){
     tabsCount++;
-})
+});
 $(".back").on("click", function(){
     goBack();
 });
@@ -139,12 +139,14 @@ $(".back").on("click", function(){
                 var $this = $(this);
                 var rating = Number($("#"+item.appointmentId).rateYo("option", "rating"));
                 if(!item.rating){
-                    $("#"+item.appointmentId).closest(".appointFinished").find(".submitRating").css("display","inline-block");
+                    var appointmentId = $this.closest(".appointFinished").find(".rateAppoitnment").attr('id');
+                     submitRating(appointmentId, rating, item.subdomain);
+                    /*$("#"+item.appointmentId).closest(".appointFinished").find(".submitRating").css("display","inline-block");
                     $("#"+item.appointmentId).closest(".appointFinished").find(".submitRating").on("click", function(e){
                          var appointmentId = $this.closest(".appointFinished").find(".rateAppoitnment").attr('id');
                          submitRating(appointmentId, rating, item.subdomain);
                          $(".submitRating").hide();
-                    });
+                    });*/
                 }
             });
         }
