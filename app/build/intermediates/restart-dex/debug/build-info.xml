@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
     abi="armeabi-v7a,armeabi"
-    api-level="24"
+    api-level="23"
     density="xxhdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="1032446368516727"
+    timestamp="177891126013441"
     token="3561130739183211426"
     verifier="COLD_SWAP_REQUESTED" >
 
@@ -22,15 +22,23 @@
         name="verifier"
         duration="0" />
 
+    <artifact
+        location="E:\vamis\Android latest\w30_html\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
+        type="RESOURCES" />
+
     <build
-        timestamp="1032163759532884"
+        timestamp="175302086988168"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="E:\vamis\Android latest\w30_html\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
     <build
-        timestamp="1032446368516727"
-        verifier="COLD_SWAP_REQUESTED" />
+        timestamp="177891126013441"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="E:\vamis\Android latest\w30_html\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
+            type="RESOURCES" />
+    </build>
 
 </instant-run>

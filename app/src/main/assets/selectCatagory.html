@@ -5,12 +5,15 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/newCategory.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div class="container catagory">
+	<div class="logo logo1">
+		<a href="#"><img src="assets/img/logo.png" alt="logo"></a>
+	</div>
 	<div class="currentLocation">
 		<span class="gpsIcon"><img src="assets/img/gpsIcon.png" alt="gps icon"></span>
 		<div class="autoComplete" id="autoSelect">
@@ -19,57 +22,51 @@
 		</div>
 		<span class="appointments"><img src="assets/img/viewAppointments.png" alt="view appointments"></span>
 	</div>
-	<div class="logo logo1">
-		<a href="#"><img src="assets/img/logo.png" alt="logo"></a>
+	<div class="catagorySection">
+		<div class="container services">
+			<ul>
+				<li class="spa">
+					<div class="catagoryData categoryItem2">
+						<div class="iconCircle"><img src="assets/img/catagory-spa1.png"></div>
+						<h3 class="specName">Spas</h3>
+					</div>
+				</li>
+				<li class="carSer">
+					<div class="catagoryData categoryItem5">
+						<div class="iconCircle"><img src="assets/img/catagory-homerepaires1.png"></div>
+						<h3 class="specName">Car Services</h3>
+					</div>
+				</li>
+				<li class="hair">
+					<div class="catagoryData categoryItem1">
+						<div class="iconCircle"><img src="assets/img/catagory-hairsaloon1.png"></div>
+						<h3 class="specName">Hair Salons</h3>
+					</div>
+				</li>
+				<li class="dentist selected">
+					<div class="catagoryData categoryItem3">
+						<div class="iconCircle"><img src="assets/img/catagory-dentist1.png"></div>
+						<h3 class="specName">Dentists</h3>
+					</div>
+				</li>
+				<li class="physicians">
+					<div class="catagoryData categoryItem8">
+						<div class="iconCircle"><img src="assets/img/catagory-physician1.png"></div>
+						<h3 class="specName">Physicians</h3>
+					</div>
+				</li>
+				<li class="attorneys">
+					<div class="catagoryData categoryItem4">
+						<div class="iconCircle"><img src=""></div>
+						<h3 class="specName"></h3>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
-	<div class="circular-menu" id="circularMenu">
-		<div class="circle">
-			<a href="javascript:void(0);" class="m1">
-				<div class="categoryItem1 cirle">
-					<span class="cirleIcon"></span>
-					<strong>Hair Salons</strong>
-				</div>
-			</a>
-			<a href="javascript:void(0);" class="m1">
-				<div class="categoryItem2 cirle">
-					<span class="cirleIcon"></span>
-					<strong>Spas</strong>
-				</div>
-			</a>
-			<a href="javascript:void(0);" class="m1">
-				<div class="categoryItem8 cirle">
-					<span class="cirleIcon"></span>
-					<strong>Physicians</strong>
-				</div>
-			</a>
-			<a href="javascript:void(0);" class="m1">
-				<div class="categoryItem4 cirle">
-					<span class="cirleIcon"></span>
-					<strong></strong>
-				</div>
-			</a>
-			<a href="javascript:void(0);" class="m1">
-				<div class="categoryItem5 cirle">
-					<span class="cirleIcon"></span>
-					<strong>Car Services</strong>
-				</div>
-			</a>
-			<a href="javascript:void(0);" class="m1">
-				<div class="categoryItem3 cirle">
-					<span class="cirleIcon"></span>
-					<strong style="color:#39425f; font-weight: 600;">Dentists</strong>
-				</div>
-			</a>
-		</div>
-		<div class="half-hider" style="width:100%;height:220px;background:#fff;position:absolute;top:55%;left:0;">
-			<div class="autoComplete searchbox1" id="autoSelect2">
-				<input type="text" name="" class="autoSearch2" placeholder="Select Category">
-				<i class="fa fa-search fa-2x" aria-hidden="true"></i>
-			</div>
-			<h3><a href="chat.html" class="click">Enroll Your Business! <i class="fa fa-pencil" aria-hidden="true"></i></a></h3>
-			<h3><a href="#" class="click businessLogin">Bussiness Login! <i class="fa fa-sign-in" aria-hidden="true"></i></a></h3>
-		</div>
-		<a href="" class="menu-button fa fa-bars fa-3x"></a>
+	<div class="half-hider" style="padding: 10px; clear: both;">
+		<h3><a href="chat.html" class="click">Enroll Your Business! <i class="fa fa-pencil" aria-hidden="true"></i></a></h3>
+		<h3><a href="#" class="click businessLogin">Bussiness Login! <i class="fa fa-sign-in" aria-hidden="true"></i></a></h3>
 	</div>
 </div>
 <div class="loadingbar">
@@ -86,7 +83,6 @@
 <div class="popupShadow"></div>
 <script type="text/javascript" src="assets/js/jquery-1.11.3.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script type="text/javascript" src="assets/js/interact.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjBEUatDTwvyslQtJYGxNATrh30BJHpH0&libraries=places
 "></script>
 <script type="text/javascript" src="assets/js/gbAutoComplete.js"></script>
