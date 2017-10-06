@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/jquery.rateyo.min.css">
 	<link rel="stylesheet"  href="assets/css/docs.css"/>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/newCategory.css">
 	<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -19,22 +20,25 @@
 			<label for="checkMenu"><i class="fa fa-bars menu fa-2x" aria-hidden="true"></i></label>
 			<h2 id="catagorySelect">Loading...</h2>
 			<i class="fa fa-user user" aria-hidden="true"></i>
-			<nav class="mynav">
-				<ul>
-					<li class="delay-05"><a href="#" class="menuList1"></a></li>
-					<li><a href="#" class="menuList2 hairsalons"></a></li>
-					<li><a href="#" class="menuList3 spas"></a></li>
-					<li><a href="#" class="menuList4 dentists"></a></li>
-					<li><a href="#" class="menuList7 physicians"></a></li>
-					<li><a href="#" class="menuList5 carservices"></a></li>
-					<li><a href="#" class="menuList6 photography"></a></li>
-					<li><a href="#" class="menuList8 attorneys"></a></li>
-				</ul>
-				<a href="#" class="viewAppointments"></a>
-				<a href="#" class="help"></a>
-				<a href="#" class="settings"></a>
-			</nav>
 		</header>
+		<nav class="mynav">
+			<ul>
+				<li><a href="#" class="menuList3 spas"><span style="padding-top:60px;">Spas</span></a></li>
+				<li><a href="#" class="menuList5 carservices"><span style="padding-top:60px;">Car Services</span></a></li>
+				<li><a href="#" class="menuList2 hairsalons"><span style="padding-top:60px;">Hair Salons</span></a></li>
+				<li><a href="#" class="menuList4 dentists"><span style="padding-top:60px;">Dentists</span></a></li>
+				<li><a href="#" class="menuList7 physicians"><span style="padding-top:60px;">Physicians</span></a></li>
+				<li><a href="#" class="menuList6 photography"><span style="padding-top:60px;">Photography</span></a></li>
+				<li><a href="#" class="menuList8 attorneys"><span style="padding-top:60px;">Attorneys</span></a></li>
+			</ul>
+			<!--<a href="#" class="delay-05 menuList1"></a>-->
+			<div class="bottomIcons" style="clear: both;">
+				<span><a href="#" class="homeButton">Home</a></span>
+				<span><a href="#" class="viewAppointments">View Appointment</a></span>
+				<span><a href="#" class="help">User Guide</a></span>
+				<span><a href="#" class="settings">Settings</a></span>
+			</div>
+		</nav>
 		<div style="position: relative;">
 			<div class="rangeSlidesSec">
 				<div class="range-slider vertical-range slideMin" data-slider data-options="display_selector:#sliderOutput2;vertical:true;start:10;end:60;">

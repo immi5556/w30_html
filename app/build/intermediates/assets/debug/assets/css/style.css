@@ -517,25 +517,30 @@ nav a {
     background: #cb2027 url(../img/cata-menuList07.png) no-repeat center center;
     background-size: 41px !important;
 }
-nav .settings {
-    position: absolute;
-    width: 60px;
-    bottom: 0;
-    background: url(../img/settingsIcon.png) no-repeat center center;
+nav .homeButton {
+    background: url(../img/cata-menuList1.png) no-repeat center left;
 }
 nav .viewAppointments {
-    position: absolute;
-    width: 60px;
-    bottom: 100px;
-    border-top: 2px solid #4f5771;
-    background: url(../img/viewAppointments1.png) no-repeat center center;
-
+    background: url(../img/viewAppointments1.png) no-repeat center left;
 }
 nav .help {
-    position: absolute;
-    width: 60px;
-    bottom: 50px;
-    background: url(../img/info-icon.png) no-repeat center center;
+    background: url(../img/info-icon.png) no-repeat center left;
+}
+nav .settings {
+    background: url(../img/settingsIcon.png) no-repeat center left;
+}
+.bottomIcons a {
+    position: relative;
+    height: 25px;
+    font-size: 11px;
+    padding-left: 40px;
+    line-height: 29px;
+    background-size: 15px 15px !important;
+}
+.bottomIcons span {
+    display: block;
+    clear: both;
+    margin-top: 18px;
 }
 .imgContainer img {
     position:absolute;

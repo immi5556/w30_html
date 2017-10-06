@@ -23,7 +23,7 @@ $(".user").on("click", function(){
     $('body').addClass('bodyload');
 	window.location.href = "editScreen.html";
 });
-$(".menuList1").on("click", function(){
+$(".homeButton").on("click", function(){
     $('body').addClass('bodyload');
 	window.location.href = "selectCatagory.html";
 });

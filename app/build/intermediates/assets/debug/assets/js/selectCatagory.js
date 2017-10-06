@@ -19,9 +19,11 @@ var successFunction = function(){
         if(recentSearch.indexOf("India") != -1){
             $(".categoryItem4 .cirleIcon").removeClass("attrny");
             $(".categoryItem4 strong").text("Photography");
+            $(".categoryItem4 img").attr("src", "assets/img/catagory-camera1.png");
         } else {
             $(".categoryItem4 .cirleIcon").addClass("attrny");
             $(".categoryItem4 strong").text("Attorneys");
+            $(".categoryItem4 img").attr("src", "assets/img/attorney.png");
         }
     }else
         getLocation(latitude, longitude);
