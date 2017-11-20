@@ -505,7 +505,7 @@ nav a {
     background-size: 41px !important;
 }
 nav .homeButton {
-    background: url(../img/cata-menuList1.png) no-repeat center left;
+    background: url(../img/cata-menuList1-hover.png) no-repeat center left;
 }
 nav .viewAppointments {
     background: url(../img/viewAppointments1.png) no-repeat center left;
