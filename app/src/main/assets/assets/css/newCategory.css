@@ -196,7 +196,7 @@ nav li::after {
     bottom: 10px;
     background: #676c7f;
 }
-nav li:nth-child(2n+1)::before {
+nav li:nth-child(2n+1)::before ,nav li:nth-child(5)::after ,nav li:nth-child(6)::after {
     content:none;
 }
 .home-btn {
