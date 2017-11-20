@@ -21,11 +21,11 @@ $('.serviceSection').on('swipeup',function(){
 
 $(".user").on("click", function(){
     $('body').addClass('bodyload');
-	window.location.href = "editScreen.html";
-});
-$(".homeButton").on("click", function(){
-    $('body').addClass('bodyload');
-	window.location.href = "selectCatagory.html";
+    if($(".user").hasClass("fa-user")){
+        window.location.href = "editScreen.html";
+    }else{
+        window.location.href = "selectCatagory.html";
+    }
 });
 $(".settings").on("click", function(){
     $('body').addClass('bodyload');
