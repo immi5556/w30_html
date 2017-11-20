@@ -422,19 +422,6 @@ header h2 {
     transition: all 0.2s ease-in-out;
     padding:9px 0 0 0;
 }
-.user {
-    float: right;
-    width: 25px;
-    height: 25px;
-    text-align: center;
-    box-sizing: border-box;
-    padding: 5px 0 0 0;
-    border: 1px solid #fff;
-    border-radius: 50px;
-    margin: 7px 9px 0 0;
-    color: #fff;
-    cursor: pointer;
-}
 #checkMenu {
     display: none;
 }
@@ -940,14 +927,16 @@ nav a {
     float: right;
     width: 25px;
     height: 25px;
+    font-size: 18px;
     text-align: center;
     box-sizing: border-box;
     padding: 7px 0 0 0;
-    border: 1px solid #fff;
-    border-radius: 50px;
     margin: 9px 9px 0 0;
     color: #fff;
     cursor: pointer;
+}
+.user{
+    padding-top: 3px;
 }
 #checkMenu {
     display: none;
