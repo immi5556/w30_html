@@ -43,7 +43,15 @@ function goBack(){
     if(websiteBackButton)
         window.history.back();
 }
-
+$(".menu").click(function(){
+    if($(".user").hasClass("fa-user")){
+        $(".user").removeClass("fa-user").addClass("fa-home");
+        $("#catagorySelect").html("Menu");
+    }else{
+        $(".user").removeClass("fa-home").addClass("fa-user");
+        $("#catagorySelect").html(serviceName);
+    }
+});
 $(".serviceSection").swipe( {
   swipeUp:function(event, direction, distance, duration) {
     $('.directionArrowTop').hide();
