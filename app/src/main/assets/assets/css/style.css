@@ -1649,6 +1649,29 @@ nav a {
     background: #d02121;
     border-bottom: 2px solid #d15151;
 }
+.footer_fixed {
+    position:fixed;
+    bottom:0;
+    width:100%;
+}
+.f_btn{
+    float: left;
+    width: 50%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn_enroll {
+    color:#2a293b;
+    background:#ebc2a6;
+}
+.btn_login {
+    color:#fff;
+    background:#2a283d;
+}
 @media (max-width:768px){
     .container, .loginScreen {
         max-width: 100%;
