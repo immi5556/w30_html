@@ -1,3 +1,6 @@
+if(window.andapp){
+    window.andapp.saveLatestURL("servicePage.html");
+}
 var servurl = "https://services.within30.com/";     //"https://services.schejule.com:9095/"
 var sockurl = "https://socket.within30.com/";       //"https://socket.schejule.com:9090/"
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
@@ -39,18 +42,28 @@ var country = "";
 var callAbility = window.andapp.canMakeCalls();
 var emptyString = "";
 function goBack(){
-    window.history.back();
+    /*window.history.back();
     if(websiteBackButton)
-        window.history.back();
+        window.history.back();*/
+    if(window.andapp.checkInternet() == "true"){
+		window.location.href = 'selectCatagory.html';
+	}else{
+	    window.andapp.saveLatestURL("selectCatagory.html");
+		window.andapp.loadLocalFile();
+	}
 }
 $(".menu").click(function(){
-    if($(".user").hasClass("fa-user")){
-        $(".user").removeClass("fa-user").addClass("fa-home");
-        $("#catagorySelect").html("Menu");
-    }else{
-        $(".user").removeClass("fa-home").addClass("fa-user");
-        $("#catagorySelect").html(serviceName);
-    }
+    $(".search-icon").removeClass("fa-search");
+    $(".search-icon").removeClass("fa-close");
+    $(".search-icon").addClass("fa-home");
+    $("#catagorySelect").html("Menu");
+});
+$(document).on('click','.fa-times',function(e){
+    $(this).removeClass('fa-times');
+    $(this).addClass('fa-bars');
+    $('.mynav').fadeOut();
+    $(".search-icon").removeClass("fa-home").addClass("fa-search");
+    $("#catagorySelect").html(serviceName);
 });
 $(".serviceSection").swipe( {
   swipeUp:function(event, direction, distance, duration) {
@@ -85,6 +98,89 @@ var abbrs = {
         IST : "Asia/Kolkata"
 };
 var email, mobilenumber, userid, firstname;
+
+//Search by name(Comapny search)
+/*$(".search-icon").on("click", function(){
+    if($(this).hasClass("fa-search")){
+        $(this).removeClass("fa-search");
+        $(this).addClass("fa-close");
+    }else{
+        $(this).removeClass("fa-close");
+        $(this).addClass("fa-search");
+        $(".input_filter").val('');
+        $(".businessBlocks li").each(function(){
+            $(this).hide();
+        });
+    }
+    
+});*/
+
+function reset(){
+    $(".search-icon").removeClass("fa-close");
+    $(".search-icon").addClass("fa-search");
+    $(".input_filter").val('');
+    $('.dropdownWrap').hide();
+    $('.search-input').removeClass('open');
+    $('.search-input').width(34);
+}
+
+function searchLi(){
+    $(".businessBlocks li").on('click',function(){
+         reset();
+        var $this = $(this);
+        
+        markers.forEach(function(item, index){
+            if(item.title == $this.data('edata').fullName){
+                markers[index].setVisible(true);
+                if($this.data('edata').geo && $this.data('edata').geo.ll[0])
+                    map.setCenter({lat:$this.data('edata').geo.ll[0], lng:$this.data('edata').geo.ll[1]});
+                google.maps.event.trigger(markers[index], 'click');
+            }
+        });
+    });
+    $('.dropdownWrap').slimScroll({
+        height: '135px'
+    });
+     
+}
+
+var filterSearchField = document.querySelector('.input_filter');
+filterSearchField.onkeyup = function(e){
+    $('.dropdownWrap p').hide()
+    var e = e || window.event;
+    
+    if(e.keyCode != 38 && e.keyCode != 40){
+        if(this.value !='' && this.value !=' '){
+            getVal = this.value;
+            
+           var count = 0;
+            $(".businessBlocks li").each(function(){
+                var text = $(this).data('edata').fullName.toLowerCase();
+                
+                if(text.indexOf(getVal.toLowerCase()) !==-1){
+                    $(this).show();
+                    count++
+                }else{
+                    $(this).hide();
+                    count = count= 0 ? 0 : count--;
+                    
+                }
+                //(text.indexOf(getVal.toLowerCase()) !==-1) ? $(this).show() : $(this).hide();
+            });
+            
+            if(count > 0) {
+                $('.dropdownWrap').show();
+            }else{
+                $('.dropdownWrap p').show();
+            }
+                
+        }else {
+             $('.dropdownWrap').hide();
+             //searchByName();
+        }
+    }
+}
+
 var getServices = function (){
     var request1 = $.ajax({
         url: servurl + "endpoint/api/getmyservices",
@@ -116,6 +212,10 @@ var getServices = function (){
     });
     request1.fail(function(jqXHR, textStatus) {
         //console.log(textStatus);
+        if(window.andapp.checkInternet() != "true"){
+		    window.andapp.saveLatestURL("servicePage.html");
+			window.andapp.loadLocalFile();
+		}
     });
 }
 
@@ -173,10 +273,15 @@ var getServices = function (){
             $('body').removeClass('bodyload');
         });
         request1.fail(function(jqXHR, textStatus) {
-            $('body').removeClass('bodyload');
-            $(".popContent h2").text("Retrieving Businesses");
-            $(".popContent strong").text("Your request didn't go through. Please try again");
-            $(".pop_up").show();
+            if(window.andapp.checkInternet() != "true"){
+    		    window.andapp.saveLatestURL("servicePage.html");
+    			window.andapp.loadLocalFile();
+    		}else{
+                $('body').removeClass('bodyload');
+                $(".popContent h2").text("Retrieving Businesses");
+                $(".popContent strong").text("Your request didn't go through. Please try again");
+                $(".pop_up").show();
+    		}
         });
     }
     var successFunction = function(){
@@ -245,7 +350,10 @@ var getServices = function (){
         	}
         });
         request1.fail(function(jqXHR, textStatus) {
-        	console.log(jqXHR);
+        	if(window.andapp.checkInternet() != "true"){
+    		    window.andapp.saveLatestURL("servicePage.html");
+    			window.andapp.loadLocalFile();
+    		}
         });
 	}
     var loadMap = function(docs){
@@ -273,6 +381,9 @@ var getServices = function (){
                                 icon: localImagePath+"userLocationMarker.png"
                             });*/
         for(var i = 0; i < docs.length; i++){
+            var LItem = $('<li>'+docs[i].fullName+'</li>');
+            LItem.data('edata',docs[i]);
+            $('.businessBlocks').append(LItem);
             var myLatLng = {lat: docs[i].geo.coordinates[1], lng: docs[i].geo.coordinates[0]}
             var icon;
             sliderTime = moment().tz(abbrs[docs[i].timeZone]).add(minutesValue, "minutes").format("HH:mm");
@@ -328,6 +439,7 @@ var getServices = function (){
             subDomains.push(subdomain);
             google.maps.event.addListener(marker, 'click', (function(marker, subdomain, i) {
                 return function() {
+                    console.log("hiiiiii");
                     calling = "false";
                     website = "false";
                     websiteDomain = "";
@@ -515,7 +627,13 @@ var getServices = function (){
                             websiteBackButton = true;
                             window.andapp.savewebsiteState(website);
                             //window.andapp.openLink("https://"+customers[i].subdomain+urlLink+"?source=AndroidSchedulePage&firstname="+firstname+"&email="+email+"&mobile="+mobilenumber+"&userid="+userid);
-                            window.andapp.openLink("file:///android_asset/schedulePage.html");
+                            if(window.andapp.checkInternet() == "true"){
+                    			window.andapp.openLink("schedulePage.html");
+                    		}else{
+                    		    window.andapp.saveLatestURL("schedulePage.html");
+                    			window.andapp.loadLocalFile();
+                    		}
+                            
                         });
                     }
                     if(customers[i].roadDistance){
@@ -526,7 +644,7 @@ var getServices = function (){
                 }
             })(marker, subdomain, i));
     }
-
+    searchLi();
     map.addListener('click', function() {
         $(".serviceSection").animate({height:'0'},500);
         $('.shadow').hide();
@@ -563,6 +681,19 @@ var getServices = function (){
             var markerIcon = markers[currentMarker].icon;
             markers[currentMarker].setIcon(markerIcon.substring(0, markerIcon.length-5)+"2.png");
         }
+        
+        customers.forEach(function(item, i){
+
+            var itemFound = jQuery.inArray( item.subdomain, bookedSlotSubdomain );
+            if( item.destinationDistance > milesValue){
+               if(item.slotBookedAt && item.slotBookedAt.length || itemFound != -1)
+                   markers[i].setVisible(true);
+               else
+                   markers[i].setVisible(false);
+            }else{
+                markers[i].setVisible(true);
+            }
+        });
     });
     changeCircle();
 
@@ -786,7 +917,6 @@ var getServices = function (){
             $('body').removeClass('bodyload');
             if(result.Status == "Ok"){
                 $(".popContent h2").text("Appointment Status");
-                //$(".popContent strong").text("Confirmed");
                 if(result.Data.selecteddate == moment.tz(abbrs[timeZone]).format("YYYY-MM-DD")){
                     if(customers[i].autoAcknowledge)
                         $(".popContent span").text("See you At "+result.startTime);
@@ -844,11 +974,16 @@ var getServices = function (){
             }
         });
         request1.fail(function(jqXHR, textStatus) {
-            $('body').removeClass('bodyload');
-            $(".popContent h2").text("Appointment Status");
-            //$(".popContent strong").text("Failed");
-            $(".popContent span").text("Your request didn't go through. Please try again");
-            $(".pop_up").show();
+            if(window.andapp.checkInternet() != "true"){
+    		    window.andapp.saveLatestURL("servicePage.html");
+    			window.andapp.loadLocalFile();
+    		}else{
+                $('body').removeClass('bodyload');
+                $(".popContent h2").text("Appointment Status");
+                //$(".popContent strong").text("Failed");
+                $(".popContent span").text("Your request didn't go through. Please try again");
+                $(".pop_up").show();
+    		}
         });
     }
     $(".popContent").on("click", function(e){
@@ -866,7 +1001,12 @@ var getServices = function (){
 
     $(".viewAppointments").on("click", function(){
         $('body').addClass('bodyload');
-        window.location.href = "appointments.html";
+        if(window.andapp.checkInternet() == "true"){
+			window.location.href = 'appointments.html';
+		}else{
+		    window.andapp.saveLatestURL("appointments.html");
+			window.andapp.loadLocalFile();
+		}
     });
 
     $(".help").on("click", function(){
@@ -888,7 +1028,12 @@ var getServices = function (){
         });
         if(matchFound != -1){
            window.andapp.saveServiceId(services[0][matchFound]._id);
-           location.reload();
+           if(window.andapp.checkInternet() == "true"){
+    			location.reload();
+    		}else{
+    		    window.andapp.saveLatestURL("servicePage.html");
+    			window.andapp.loadLocalFile();
+    		}
         }else{
           alert("No Category found.");
         }
@@ -975,6 +1120,10 @@ var getServices = function (){
         });
         request1.fail(function(jqXHR, textStatus) {
             //console.log(textStatus);
+            if(window.andapp.checkInternet() != "true"){
+    		    window.andapp.saveLatestURL("servicePage.html");
+    			window.andapp.loadLocalFile();
+    		}
         });
     }
     $(document).foundation().foundation('joyride', 'start');
@@ -1065,10 +1214,15 @@ var getServices = function (){
                }
             });
             request1.fail(function(jqXHR, textStatus) {
-                $(".popContent h2").text("Get Appointment Status");
-                //$(".popContent strong").text("Failed");
-                $(".popContent span").text("Your request didn't go through. Please try again");
-                $(".pop_up").show();
+                if(window.andapp.checkInternet() != "true"){
+        		    window.andapp.saveLatestURL("servicePage.html");
+        			window.andapp.loadLocalFile();
+        		}else{
+                    $(".popContent h2").text("Get Appointment Status");
+                    //$(".popContent strong").text("Failed");
+                    $(".popContent span").text("Your request didn't go through. Please try again");
+                    $(".pop_up").show();
+        		}
             });
          }else{
             alert("Something went wrong. Try again");
@@ -1093,7 +1247,12 @@ var getServices = function (){
     var refreshOnForeground = function(){
         $('body').removeClass('bodyload');
         if(calling == "false"){
-            location.reload();
+            if(window.andapp.checkInternet() == "true"){
+    			location.reload();
+    		}else{
+    		    window.andapp.saveLatestURL("servicePage.html");
+    			window.andapp.loadLocalFile();
+    		}
         }
         if(website == "true"){
             var pendingSlots = [];
@@ -1101,7 +1260,12 @@ var getServices = function (){
                 data.pendingSlots.forEach(function(item, index){
                     if(item.subdomain == websiteDomain){
                         $(".shadow").click();
-                        location.reload();
+                        if(window.andapp.checkInternet() == "true"){
+                			location.reload();
+                		}else{
+                		    window.andapp.saveLatestURL("servicePage.html");
+                			window.andapp.loadLocalFile();
+                		}
                     }
                 });
             });

@@ -52,19 +52,67 @@ $('.closeIcon').on('click',function(){
 });
 
 $(document).on('click','.fa-bars',function(e){
-     //e.stopPropagation();
+     e.stopPropagation();
 	 $(this).removeClass('fa-bars');
 	 $(this).addClass('fa-times');
+	 $(".search-icon").removeClass("fa-search");
+	 $(".search-icon").removeClass("fa-close");
 	 $('.mynav').slideDown();
 	 $(".pop_up").hide();
      $('.shadow').click();
 });
-$(document).on('click','.fa-times',function(e){
-     //e.stopPropagation();
-	 $(this).removeClass('fa-times');
-	 $(this).addClass('fa-bars');
-	 $('.mynav').fadeOut();
+
+$(document).on('click','.search-icon',function(e){
+    e.stopPropagation();
+    if($(".search-icon").hasClass("fa-search") || $(".search-icon").hasClass("fa-close")){
+        $('.search-input').toggleClass('open');
+        $('.input_filter').val('');
+        searchWidth();
+        if($('.search-input').hasClass('open')){
+            $('.input_filter').focus();
+            
+        }else{
+            $('.dropdownWrap').hide();
+        }
+        $('.dropdownWrap p').hide();
+        if($(this).hasClass("fa-search")){
+            $(this).removeClass("fa-search");
+            $(this).addClass("fa-close");
+        }else{
+            $(this).removeClass("fa-close");
+            $(this).addClass("fa-search");
+            $(".input_filter").val('');
+            $(".businessBlocks li").each(function(){
+                $(this).hide();
+            });
+        }
+    }else{
+        if(window.andapp.checkInternet() == "true"){
+    		window.location.href = 'selectCatagory.html';
+    	}else{
+    	    window.andapp.saveLatestURL("selectCatagory.html");
+    		window.andapp.loadLocalFile();
+    	}
+    }
 });
+$(document).on('click','.search-sec',function(e){
+    e.stopPropagation();
+});
+$(document).on('click',function(){
+    $('#searchCatagories').val('');
+    searchWidth();
+    $('.dropdownWrap').hide();
+    $('.dropdownWrap p').hide();
+});
+
+function searchWidth(){
+    if($('.search-input').hasClass('open')){
+        var hW = $('header').width();
+        $('.search-input.open').width(hW - 50);
+    }else{
+         $('.search-input').width(34);
+    }
+};
 
 $('.mynav').fadeOut();
 

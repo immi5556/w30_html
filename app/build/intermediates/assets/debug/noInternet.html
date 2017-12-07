@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Whoops</title>
+	<link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700&amp;subset=hebrew,latin-ext" rel="stylesheet">
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body,.container-noNet{
+			height: 100%;
+		}
+		img{
+			max-width: 100%;
+			height: auto;
+			padding: 0;
+		}
+		.container-noNet {
+			
+			font-family: 'Rubik', sans-serif;
+			justify-content: center;
+		    -webkit-justify-content: center;
+		    -ms-justify-content: center;
+		    display: grid;
+		    display: -webkit-grid;
+		    display: -ms-grid;
+		    align-items: center;
+		}
+		.whoopsContent {
+			max-width: 768px;
+			margin: auto;
+			padding: 0 15px;
+			text-align: center;
+		}
+		.whoopsContent h2 {
+		    color: #cb2027;
+		    font-size: 30px;
+		    line-height: 40px;
+		    padding-top: 5px;
+		}
+		.whoopsContent p {
+		    color: #8d8c8c;
+		    font-size: 14px;
+		    line-height: 18px;
+		    padding: 10px 0 0;
+		}
+		.whoopsContent .btn-primary {
+		    color: #fff;
+		    font-size: 16px;
+		    line-height: 40px;
+		    cursor: pointer;
+		    border-radius: 4px;
+		    display: block;
+		    padding: 0 20px;
+		    border: none;
+		    min-width: 200px;
+		    background: #39425f;
+		    margin: 20px auto;
+		}
+		.btn-primary:focus{
+			outline: none;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container-noNet">
+		<div style="max-width:140px; text-align:center;margin:auto;">
+			<img src="assets/img/logo.png">
+		</div>
+		<div class="whoopsContent">
+			<img src="assets/img/noInternetIcon.png" style="max-width:240px">
+			<h2>Whoops!</h2>
+			<p>No Internet connection found.<br/> Check your connection </p>
+			<button onclick="checkInternet()" class="btn-primary" id="tryAgain">Try Again</button>
+		</div>
+	</div>
+<script>
+	function checkInternet(){
+		if(window.andapp){
+			if(window.andapp.checkInternet() == "true"){
+				var url = window.andapp.checkURL();
+				if(url == "schedulePage.html"){
+					window.andapp.openLink(url);
+				}else if(url != null || url != ""){
+					window.location.href = url;
+				}else{
+					window.location.href = window.andapp.checkLogin();
+				}
+			}else{
+				document.getElementById('tryAgain').style.visibility = 'hidden';
+			}
+		}
+	}
+
+	function goBack(){
+		window.andapp.closeApp();
+	}
+
+	function refreshOnForeground(){
+		checkInternet();
+	}
+</script>
+</body>
+</html>

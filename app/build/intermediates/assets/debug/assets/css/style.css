@@ -422,19 +422,6 @@ header h2 {
     transition: all 0.2s ease-in-out;
     padding:9px 0 0 0;
 }
-.user {
-    float: right;
-    width: 25px;
-    height: 25px;
-    text-align: center;
-    box-sizing: border-box;
-    padding: 5px 0 0 0;
-    border: 1px solid #fff;
-    border-radius: 50px;
-    margin: 7px 9px 0 0;
-    color: #fff;
-    cursor: pointer;
-}
 #checkMenu {
     display: none;
 }
@@ -518,10 +505,13 @@ nav a {
     background-size: 41px !important;
 }
 nav .homeButton {
-    background: url(../img/cata-menuList1.png) no-repeat center left;
+    background: url(../img/cata-menuList1-hover.png) no-repeat center left;
 }
 nav .viewAppointments {
     background: url(../img/viewAppointments1.png) no-repeat center left;
+}
+nav .editProfile {
+    background: url(../img/user1.png) no-repeat center left;
 }
 nav .help {
     background: url(../img/info-icon.png) no-repeat center left;
@@ -936,18 +926,90 @@ nav a {
     background: url(../img/backArrow1.png) no-repeat 10px center;
     background-size: 20px;
 }
-.user,.repeat {
+.user,.repeat,.search-icon {
     float: right;
     width: 25px;
     height: 25px;
+    font-size: 18px;
     text-align: center;
     box-sizing: border-box;
     padding: 7px 0 0 0;
-    border: 1px solid #fff;
-    border-radius: 50px;
     margin: 9px 9px 0 0;
     color: #fff;
     cursor: pointer;
+}
+.user{
+    padding-top: 3px;
+}
+.search-sec {
+    position:relative;
+    float: right;
+    height:45px;
+}
+.search-input {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    height: 35px;
+    display: block;
+    width: 38px;
+    background: #39425f;
+    /*border-radius: 50px;
+    border: 1px solid #353a42;*/
+    /*box-shadow: inset 0 0 2px 0px #fff;*/
+    z-index:2;
+    transition:width 0.3s ease-in-out;
+}
+.search-input input{
+    border: none;
+    height: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    line-height: 100%;
+    width: 100%;
+    font-size:15px;
+    display: block;
+    padding: 0 42px 0 10px;
+    outline: none;
+    background: none;
+    color:#fff;
+    border-radius: 50px;
+    font-family:'Droid Serif', serif;
+    transition:box-shadow 0.3s ease-in-out;
+}
+.search-input ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color:#fff;
+}
+.search-input ::-moz-placeholder { /* Firefox 19+ */
+  color:#fff;
+}
+.search-input :-ms-input-placeholder { /* IE 10+ */
+  color:#fff;
+}
+.search-input :-moz-placeholder { /* Firefox 18- */
+  color:#fff;
+}
+/*.search-input input:focus{
+    outline: none;
+    box-shadow: inset 0 0 5px 2px #276761;
+}*/
+.search-icon {
+    position:relative;
+    float: none;
+    z-index:4;
+    margin: 4px 6px 0 0;
+    padding: 0;
+    width: 34px;
+    line-height: 35px;
+    color: #fff;
+    height: 34px;
+    font-size: 16px;
+    border-radius: 50px;
+    background: #39425f;
+}
+.search-input.open {
+    width:180px;
 }
 #checkMenu {
     display: none;
@@ -1456,13 +1518,19 @@ nav a {
     display: block;
 }
 .appointBlock, .noPendingApp {
+    position:relative;
     border: 2px solid #39425f;
     border-left: 6px solid #39425f;
     padding: 15px 5px 10px;
     border-radius: 8px;
     background: #fff;
-    overflow: hidden;
-    margin-top: 20px;
+    /*overflow: hidden;*/
+    margin: 20px 20px 0;
+}
+.appointBlock:after,.appointBlock:before, .noPendingApp:after,.noPendingApp:before{
+    content:'';
+    clear:both;
+    display:block;
 }
 .noPendingApp {
     display: none;
@@ -1543,7 +1611,63 @@ nav a {
 .appointFinished {
     border-color: #d6d6d6;
 }
-
+.clsSec {
+    position:absolute;
+    right:-20px;
+    top:-20px;
+    width:40px;
+    height:40px;
+    color:#fff;
+    font-size:14px;
+    text-align:center;
+    line-height:40px;
+    cursor:pointer;
+    border-radius:50px;
+    text-transform:uppercase;
+    background:#39425f;
+}
+.dialogWrap {
+    padding:15px;
+    color:#39425f;
+    font-size:16px;
+    text-align:center;
+    min-height:140px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.myDialog {
+    position:absolute;
+    display:none;
+    max-width:400px;
+    min-width:300px;
+    padding:0;
+    border:1px solid #e2e2e2;
+    border-radius:4px;
+    background:#fafafa;
+    z-index:999999;
+}
+.dialogButtons {
+    border-top:1px solid #e2e2e2;
+    padding:10px;
+    text-align:right;
+}
+.myDialog .btn {
+    min-width:120px;
+    border:1px solid #fff;
+    height:35px;
+    line-height:35px;
+    margin:0 10px;
+    cursor:pointer;
+    color:#39425f;
+    font-size:14px;
+    font-weight:600;
+    text-align:center;
+    display:inline-block;
+    border-radius:5px;
+    box-shadow:0 2px 3px #ccc;
+    background:#fff;
+}
 @import "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css";
 
 .circular-menu {
@@ -1648,6 +1772,278 @@ nav a {
     border-bottom-right-radius: 3px;
     background: #d02121;
     border-bottom: 2px solid #d15151;
+}
+.footer_fixed {
+    position:fixed;
+    bottom:0;
+    width:100%;
+}
+.f_btn{
+    float: left;
+    width: 50%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn_enroll {
+    color:#2a293b;
+    background:#ebc2a6;
+}
+.btn_login {
+    color:#fff;
+    background:#2a283d;
+}
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -60px;
+}
+.inner {
+    padding-top: 0;
+    background: #fff;
+}
+.main {
+    padding-bottom: 27px;
+}
+.row {
+    margin: 0 -15px;
+}
+.headingTitle {
+    clear: both;
+    font-size: 16px;
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    padding: 15px 0 0;
+}
+.headingTitle span {
+    position: relative;
+    line-height: 30px;
+    color: #39425f;
+    padding-bottom: 4px;
+}
+.headingTitle span:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: #3d4060;
+}
+.contentSection {
+    clear: both;
+}
+.tabMain {
+    clear: both;
+}
+.tabContent {
+    padding: 0;
+}
+.cont_sect {
+    padding: 0;
+}
+.cont_sect .panel {
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+.cont_sect h3 {
+    padding: 15px;
+    background: #fff;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    color: #333;
+    border-color: #ddd;
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+    border-color: #ddd;
+    font-size: 13px;
+    font-family: 'Rubik', sans-serif;
+}
+.cont_sect .panel .fa {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    margin: -5px 0 0 0;
+}
+.secCont-collapse {
+    display: none;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    background-color: #f7f7f7;
+    border: 1px solid transparent;
+    border-color: #ddd;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    font-family: 'Rubik', sans-serif;
+}
+.cont_sect h4 {
+    color: #2d2d2d;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+}
+.cont_sect p, .cont_sect h4, .cont_sect ul {
+    padding: 20px 0 0 0;
+    color: #313132;
+    font: 400 16px/26px 'Rubik', sans-serif;
+}
+.cont_sect p, .cont_sect h4, .cont_sect ul {
+    padding: 20px 0 0 0;
+    color: #313132;
+    font: 400 16px/26px 'Rubik', sans-serif;
+}
+.termsLink{
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: white;   
+}
+.termsLink a {
+    color: white; 
+}
+.termsLink1{
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: black;   
+}
+.termsLink1 a {
+    color: black; 
+}
+.search-sec {
+    position:relative;
+    float: right;
+    height:45px;
+}
+.search-input {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    height: 35px;
+    display: block;
+    width: 38px;
+    background: #39425f;
+    /*border-radius: 50px;
+    border: 1px solid #353a42;*/
+    /*box-shadow: inset 0 0 2px 0px #fff;*/
+    z-index:2;
+    transition:width 0.3s ease-in-out;
+}
+.search-input input{
+    border: none;
+    height: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    line-height: 100%;
+    width: 100%;
+    font-size:15px;
+    display: block;
+    padding: 0 42px 0 10px;
+    outline: none;
+    background: none;
+    color:#fff;
+    border-radius: 50px;
+    font-family:'Droid Serif', serif;
+    transition:box-shadow 0.3s ease-in-out;
+}
+.search-input ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color:#fff;
+}
+.search-input ::-moz-placeholder { /* Firefox 19+ */
+  color:#fff;
+}
+.search-input :-ms-input-placeholder { /* IE 10+ */
+  color:#fff;
+}
+.search-input :-moz-placeholder { /* Firefox 18- */
+  color:#fff;
+}
+.search-icon {
+    position:relative;
+    float: none;
+    z-index:4;
+    margin: 4px 6px 0 0;
+    padding: 0;
+    width: 34px;
+    line-height: 35px;
+    color: #fff;
+    height: 34px;
+    font-size: 16px;
+    border-radius: 50px;
+    background: #39425f;
+}
+.dropdownWrap {
+    display:none;
+    position: absolute !important;
+    width: 100% !important;
+    top: 6px;
+}
+.businessBlocks {
+    padding: 0;
+    position: absolute !important;
+    width: 100% !important;
+    top: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    padding: 0;
+    max-height:135px;
+    background: #fdfdfd;
+    border-top:none;
+    z-index: 1;
+}
+.dropdownWrap p {
+    padding: 0 10px;
+    line-height: 32px;
+    font-size: 15px;
+    color:#fff;
+    position: relative;
+    z-index: 9;
+    background: #2a283d !important;
+}
+.businessBlocks li {
+    list-style: none;
+    line-height: 32px;
+    padding: 0 10px !important;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 15px;
+    color:#fff;
+    transition: all 0.3s linear;
+    background: #2a283d !important;
+}
+.businessBlocks li:hover {
+    color: #2a283d;
+    background: #fff !important;
+}
+@media (max-width: 768px){
+    .main {
+        padding-bottom: 27px;
+    }
+    .row {
+        margin: 0 !important;
+    }
+    .cont_sect h3 {
+        font: 500 17px/22px 'Rubik', sans-serif;
+    }
+    .cont_sect p, .cont_sect h4, .cont_sect ul {
+        padding: 10px 0 0 0;
+        font: 400 13px/26px 'Rubik', sans-serif;
+    }
+    .cont_sect p, .cont_sect h4, .cont_sect ul {
+        padding: 10px 0 0 0;
+        font: 400 13px/26px 'Rubik', sans-serif;
+    }
+    .cont_sect p, .cont_sect h4, .cont_sect ul {
+        padding: 10px 0 0 0;
+        font: 400 13px/26px 'Rubik', sans-serif;
+    }
 }
 @media (max-width:768px){
     .container, .loginScreen {

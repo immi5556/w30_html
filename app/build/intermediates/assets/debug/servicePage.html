@@ -19,24 +19,37 @@
 			<input type="checkbox" name="" id="checkMenu">
 			<label for="checkMenu"><i class="fa fa-bars menu fa-2x" aria-hidden="true"></i></label>
 			<h2 id="catagorySelect">Loading...</h2>
-			<i class="fa fa-user user" aria-hidden="true"></i>
+			<!--<i class="fa fa-user user" aria-hidden="true"></i>-->
+			<div class="search-sec">
+			    <i class="fa fa-search search-icon" aria-hidden="true"></i>
+			    <div class="search-input filterModule">
+			       <!-- <div class="filterModule">
+                        <input type="text" id="subdomainVal" name="" class="fieldText input_filter" placeholder="Enter your Company Name">
+                    </div>-->
+			        <input type="text" placeholder="Search" class="input_filter">
+			        <div class="dropdownWrap">
+			            <p>No Records Found</p>
+			            <ul class="businessBlocks"></ul>
+			        </div>
+			    </div>
+			</div>
 		</header>
 		<nav class="mynav">
 			<ul>
-				<li><a href="#" class="menuList3 spas"><span style="padding-top:60px;">Spas</span></a></li>
-				<li><a href="#" class="menuList5 carservices"><span style="padding-top:60px;">Car Services</span></a></li>
-				<li><a href="#" class="menuList2 hairsalons"><span style="padding-top:60px;">Hair Salons</span></a></li>
-				<li><a href="#" class="menuList4 dentists"><span style="padding-top:60px;">Dentists</span></a></li>
-				<li><a href="#" class="menuList7 physicians"><span style="padding-top:60px;">Physicians</span></a></li>
-				<li><a href="#" class="menuList6 photography"><span style="padding-top:60px;">Photography</span></a></li>
-				<li><a href="#" class="menuList8 attorneys"><span style="padding-top:60px;">Attorneys</span></a></li>
+				<li><a href="javascript:void(0);" class="menuList3 spas"><span style="padding-top:60px;">Spas</span></a></li>
+				<li><a href="javascript:void(0);" class="menuList5 carservices"><span style="padding-top:60px;">Car Services</span></a></li>
+				<li><a href="javascript:void(0);" class="menuList2 hairsalons"><span style="padding-top:60px;">Hair Salons</span></a></li>
+				<li><a href="javascript:void(0);" class="menuList4 dentists"><span style="padding-top:60px;">Dentists</span></a></li>
+				<li><a href="javascript:void(0);" class="menuList7 physicians"><span style="padding-top:60px;">Physicians</span></a></li>
+				<li><a href="javascript:void(0);" class="menuList6 photography"><span style="padding-top:60px;">Photography</span></a></li>
+				<li><a href="javascript:void(0);" class="menuList8 attorneys"><span style="padding-top:60px;">Attorneys</span></a></li>
 			</ul>
 			<!--<a href="#" class="delay-05 menuList1"></a>-->
-			<div class="bottomIcons" style="clear: both;">
-				<span><a href="#" class="homeButton">Home</a></span>
-				<span><a href="#" class="viewAppointments">View Appointment</a></span>
-				<span><a href="#" class="help">User Guide</a></span>
-				<span><a href="#" class="settings">Settings</a></span>
+			<div class="bottomIcons" style="clear: both;padding-top:10px;">
+			    <span><a href="javascript:void(0);" class="editProfile">Edit Profile</a></span>
+				<span><a href="javascript:void(0);" class="viewAppointments">View Appointment</a></span>
+				<span><a href="javascript:void(0);" class="help">User Guide</a></span>
+				<span><a href="javascript:void(0);" class="settings">Settings</a></span>
 			</div>
 		</nav>
 		<div style="position: relative;">
@@ -146,8 +159,11 @@
 <script type="text/javascript" src="assets/js/jquery.rateyo.min.js"></script>
 <script src="assets/js/moment.js"></script>
 <script src="assets/js/moment-timezone-with-data.js"></script>
+<script src="assets/js/gbFilterModule.js"></script>
+<script type="text/javascript" src="assets/js/jquery.slimscroll.min.js"></script>
 <script type="text/javascript" src="assets/js/map.js"></script>
 <script type="text/javascript" src="assets/js/custom.js"></script>
 <script type="text/javascript" src="assets/js/servicePage.js"></script>
+
 </body>
 </html>

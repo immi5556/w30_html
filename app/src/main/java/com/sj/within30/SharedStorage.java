@@ -116,4 +116,9 @@ public class SharedStorage {
     public static void saveAdminState(String value) { saveValues("AdminLogin", value); }
 
     public static String getAdminState() { return getValue("AdminLogin");  }
+
+    public static void saveLatestURL(String value) { saveValues("LatestURL", value); }
+
+    public static String getLatestURL() { return getValue("LatestURL");  }
+
 }

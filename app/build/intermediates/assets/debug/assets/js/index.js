@@ -1,3 +1,6 @@
+if(window.andapp){
+    window.andapp.saveLatestURL("index.html");
+}
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
 var servurl = "https://services.within30.com/";
 var mobilenumber;
@@ -84,11 +87,19 @@ var saveData = function(type){
 	    		if (window.andapp){
 					window.andapp.postJson('persistuser', JSON.stringify({"firstname":$(".firstname").val(),"lastname":$(".lastname").val(),"email":$(".email").val(),"mobilenumber":mobilenumber, "_id": result._id, "deviceToken": window.andapp.getTokenId()}));
 				}
-				window.location.href = "selectCatagory.html";
+				if(window.andapp.checkInternet() == "true"){
+        			window.andapp.openLink("selectCatagory.html");
+        		}else{
+        		    window.andapp.saveLatestURL("selectCatagory.html");
+        			window.andapp.loadLocalFile();
+        		}
 	    	}
 	    });
 	    request1.fail(function(jqXHR, textStatus) {
-
+            if(window.andapp.checkInternet() != "true"){
+    		    window.andapp.saveLatestURL("index.html");
+    			window.andapp.loadLocalFile();
+    		}
 	        //console.log(JSON.stringify(jqXHR));
 	    /*    alert('Error in user service call......');*/
 	    });
@@ -97,6 +108,15 @@ var saveData = function(type){
 		//console.log("fill all fields");
 	}
 }
+
+$(".termsLink a").on("click", function(){
+    if(window.andapp.checkInternet() == "true"){
+		window.andapp.openLink("terms.html");
+	}else{
+	    window.andapp.saveLatestURL("terms.html");
+		window.andapp.loadLocalFile();
+	}
+});
 
 $(".sub-btn").on("click", function(){
     $('body').addClass('bodyload');

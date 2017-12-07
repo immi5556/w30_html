@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.location.Location;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
     String tokenId = "";
     Boolean websiteOpened = false, servicePage = false;
     int locationFetchInterval = 30;
+    String currentURL;
+
     //Location
     public MyLocationManager mLocationManager;
     private static final int REQUEST_FINE_LOCATION = 1;
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
 
             @Override
             public void onPageFinished(WebView view, String url) {
+                currentURL = url;
                 if(url.equalsIgnoreCase("file:///android_asset/servicePage.html") || url.equalsIgnoreCase("file:///android_asset/servicePage.html#")) {
                     servicePage = true;
                 }else {
@@ -87,13 +91,31 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         });
 
         SharedStorage.appContext = this;
+        if(isNetworkConnected() == "true"){
+            myBrowser.loadUrl(urlRedirect());
+        }else{
+            myBrowser.loadUrl("file:///android_asset/index.html");
+        }
+    }
+
+    public String urlRedirect(){
+        String urlToLoad = "";
         if (SharedStorage.getFirstName() == null || SharedStorage.getFirstName() == ""){
             gemRegistration();
             SharedStorage.saveOverlayState("false");
-            myBrowser.loadUrl("file:///android_asset/index.html");
+            urlToLoad = "file:///android_asset/index.html";
         } else {
-            myBrowser.loadUrl("file:///android_asset/selectCatagory.html");
+            urlToLoad = "file:///android_asset/selectCatagory.html";
         }
+        return urlToLoad;
+    }
+
+    public String lastViewPage(){
+        String url = SharedStorage.getLatestURL();
+        if(url == null || url == ""){
+            url = "file:///android_asset/noInternet.html";
+        }
+        return url;
     }
 
     @TargetApi(16)
@@ -128,6 +150,11 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         longitude = mLocationManager.getLongitude();
         myBrowser.loadUrl("javascript:app.changeCenter(" + latitude + "," + longitude + ")");*/
         //myBrowser.loadUrl("javascript:locationChange("+null+","+null+")");
+    }
+
+    private String isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null ? "true": "false";
     }
 
     private void checkReadPhoneStatePermissions(String number) {
@@ -211,6 +238,31 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         }
 
         @JavascriptInterface
+        public String checkInternet(){
+            return isNetworkConnected();
+        }
+
+        @JavascriptInterface
+        public String checkURL(){
+            return lastViewPage();
+        }
+
+        @JavascriptInterface
+        public String checkLogin(){
+            return urlRedirect();
+        }
+
+        @JavascriptInterface
+        public void loadLocalFile(){
+            myBrowser.post(new Runnable() {
+                @Override
+                public void run() {
+                    myBrowser.loadUrl("file:///android_asset/noInternet.html");
+                }
+            });
+        }
+
+        @JavascriptInterface
         public void postJson(String action, String jsonData) {
             try {
                 JSONObject data = Utils.transformJson(jsonData);
@@ -269,8 +321,6 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
                 initLocationFetching(MainActivity.this);
             } catch (Exception ex) {}
         }
-
-
 
         @JavascriptInterface
         public String getLocationType() {
@@ -470,6 +520,21 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
         }
 
         @JavascriptInterface
+        public void saveLatestURL(String url) {
+            try {
+                SharedStorage.saveLatestURL(url);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getLatestURL() {
+            try {
+                return SharedStorage.getLatestURL();
+            } catch (Exception ex) {}
+            return  null;
+        }
+
+        @JavascriptInterface
         public void saveAdminState(String state) {
             try {
                 SharedStorage.saveAdminState(state);
@@ -565,7 +630,11 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
 
     @Override
     public void onBackPressed() {
-        myBrowser.loadUrl("javascript:goBack()");
+        if(isNetworkConnected() == "true" || currentURL.equalsIgnoreCase("file:///android_asset/noInternet.html")){
+            myBrowser.loadUrl("javascript:goBack()");
+        }else{
+            myBrowser.loadUrl("file:///android_asset/noInternet.html");
+        }
     }
 
     public void initLocationFetching(Activity mActivity) {

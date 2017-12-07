@@ -1,10 +1,10 @@
 [
     {
-        "merged": "E:\\vamis\\Android latest\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\splash.png",
-        "source": "E:\\vamis\\Android latest\\w30_html\\app\\src\\main\\res\\mipmap-xxhdpi\\splash.png"
+        "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\ic_launcher.png",
+        "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "E:\\vamis\\Android latest\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\ic_launcher.png",
-        "source": "E:\\vamis\\Android latest\\w30_html\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+        "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\splash.png",
+        "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\src\\main\\res\\mipmap-xxhdpi\\splash.png"
     }
 ]

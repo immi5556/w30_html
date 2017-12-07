@@ -1,13 +1,113 @@
+if(window.andapp){
+    window.andapp.saveLatestURL("appointments.html");
+}
 var servurl = "https://services.within30.com/";     //"https://services.within30.com/"
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
 var latitude, longitude, locationType, userId, services = [];
 var country = "";
 var tabsCount = 0;
+var deleteAppointmentId, deleteAppointmentSubdomain;
 
 $('.tabModule').gbTab({
     tabUL:".tabMenu",
     tabCont:".tabContent"
 });
+
+ $.fn.myDialog = function(opt){
+        var defaults = {
+            close:null
+        },
+        set = $.extend({},defaults,opt);
+        
+        return this.each(function(){
+            var $this = $(this),
+            Wh = $(window).height() ? $(window).height() : screen.availHeight,
+            Ww = $(window).width() ? $(window).width() : screen.availWidth,
+            ContentH = $this.outerHeight(),
+            ContentW = $this.outerWidth();
+            init();
+            function init(){
+                open();
+                resize();
+                $('.btn-no').on('click',function(){
+                    reset();
+                });
+                $('.btn-yes').on('click',function(){
+                    deleteAppointment();
+                });
+                $(window).on('resize',resize);
+            };
+            
+            function deleteAppointment(){
+                $('#dialogbox').hide();
+                if(deleteAppointmentId && deleteAppointmentSubdomain){
+                    $('body').addClass('bodyload');
+                    var request1 = $.ajax({
+                        url: servurl + "endpoint/api/deleteslot",
+                        type: "POST",
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader ("Authorization", "Basic " + btoa(w30Credentials));
+                        },
+                        data: JSON.stringify({"id":deleteAppointmentId, "subDomain": deleteAppointmentSubdomain}),
+                        contentType: "application/json; charset=UTF-8"
+                    });
+                    request1.success(function(result) {
+                        $('body').removeClass('bodyload');
+                        reset();
+                        if(result.Status == "Success"){
+                            window.andapp.showToast(result.Status);
+                            $this.parent().find(".appointBlock").remove();
+                            if(!$(".pendingTab").has( ".appointBlock" )){
+                                $("#noPending").css("display", "block");
+                            }
+                       }else{
+                            window.andapp.showToast("Failed to delete. Try later.");
+                       }
+                    });
+                    request1.fail(function(jqXHR, textStatus) {
+                        if(window.andapp.checkInternet() != "true"){
+                		    window.andapp.saveLatestURL("appointments.html");
+                			window.andapp.loadLocalFile();
+                		}else{
+                            $('body').removeClass('bodyload');
+                            $(".popContent h2").text("Delete Appointment");
+                            //$(".popContent strong").text("Failed");
+                            $(".popContent span").text("Your request didn't go through. Please try again");
+                            $(".pop_up").show();
+                		}
+                    });
+                }else{
+                    reset();
+                    window.andapp.showToast("Invalid Data. Try later.");
+                }
+            }
+            function reset(){
+                $('#dialogbox').hide();
+                $('.loadingShadow').hide();
+                deleteAppointmentId = "";
+                deleteAppointmentSubdomain = "";
+            }
+            function open(){
+                $this.show();
+                $('.loadingShadow').show();
+                deleteAppointmentId = $this.parent().find(".apntmtid").text();
+                deleteAppointmentSubdomain = $this.parent().find(".apntmtsubdomain").text();
+            }
+            
+            function resize(){
+                Wh = $(window).height() ? $(window).height() : screen.availHeight,
+                Ww = $(window).width() ? $(window).width() : screen.availWidth,
+                ContentH = $this.outerHeight(),
+                ContentW = $this.outerWidth();
+                $this.css({
+                    'top': (Wh - ContentH) / 2,
+                    'left':(Ww - ContentW) / 2
+                });
+            }
+            
+             
+        });
+    }
 
 $(".tabMenu li").on("click", function(){
     tabsCount++;
@@ -19,10 +119,16 @@ $(".back").on("click", function(){
  var goBack = function(){
     $('body').addClass('bodyload');
 
-    if(tabsCount == 0)
+    /*if(tabsCount == 0)
         window.history.go(-1);
     else
-        window.history.go(-2);
+        window.history.go(-2);*/
+    if(window.andapp.checkInternet() == "true"){
+		window.location.href = 'selectCatagory.html';
+	}else{
+	    window.andapp.saveLatestURL("selectCatagory.html");
+		window.andapp.loadLocalFile();
+	}
  }
 
  var refreshOnForeground = function(){
@@ -50,11 +156,16 @@ $(".back").on("click", function(){
        }
     });
     request1.fail(function(jqXHR, textStatus) {
-        $('body').removeClass('bodyload');
-        $(".popContent h2").text("Submit Rating");
-        //$(".popContent strong").text("Failed");
-        $(".popContent span").text("Your request didn't go through. Please try again");
-        $(".pop_up").show();
+        if(window.andapp.checkInternet() != "true"){
+		    window.andapp.saveLatestURL("appointments.html");
+			window.andapp.loadLocalFile();
+		}else{
+            $('body').removeClass('bodyload');
+            $(".popContent h2").text("Submit Rating");
+            //$(".popContent strong").text("Failed");
+            $(".popContent span").text("Your request didn't go through. Please try again");
+            $(".pop_up").show();
+		}
     });
  }
 
@@ -74,6 +185,10 @@ $(".back").on("click", function(){
      });
      request1.fail(function(jqXHR, textStatus) {
          $('body').removeClass('bodyload');
+         if(window.andapp.checkInternet() != "true"){
+		    window.andapp.saveLatestURL("appointments.html");
+			window.andapp.loadLocalFile();
+		}
          //console.log(textStatus);
      });
  }
@@ -97,9 +212,9 @@ $(".back").on("click", function(){
                 temp = item.destinationDistance+" miles away";
         }
         if(!item.destinationDistance || item.destinationDistance > 55)
-            $(".pendingTab").append('<div class="appointBlock"><div class="contBlock"><div class="contBlockSec"><h3>'+item.companyName+'</h3><p>'+item.selecteddate+' <span>'+item.starttime+'</span></p></div><div class="contBlockSec"><p>'+(item.address.length > 0 ? item.address : "Address Not Provided")+'</p></div></div><div class="contBlockBottom"><span>'+temp+'</span></div></div>');
+            $(".pendingTab").append('<div class="appointBlock"><span class="clsSec">x</span><div class="contBlock"><span class="apntmtid" style="display:none;">'+item._id+'</span><span class="apntmtsubdomain" style="display:none;">'+item.subdomain+'</span><div class="contBlockSec"><h3>'+item.companyName+'</h3><p>'+item.selecteddate+' <span>'+item.starttime+'</span></p></div><div class="contBlockSec"><p>'+(item.address.length > 0 ? item.address : "Address Not Provided")+'</p></div></div><div class="contBlockBottom"><span>'+temp+'</span></div></div>');
         else
-            $(".pendingTab").append('<div class="appointBlock"><div class="contBlock"><div class="contBlockSec"><h3>'+item.companyName+'</h3><p>'+item.selecteddate+' <span>'+item.starttime+'</span></p></div><div class="contBlockSec"><p>'+(item.address.length > 0 ? item.address : "Address Not Provided")+'</p></div></div><div class="contBlockBottom"><span>'+temp+'</span><a class="'+item.appointmentId+' '+item.businessType.replace(" ", "")+'" href="#">View on map</a></div></div>');
+            $(".pendingTab").append('<div class="appointBlock"><span class="clsSec">x</span><div class="contBlock"><span class="apntmtid" style="display:none;">'+item._id+'</span><span class="apntmtsubdomain" style="display:none;">'+item.subdomain+'</span><div class="contBlockSec"><h3>'+item.companyName+'</h3><p>'+item.selecteddate+' <span>'+item.starttime+'</span></p></div><div class="contBlockSec"><p>'+(item.address.length > 0 ? item.address : "Address Not Provided")+'</p></div></div><div class="contBlockBottom"><span>'+temp+'</span><a class="'+item.appointmentId+' '+item.businessType.replace(" ", "")+'" href="#">View on map</a></div></div>');
         $("."+item.appointmentId).on("click", function(){
             var serviceName = $(this).attr("class").split(" ")[1];
             var matchFound = -1;
@@ -112,11 +227,23 @@ $(".back").on("click", function(){
             });
             if(matchFound != -1){
                 window.andapp.saveServiceId(serviceId);
-                window.location.href = "servicePage.html";
+                if(window.andapp.checkInternet() == "true"){
+            		window.location.href = 'servicePage.html';
+            	}else{
+            	    window.andapp.saveLatestURL("servicePage.html");
+            		window.andapp.loadLocalFile();
+            	}
             }else{
               alert("No Category found.");
             }
-        })
+        });
+        $('.clsSec').on('click',function(){
+            $('#dialogbox').myDialog({
+                close:function(){
+                    
+                }
+            });
+        });
     });
 
     finishedSlots.forEach(function(item, index){
@@ -179,11 +306,16 @@ $(".back").on("click", function(){
            }
         });
         request1.fail(function(jqXHR, textStatus) {
-            $('body').removeClass('bodyload');
-            $(".popContent h2").text("Get Appointment Status");
-            //$(".popContent strong").text("Failed");
-            $(".popContent span").text("Your request didn't go through. Please try again");
-            $(".pop_up").show();
+            if(window.andapp.checkInternet() != "true"){
+    		    window.andapp.saveLatestURL("appointments.html");
+    			window.andapp.loadLocalFile();
+    		}else{
+                $('body').removeClass('bodyload');
+                $(".popContent h2").text("Get Appointment Status");
+                //$(".popContent strong").text("Failed");
+                $(".popContent span").text("Your request didn't go through. Please try again");
+                $(".pop_up").show();
+    		}
         });
      }else{
         alert("Something went wrong. Try again");

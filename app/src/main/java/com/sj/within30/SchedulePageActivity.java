@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
@@ -83,12 +84,47 @@ public class SchedulePageActivity extends AppCompatActivity {
         }
     }
 
+    private String isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null ? "true": "false";
+    }
+
     public class AndroidBridge {
 
         private SchedulePageActivity activity;
 
         public AndroidBridge(SchedulePageActivity activity) {
             this.activity = activity;
+        }
+
+        @JavascriptInterface
+        public String checkInternet(){
+            return isNetworkConnected();
+        }
+
+        @JavascriptInterface
+        public void loadLocalFile(){
+            myBrowserView.post(new Runnable() {
+                @Override
+                public void run() {
+                    myBrowserView.loadUrl("file:///android_asset/index.html");
+                }
+            });
+        }
+
+        @JavascriptInterface
+        public void saveLatestURL(String url) {
+            try {
+                SharedStorage.saveLatestURL(url);
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getLatestURL() {
+            try {
+                return SharedStorage.getLatestURL();
+            } catch (Exception ex) {}
+            return  null;
         }
 
         @JavascriptInterface

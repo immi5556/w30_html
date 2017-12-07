@@ -1,3 +1,6 @@
+if(window.andapp){
+    window.andapp.saveLatestURL("selectCatagory.html");
+}
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
 var servurl = "https://services.within30.com/";     //"https://services.within30.com/"
 var geocoder = new google.maps.Geocoder();
@@ -18,21 +21,26 @@ var successFunction = function(){
         currentLocationName = recentSearch;
         if(recentSearch.indexOf("India") != -1){
             $(".categoryItem4 .cirleIcon").removeClass("attrny");
-            $(".categoryItem4 strong").text("Photography");
+            $(".categoryItem4 .specName").text("Photography");
             $(".categoryItem4 img").attr("src", "assets/img/catagory-camera1.png");
         } else {
             $(".categoryItem4 .cirleIcon").addClass("attrny");
-            $(".categoryItem4 strong").text("Attorneys");
+            $(".categoryItem4 .specName").text("Attorneys");
             $(".categoryItem4 img").attr("src", "assets/img/attorney.png");
         }
     }else
         getLocation(latitude, longitude);
 }
 var errorFunction = function(){
-	$(".popContent h2").text("Get Location");
-    $(".popContent span").text("");
-    $(".popContent strong").text("Not able to retrieve your location. Check location settings.");
-    $(".pop_up").show();
+    if(window.andapp.checkInternet() != "true"){
+	    window.andapp.saveLatestURL("selectCatagory.html");
+		window.andapp.loadLocalFile();
+	}else{
+    	$(".popContent h2").text("Get Location");
+        $(".popContent span").text("");
+        $(".popContent strong").text("Not able to retrieve your location. Check location settings.");
+        $(".pop_up").show();
+	}
 }
 
 function getLocation(lat, lng) {
@@ -144,7 +152,10 @@ var getServices = function (){
     });
     request1.fail(function(jqXHR, textStatus) {
         $('body').removeClass('bodyload');
-        //console.log(textStatus);
+        if(window.andapp.checkInternet() != "true"){
+		    window.andapp.saveLatestURL("selectCatagory.html");
+			window.andapp.loadLocalFile();
+		}
     });
 }
 $('.currentLocation .fa-pencil').click(function(){
@@ -160,9 +171,19 @@ $(".pop_up, .closePop").on("click", function(){
 $(".businessLogin").on("click", function(){
     if(window.andapp.getSubdomain().length > 0){
         window.andapp.saveAdminState("true");
-        window.location.href = 'schedulePage.html';
+        if(window.andapp.checkInternet() == "true"){
+			window.location.href = 'schedulePage.html';
+		}else{
+		    window.andapp.saveLatestURL("schedulePage.html");
+			window.andapp.loadLocalFile();
+		}
     }else{
-        window.location.href = 'adminLogin.html';
+        if(window.andapp.checkInternet() == "true"){
+			window.location.href = 'adminLogin.html';
+		}else{
+		    window.andapp.saveLatestURL("adminLogin.html");
+			window.andapp.loadLocalFile();
+		}
     }
 });
 var searcfield = false;
@@ -188,7 +209,12 @@ $('.autoComplete .fa-search').click(function(){
     });
     if(matchFound != -1){
         window.andapp.saveServiceId(serviceId);
-        window.location.href = "servicePage.html";
+        if(window.andapp.checkInternet() == "true"){
+			window.location.href = 'servicePage.html';
+		}else{
+		    window.andapp.saveLatestURL("servicePage.html");
+			window.andapp.loadLocalFile();
+		}
     }else{
         $(".popContent h2").text("Get Services");
         $(".popContent span").text("");
@@ -209,7 +235,12 @@ $(".categoryItem3, .categoryItem1, .categoryItem2, .categoryItem4, .categoryItem
     });
     if(matchFound != -1){
         window.andapp.saveServiceId(serviceId);
-        window.location.href = "servicePage.html";
+        if(window.andapp.checkInternet() == "true"){
+			window.location.href = 'servicePage.html';
+		}else{
+		    window.andapp.saveLatestURL("servicePage.html");
+		    window.andapp.loadLocalFile();
+		}
     }else{
       $('body').removeClass('bodyload');
       $(".popContent h2").text("Status");
@@ -241,13 +272,18 @@ autocomplete.addListener('place_changed', function() {
   var place = autocomplete.getPlace();
 
   if (!place.geometry) {
-    // User entered the name of a Place that was not suggested and
-    // pressed the Enter key, or the Place Details request failed.
-    $(".popContent h2").text("Change Location");
-    $(".popContent span").text("");
-    $(".popContent strong").text("No details available for input: '" + place.name + "'");
-    $(".pop_up").show();
-    return;
+        if(window.andapp.checkInternet() != "true"){
+    	    window.andapp.saveLatestURL("selectCatagory.html");
+    		window.andapp.loadLocalFile();
+    	}else{
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            $(".popContent h2").text("Change Location");
+            $(".popContent span").text("");
+            $(".popContent strong").text("No details available for input: '" + place.name + "'");
+            $(".pop_up").show();
+            return;
+    	}
   }else{
     searchedLat = place.geometry.location.lat();
     searchedLong = place.geometry.location.lng();
@@ -274,13 +310,23 @@ function goBack(){
 }
 
 var refreshOnForeground = function(){
-    location.reload();
+    if(window.andapp.checkInternet() != "true"){
+	    window.andapp.saveLatestURL("selectCatagory.html");
+		window.andapp.loadLocalFile();
+	}else{
+        location.reload();
+	}
 }
 
 var locationChange = function(){}
 
 $(".appointments").on("click", function(){
     $('body').addClass('bodyload');
-    window.location.href = "appointments.html";
+    if(window.andapp.checkInternet() == "true"){
+		window.location.href = 'appointments.html';
+	}else{
+	    window.andapp.saveLatestURL("appointments.html");
+		window.andapp.loadLocalFile();
+	}
 });
 getServices();

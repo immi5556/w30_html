@@ -1,3 +1,6 @@
+if(window.andapp){
+    window.andapp.saveLatestURL("chat.html");
+}
 var jss = {
 		questions: [
 			/*{
@@ -59,7 +62,13 @@ var jss = {
 		} 
 	});
 	function goBack(){
-        history.back();
+        /*history.back();*/
+        if(window.andapp.checkInternet() == "true"){
+    		window.location.href = 'selectCatagory.html';
+    	}else{
+    	    window.andapp.saveLatestURL("selectCatagory.html");
+    		window.andapp.loadLocalFile();
+    	}
     }
 	$(function(){
 	    var errorText;
@@ -438,6 +447,10 @@ var jss = {
                     }
                 });
                 request.fail(function(jqXHR, textStatus) {
+                    if(window.andapp.checkInternet() != "true"){
+            		    window.andapp.saveLatestURL("chat.html");
+            			window.andapp.loadLocalFile();
+            		}
                     //console.log("error while getting lat,long");
                 });
         	}
@@ -459,7 +472,12 @@ var jss = {
                 callback(result);
             });
             request.fail(function(jqXHR, textStatus) {
-                showMessage("error while checking credentials. Try again after some time", "error");
+                if(window.andapp.checkInternet() != "true"){
+        		    window.andapp.saveLatestURL("chat.html");
+        			window.andapp.loadLocalFile();
+        		}else{
+                    showMessage("error while checking credentials. Try again after some time", "error");
+        		}
             });
         }
         
@@ -475,7 +493,10 @@ var jss = {
                 //console.log(result);
             });
             request.fail(function(jqXHR, textStatus) {
-                if(jqXHR.responseText == "Subdomain already taken"){
+                if(window.andapp.checkInternet() != "true"){
+        		    window.andapp.saveLatestURL("chat.html");
+        			window.andapp.loadLocalFile();
+        		}else if(jqXHR.responseText == "Subdomain already taken"){
                     callback("Subdomain already taken");
                 } else if(jqXHR.responseText == "Subdomain not exists"){
                     callback("Subdomain not exists");
@@ -514,7 +535,12 @@ var jss = {
                 
             });
             request.fail(function(jqXHR, textStatus) {
-                showMessage("Error occured while request for Registration.", "error");
+                if(window.andapp.checkInternet() != "true"){
+        		    window.andapp.saveLatestURL("chat.html");
+        			window.andapp.loadLocalFile();
+        		}else{
+                    showMessage("Error occured while request for Registration.", "error");
+        		}
             });
         }
         
@@ -729,7 +755,12 @@ var jss = {
         	        showMessage("Successfully Registered. Your admin URL is: <a href='#' target='_blank'>https://" + (result.subdomain)  + ".within30.com/admin</a>. Use the following Pin to login: "+password+".", "success");
                 });
                 request.fail(function(jqXHR, textStatus) {
-                    showMessage("error while cupdate", "");
+                    if(window.andapp.checkInternet() != "true"){
+            		    window.andapp.saveLatestURL("chat.html");
+            			window.andapp.loadLocalFile();
+            		}else{
+                        showMessage("error while cupdate", "");
+            		}
                 });
         }
         
@@ -781,7 +812,12 @@ var jss = {
             	}
             });
             request.fail(function(jqXHR, textStatus) {
-                showMessage("Not Able to get services. Try Again after some time.", "error");
+                if(window.andapp.checkInternet() != "true"){
+        		    window.andapp.saveLatestURL("chat.html");
+        			window.andapp.loadLocalFile();
+        		}else{
+                    showMessage("Not Able to get services. Try Again after some time.", "error");
+        		}
             });
         }
         
@@ -829,7 +865,12 @@ var jss = {
             	}
             });
             request.fail(function(jqXHR, textStatus) {
-                showOption();
+                if(window.andapp.checkInternet() != "true"){
+        		    window.andapp.saveLatestURL("chat.html");
+        			window.andapp.loadLocalFile();
+        		}else{
+                    showOption();
+        		}
             });
     	}
         

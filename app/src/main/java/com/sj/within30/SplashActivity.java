@@ -40,7 +40,7 @@ public class SplashActivity extends AppCompatActivity {
         NetworkInfo netInfo = conMgr.getActiveNetworkInfo();
 
         if(netInfo == null || !netInfo.isConnected() || !netInfo.isAvailable()){
-            Toast.makeText(this, "No Internet Connection!, App may not work as expected.", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "No Internet Connection! App may not work as expected.", Toast.LENGTH_LONG).show();
             launch(5000);
             return false;
         }

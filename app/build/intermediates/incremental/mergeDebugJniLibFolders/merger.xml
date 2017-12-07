@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="E:\vamis\Android latest\w30_html\app\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="E:\vamis\Android latest\w30_html\app\src\debug\jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="E:\vamis\Android latest\w30_html\w30_html\app\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="E:\vamis\Android latest\w30_html\w30_html\app\src\debug\jniLibs"/></dataSet></merger>

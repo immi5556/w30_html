@@ -1,11 +1,19 @@
+if(window.andapp){
+    window.andapp.saveLatestURL("schedulePage.html");
+}
 var subdomain = window.andapp.getSubdomain();
 var adminState = window.andapp.getAdminState();
 
 function goBack(){
     if($(".screen1").is(":visible")){
         window.andapp.saveAdminState("false");
-        /*window.location.href = "selectCatagory.html";*/
-        window.history.go(-1);
+        /*window.history.go(-1);*/
+        if(window.andapp.checkInternet() == "true"){
+    		window.location.href = 'selectCatagory.html';
+    	}else{
+    	    window.andapp.saveLatestURL("selectCatagory.html");
+    		window.andapp.loadLocalFile();
+    	}
     }else{
         $('.clk-btn').click();
     }
@@ -28,10 +36,10 @@ if(adminState && adminState == "true"){
 }
 
 $(function(){
-    var servurl = "https://services.within30.com/";                //"https://services.schejule.com:9095/"
-    var sockurl = "https://socket.within30.com/";                    //"https://util.schejule.com:9090/"
-    var regisurl = 'https://registration.within30.com/';           //"https://registration.schejule.com:9091/"
-    var schdlurl = 'https://schedule.within30.com/';               //"https://schedule.schejule.com:9092/"
+    var servurl = "https://services.within30.com/";                     //"https://services.schejule.com:9095/"
+    var sockurl = "https://socket.within30.com/";                       //"https://util.schejule.com:9090/"
+    var regisurl = 'https://registration.within30.com/';                //"https://registration.schejule.com:9091/"
+    var schdlurl = 'https://schedule.within30.com/';                    //"https://schedule.schejule.com:9092/"
     var w30Credentials = "win-HQGQ:zxosxtR76Z80";
     var abbrs = {
         EST : 'America/New_York',
@@ -685,9 +693,14 @@ $(function(){
         	}
         });
         request1.fail(function(jqXHR, textStatus) {
-            $('body').removeClass('bodyload');
-        	$('#errormsg').show();
-            $(".errMsg").html("Error Occured. Try Again.");
+            if(window.andapp.checkInternet() != "true"){
+    		    window.andapp.saveLatestURL("schedulePage.html");
+    			window.andapp.loadLocalFile();
+    		}else{
+                $('body').removeClass('bodyload');
+            	$('#errormsg').show();
+                $(".errMsg").html("Error Occured. Try Again.");
+    		}
         });
     });
     
@@ -749,9 +762,14 @@ $(function(){
         	}
         });
         request1.fail(function(jqXHR, textStatus) {
-            $('body').removeClass('bodyload');
-        	$('#errormsg').show();
-            $(".errMsg").html("Error Occured. Try Again.");
+            if(window.andapp.checkInternet() != "true"){
+    		    window.andapp.saveLatestURL("schedulePage.html");
+    			window.andapp.loadLocalFile();
+    		}else{
+                $('body').removeClass('bodyload');
+            	$('#errormsg').show();
+                $(".errMsg").html("Error Occured. Try Again.");
+    		}
         });
     }
     
@@ -798,9 +816,14 @@ $(function(){
         	}
         });
         request1.fail(function(jqXHR, textStatus) {
-            $('body').removeClass('bodyload');
-        	$('#errormsg').show();
-            $(".errMsg").html("Error Occured. Try Again.");
+            if(window.andapp.checkInternet() != "true"){
+    		    window.andapp.saveLatestURL("schedulePage.html");
+    			window.andapp.loadLocalFile();
+    		}else{
+                $('body').removeClass('bodyload');
+            	$('#errormsg').show();
+                $(".errMsg").html("Error Occured. Try Again.");
+    		}
         });
     }
     
@@ -859,8 +882,13 @@ $(function(){
                 }
             },
             fail: function(jqXHR, textStatus) {
-                $('body').removeClass('bodyload');
-                alert("Error occured");
+                if(window.andapp.checkInternet() != "true"){
+        		    window.andapp.saveLatestURL("schedulePage.html");
+        			window.andapp.loadLocalFile();
+        		}else{
+                    $('body').removeClass('bodyload');
+                    alert("Error occured");
+        		}
             }
         });
     }
@@ -1128,7 +1156,12 @@ $(function(){
 
         socketio.on('RegisSettingsChange', function(message) {
             alert("Admin Has changed some settings. Click on ok to Refresh.");
-            window.location.reload();
+            if(window.andapp.checkInternet() == "true"){
+        		window.location.href = 'schedulePage.html';
+        	}else{
+        	    window.andapp.saveLatestURL("schedulePage.html");
+        		window.andapp.loadLocalFile();
+        	}
         });
 
         socketio.on('subdomainChange', function(message) {
@@ -1138,7 +1171,12 @@ $(function(){
             }else{
                 alert("Subdomain was changed by the admin. Click on ok to Refresh.");
                 window.andapp.saveSubdomain(message.newSubdomain);
-                window.location.reload();
+                if(window.andapp.checkInternet() == "true"){
+            		window.location.href = 'schedulePage.html';
+            	}else{
+            	    window.andapp.saveLatestURL("schedulePage.html");
+            		window.andapp.loadLocalFile();
+            	}
             }
         });
     });
