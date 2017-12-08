@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "900378606138",
+    "firebase_url": "https://within30-c790c.firebaseio.com",
+    "project_id": "within30-c790c",
+    "storage_bucket": "within30-c790c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900378606138:android:66f9f956d31c5c6e",
+        "android_client_info": {
+          "package_name": "com.within30.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900378606138-eedtajfelfb9urdb3bvmvshb0l78pdrj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoA3VncQrLRk2HkbJpyFGssF5LmFHPT7M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900378606138:android:6c124e4dba23d52e",
+        "android_client_info": {
+          "package_name": "com.sj.within30"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900378606138-eedtajfelfb9urdb3bvmvshb0l78pdrj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoA3VncQrLRk2HkbJpyFGssF5LmFHPT7M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

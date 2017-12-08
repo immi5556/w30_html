@@ -334,7 +334,7 @@ var jss = {
 					validerror = true;
 					callback();
 			    }else if(!isNaN(ttv)){
-				    errorText = 'Subdomain cannot be a number. It can be a combination of numbers and alphabets';
+				    errorText = 'Subdomain cannot be only number. It can be a combination of numbers and alphabets';
 					validerror = true;
 					callback();
 			    }else if(ttv.indexOf(" ") > -1){

@@ -26,6 +26,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 import com.google.android.gms.location.LocationRequest;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.sj.within30.location.LocationManagerInterface;
 import com.sj.within30.location.MyLocationManager;
 
@@ -47,10 +48,13 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
     private static final int REQUEST_FINE_LOCATION = 1;
     private static  final int CALL_REQUEST1 = 5;
     private Activity mCurrentActivity;
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         self = this;
         myBrowser = (WebView)findViewById(R.id.mybrowser);
         myBrowser.getSettings().setJavaScriptEnabled(true);

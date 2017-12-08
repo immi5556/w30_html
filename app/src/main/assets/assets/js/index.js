@@ -88,7 +88,7 @@ var saveData = function(type){
 					window.andapp.postJson('persistuser', JSON.stringify({"firstname":$(".firstname").val(),"lastname":$(".lastname").val(),"email":$(".email").val(),"mobilenumber":mobilenumber, "_id": result._id, "deviceToken": window.andapp.getTokenId()}));
 				}
 				if(window.andapp.checkInternet() == "true"){
-        			window.andapp.openLink("selectCatagory.html");
+				    window.location.href = "selectCatagory.html";
         		}else{
         		    window.andapp.saveLatestURL("selectCatagory.html");
         			window.andapp.loadLocalFile();
@@ -99,6 +99,8 @@ var saveData = function(type){
             if(window.andapp.checkInternet() != "true"){
     		    window.andapp.saveLatestURL("index.html");
     			window.andapp.loadLocalFile();
+    		}else{
+    		    alert("No Internet");
     		}
 	        //console.log(JSON.stringify(jqXHR));
 	    /*    alert('Error in user service call......');*/
@@ -111,7 +113,7 @@ var saveData = function(type){
 
 $(".termsLink a").on("click", function(){
     if(window.andapp.checkInternet() == "true"){
-		window.andapp.openLink("terms.html");
+        window.location.href = "terms.html";
 	}else{
 	    window.andapp.saveLatestURL("terms.html");
 		window.andapp.loadLocalFile();

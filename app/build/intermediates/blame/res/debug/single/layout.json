@@ -36,10 +36,6 @@
         "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_screen_toolbar.xml"
     },
     {
-        "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_item_powered_by_google.xml",
-        "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_item_powered_by_google.xml"
-    },
-    {
         "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
         "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_action_menu_item_layout.xml"
     },
@@ -64,32 +60,20 @@
         "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\notification_template_lines.xml"
     },
     {
-        "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
-        "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_list_menu_item_icon.xml"
-    },
-    {
-        "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_fragment.xml",
-        "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_fragment.xml"
-    },
-    {
         "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_tab_icon.xml",
         "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.4.0\\res\\layout\\design_layout_tab_icon.xml"
+    },
+    {
+        "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
+        "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_list_menu_item_icon.xml"
     },
     {
         "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
         "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_list_menu_item_checkbox.xml"
     },
     {
-        "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_item_prediction.xml",
-        "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_item_prediction.xml"
-    },
-    {
         "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
         "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_action_bar_title_item.xml"
-    },
-    {
-        "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\place_autocomplete_progress.xml",
-        "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_progress.xml"
     },
     {
         "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_splash.xml",
@@ -118,10 +102,6 @@
     {
         "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
         "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_popup_menu_item_layout.xml"
-    },
-    {
-        "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mr_media_route_list_item.xml",
-        "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\layout\\mr_media_route_list_item.xml"
     },
     {
         "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
@@ -172,16 +152,12 @@
         "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
-        "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mr_media_route_chooser_dialog.xml",
-        "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\layout\\mr_media_route_chooser_dialog.xml"
+        "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
+        "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
     },
     {
         "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_tab_text.xml",
         "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.4.0\\res\\layout\\design_layout_tab_text.xml"
-    },
-    {
-        "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
-        "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
     },
     {
         "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
@@ -214,10 +190,6 @@
     {
         "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar.xml",
         "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.4.0\\res\\layout\\design_layout_snackbar.xml"
-    },
-    {
-        "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mr_media_route_controller_material_dialog_b.xml",
-        "source": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\layout\\mr_media_route_controller_material_dialog_b.xml"
     },
     {
         "merged": "E:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow.xml",

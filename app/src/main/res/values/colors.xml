@@ -5,4 +5,5 @@
     <color name="colorAccent">#39425f</color>
     <color name="black">#1b2a30</color>
     <color name="backgroung_actionbar">#384260</color>
+    <color name="wallet_holo_blue_light">#000000</color>
 </resources>

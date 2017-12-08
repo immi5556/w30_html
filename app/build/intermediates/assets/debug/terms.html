@@ -268,7 +268,7 @@ $('.cont_sect .panel').on('click',function(){
 	function goBack(){
 	    var url = window.andapp.checkLogin();
 		if(window.andapp.checkInternet() == "true"){
-		    var url = window.andapp.checkLogin();
+		    var url = window.andapp.getLatestURL();
 			if(url != "index.html"){
 			    url = "editScreen.html";
 			}
