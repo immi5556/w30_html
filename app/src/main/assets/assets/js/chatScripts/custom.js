@@ -1,6 +1,9 @@
 if(window.andapp){
     window.andapp.saveLatestURL("chat.html");
 }
+$('#q1-subdomain').keyup(function(){
+    this.value = this.value.toLowerCase();
+});
 var jss = {
 		questions: [
 			/*{
@@ -269,7 +272,7 @@ var jss = {
 					validerror = true;
 					callback();
 				}else if(checkEmailBox(selectVal2)){
-					errorText = 'Please Enter proper EmailID';
+					errorText = 'Please Enter proper Email ID';
 					validerror = true;
 					callback();
 				}else{
@@ -752,7 +755,8 @@ var jss = {
                     $(".adminURL").html("<a href='https://" + (result.subdomain)  + ".within30.com/admin' target='_blank'>https://" + (result.subdomain)  + ".within30.com/admin</a>");
         	        $(".endUserURL").html("<a href='https://" + (result.subdomain)  + ".within30.com' target='_blank'>https://" + (result.subdomain)  + ".within30.com</a>");
         	        $('body').addClass("successPopUp");*/
-        	        showMessage("Successfully Registered. Your admin URL is: <a href='#' target='_blank'>https://" + (result.subdomain)  + ".within30.com/admin</a>. Use the following Pin to login: "+password+".", "success");
+        	        window.andapp.saveRegistrationDetails(JSON.stringify({"subdomain": result.subdomain, "email": email}));
+        	        showMessage("Successfully Registered. Your admin URL is: <a href='adminLogin.html' target='_blank'>https://" + (result.subdomain)  + ".within30.com/admin</a>. Use the following Pin to login: "+password+".", "success");
                 });
                 request.fail(function(jqXHR, textStatus) {
                     if(window.andapp.checkInternet() != "true"){

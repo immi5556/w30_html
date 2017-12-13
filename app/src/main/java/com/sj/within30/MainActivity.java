@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
     private static  final int CALL_REQUEST1 = 5;
     private Activity mCurrentActivity;
     private FirebaseAnalytics mFirebaseAnalytics;
+    public String regSubdomain = "";
+    public String regEmail = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -280,6 +282,26 @@ public class MainActivity extends AppCompatActivity implements LocationManagerIn
                     //SharedStorage.saveN(data.get('notifications'));
                 }
             } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public void saveRegistrationDetails(String jsonData) {
+            try {
+                JSONObject data = Utils.transformJson(jsonData);
+                regSubdomain = data.getString("subdomain");
+                regEmail = data.getString("email");
+            } catch (Exception ex) {}
+        }
+
+        @JavascriptInterface
+        public String getBusinessLoginDetails() {
+            try {
+                JSONObject jso = new JSONObject();
+                jso.put("email", regEmail);
+                jso.put("subdomain", regSubdomain);
+                return jso.toString();
+            } catch (Exception ex) {}
+            return null;
         }
 
         @JavascriptInterface
