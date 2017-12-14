@@ -1,8 +1,9 @@
 if(window.andapp){
     window.andapp.saveLatestURL("schedulePage.html");
+    var subdomain = window.andapp.getSubdomain();
+    var adminState = window.andapp.getAdminState();
 }
-var subdomain = window.andapp.getSubdomain();
-var adminState = window.andapp.getAdminState();
+
 
 function goBack(){
     if($(".screen1").is(":visible")){
@@ -31,7 +32,8 @@ if(adminState && adminState == "true"){
         goBack();
     });
 }else{
-    subdomain = window.andapp.getEndUserSubdomain();
+    if(window.andapp)
+        subdomain = window.andapp.getEndUserSubdomain();
     $(".signOut").hide();
 }
 
@@ -385,6 +387,8 @@ $(function(){
                             var timeLine = dat[x].events[y].startT.split(":")[0];
                             var dayStartTime = Number(optdata.newTimings[days[moment(selectedDate).day()]][0][0].split(":")[0]);
                             var dayEndTime = Number(optdata.newTimings[days[moment(selectedDate).day()]][0][1].split(":")[1]) > 0 ? (Number(optdata.newTimings[days[moment(selectedDate).day()]][0][1].split(":")[0])+1) : Number(optdata.newTimings[days[moment(selectedDate).day()]][0][1].split(":")[0]);
+                            console.log(dayStartTime);
+                            console.log(dayEndTime);
                             for(var v = dayStartTime, z = 0; v <= dayEndTime; v++, z++){
                                 if(v == Number(timeLine)){
                                     $(dataRow[z]).append(buildEvent(dat[x].events[y]));
@@ -437,7 +441,7 @@ $(function(){
         setTimeout(function(){
             $(timeRow).removeClass('bookSlot');
             $(bookSlotEle).remove();
-        },3000)
+        },3000);
     }
     		
     function timesheet(){		
@@ -808,8 +812,13 @@ $(function(){
                     "id": result.Data._id
                 };
     	        timeschd[0].events.push(newObj);
-                newBooking(newObj);
+                //newBooking(newObj);
                 socketio.emit("newAppointment", result.Data);
+                $(".weekSec ul li").each(function(){
+                    if($(this).hasClass("active")){
+                        $(this).click();
+                    }
+                });
         	}else{
         	    $('#errormsg').show();
                 $(".errMsg").html(result.Message);
@@ -850,8 +859,13 @@ $(function(){
         var timeLine = newObj.startT.split(":")[0];
         var dayStartTime = Number(optdata.newTimings[days[moment(selectedDate).day()]][0][0].split(":")[0]);
         var dayEndTime = Number(optdata.newTimings[days[moment(selectedDate).day()]][0][1].split(":")[1]);
+        console.log(selectedDate);
+        console.log(dayStartTime);
+        console.log(dayEndTime);
+        console.log(timeLine);
         for(var v = dayStartTime, z = 0; v <= dayEndTime; v++, z++){
             if(v == Number(timeLine)){
+                console.log($(dataRow));
                 $(dataRow[z]).append(buildEvent(newObj));
                 eveDes($(dataRow),"");
                 var child = $(dataRow[z]).find('.eveClass').length;

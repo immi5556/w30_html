@@ -750,13 +750,13 @@ var jss = {
                 });
         
                 request.success(function(result) {
-                    /*$('body').removeClass('loadingHome');
-                    $(".regisURL").html("<a href='https://registration.within30.com/" + (obj.landing._uniqueid)  + "' target='_blank'>https://registration.within30.com/" + (obj.landing._uniqueid)  + "</a>");
-                    $(".adminURL").html("<a href='https://" + (result.subdomain)  + ".within30.com/admin' target='_blank'>https://" + (result.subdomain)  + ".within30.com/admin</a>");
-        	        $(".endUserURL").html("<a href='https://" + (result.subdomain)  + ".within30.com' target='_blank'>https://" + (result.subdomain)  + ".within30.com</a>");
-        	        $('body').addClass("successPopUp");*/
         	        window.andapp.saveRegistrationDetails(JSON.stringify({"subdomain": result.subdomain, "email": email}));
-        	        showMessage("Successfully Registered. Your admin URL is: <a href='adminLogin.html' target='_blank'>https://" + (result.subdomain)  + ".within30.com/admin</a>. Use the following Pin to login: "+password+".", "success");
+        	        showMessage("Successfully Registered. Your admin URL is: <a class='businessLink'>https://" + (result.subdomain)  + ".within30.com/admin</a>. Use the following Pin to login: "+password+".", "success");
+                    $(".businessLink").on("click", function(){
+                        window.andapp.saveSubdomain("");
+                        window.andapp.saveAdminState("false");
+                        window.location.href = "adminLogin.html";
+                    });
                 });
                 request.fail(function(jqXHR, textStatus) {
                     if(window.andapp.checkInternet() != "true"){
