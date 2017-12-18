@@ -34,8 +34,6 @@ if(adminState && adminState == "true"){
 }else{
     if(window.andapp)
         subdomain = window.andapp.getEndUserSubdomain();
-    else
-        subdomain = "carsinminutes";
     $(".signOut").hide();
 }
 
