@@ -91,8 +91,8 @@ $('.tabModule').gbTab({
             function open(){
                 $this.show();
                 $('.loadingShadow').show();
-                deleteAppointmentId = $this.parent().find(".apntmtid").text();
-                deleteAppointmentSubdomain = $this.parent().find(".apntmtsubdomain").text();
+                deleteAppointmentId = (set.closeBlock).closest(".appointBlock").find(".apntmtid").text();
+                deleteAppointmentSubdomain = (set.closeBlock).closest(".appointBlock").find(".apntmtsubdomain").text();
             }
             
             function resize(){
