@@ -15,7 +15,8 @@ $('.tabModule').gbTab({
 
  $.fn.myDialog = function(opt){
         var defaults = {
-            close:null
+            close:null,
+    	     closeBlock: null
         },
         set = $.extend({},defaults,opt);
         
@@ -56,7 +57,7 @@ $('.tabModule').gbTab({
                         reset();
                         if(result.Status == "Success"){
                             window.andapp.showToast(result.Status);
-                            $this.parent().find(".appointBlock").remove();
+                            $(set.closeBlock).closest(".appointBlock").remove();
                             if(!$(".pendingTab").has( ".appointBlock" )){
                                 $("#noPending").css("display", "block");
                             }
@@ -238,10 +239,12 @@ $(".back").on("click", function(){
             }
         });
         $('.clsSec').on('click',function(){
+		var $this = eve.target;
             $('#dialogbox').myDialog({
                 close:function(){
                     
-                }
+                },
+                closeBlock: $this
             });
         });
     });
