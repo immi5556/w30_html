@@ -69,8 +69,10 @@ $(".serviceSection").swipe( {
   swipeUp:function(event, direction, distance, duration) {
     $('.directionArrowTop').hide();
     $('.directionArrowBottom').show();
+    var reqHeight = $('.serviceCont').outerHeight()+$('.serviceSection').outerHeight();
+    reqHeight = reqHeight+20+"px";
     $('.serviceSection').animate({
-        height:'330px'
+        height:reqHeight
     },200);
   },
   swipeDown:function(event, direction, distance, duration) {
