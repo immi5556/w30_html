@@ -1,4 +1,4 @@
-#Tue Jan 23 16:41:43 IST 2018
+#Tue Jan 23 16:52:31 IST 2018
 base.0=E\:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
 renamed.0=classes.dex
 file.0=E\:\\vamis\\Android latest\\w30_html\\w30_html\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex

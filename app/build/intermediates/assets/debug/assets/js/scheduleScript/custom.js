@@ -1,3 +1,41 @@
+function goBack(){
+        if($(".screen1").is(":visible")){
+            window.andapp.saveAdminState("false");
+            window.history.go(-1);
+            /*if(window.andapp.checkInternet() == "true"){
+        		window.location.href = 'selectCatagory.html';
+        	}else{
+        	    window.andapp.saveLatestURL("selectCatagory.html");
+        		window.andapp.loadLocalFile();
+        	}*/
+        }else{
+            $('.clk-btn').click();
+        }
+    }
+
+    $(".back").on("click", function(){
+        goBack();
+    });
+
+    if(window.andapp){
+        window.andapp.saveLatestURL("schedulePage.html");
+        var subdomain = window.andapp.getSubdomain();
+        var adminState = window.andapp.getAdminState();
+    }
+
+    if(adminState && adminState == "true"){
+        $(".signOut").on("click", function(){
+            if(adminState && adminState == "true"){
+                window.andapp.saveSubdomain("");
+                window.andapp.saveAdminState("false");
+            }
+            goBack();
+        });
+    }else{
+        if(window.andapp)
+            subdomain = window.andapp.getEndUserSubdomain();
+        $(".signOut").hide();
+    }
 $(function(){
     var servurl = "https://services.within30.com/";                     //"https://services.schejule.com:9095/"
     var sockurl = "https://socket.within30.com/";                       //"https://util.schejule.com:9090/"
@@ -1155,46 +1193,6 @@ $(function(){
             }
         });
     });
-
-    function goBack(){
-        if($(".screen1").is(":visible")){
-            window.andapp.saveAdminState("false");
-            /*window.history.go(-1);*/
-            if(window.andapp.checkInternet() == "true"){
-        		window.location.href = 'selectCatagory.html';
-        	}else{
-        	    window.andapp.saveLatestURL("selectCatagory.html");
-        		window.andapp.loadLocalFile();
-        	}
-        }else{
-            $('.clk-btn').click();
-        }
-    }
-
-    $(".back").on("click", function(){
-        goBack();
-    });
-
-    if(window.andapp){
-        window.andapp.saveLatestURL("schedulePage.html");
-        var subdomain = window.andapp.getSubdomain();
-        var adminState = window.andapp.getAdminState();
-    }
-
-    if(adminState && adminState == "true"){
-        $(".signOut").on("click", function(){
-            if(adminState && adminState == "true"){
-                window.andapp.saveSubdomain("");
-                window.andapp.saveAdminState("false");
-            }
-            goBack();
-        });
-    }else{
-        if(window.andapp)
-            subdomain = window.andapp.getEndUserSubdomain();
-        $(".signOut").hide();
-    }
-    alert(subdomain);
     if(subdomain.length)
         ajaxCall("getresources", {}, getresourcesAck);
     else{
