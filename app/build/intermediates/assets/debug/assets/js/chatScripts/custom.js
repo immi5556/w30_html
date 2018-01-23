@@ -751,7 +751,7 @@ var jss = {
         
                 request.success(function(result) {
         	        window.andapp.saveRegistrationDetails(JSON.stringify({"subdomain": result.subdomain, "email": email}));
-        	        showMessage("Successfully Registered. Your admin URL is: <a class='businessLink'>https://" + (result.subdomain)  + ".within30.com/admin</a>. Use the following Pin to login: "+password+".", "success");
+        	        showMessage("Successfully Registered. Your admin URL is: https://" + (result.subdomain)  + ".within30.com/admin. Use the following Pin to login: "+password+". Click to <a class='businessLink'>Login</a>", "success");
                     $(".businessLink").on("click", function(){
                         window.andapp.saveSubdomain("");
                         window.andapp.saveAdminState("false");

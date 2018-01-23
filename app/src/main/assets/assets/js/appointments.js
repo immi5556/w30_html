@@ -15,7 +15,8 @@ $('.tabModule').gbTab({
 
  $.fn.myDialog = function(opt){
         var defaults = {
-            close:null
+            close:null,
+    	     closeBlock: null
         },
         set = $.extend({},defaults,opt);
         
@@ -56,7 +57,7 @@ $('.tabModule').gbTab({
                         reset();
                         if(result.Status == "Success"){
                             window.andapp.showToast(result.Status);
-                            $this.parent().find(".appointBlock").remove();
+                            $(set.closeBlock).closest(".appointBlock").remove();
                             if(!$(".pendingTab").has( ".appointBlock" )){
                                 $("#noPending").css("display", "block");
                             }
@@ -90,8 +91,8 @@ $('.tabModule').gbTab({
             function open(){
                 $this.show();
                 $('.loadingShadow').show();
-                deleteAppointmentId = $this.parent().find(".apntmtid").text();
-                deleteAppointmentSubdomain = $this.parent().find(".apntmtsubdomain").text();
+                deleteAppointmentId = (set.closeBlock).closest(".appointBlock").find(".apntmtid").text();
+                deleteAppointmentSubdomain = (set.closeBlock).closest(".appointBlock").find(".apntmtsubdomain").text();
             }
             
             function resize(){
@@ -212,9 +213,9 @@ $(".back").on("click", function(){
                 temp = item.destinationDistance+" miles away";
         }
         if(!item.destinationDistance || item.destinationDistance > 55)
-            $(".pendingTab").append('<div class="appointBlock"><span class="clsSec">x</span><div class="contBlock"><span class="apntmtid" style="display:none;">'+item._id+'</span><span class="apntmtsubdomain" style="display:none;">'+item.subdomain+'</span><div class="contBlockSec"><h3>'+item.companyName+'</h3><p>'+item.selecteddate+' <span>'+item.starttime+'</span></p></div><div class="contBlockSec"><p>'+(item.address.length > 0 ? item.address : "Address Not Provided")+'</p></div></div><div class="contBlockBottom"><span>'+temp+'</span></div></div>');
+            $(".pendingTab").append('<div class="appointBlock"><span class="clsSec">x</span><div class="contBlock"><span class="apntmtid" style="display:none;">'+item.appointmentId+'</span><span class="apntmtsubdomain" style="display:none;">'+item.subdomain+'</span><div class="contBlockSec"><h3>'+item.companyName+'</h3><p>'+item.selecteddate+' <span>'+item.starttime+'</span></p></div><div class="contBlockSec"><p>'+(item.address.length > 0 ? item.address : "Address Not Provided")+'</p></div></div><div class="contBlockBottom"><span>'+temp+'</span></div></div>');
         else
-            $(".pendingTab").append('<div class="appointBlock"><span class="clsSec">x</span><div class="contBlock"><span class="apntmtid" style="display:none;">'+item._id+'</span><span class="apntmtsubdomain" style="display:none;">'+item.subdomain+'</span><div class="contBlockSec"><h3>'+item.companyName+'</h3><p>'+item.selecteddate+' <span>'+item.starttime+'</span></p></div><div class="contBlockSec"><p>'+(item.address.length > 0 ? item.address : "Address Not Provided")+'</p></div></div><div class="contBlockBottom"><span>'+temp+'</span><a class="'+item.appointmentId+' '+item.businessType.replace(" ", "")+'" href="#">View on map</a></div></div>');
+            $(".pendingTab").append('<div class="appointBlock"><span class="clsSec">x</span><div class="contBlock"><span class="apntmtid" style="display:none;">'+item.appointmentId+'</span><span class="apntmtsubdomain" style="display:none;">'+item.subdomain+'</span><div class="contBlockSec"><h3>'+item.companyName+'</h3><p>'+item.selecteddate+' <span>'+item.starttime+'</span></p></div><div class="contBlockSec"><p>'+(item.address.length > 0 ? item.address : "Address Not Provided")+'</p></div></div><div class="contBlockBottom"><span>'+temp+'</span><a class="'+item.appointmentId+' '+item.businessType.replace(" ", "")+'" href="#">View on map</a></div></div>');
         $("."+item.appointmentId).on("click", function(){
             var serviceName = $(this).attr("class").split(" ")[1];
             var matchFound = -1;
@@ -238,10 +239,12 @@ $(".back").on("click", function(){
             }
         });
         $('.clsSec').on('click',function(){
+		var $this = eve.target;
             $('#dialogbox').myDialog({
                 close:function(){
                     
-                }
+                },
+                closeBlock: $this
             });
         });
     });

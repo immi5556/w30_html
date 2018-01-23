@@ -1156,13 +1156,6 @@ $(function(){
         });
     });
 
-    if(window.andapp){
-        window.andapp.saveLatestURL("schedulePage.html");
-        var subdomain = window.andapp.getSubdomain();
-        var adminState = window.andapp.getAdminState();
-    }
-
-
     function goBack(){
         if($(".screen1").is(":visible")){
             window.andapp.saveAdminState("false");
@@ -1181,6 +1174,13 @@ $(function(){
     $(".back").on("click", function(){
         goBack();
     });
+
+    if(window.andapp){
+        window.andapp.saveLatestURL("schedulePage.html");
+        var subdomain = window.andapp.getSubdomain();
+        var adminState = window.andapp.getAdminState();
+    }
+
     if(adminState && adminState == "true"){
         $(".signOut").on("click", function(){
             if(adminState && adminState == "true"){
@@ -1200,4 +1200,4 @@ $(function(){
     else{
         alert("Subdomain not exists.");
     }
-})
+})();

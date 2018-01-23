@@ -69,8 +69,10 @@ $(".serviceSection").swipe( {
   swipeUp:function(event, direction, distance, duration) {
     $('.directionArrowTop').hide();
     $('.directionArrowBottom').show();
+    var reqHeight = $('.serviceCont').outerHeight()+$('.serviceSection').outerHeight();
+    reqHeight = reqHeight+20+"px";
     $('.serviceSection').animate({
-        height:'330px'
+        height:reqHeight
     },200);
   },
   swipeDown:function(event, direction, distance, duration) {
@@ -439,8 +441,8 @@ var getServices = function (){
             subDomains.push(subdomain);
             google.maps.event.addListener(marker, 'click', (function(marker, subdomain, i) {
                 return function() {
-                    console.log("hiiiiii");
                     calling = "false";
+                    website = "false";
                     website = "false";
                     websiteDomain = "";
                     if($(".menu").hasClass("fa-times")){
@@ -628,9 +630,9 @@ var getServices = function (){
                             window.andapp.savewebsiteState(website);
                             //window.andapp.openLink("https://"+customers[i].subdomain+urlLink+"?source=AndroidSchedulePage&firstname="+firstname+"&email="+email+"&mobile="+mobilenumber+"&userid="+userid);
                             if(window.andapp.checkInternet() == "true"){
-                    			window.andapp.openLink("schedulePage.html");
+                    			window.andapp.openLink("file:///android_asset/schedulePage.html");
                     		}else{
-                    		    window.andapp.saveLatestURL("schedulePage.html");
+                    		    window.andapp.saveLatestURL("file:///android_asset/schedulePage.html");
                     			window.andapp.loadLocalFile();
                     		}
                             
