@@ -56,6 +56,11 @@ $(".menu").click(function(){
     $(".search-icon").removeClass("fa-search");
     $(".search-icon").removeClass("fa-close");
     $(".search-icon").addClass("fa-home");
+	if($('.search-input').hasClass('open')){
+                    $('.search-input').toggleClass('open');
+                    $('.input_filter').val('');
+                    $('.dropdownWrap').hide();
+                 }
     $("#catagorySelect").html("Menu");
 });
 $(document).on('click','.fa-times',function(e){
