@@ -2,7 +2,7 @@ if(window.andapp){
     window.andapp.saveLatestURL("servicePage.html");
 }
 var servurl = "https://services.within30.com/";     //"https://services.schejule.com:9095/"
-var sockurl = "https://socket.within30.com/";       //"https://socket.schejule.com:9090/"
+var sockurl = servurl;       //"https://socket.schejule.com:9090/"
 var w30Credentials = "win-HQGQ:zxosxtR76Z80";
 var geocoder = new google.maps.Geocoder();
 var serviceId = "";
@@ -56,6 +56,11 @@ $(".menu").click(function(){
     $(".search-icon").removeClass("fa-search");
     $(".search-icon").removeClass("fa-close");
     $(".search-icon").addClass("fa-home");
+	if($('.search-input').hasClass('open')){
+                    $('.search-input').toggleClass('open');
+                    $('.input_filter').val('');
+                    $('.dropdownWrap').hide();
+                 }
     $("#catagorySelect").html("Menu");
 });
 $(document).on('click','.fa-times',function(e){
@@ -639,10 +644,13 @@ var getServices = function (){
                         });
                     }
                     if(customers[i].roadDistance){
-			    $(".milesVal").text((country == "India" ? ((customers[i].destinationDistance*1.60934).toFixed(2)+' KMs') : customers[i].destinationDistance.toFixed(2)+' Miles'));
-		     }else{
-			    getRealDistance(customers[i].geo.coordinates[1], customers[i].geo.coordinates[0], i);
-		      }
+                        $(".milesVal").text((country == "India" ? ((customers[i].destinationDistance*1.60934).toFixed(2)+' KMs') : customers[i].destinationDistance.toFixed(2)+' Miles'));
+                    }else{
+                        getRealDistance(customers[i].geo.coordinates[1], customers[i].geo.coordinates[0], i);
+                    }
+		            setTimeout(function(){
+		                $(".directionArrowTop").click();
+		            }, 500);
                 }
             })(marker, subdomain, i));
     }

@@ -51,7 +51,7 @@ var jss = {
     var companyName = "", category = "", mobileNumber = "", email = "", street = "", unit = "", city = "", state = "", country = "", zip = "", subdomain = "", startTime = "", endTime = "", latitude = "", longitude = "", password = "", logoName = "sample-logo.jpg";
 	var servurl = "https://services.within30.com/";
     var regisurl = "https://registration.within30.com/";
-    var hostingIP = "https://socket.within30.com/";
+    var hostingIP = servurl;
     var geocoder = new google.maps.Geocoder();
     var source = "From W30 Android Chat";
     var timeZone = "IST";

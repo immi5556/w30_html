@@ -644,10 +644,10 @@ var getServices = function (){
                         });
                     }
                     if(customers[i].roadDistance){
-			    $(".milesVal").text((country == "India" ? ((customers[i].destinationDistance*1.60934).toFixed(2)+' KMs') : customers[i].destinationDistance.toFixed(2)+' Miles'));
-		     }else{
-			    getRealDistance(customers[i].geo.coordinates[1], customers[i].geo.coordinates[0], i);
-		      }
+                        $(".milesVal").text((country == "India" ? ((customers[i].destinationDistance*1.60934).toFixed(2)+' KMs') : customers[i].destinationDistance.toFixed(2)+' Miles'));
+                    }else{
+                        getRealDistance(customers[i].geo.coordinates[1], customers[i].geo.coordinates[0], i);
+                    }
                 }
             })(marker, subdomain, i));
     }

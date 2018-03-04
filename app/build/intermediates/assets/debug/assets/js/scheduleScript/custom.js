@@ -38,7 +38,7 @@ function goBack(){
     }
 $(function(){
     var servurl = "https://services.within30.com/";                     //"https://services.schejule.com:9095/"
-    var sockurl = "https://socket.within30.com/";                       //"https://util.schejule.com:9090/"
+    var sockurl = servurl;                       //"https://util.schejule.com:9090/"
     var regisurl = 'https://registration.within30.com/';                //"https://registration.schejule.com:9091/"
     var schdlurl = 'https://schedule.within30.com/';                    //"https://schedule.schejule.com:9092/"
     var w30Credentials = "win-HQGQ:zxosxtR76Z80";
